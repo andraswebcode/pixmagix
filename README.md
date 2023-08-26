@@ -7,7 +7,7 @@ Unleash the power of creativity with PixMagix. Transform your website into a vis
 
 [Features](https://pixmagix-photo-editor.com/features/) | [Tutorials](https://pixmagix-photo-editor.com/category/tutorials/) | [Documentation](https://pixmagix-photo-editor.com/support/documentation/) | [FAQ](https://pixmagix-photo-editor.com/support/faq/) | [Contact](https://pixmagix-photo-editor.com/support/contact/)
 
-[![the editor interface](https://pixmagix-photo-editor.com/wp-content/uploads/2023/07/editor-1024x576.jpg)](https://pixmagix-photo-editor.com/)
+![the editor interface](https://pixmagix-photo-editor.com/wp-content/uploads/2023/07/editor-768x432.jpg)
 
 ### Unlock the Power of Visual Storytelling
 
