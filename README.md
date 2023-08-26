@@ -41,5 +41,5 @@ For further support or help with using PixMagix, you can visit the official webs
 ## Credits
 
 This project utilizes the following external packages:
-*   [Fabric.js](https://fabricjs.com/) - A powerful and simple-to-use JavaScript canvas library for working with HTML5 canvas element.
-*   [Font Awesome](https://fontawesome.com/) - A popular icon set and toolkit that provides a wide range of customizable icons for web applications.
+*   [Fabric.js](https://github.com/fabricjs/fabric.js) - A powerful and simple-to-use JavaScript canvas library for working with HTML5 canvas element.
+*   [Font Awesome](https://github.com/FortAwesome/Font-Awesome) - A popular icon set and toolkit that provides a wide range of customizable icons for web applications.
