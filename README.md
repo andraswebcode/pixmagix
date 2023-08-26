@@ -18,3 +18,23 @@ PixMagix provides you with the power to elevate your images beyond the ordinary.
 ### Streamline Your Workflow with Ease
 
 Gone are the days of juggling multiple software and plugins to edit and optimize your images. PixMagix streamlines your workflow by combining all the necessary tools into one convenient package. With its intuitive interface and seamless integration with WordPress, you can save time and effort while maintaining the highest quality visuals for your website.
+
+## FAQ
+
+### What is PixMagix?
+PixMagix is an advanced photo editor plugin for WordPress media images that provides various tools and features to enhance and customize images.
+### How do I install PixMagix on my WordPress website?
+To install PixMagix, you can go to the WordPress dashboard, navigate to the “Plugins” section, click on “Add New,” search for “PixMagix,” and click on “Install Now.”
+### Can PixMagix be used by beginners without technical knowledge?
+Yes, PixMagix is user-friendly and can be used by beginners without any technical knowledge. Its intuitive interface makes it easy to create, and edit images.
+### Does PixMagix optimize images for SEO?
+Yes, PixMagix includes built-in optimization features like image compression and alt text generation to help optimize images for better SEO.
+### Can I undo changes made with PixMagix?
+Yes, PixMagix provides an undo feature that allows you to revert back to the original version of the image if you’re not satisfied with the changes.
+### What file formats does PixMagix support?
+PixMagix supports popular image file formats such as JPEG, PNG, and SVG, ensuring compatibility with a wide range of image files.
+### Is PixMagix responsive and mobile-friendly?
+Yes, PixMagix is designed to be responsive and mobile-friendly, providing a seamless user experience on various devices.
+### Where can I find further support or help with using PixMagix?
+For further support or help with using PixMagix, you can visit the official website and access documentation, tutorials, and contact the support team if needed.
+
