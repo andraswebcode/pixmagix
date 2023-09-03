@@ -4,7 +4,7 @@
  * Plugin Name: PixMagix
  * Plugin URI: https://pixmagix-photo-editor.com/
  * Description: Advanced photo editor plugin for media images. Add filters, adjust brightness and contrast, crop and resize images, add text, and much more. Overall, PixMagix is a powerful tool for anyone looking to take their website's visual content to the next level.
- * Version: 1.0.0
+ * Version: 1.1.0
  * Requires at least: 6.0.0
  * Requires PHP: 7.0.0
  * Author: Andras Tovishati
@@ -25,7 +25,7 @@ if (!defined('ABSPATH')){
 
 define('PIXMAGIX_DIR', plugin_dir_path(__FILE__));
 define('PIXMAGIX_URL', plugin_dir_url(__FILE__));
-define('PIXMAGIX_VERSION', '1.0.0');
+define('PIXMAGIX_VERSION', '1.1.0');
 define('PIXMAGIX_REQUIRED_PHP_VERSION', '7.0.0');
 define('PIXMAGIX_REQUIRED_WP_VERSION', '6.0.0');
 
@@ -93,6 +93,26 @@ if (!function_exists(__NAMESPACE__ . '\\fail_wp_version')){
 		);
 		echo wp_kses_post($html_message);
 	}
+}
+
+/**
+ * Register activation hook.
+ * @since 1.1.0
+ */
+
+if (!function_exists(__NAMESPACE__ . '\\plugin_activate')){
+	function plugin_activate(){
+		require_once PIXMAGIX_DIR . 'includes/utils-users.php';
+		$roles = array(
+			'administrator' => true,
+			'editor' => false,
+			'author' => false
+		);
+		foreach ($roles as $role => $allow_others){
+			Users\Utils\add_capabilities($role, $allow_others, $allow_others);
+		}
+	}
+	register_activation_hook(__FILE__, __NAMESPACE__ . '\\plugin_activate');
 }
 
 ?>
