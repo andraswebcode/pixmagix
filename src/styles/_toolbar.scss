@@ -1,0 +1,18 @@
+.pixmagix-toolbar {
+	width: $toolbar-width;
+	height: 100%;
+	background-color: $editor-bg-dark;
+	&__list {
+		list-style: none;
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+	}
+	&__item {
+		.pixmagix-button {
+			display: block;
+			width: 100%;
+		}
+	}
+}

@@ -1,0 +1,10 @@
+.pixmagix {
+	&-content {
+		padding: $padding;
+		padding-top: 0;
+	}
+	&-content > &-row > &-column {
+		padding-top: 0;
+		padding-bottom: 0;
+	}
+}
