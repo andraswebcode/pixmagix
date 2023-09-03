@@ -168,6 +168,7 @@ final class Media {
 				),
 				PIXMAGIX_VERSION
 			);
+			wp_set_script_translations('pixmagix-media-list-table', 'pixmagix', PIXMAGIX_DIR . 'languages');
 		}
 
 		if (wp_script_is('media-views', 'enqueued')){

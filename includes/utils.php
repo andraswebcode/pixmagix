@@ -29,6 +29,31 @@ function get_asset_url($folder = '', $file_name = '', $extension = 'js', $with_m
 }
 
 /**
+ * Get project data using rest request to run all necessary things, eg.: permissions.
+ * @since 1.1.0
+ * @param int $id
+ * @return array
+ */
+
+function get_project_data($id = 0){
+
+	if (empty($id)){
+		return array();
+	}
+
+	$request = new \WP_Rest_Request('GET', '/wp/v2/pixmagix/' . $id);
+	$response = rest_get_server()->dispatch($request);
+	$data = $response->get_data();
+
+	if ($response->is_error()){
+		return array();
+	}
+
+	return $data['meta']['pixmagix_project'] ?? array();
+
+}
+
+/**
  * Set up, and return wp filesystem class instance.
  * @since 1.0.0
  * @return WP_Filesystem
@@ -106,8 +131,6 @@ function get_upload_url($folder_name = '', $file_name = ''){
 /**
  * Returns the link to editor page.
  * @since 1.0.0
- * @access public
- * @static
  * @param int $id
  * @param string $key The key of query arg: 'id', or 'image'.
  * @return string
@@ -133,8 +156,6 @@ function admin_editor_url($id = 0, $key = 'id'){
 /**
  * Returns the link to the specific admin page inside PixMagix.
  * @since 1.0.0
- * @access public
- * @static
  * @param string $suffix
  * @return string
  */
@@ -151,8 +172,6 @@ function admin_page_url($suffix = ''){
 /**
  * Returns the decoded data from a json file.
  * @since 1.0.0
- * @access public
- * @static
  * @param string $filename
  * @return array
  */
@@ -185,26 +204,9 @@ function get_json_data($filename = ''){
 }
 
 /**
- * 
- * @since 1.0.0
- * @access public
- * @static
- * @return int
- */
-
-function count_project_pages(){
-
-	$count = wp_count_posts('pixmagix');
-
-	return ceil(intval($count->publish) / 12);
-
-}
-
-/**
  * There doesn't seem to be any function in WordPress that would helps us list the months of posts
  * for filters. So we have to make this function explicitly, based on WP_List_Table::months_dropdown().
  * @since 1.0.0
- * @static
  * @param string $post_type
  * @return array
  */
@@ -219,20 +221,29 @@ function get_months_dropdown_items($post_type = 'pixmagix'){
 	}
 
 	$user_id = get_current_user_id();
-	$months = $wpdb->get_results(
-		$wpdb->prepare(
-			"
-				SELECT DISTINCT YEAR(post_date) AS year, MONTH(post_date) AS month
-				FROM $wpdb->posts
-				WHERE post_type = %s
-				AND post_author = %s
-				AND post_status != 'auto-draft'
-				ORDER BY post_date DESC
-			",
-			$post_type,
-			$user_id
-		)
+	$filter_by_author = (post_type_supports($post_type, 'author') && !current_user_can('read_others_pixmagixs'));
+	$query = $filter_by_author ? $wpdb->prepare(
+		"
+			SELECT DISTINCT YEAR(post_date) AS year, MONTH(post_date) AS month
+			FROM $wpdb->posts
+			WHERE post_type = %s
+			AND post_author = %s
+			AND post_status = 'publish'
+			ORDER BY post_date DESC
+		",
+		$post_type,
+		$user_id
+	) : $wpdb->prepare(
+		"
+			SELECT DISTINCT YEAR(post_date) AS year, MONTH(post_date) AS month
+			FROM $wpdb->posts
+			WHERE post_type = %s
+			AND post_status = 'publish'
+			ORDER BY post_date DESC
+		",
+		$post_type
 	);
+	$months = $wpdb->get_results($query);
 
 	// This filter is documented in wp-admin/includes/class-wp-list-table on line: 721.
 	$months = apply_filters('months_dropdown_results', $months, $post_type);
@@ -259,7 +270,6 @@ function get_months_dropdown_items($post_type = 'pixmagix'){
 /**
  *
  * @since 1.0.0
- * @static
  * @param int $attachment_id
  */
 
@@ -281,6 +291,85 @@ function delete_attachment_subsizes($attachment_id = 0){
 			wp_delete_file($path);
 		}
 	}
+
+}
+
+/**
+ * Useful for get croped size of free images by defining the full size. (got from pixabay, unsplash, etc.)
+ * @since 1.1.0
+ * @param int $width
+ * @param int $height
+ * @param int $cropped_size
+ * @return array
+ */
+
+function get_cropped_image_size($width = 0, $height = 0, $cropped_size = 0){
+
+	if (empty($width) || empty($height) || empty($cropped_size)){
+		return array(
+			'width' => 0,
+			'height' => 0
+		);
+	}
+
+	$cropped_width = 0;
+	$cropped_height = 0;
+
+	if ($width > $height){
+		$aspect_ratio = $width / $cropped_size;
+		$cropped_width = $cropped_size;
+		$cropped_height = $height / $aspect_ratio;
+	} elseif ($width < $height){
+		$aspect_ratio = $height / $cropped_size;
+		$cropped_width = $width / $aspect_ratio;
+		$cropped_height = $cropped_size;
+	} else { // If width and height are equal.
+		$cropped_width = $cropped_size;
+		$cropped_height = $cropped_size;
+	}
+
+	return array(
+		'width' => ceil($cropped_width),
+		'height' => ceil($cropped_height)
+	);
+
+}
+
+/**
+ * 
+ * @since 1.1.0
+ * @param array $list
+ * @param string $where
+ * @param string $is
+ * @return array|null
+ */
+
+function find_object($list = array(), $where = '', $is = ''){
+
+	if (empty($list) || empty($where) || empty($is)){
+		return null;
+	}
+
+	return array_column($list, null, $where)[$is] ?? null;
+
+}
+
+/**
+ * 
+ * @since 1.1.0
+ * @param string $url
+ * @return string
+ */
+
+function get_file_extension($url = '', $default = ''){
+
+	if (empty($url)){
+		return '';
+	}
+
+	$basename = wp_basename($url);
+
+	return wp_check_filetype($basename)['ext'] ?? $default;
 
 }
 

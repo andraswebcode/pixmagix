@@ -6,6 +6,7 @@ use function AndrasWeb\PixMagix\Utils\get_filesystem;
 use function AndrasWeb\PixMagix\Utils\get_json_data;
 use function AndrasWeb\PixMagix\Utils\get_upload_dir;
 use function AndrasWeb\PixMagix\Utils\get_upload_url;
+use function AndrasWeb\PixMagix\Utils\get_file_extension;
 
 // Exit, if accessed directly.
 
@@ -59,7 +60,9 @@ final class Post_Type {
 				'rewrite' => false,
 				'query_var' => false,
 				'can_export' => false,
-				'rest_controller_class' => __NAMESPACE__ . '\\Rest_Controller'
+				'rest_controller_class' => __NAMESPACE__ . '\\Rest\\Post_Controller',
+				'capability_type' => 'pixmagix',
+				'map_meta_cap' => false
 			)
 		);
 		register_post_meta(
@@ -170,10 +173,11 @@ final class Post_Type {
 		}
 
 		$data = $response->get_data();
-		$id = (isset($data['previous']) && isset($data['previous']['id'])) ? intval($data['previous']['id']) : 0;
-		$meta = (isset($data['previous']) && isset($data['previous']['meta'])) ? $data['previous']['meta'] : array();
-		$project = isset($meta['pixmagix_project']) ? $meta['pixmagix_project'] : array();
-		$layers = isset($project['layers']) ? $project['layers'] : array();
+		$id = $data['previous']['id'] ?? 0;
+		$id = absint($id);
+		$meta = $data['previous']['meta'] ?? array();
+		$project = $meta['pixmagix_project'] ?? array();
+		$layers = $project['layers'] ?? array();
 
 		if (empty($id) || empty($project)){
 			return;
@@ -187,9 +191,12 @@ final class Post_Type {
 		if (!empty($layers)){
 			foreach ($layers as $layer){
 				$layer_id = $layer['id'];
-				$file = get_upload_dir('layers', 'layer-' . $id . '-' . $layer_id . '.png');
-				if (file_exists($file)){
-					wp_delete_file($file);
+				if ($layer['type'] === 'image'){
+					$extension = get_file_extension($layer['src'] ?? '', 'png');
+					$file = get_upload_dir('layers', 'layer-' . $id . '-' . $layer_id . '.' . $extension);
+					if (file_exists($file)){
+						wp_delete_file($file);
+					}
 				}
 			}
 		}
@@ -228,6 +235,12 @@ final class Post_Type {
 	private function _create_image($base64 = '', $folder_name = '', $file_name = ''){
 
 		$data = explode(',', $base64);
+		$src = get_upload_url($folder_name, $file_name);
+
+		if (strpos($data[0], ';base64') === false){
+			return $src;
+		}
+
 		$filesystem = get_filesystem();
 		$dir = get_upload_dir($folder_name);
 		$file = $dir . $file_name;
@@ -240,7 +253,7 @@ final class Post_Type {
 			return '';
 		}
 
-		return get_upload_url($folder_name, $file_name);
+		return $src;
 
 	}
 
@@ -252,7 +265,7 @@ final class Post_Type {
 	 * @param array $layers
 	 */
 
-	private function _remove_old_layers(){
+	private function _remove_old_layers($id, $layers){
 
 		if (empty($id)){
 			return;
@@ -267,7 +280,8 @@ final class Post_Type {
 				$layer_id = str_replace(
 					array(
 						'layer-' . $id . '-',
-						'.png'
+						'.png',
+						'.jpg'
 					),
 					'',
 					$filename

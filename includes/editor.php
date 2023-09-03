@@ -5,10 +5,10 @@ namespace AndrasWeb\PixMagix\Editor;
 use function AndrasWeb\PixMagix\Utils\get_asset_url;
 use function AndrasWeb\PixMagix\Utils\admin_editor_url;
 use function AndrasWeb\PixMagix\Utils\admin_page_url;
-use function AndrasWeb\PixMagix\Utils\count_project_pages;
 use function AndrasWeb\PixMagix\Utils\get_upload_url;
 use function AndrasWeb\PixMagix\Utils\get_months_dropdown_items;
 use function AndrasWeb\PixMagix\Utils\get_json_data;
+use function AndrasWeb\PixMagix\Settings\get_setting;
 
 // Exit, if accessed directly.
 
@@ -53,199 +53,135 @@ function register_dependencies(){
 
 }
 
-/**
- * Enqueue styles, and scripts for editor.
- * @since 1.0.0
- */
-
-function enqueue_editor_scripts(){
-
-	wp_enqueue_style(
-		'pixmagix-editor',
-		get_asset_url('css', 'editor.build', 'css'),
-		array(),
-		PIXMAGIX_VERSION
-	);
-
-	wp_enqueue_script(
-		'pixmagix-editor',
-		get_asset_url('js', 'editor.build', 'js'),
-		array(
-			'react',
-			'react-dom',
-			'lodash',
-			'wp-dom-ready',
-			'wp-api-fetch',
-			'wp-i18n',
-			'pixmagix-fabric',
-			'pixmagix-elements'
-		),
-		PIXMAGIX_VERSION
-	);
-
-	wp_localize_script(
-		'pixmagix-editor',
-		'pixmagixGlobals',
-		array(
-			'new_url' => esc_url(admin_editor_url()),
-			'projects_url' => esc_url(admin_page_url()),
-			'images_folder' => esc_url(get_asset_url('img', '', '', false)),
-			'thumbnails_folder' => esc_url(get_upload_url('thumbnails')),
-			'project_dates' => get_months_dropdown_items(),
-			'media_dates' => get_months_dropdown_items('attachment'),
-			'fa_icons' => get_json_data('fa-icons')
-		)
-	);
-
-	wp_set_script_translations('pixmagix-editor', 'pixmagix', PIXMAGIX_DIR . 'languages');
-
-}
-
-/**
- * Initialize editor.
- * @since 1.0.0
- * @param int $project_id
- * @param int $attachment_id
- */
-
-function initialize_editor($project_id = 0, $attachment_id = 0){
-
-	$init_script = <<<JS
-		(function(){
-			wp.domReady(function(){
-				pixmagixEditor.initialize(%d, '%s', %s, %s);
-			});
-		})();
-	JS;
-	$project_id = absint($project_id);
-	$title = $project_id ? get_the_title($project_id) : '';
-	$project = $project_id ? get_post_meta($project_id, 'pixmagix_project', true) : array(
-		'layers' => array()
-	);
-	$attachment_id = absint($attachment_id);
-	$attachment_src = wp_get_attachment_image_src($attachment_id, 'full_size');
-	$revision_url = get_post_meta($attachment_id, 'pixmagix_revision_url', true);
-	$media = array(
-		'id' => $attachment_id,
-		'url' => isset($attachment_src[0]) ? $attachment_src[0] : '',
-		'width' =>  isset($attachment_src[1]) ? $attachment_src[1] : 0,
-		'height' => isset($attachment_src[2]) ? $attachment_src[2] : 0,
-		'revision' => !empty($revision_url) ? $revision_url : ''
-	);
-
-	$script = sprintf(
-		$init_script,
-		$project_id,
-		esc_html($title),
-		wp_json_encode($project),
-		wp_json_encode($media)
-	);
-
-	wp_add_inline_script(
-		'pixmagix-editor',
-		$script
-	);
-
-}
-
-/**
- * Enqueue styles, and scripts for projects list.
- * @since 1.0.0
- */
-
-function enqueue_projects_scripts(){
-
-	wp_enqueue_style(
-		'pixmagix-projects',
-		get_asset_url('css', 'projects.build', 'css'),
-		array(),
-		PIXMAGIX_VERSION
-	);
-
-	wp_enqueue_script(
-		'pixmagix-projects',
-		get_asset_url('js', 'projects.build', 'js'),
-		array(
-			'react',
-			'react-dom',
-			'lodash',
-			'wp-dom-ready',
-			'wp-api-fetch',
-			'wp-i18n',
-			'pixmagix-elements'
-		),
-		PIXMAGIX_VERSION
-	);
-
-	wp_localize_script(
-		'pixmagix-projects',
-		'pixmagixGlobals',
-		array(
-			'new_url' => esc_url(admin_editor_url()),
-			'projects_url' => esc_url(admin_page_url()),
-			'project_dates' => get_months_dropdown_items()
-		)
-	);
-
-	wp_set_script_translations('pixmagix-projects', 'pixmagix', PIXMAGIX_DIR . 'languages');
-
-}
 
 
 /**
- * Initialize projects list.
- * @since 1.0.0
- * @param int $page
- * @param string $search
+ *
+ * @since 1.1.0
  */
 
-function initialize_projects($page = 1, $search = ''){
+function enqueue_fonts(){
 
-	$init_script = <<<JS
-		(function(){
-			wp.domReady(function(){
-				pixmagixEditor.initialize(%d, %d, '%s', %s);
-			});
-		})();
-	JS;
-	$page = absint($page);
-	$max_pages = absint(count_project_pages());
-	$search = esc_html($search);
-	$items_request = new \WP_Rest_Request('GET', '/wp/v2/pixmagix');
-	$items_request->set_query_params(
-		array(
-			'author' => get_current_user_id(),
-			'page' => $page,
-			'search' => $search,
-			'per_page' => 12
-		)
-	);
-	$items_response = rest_get_server()->dispatch($items_request);
-	$data = $items_response->get_data();
-	$items_list = array();
+	$gfonts = get_setting('google_fonts');
+	$link = 'https://fonts.googleapis.com/css2?';
 
-	if (isset($data['message'])){
-		$items_list[] = $data['message'];
-	} else {
-		foreach ($data as $item){
-			$items_list[] = array(
-				'id' => absint($item['id']),
-				'title' => (isset($item['title']) && isset($item['title']['rendered'])) ? esc_html($item['title']['rendered']) : '',
-				'project' => (isset($item['meta']) && isset($item['meta']['pixmagix_project'])) ? $item['meta']['pixmagix_project'] : array()
-			);
+	if (empty($gfonts)){
+		return;
+	}
+
+	foreach ($gfonts as $font){
+		$family = $font['family'] ?? '';
+		if (!empty($family)){
+			$link .= 'family=' . $family . '&';
 		}
 	}
 
+	$link .= 'display=swap';
+
+	wp_enqueue_style(
+		'pixmagix-gfonts',
+		esc_url($link),
+		array(),
+		null
+	);
+
+}
+
+/**
+ * Enqueue styles for a specific admin page.
+ * @since 1.1.0
+ * @param array $styles
+ */
+
+function enqueue_admin_styles(...$styles){
+	if (!empty($styles)){
+		foreach ($styles as $style){
+			if (!isset($style['handle']) || !isset($style['src'])){
+				continue;
+			}
+			$handle = $style['handle'];
+			$src = $style['src'];
+			$deps = isset($style['deps']) ? $style['deps'] : array();
+			wp_enqueue_style(
+				$handle,
+				$src,
+				$deps,
+				PIXMAGIX_VERSION
+			);
+		}
+	}
+}
+
+/**
+ * Enqueue scripts for a specific admin page.
+ * @since 1.1.0
+ * @param array $scripts
+ */
+
+function enqueue_admin_scripts(...$scripts){
+	$def_deps = array(
+		'react',
+		'react-dom',
+		'lodash',
+		'wp-dom-ready',
+		'wp-api-fetch',
+		'wp-i18n',
+		'pixmagix-elements'
+	);
+	if (!empty($scripts)){
+		foreach ($scripts as $script){
+			if (!isset($script['handle']) || !isset($script['src'])){
+				continue;
+			}
+			$handle = $script['handle'];
+			$src = $script['src'];
+			$deps = isset($script['deps']) ? $script['deps'] : $def_deps;
+			$l10n = isset($script['l10n']) ? $script['l10n'] : array();
+			wp_enqueue_script(
+				$handle,
+				$src,
+				$deps,
+				PIXMAGIX_VERSION
+			);
+			if (!empty($l10n)){
+				wp_localize_script(
+					$handle,
+					'pixmagixGlobals',
+					$l10n
+				);
+			}
+			wp_set_script_translations($handle, 'pixmagix', PIXMAGIX_DIR . 'languages');
+		}
+	}
+}
+
+/**
+ * Initialize react application on a specific admin page.
+ * @since 1.1.0
+ * @param string $handle
+ * @param array $params
+ */
+
+function initialize_admin_page($handle = '', $params = array()){
+
+	if (empty($handle)){
+		return;
+	}
+
+	$init_script = <<<JS
+		(function(){
+			wp.domReady(function(){
+				pixmagixEditor.initialize(%s);
+			});
+		})();
+	JS;
 	$script = sprintf(
 		$init_script,
-		$page,
-		$max_pages,
-		$search,
-		wp_json_encode($items_list)
+		wp_json_encode($params)
 	);
 
 	wp_add_inline_script(
-		'pixmagix-projects',
+		$handle,
 		$script
 	);
 

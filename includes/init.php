@@ -54,9 +54,12 @@ final class Plugin {
 	 */
 
 	public function load_files(){
-		require_once PIXMAGIX_DIR . 'includes/class-rest-controller.php';
+		require_once PIXMAGIX_DIR . 'includes/class-rest-meta-fields.php';
+		require_once PIXMAGIX_DIR . 'includes/class-rest-post-controller.php';
 		require_once PIXMAGIX_DIR . 'includes/utils.php';
+		require_once PIXMAGIX_DIR . 'includes/utils-users.php';
 		require_once PIXMAGIX_DIR . 'includes/editor.php';
+		require_once PIXMAGIX_DIR . 'includes/settings.php';
 		require_once PIXMAGIX_DIR . 'includes/admin.php';
 		require_once PIXMAGIX_DIR . 'includes/media.php';
 		require_once PIXMAGIX_DIR . 'includes/post-type.php';
