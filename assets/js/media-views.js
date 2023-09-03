@@ -11,7 +11,7 @@
 	 * @since 1.0.0
 	 */
 
-	wp.media.view.Attachment.Details.prototype.render = function() {
+	media.view.Attachment.Details.prototype.render = function() {
 
 		render.call(this);
 

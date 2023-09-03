@@ -3255,7 +3255,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! wp-i18n */ "wp-i18n");
 /* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(wp_i18n__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _utils_constants_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../utils/constants.js */ "./src/editor/utils/constants.js");
-/* harmony import */ var _class_brush_path_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./class-brush-path.js */ "./src/editor/canvas/class-brush-path.js");
+/* harmony import */ var _utils_fonts_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../utils/fonts.js */ "./src/editor/utils/fonts.js");
+/* harmony import */ var _class_brush_path_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./class-brush-path.js */ "./src/editor/canvas/class-brush-path.js");
+
 
 
 
@@ -3355,6 +3357,16 @@ var onMouseDown = fabric__WEBPACK_IMPORTED_MODULE_0__.Canvas.prototype.__onMouse
 
   uniScaleKey: null,
   /**
+   * Extends Canvas.prototype.initialize().
+   * @since 1.1.0
+   * @param {HTMLElement|string} el
+   * @param {object} options
+   */
+  initialize: function initialize(el, options) {
+    this.callSuper('initialize', el, options);
+    this._loadFonts();
+  },
+  /**
    *
    * @since 1.0.0
    * @param {string} id
@@ -3450,9 +3462,95 @@ var onMouseDown = fabric__WEBPACK_IMPORTED_MODULE_0__.Canvas.prototype.__onMouse
     var _options$width = options.width,
       width = _options$width === void 0 ? this.width : _options$width,
       _options$height = options.height,
-      height = _options$height === void 0 ? this.height : _options$height;
-    var viewBox = "0 0 ".concat(width, " ").concat(height);
-    markup.push('<svg ', 'xmlns="http://www.w3.org/2000/svg" ', 'xmlns:xlink="http://www.w3.org/1999/xlink" ', 'version="1.1" ', 'width="', width, '" ', 'height="', height, '" ', 'viewBox="', viewBox, '" ', 'xml:space="preserve">\n', '<desc>', (0,wp_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Created With PixMagix', 'pixmagix'), '</desc>', '<defs>\n', '</defs>\n');
+      height = _options$height === void 0 ? this.height : _options$height,
+      _options$viewBox = options.viewBox,
+      viewBox = _options$viewBox === void 0 ? {} : _options$viewBox,
+      preserveAspectRatio = options.preserveAspectRatio;
+    var vbWidth = viewBox.width || width;
+    var vbHeight = viewBox.height || height;
+    var viewBoxAttr = "0 0 ".concat(vbWidth, " ").concat(vbHeight);
+    markup.push('<svg ', 'xmlns="http://www.w3.org/2000/svg" ', 'xmlns:xlink="http://www.w3.org/1999/xlink" ', 'version="1.1" ', 'width="', width, '" ', 'height="', height, '" ', 'viewBox="', viewBoxAttr, '" ', preserveAspectRatio ? 'preserveAspectRatio="' + preserveAspectRatio + '" ' : '', 'xml:space="preserve">\n', '<desc>', (0,wp_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Created With PixMagix', 'pixmagix'), '</desc>', '<defs>\n', this.createSVGFontFacesMarkup(), this.createSVGRefElementsMarkup(), '</defs>\n');
+  },
+  /**
+   * Extends Canvas.prototype.createSVGFontFacesMarkup() for loading Google fonts.
+   * @since 1.1.0
+   * @return {string}
+   */
+  createSVGFontFacesMarkup: function createSVGFontFacesMarkup() {
+    var query = (0,lodash__WEBPACK_IMPORTED_MODULE_1__.uniq)(this._objects.map(function (obj) {
+      if (obj.type !== 'i-text' && obj.type !== 'text') {
+        return '';
+      }
+      if (obj.fontCollection === 'gfonts') {
+        return obj.fontFamily.replace(/\s+/g, '+');
+      }
+      return '';
+    }).filter(function (str) {
+      return str !== '';
+    })).join('&amp;family=');
+    if (!query) {
+      return '';
+    }
+    var url = 'https://fonts.googleapis.com/css2?family=' + query;
+    return ['<style type="text/css">', '@import url(\'' + url + '\')', '</style>'].join('');
+  },
+  /**
+   *
+   * @since 1.1.0
+   */
+  _loadFonts: function _loadFonts() {
+    var _this3 = this;
+    (0,_utils_fonts_js__WEBPACK_IMPORTED_MODULE_4__.loadFonts)(function () {
+      fabric__WEBPACK_IMPORTED_MODULE_0__.util.clearFabricFontCache();
+      _this3.forEachObject(function (obj) {
+        if (obj.type === 'i-text' || obj.type === 'text') {
+          obj.initDimensions();
+          obj.setCoords();
+        }
+      });
+      _this3.requestRenderAll();
+    });
+  },
+  /**
+   * Extends Canvas.prototype._renderBackgroundOrOverlay().
+   * @since 1.1.0
+   * @param {CanvasRenderingContext2D} ctx
+   * @param {string} property
+   */
+  _renderBackgroundOrOverlay: function _renderBackgroundOrOverlay(ctx, property) {
+    var fill = this[property + 'Color'];
+    var object = this[property + 'Image'];
+    var v = this.viewportTransform;
+    var needsVpt = this[property + 'Vpt'];
+    if (!fill && !object) {
+      return;
+    }
+    if (fill) {
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(this.width, 0);
+      ctx.lineTo(this.width, this.height);
+      ctx.lineTo(0, this.height);
+      ctx.closePath();
+      ctx.fillStyle = fill.toLive ? fill.toLive(ctx, this) : fill;
+      if (needsVpt) {
+        ctx.transform(v[0], v[1], v[2], v[3], v[4], v[5]);
+      }
+      if (fill.colorStops) {
+        ctx.transform(this.width, 0, 0, this.height, 0, 0);
+      }
+      ctx.fill();
+      ctx.restore();
+    }
+    if (object) {
+      ctx.save();
+      if (needsVpt) {
+        ctx.transform(v[0], v[1], v[2], v[3], v[4], v[5]);
+      }
+      object.render(ctx);
+      ctx.restore();
+    }
   },
   /**
    * Extends Canvas.prototype.__onMouseDown().
@@ -3462,7 +3560,7 @@ var onMouseDown = fabric__WEBPACK_IMPORTED_MODULE_0__.Canvas.prototype.__onMouse
    */
   __onMouseDown: function __onMouseDown(e) {
     onMouseDown.call(this, e);
-    if (this.freeDrawingBrush instanceof _class_brush_path_js__WEBPACK_IMPORTED_MODULE_4__["default"] && this.isDrawingMode && e.button === 2) {
+    if (this.freeDrawingBrush instanceof _class_brush_path_js__WEBPACK_IMPORTED_MODULE_5__["default"] && this.isDrawingMode && e.button === 2) {
       this._onMouseDownInDrawingMode(e);
     }
   }
@@ -3769,7 +3867,60 @@ fabric__WEBPACK_IMPORTED_MODULE_0__.util.object.extend((fabric__WEBPACK_IMPORTED
    * @var {Canvas2dFilterBackend}
    */
 
-  filterBackend: new fabric__WEBPACK_IMPORTED_MODULE_0__.Canvas2dFilterBackend()
+  filterBackend: new fabric__WEBPACK_IMPORTED_MODULE_0__.Canvas2dFilterBackend(),
+  /**
+   * Extend fabric.getCSSRules().
+   * @since 1.1.0
+   * @return {object}
+   */
+  getCSSRules: function getCSSRules(doc) {
+    var styles = doc.getElementsByTagName('style');
+    var allRules = {};
+    var i, len, rules;
+    for (i = 0, len = styles.length; i < len; i++) {
+      var styleContents = styles[i].textContent;
+
+      // remove comments
+      styleContents = styleContents.replace(/\/\*[\s\S]*?\*\//g, '');
+      if (styleContents.trim() === '') {
+        continue;
+      }
+      rules = styleContents.match(/[^{]*\{[\s\S]*?\}/g);
+      if (!rules) {
+        continue;
+      }
+      rules = rules.map(function (rule) {
+        return rule.trim();
+      });
+
+      // eslint-disable-next-line no-loop-func
+      rules.forEach(function (rule) {
+        var match = rule.match(/([\s\S]*?)\s*\{([^}]*)\}/);
+        var ruleObj = {};
+        var declaration = match[2].trim();
+        var propertyValuePairs = declaration.replace(/;$/, '').split(/\s*;\s*/);
+        for (i = 0, len = propertyValuePairs.length; i < len; i++) {
+          var pair = propertyValuePairs[i].split(/\s*:\s*/);
+          var property = pair[0];
+          var value = pair[1];
+          ruleObj[property] = value;
+        }
+        rule = match[1];
+        rule.split(',').forEach(function (_rule) {
+          _rule = _rule.replace(/^svg/i, '').trim();
+          if (_rule === '') {
+            return;
+          }
+          if (allRules[_rule]) {
+            fabric__WEBPACK_IMPORTED_MODULE_0__.util.object.extend(allRules[_rule], ruleObj);
+          } else {
+            allRules[_rule] = fabric__WEBPACK_IMPORTED_MODULE_0__.util.object.clone(ruleObj);
+          }
+        });
+      });
+    }
+    return allRules;
+  }
 });
 
 /***/ }),
@@ -3806,6 +3957,108 @@ fabric__WEBPACK_IMPORTED_MODULE_0__.util.object.extend(fabric__WEBPACK_IMPORTED_
 for (var filter in newFilters) {
   fabric__WEBPACK_IMPORTED_MODULE_0__.Image.filters[filter].fromObject = fabric__WEBPACK_IMPORTED_MODULE_0__.Image.filters.BaseFilter.fromObject;
 }
+
+/***/ }),
+
+/***/ "./src/editor/canvas/extend-gradient.js":
+/*!**********************************************!*\
+  !*** ./src/editor/canvas/extend-gradient.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var fabric__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! fabric */ "fabric");
+/* harmony import */ var fabric__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(fabric__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "lodash");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _utils_utils_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../utils/utils.js */ "./src/editor/utils/utils.js");
+
+
+
+var degreesToRadians = fabric__WEBPACK_IMPORTED_MODULE_0__.util.degreesToRadians,
+  rotatePoint = fabric__WEBPACK_IMPORTED_MODULE_0__.util.rotatePoint,
+  populateWithProperties = fabric__WEBPACK_IMPORTED_MODULE_0__.util.populateWithProperties;
+var _toSVG = fabric__WEBPACK_IMPORTED_MODULE_0__.Gradient.prototype.toSVG;
+fabric__WEBPACK_IMPORTED_MODULE_0__.util.object.extend(fabric__WEBPACK_IMPORTED_MODULE_0__.Gradient.prototype, {
+  /**
+   * Update default 'pixels' value to 'percentage'.
+   * @since 1.1.0
+   */
+
+  gradientUnits: 'percentage',
+  /**
+   * Extend fabric.Gradient.prototype.initialize()
+   * @since 1.1.0
+   */
+  initialize: function initialize() {
+    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    this.type = options.type || 'linear';
+    this.angle = options.angle;
+    if (!this.id || ('' + this.id).indexOf('pixmagix') !== 0) {
+      this.id = (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_2__.createUniqueId)();
+    }
+    if (this.type === 'linear') {
+      if ((0,lodash__WEBPACK_IMPORTED_MODULE_1__.isUndefined)(this.angle)) {
+        var _ref = options.coords || {},
+          _ref$x = _ref.x1,
+          x1 = _ref$x === void 0 ? 0 : _ref$x,
+          _ref$y = _ref.y1,
+          y1 = _ref$y === void 0 ? 0 : _ref$y,
+          _ref$x2 = _ref.x2,
+          x2 = _ref$x2 === void 0 ? 1 : _ref$x2,
+          _ref$y2 = _ref.y2,
+          y2 = _ref$y2 === void 0 ? 0 : _ref$y2;
+        this.angle = Math.atan2(y1 - y2, x1 - x2) * 180 / Math.PI + 180;
+      }
+      var p1 = rotatePoint(new fabric__WEBPACK_IMPORTED_MODULE_0__.Point(0, 0.5), new fabric__WEBPACK_IMPORTED_MODULE_0__.Point(0.5, 0.5), degreesToRadians(this.angle));
+      var p2 = rotatePoint(new fabric__WEBPACK_IMPORTED_MODULE_0__.Point(1, 0.5), new fabric__WEBPACK_IMPORTED_MODULE_0__.Point(0.5, 0.5), degreesToRadians(this.angle));
+      this.coords = {
+        x1: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_2__.clamp)(p1.x),
+        y1: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_2__.clamp)(p1.y),
+        x2: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_2__.clamp)(p2.x),
+        y2: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_2__.clamp)(p2.y)
+      };
+    } else if (this.type === 'radial') {
+      this.coords = {
+        x1: 0.5,
+        y1: 0.5,
+        x2: 0.5,
+        y2: 0.5,
+        r1: 0,
+        r2: 0.5
+      };
+    }
+    this.colorStops = (options.colorStops || []).slice();
+  },
+  /**
+   * Extend fabric.Gradient.prototype.toObject()
+   * @since 1.1.0
+   */
+  toObject: function toObject(propertiesToInclude) {
+    var type = this.type,
+      colorStops = this.colorStops,
+      angle = this.angle;
+    var object = {
+      type: type,
+      colorStops: colorStops,
+      angle: angle
+    };
+    populateWithProperties(this, object, propertiesToInclude);
+    return object;
+  },
+  /**
+   * Extend fabric.Gradient.prototype.toSVG()
+   * @since 1.1.0
+   * @param {object} object
+   * @param {object} options
+   * @return {string}
+   */
+  toSVG: function toSVG(object, options) {
+    var svg = _toSVG.call(this, object);
+    return svg.replace(/SVGID_/g, '');
+  }
+});
 
 /***/ }),
 
@@ -3883,6 +4136,31 @@ fabric__WEBPACK_IMPORTED_MODULE_0__.util.object.extend(fabric__WEBPACK_IMPORTED_
       this.callSuper('_set', key, value);
     }
     return this;
+  },
+  /**
+   * Extends fabric.Image.prototype.getSvgSrc()
+   * @since 1.1.0
+   */
+  getSvgSrc: function getSvgSrc() {
+    var left = this.left,
+      top = this.top,
+      scaleX = this.scaleX,
+      scaleY = this.scaleY,
+      skewX = this.skewX,
+      skewY = this.skewY,
+      angle = this.angle;
+    this.scaleX = 1;
+    this.scaleY = 1;
+    this.skewX = 0;
+    this.skewY = 0;
+    this.angle = 0;
+    var src = this.toDataURL();
+    this.scaleX = scaleX;
+    this.scaleY = scaleY;
+    this.skewX = skewX;
+    this.skewY = skewY;
+    this.angle = angle;
+    return src;
   }
 });
 
@@ -3906,6 +4184,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var _toObject = fabric__WEBPACK_IMPORTED_MODULE_0__.Object.prototype.toObject;
+var __set = fabric__WEBPACK_IMPORTED_MODULE_0__.Object.prototype._set;
+var _getSvgStyles = fabric__WEBPACK_IMPORTED_MODULE_0__.Object.prototype.getSvgStyles;
 
 /**
  * 
@@ -3997,7 +4277,7 @@ fabric__WEBPACK_IMPORTED_MODULE_0__.util.object.extend(fabric__WEBPACK_IMPORTED_
     }
   },
   /**
-   *
+   * Extends Object.prototype.toObject()
    * @since 1.0.0
    * @param {array} propertiesToInclude
    * @return {object}
@@ -4009,6 +4289,86 @@ fabric__WEBPACK_IMPORTED_MODULE_0__.util.object.extend(fabric__WEBPACK_IMPORTED_
       object.clipPath = null;
     }
     return object;
+  },
+  /**
+   * Extends Object.prototype.getSvgStyles()
+   * @since 1.1.0
+   * @param {array} skipShadow
+   * @return {string}
+   */
+  getSvgStyles: function getSvgStyles(skipShadow) {
+    var styles = _getSvgStyles.call(this, skipShadow);
+    return styles.replace(/SVGID_/g, '');
+  },
+  /**
+   *
+   * @since 1.1.0
+   * @return {string}
+   */
+  getSvgFilter: function getSvgFilter() {
+    var _ref = this.shadow || {},
+      id = _ref.id;
+    return id ? "filter:url(#".concat(id, ");") : '';
+  },
+  /**
+   *
+   * @since 1.1.0
+   * @param {string} key
+   * @param {mixed} value
+   */
+  _set: function _set(key, value) {
+    __set.call(this, key, value);
+    if ((key === 'fill' || key === 'stroke') && value !== null && value !== void 0 && value.type) {
+      if (value.type === 'linear' || value.type === 'radial') {
+        this[key] = new fabric__WEBPACK_IMPORTED_MODULE_0__.Gradient(value);
+      }
+    }
+    return this;
+  }
+});
+
+/***/ }),
+
+/***/ "./src/editor/canvas/extend-path.js":
+/*!******************************************!*\
+  !*** ./src/editor/canvas/extend-path.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var fabric__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! fabric */ "fabric");
+/* harmony import */ var fabric__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(fabric__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "lodash");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _utils_utils_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../utils/utils.js */ "./src/editor/utils/utils.js");
+
+
+
+var parsePath = fabric__WEBPACK_IMPORTED_MODULE_0__.util.parsePath,
+  makePathSimpler = fabric__WEBPACK_IMPORTED_MODULE_0__.util.makePathSimpler;
+
+/**
+ * 
+ * @since 1.1.0
+ */
+
+fabric__WEBPACK_IMPORTED_MODULE_0__.util.object.extend(fabric__WEBPACK_IMPORTED_MODULE_0__.Path.prototype, {
+  /**
+   * Extends Path.prototype._setPath()
+   * @since 1.1.0
+   * @param {string|array} path
+   * @param {object} options
+   */
+  _setPath: function _setPath(path) {
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var _path = makePathSimpler((0,lodash__WEBPACK_IMPORTED_MODULE_1__.isArray)(path) ? path : parsePath(path));
+    this.path = _path.map(function (c) {
+      return c.map(function (n) {
+        return (0,lodash__WEBPACK_IMPORTED_MODULE_1__.isNumber)(n) ? (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_2__.toFixed)(n) : n;
+      });
+    });
+    fabric__WEBPACK_IMPORTED_MODULE_0__.Polyline.prototype._setPositionDimensions.call(this, options);
   }
 });
 
@@ -4049,6 +4409,205 @@ fabric__WEBPACK_IMPORTED_MODULE_0__.util.object.extend(fabric__WEBPACK_IMPORTED_
   isAround: function isAround(pointer) {
     var distance = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 10;
     return (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_1__.isAround)(pointer.x, this.x, distance) && (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_1__.isAround)(pointer.y, this.y, distance);
+  }
+});
+
+/***/ }),
+
+/***/ "./src/editor/canvas/extend-polyline.js":
+/*!**********************************************!*\
+  !*** ./src/editor/canvas/extend-polyline.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var fabric__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! fabric */ "fabric");
+/* harmony import */ var fabric__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(fabric__WEBPACK_IMPORTED_MODULE_0__);
+
+
+/**
+ * 
+ * @since 1.1.0
+ */
+
+fabric__WEBPACK_IMPORTED_MODULE_0__.util.object.extend(fabric__WEBPACK_IMPORTED_MODULE_0__.Polyline.prototype, {});
+
+/***/ }),
+
+/***/ "./src/editor/canvas/extend-shadow.js":
+/*!********************************************!*\
+  !*** ./src/editor/canvas/extend-shadow.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var fabric__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! fabric */ "fabric");
+/* harmony import */ var fabric__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(fabric__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utils_utils_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../utils/utils.js */ "./src/editor/utils/utils.js");
+
+
+var _toSVG = fabric__WEBPACK_IMPORTED_MODULE_0__.Shadow.prototype.toSVG;
+fabric__WEBPACK_IMPORTED_MODULE_0__.util.object.extend(fabric__WEBPACK_IMPORTED_MODULE_0__.Shadow.prototype, {
+  /**
+   * Extend fabric.Shadow.prototype.initialize()
+   * @since 1.1.0
+   * @constructs
+   * @param {object|string} options
+   */
+  initialize: function initialize(options) {
+    if (typeof options === 'string') {
+      options = this._parseShadow(options);
+    }
+    for (var prop in options) {
+      this[prop] = options[prop];
+    }
+    this.id = (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_1__.createUniqueId)();
+  },
+  /**
+   * Extend fabric.Shadow.prototype.toSVG()
+   * @since 1.1.0
+   * @param {object} object
+   * @return {string}
+   */
+  toSVG: function toSVG(object) {
+    var svg = _toSVG.call(this, object);
+    return svg.replace(/SVGID_/g, '');
+  }
+});
+
+/***/ }),
+
+/***/ "./src/editor/canvas/extend-text.js":
+/*!******************************************!*\
+  !*** ./src/editor/canvas/extend-text.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var fabric__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! fabric */ "fabric");
+/* harmony import */ var fabric__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(fabric__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "lodash");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
+
+
+var _util$object = fabric__WEBPACK_IMPORTED_MODULE_0__.util.object,
+  extend = _util$object.extend,
+  clone = _util$object.clone;
+var _toObject = fabric__WEBPACK_IMPORTED_MODULE_0__.Text.prototype.toObject;
+
+/**
+ * 
+ * @since 1.1.0
+ */
+
+extend(fabric__WEBPACK_IMPORTED_MODULE_0__.Text.prototype, {
+  /**
+   * 
+   * @since 1.1.0
+   * @var {string}
+   */
+
+  fontCollection: 'websafe',
+  /**
+   *
+   * @since 1.1.0
+   * @param {array} propertiesToInclude
+   * @return {object}
+   */
+  toObject: function toObject() {
+    var propertiesToInclude = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+    return _toObject.call(this, ['fontCollection'].concat(propertiesToInclude));
+  }
+});
+
+/**
+ * 
+ * @since 1.1.0
+ */
+
+extend(fabric__WEBPACK_IMPORTED_MODULE_0__.Text, {
+  /**
+   * Extends fabric.Text.fromElement()
+   * @since 1.1.0
+   * @param {SVGElement} element
+   * @param {function} callback
+   * @param {object} options
+   */
+  fromElement: function fromElement(element, callback, options) {
+    if (!element) {
+      return callback(null);
+    }
+    var tspans = element.querySelectorAll('tspan');
+    var parsedAttributes = (0,fabric__WEBPACK_IMPORTED_MODULE_0__.parseAttributes)(element, fabric__WEBPACK_IMPORTED_MODULE_0__.Text.ATTRIBUTE_NAMES);
+    var parsedAnchor = parsedAttributes.textAnchor || 'left';
+    options = extend(options ? clone(options) : {}, parsedAttributes);
+    options.top = options.top || 0;
+    options.left = options.left || 0;
+    options.textAlign = parsedAnchor;
+    if (parsedAttributes.textDecoration) {
+      var textDecoration = parsedAttributes.textDecoration;
+      if (textDecoration.indexOf('underline') !== -1) {
+        options.underline = true;
+      }
+      if (textDecoration.indexOf('overline') !== -1) {
+        options.overline = true;
+      }
+      if (textDecoration.indexOf('line-through') !== -1) {
+        options.linethrough = true;
+      }
+      delete options.textDecoration;
+    }
+    if (tspans.length) {
+      var ts1 = tspans[0];
+      var tsX = ts1.getAttribute('x');
+      var tsY = ts1.getAttribute('y');
+      if (tsX) {
+        options.left += fabric__WEBPACK_IMPORTED_MODULE_0__.util.parseUnit(tsX);
+      }
+      if (tsY) {
+        options.top += fabric__WEBPACK_IMPORTED_MODULE_0__.util.parseUnit(tsY);
+      }
+    }
+    if ('dx' in parsedAttributes) {
+      options.left += parsedAttributes.dx;
+    }
+    if ('dy' in parsedAttributes) {
+      options.top += parsedAttributes.dy;
+    }
+    if (!('fontSize' in options)) {
+      options.fontSize = fabric.Text.DEFAULT_SVG_FONT_SIZE;
+    }
+    var textContent = '';
+    if (tspans.length > 1) {
+      textContent = (0,lodash__WEBPACK_IMPORTED_MODULE_1__.map)(tspans, function (ts) {
+        return ts.textContent;
+      }).join('\n');
+    } else {
+      textContent = (element.textContent || '').replace(/^\s+|\s+$|\n+/g, '').replace(/\s+/g, ' ');
+    }
+    var text = new fabric__WEBPACK_IMPORTED_MODULE_0__.IText(textContent, options);
+    var offX = 0,
+      offY = 0;
+    if (parsedAnchor === 'center') {
+      offX = text.getScaledWidth() / 2;
+    } else if (parsedAnchor === 'right') {
+      offX = text.getScaledWidth();
+    }
+    if (tspans.length < 2) {
+      var textHeightScaleFactor = text.getScaledHeight() / text.height;
+      var lineHeightDiff = (text.height + text.strokeWidth) * text.lineHeight - text.height;
+      var scaledDiff = lineHeightDiff * textHeightScaleFactor;
+      var textHeight = text.getScaledHeight() + scaledDiff;
+      offY = (textHeight - text.fontSize * (0.07 + text._fontSizeFraction)) / text.lineHeight;
+    }
+    text.set({
+      left: text.left - offX,
+      top: text.top - offY
+    });
+    callback(text);
   }
 });
 
@@ -4412,10 +4971,19 @@ var Canvas = function Canvas(_ref) {
   var onMouseUp = function onMouseUp(e) {
     setDraggedGuideId('');
   };
-  var onWheel = function onWheel(e) {
-    var newZoom = (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_11__.clamp)(canvasZoom * Math.pow(0.999, e.deltaY), _utils_constants_js__WEBPACK_IMPORTED_MODULE_12__.CANVAS_MIN_ZOOM / 100, _utils_constants_js__WEBPACK_IMPORTED_MODULE_12__.CANVAS_MAX_ZOOM / 100);
-    setEditor('canvasZoom', (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_11__.toFixed)(newZoom));
-  };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var _ref$current;
+    var onWheel = function onWheel(e) {
+      e.preventDefault();
+      var newZoom = (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_11__.clamp)(canvasZoom * Math.pow(0.999, e.deltaY), _utils_constants_js__WEBPACK_IMPORTED_MODULE_12__.CANVAS_MIN_ZOOM / 100, _utils_constants_js__WEBPACK_IMPORTED_MODULE_12__.CANVAS_MAX_ZOOM / 100);
+      setEditor('canvasZoom', (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_11__.toFixed)(newZoom));
+    };
+    ref === null || ref === void 0 ? void 0 : (_ref$current = ref.current) === null || _ref$current === void 0 ? void 0 : _ref$current.addEventListener('wheel', onWheel);
+    return function () {
+      var _ref$current2;
+      ref === null || ref === void 0 ? void 0 : (_ref$current2 = ref.current) === null || _ref$current2 === void 0 ? void 0 : _ref$current2.removeEventListener('wheel', onWheel);
+    };
+  });
   return /*#__PURE__*/React.createElement("div", {
     ref: ref,
     className: "pixmagix-canvas",
@@ -4426,8 +4994,7 @@ var Canvas = function Canvas(_ref) {
     onMouseDown: onMouseDown,
     onMouseMove: onMouseMove,
     onMouseUp: onMouseUp,
-    onMouseLeave: onMouseUp,
-    onWheel: onWheel
+    onMouseLeave: onMouseUp
   }, /*#__PURE__*/React.createElement(_canvas_ruler_menu_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null), showRulers && /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement(_canvas_ruler_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
     orientation: "horizontal"
   }), /*#__PURE__*/React.createElement(_canvas_ruler_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
@@ -4602,6 +5169,7 @@ var CanvasCrop = function CanvasCrop(_ref) {
   var controls = ['tl', 'tm', 'tr', 'ml', 'mr', 'bl', 'bm', 'br'];
   var onMouseDown = function onMouseDown(e) {
     var _e$target, _e$target$dataset;
+    e.preventDefault();
     if (!(ref !== null && ref !== void 0 && ref.current) || !((_e$target = e.target) !== null && _e$target !== void 0 && (_e$target$dataset = _e$target.dataset) !== null && _e$target$dataset !== void 0 && _e$target$dataset.control)) {
       return;
     }
@@ -4686,7 +5254,7 @@ var CanvasCrop = function CanvasCrop(_ref) {
   };
   var onMouseUp = function onMouseUp() {
     (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.batch)(function () {
-      if (activeControl === 'pan') {
+      if (activeControl === 'pan' && cPan) {
         setEditor({
           cropPanX: cropPanX + (cPan.x - oPan.x) / canvasZoom,
           cropPanY: cropPanY + (cPan.y - oPan.y) / canvasZoom
@@ -4994,6 +5562,7 @@ var FabricCanvas = /*#__PURE__*/function (_Component) {
         layerIds = nextProps.layerIds,
         layers = nextProps.layers,
         fileFormat = nextProps.fileFormat,
+        fileQuality = nextProps.fileQuality,
         canvasElementWidth = nextProps.canvasElementWidth,
         canvasElementHeight = nextProps.canvasElementHeight,
         canvasWidth = nextProps.canvasWidth,
@@ -5023,6 +5592,9 @@ var FabricCanvas = /*#__PURE__*/function (_Component) {
         pencilDotWidthVariance = nextProps.pencilDotWidthVariance,
         pencilRandomOpacity = nextProps.pencilRandomOpacity,
         fillColor = nextProps.fillColor,
+        preserveAspectRatio = nextProps.preserveAspectRatio,
+        svgWidth = nextProps.svgWidth,
+        svgHeight = nextProps.svgHeight,
         setEditor = nextProps.setEditor;
       console.log(nextProps);
       var canvas = this._fabricCanvas;
@@ -5143,12 +5715,12 @@ var FabricCanvas = /*#__PURE__*/function (_Component) {
       canvas.requestRenderAll();
 
       // Create image data url to export.
-      if (fileFormat !== this.props.fileFormat || activeModal !== this.props.activeModal && (activeModal === 'export-media' || activeModal === 'replace-media' || activeModal === 'restore-media' || activeModal === 'download-image')) {
+      if (fileFormat !== this.props.fileFormat || fileQuality !== this.props.fileQuality || activeModal !== this.props.activeModal && (activeModal === 'export-media' || activeModal === 'replace-media' || activeModal === 'restore-media' || activeModal === 'download-image')) {
         this._createImageDataURL();
       }
 
       // Create SVG string to export.
-      if (activeModal !== this.props.activeModal && activeModal === 'download-svg') {
+      if (activeModal !== this.props.activeModal && activeModal === 'download-svg' || preserveAspectRatio !== this.props.preserveAspectRatio || svgWidth !== this.props.svgWidth || svgHeight !== this.props.svgHeight) {
         this._createSVGString();
       }
       return activeTool !== this.props.activeTool || isSidebarLeftOpened !== this.props.isSidebarLeftOpened || isSidebarRightOpened !== this.props.isSidebarRightOpened || showRulers !== this.props.showRulers || fullScreen !== this.props.fullScreen;
@@ -5272,15 +5844,17 @@ var FabricCanvas = /*#__PURE__*/function (_Component) {
         canvasWidth = _this$props3.canvasWidth,
         canvasHeight = _this$props3.canvasHeight,
         fileFormat = _this$props3.fileFormat,
+        fileQuality = _this$props3.fileQuality,
         setEditor = _this$props3.setEditor;
       var canvas = this._fabricCanvas;
       var vpt = canvas.viewportTransform.slice();
+      var clipPath = canvas.clipPath;
       // console.time('createImageDataURL');
       canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
       canvas.clipPath = null;
       var dataURL = canvas.toDataURL({
         format: fileFormat,
-        quality: 1,
+        quality: fileQuality,
         top: 0,
         left: 0,
         width: canvasWidth,
@@ -5288,6 +5862,7 @@ var FabricCanvas = /*#__PURE__*/function (_Component) {
         multiplier: 1
       });
       canvas.setViewportTransform(vpt);
+      canvas.clipPath = clipPath;
       setEditor('imageDataURL', dataURL);
       // console.timeEnd('createImageDataURL');
     }
@@ -5304,10 +5879,18 @@ var FabricCanvas = /*#__PURE__*/function (_Component) {
       var _this$props4 = this.props,
         canvasWidth = _this$props4.canvasWidth,
         canvasHeight = _this$props4.canvasHeight,
+        preserveAspectRatio = _this$props4.preserveAspectRatio,
+        svgWidth = _this$props4.svgWidth,
+        svgHeight = _this$props4.svgHeight,
         setEditor = _this$props4.setEditor;
       var svgString = (_this$_fabricCanvas2 = this._fabricCanvas) === null || _this$_fabricCanvas2 === void 0 ? void 0 : _this$_fabricCanvas2.toSVG({
-        width: canvasWidth,
-        height: canvasHeight
+        width: svgWidth || canvasWidth,
+        height: svgHeight || canvasHeight,
+        viewBox: {
+          width: canvasWidth,
+          height: canvasHeight
+        },
+        preserveAspectRatio: preserveAspectRatio
       });
       setEditor('svgString', svgString);
     }
@@ -5506,6 +6089,7 @@ var FabricCanvas = /*#__PURE__*/function (_Component) {
     isSaving: state.editor.isSaving,
     fullScreen: state.editor.fullScreen,
     fileFormat: state.editor.fileFormat,
+    fileQuality: state.editor.fileQuality,
     layers: state.data.present.layers,
     layerIds: state.data.present.layerIds,
     canvasWidth: state.data.present.canvasWidth,
@@ -5540,7 +6124,10 @@ var FabricCanvas = /*#__PURE__*/function (_Component) {
     pencilDotWidthVariance: state.editor.pencilDotWidthVariance,
     pencilRandomOpacity: state.editor.pencilRandomOpacity,
     fillColor: state.editor.fillColor,
-    guides: state.editor.guides
+    guides: state.editor.guides,
+    preserveAspectRatio: state.editor.preserveAspectRatio,
+    svgWidth: state.editor.svgWidth,
+    svgHeight: state.editor.svgHeight
   };
 }, {
   setEditor: _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_8__.setEditor,
@@ -6151,7 +6738,7 @@ var Globals = /*#__PURE__*/function (_Component) {
     _classCallCheck(this, Globals);
     _this = _super.apply(this, arguments);
     _this._onBeforeUnload = _this._onBeforeUnload.bind(_assertThisInitialized(_this));
-    _this._onKeyDown = (0,lodash__WEBPACK_IMPORTED_MODULE_3__.throttle)(_this._onKeyDown.bind(_assertThisInitialized(_this)), 200);
+    _this._onKeyDown = _this._onKeyDown.bind(_assertThisInitialized(_this));
     if (_this.props.fullScreen) {
       document.body.classList.add('pixmagix-fullscreen');
     }
@@ -6238,6 +6825,7 @@ var Globals = /*#__PURE__*/function (_Component) {
       var hasFocusedInput = ((_document$activeEleme = document.activeElement) === null || _document$activeEleme === void 0 ? void 0 : (_document$activeEleme2 = _document$activeEleme.tagName) === null || _document$activeEleme2 === void 0 ? void 0 : _document$activeEleme2.toLowerCase()) === 'input' || ((_document$activeEleme3 = document.activeElement) === null || _document$activeEleme3 === void 0 ? void 0 : (_document$activeEleme4 = _document$activeEleme3.tagName) === null || _document$activeEleme4 === void 0 ? void 0 : _document$activeEleme4.toLowerCase()) === 'textarea';
       var isCtrlPressed = (e.ctrlKey || e.metaKey) && !e.shiftKey && !e.altKey;
       var isCtrlShiftPressed = (e.ctrlKey || e.metaKey) && e.shiftKey && !e.altKey;
+      var isShiftAltPressed = !(e.ctrlKey || e.metaKey) && e.shiftKey && e.altKey;
       var keyMaps = {
         13: {
           // Enter
@@ -6300,6 +6888,9 @@ var Globals = /*#__PURE__*/function (_Component) {
         },
         69: {
           // E
+          fn: {
+            activeTool: 'icon'
+          },
           ctrlShift: {
             menu: 'options',
             name: 'export'
@@ -6333,7 +6924,7 @@ var Globals = /*#__PURE__*/function (_Component) {
         73: {
           // I
           fn: {
-            activeTool: 'icon'
+            activeTool: 'image'
           },
           ctrlShift: {
             menu: 'options',
@@ -6354,15 +6945,9 @@ var Globals = /*#__PURE__*/function (_Component) {
             name: 'lock'
           }
         },
-        77: {
-          // M
-          fn: {
-            activeTool: 'image'
-          }
-        },
         78: {
           // N
-          ctrlShift: function ctrlShift() {
+          shiftAlt: function shiftAlt() {
             window.location.replace(editor_globals__WEBPACK_IMPORTED_MODULE_2__.new_url);
           }
         },
@@ -6409,14 +6994,14 @@ var Globals = /*#__PURE__*/function (_Component) {
           // T
           fn: {
             activeTool: 'text'
-          },
-          ctrl: {
-            menu: 'layer',
-            name: 'visible'
           }
         },
         86: {
           // V
+          ctrl: {
+            menu: 'layer',
+            name: 'visible'
+          },
           ctrlShift: {
             menu: 'options',
             name: 'download-svg'
@@ -6436,7 +7021,8 @@ var Globals = /*#__PURE__*/function (_Component) {
         e.preventDefault();
         // e.stopPropagation();
         // e.returnValue=false;
-        var action = isCtrlPressed ? 'ctrl' : isCtrlShiftPressed ? 'ctrlShift' : 'fn';
+        var action = isCtrlPressed ? 'ctrl' : isCtrlShiftPressed ? 'ctrlShift' : isShiftAltPressed ? 'shiftAlt' : 'fn';
+        console.log(action);
         var object = keyMaps[e.keyCode][action];
         if ((0,lodash__WEBPACK_IMPORTED_MODULE_3__.isFunction)(object)) {
           object();
@@ -6565,6 +7151,7 @@ __webpack_require__.r(__webpack_exports__);
 var Publish = function Publish(props) {
   var projectId = props.projectId,
     projectName = props.projectName,
+    projectAuthor = props.projectAuthor,
     thumbnail = props.thumbnail,
     mediaId = props.mediaId,
     mediaUrl = props.mediaUrl,
@@ -6599,6 +7186,7 @@ var Publish = function Publish(props) {
         data: {
           title: projectName || '',
           status: 'publish',
+          author: projectAuthor,
           meta: {
             pixmagix_project: {
               canvasWidth: canvasWidth,
@@ -6616,12 +7204,15 @@ var Publish = function Publish(props) {
         }
       }).then(function (response) {
         (0,react_redux__WEBPACK_IMPORTED_MODULE_0__.batch)(function () {
-          setEditor('projectId', response.id);
+          setEditor({
+            projectId: response.id,
+            projectAuthor: response.author
+          });
           sendNotice((0,wp_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Project Saved Successfully', 'pixmagix'), 'success');
         });
-      })["catch"](function (error) {
-        console.log(error);
-        sendNotice((0,wp_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Save Failed', 'pixmagix'), 'error');
+      })["catch"](function (_ref) {
+        var message = _ref.message;
+        sendNotice(message, 'error');
       });
     }
   }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_1__.Dropdown, {
@@ -6639,6 +7230,7 @@ var Publish = function Publish(props) {
   return {
     projectId: state.editor.projectId,
     projectName: state.editor.projectName,
+    projectAuthor: state.editor.projectAuthor,
     mediaId: state.editor.mediaId,
     mediaUrl: state.editor.mediaUrl,
     revisionURL: state.editor.revisionURL,
@@ -6804,6 +7396,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(wp_i18n__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../redux/actions-editor.js */ "./src/editor/redux/actions-editor.js");
 /* harmony import */ var _utils_utils_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../utils/utils.js */ "./src/editor/utils/utils.js");
+/* harmony import */ var _utils_help_texts_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../../utils/help-texts.js */ "./src/editor/utils/help-texts.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -6816,10 +7409,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var DownloadImage = function DownloadImage(_ref) {
   var projectName = _ref.projectName,
     imageDataURL = _ref.imageDataURL,
     fileFormat = _ref.fileFormat,
+    fileQuality = _ref.fileQuality,
     setEditor = _ref.setEditor;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
     _useState2 = _slicedToArray(_useState, 2),
@@ -6858,13 +7453,24 @@ var DownloadImage = function DownloadImage(_ref) {
     onChange: function onChange(value) {
       return setEditor('fileFormat', value);
     }
+  }), fileFormat === 'jpeg' && /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Range, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Quality', 'pixmagix'),
+    help: (0,_utils_help_texts_js__WEBPACK_IMPORTED_MODULE_6__["default"])('jpgQuality'),
+    value: fileQuality,
+    onChange: function onChange(value) {
+      return setEditor('fileQuality', value);
+    },
+    min: 0.01,
+    max: 1,
+    step: 0.01
   })))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(function (state) {
   return {
     projectName: state.editor.projectName,
     imageDataURL: state.editor.imageDataURL,
-    fileFormat: state.editor.fileFormat
+    fileFormat: state.editor.fileFormat,
+    fileQuality: state.editor.fileQuality
   };
 }, {
   setEditor: _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_4__.setEditor
@@ -6892,6 +7498,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(wp_i18n__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../redux/actions-editor.js */ "./src/editor/redux/actions-editor.js");
 /* harmony import */ var _utils_utils_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../utils/utils.js */ "./src/editor/utils/utils.js");
+/* harmony import */ var _utils_lists_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../../utils/lists.js */ "./src/editor/utils/lists.js");
+/* harmony import */ var _utils_help_texts_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../../utils/help-texts.js */ "./src/editor/utils/help-texts.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -6904,9 +7512,16 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
 var DownloadSVG = function DownloadSVG(_ref) {
   var projectName = _ref.projectName,
     svgString = _ref.svgString,
+    svgWidth = _ref.svgWidth,
+    svgHeight = _ref.svgHeight,
+    preserveAspectRatio = _ref.preserveAspectRatio,
+    canvasWidth = _ref.canvasWidth,
+    canvasHeight = _ref.canvasHeight,
     setEditor = _ref.setEditor;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
     _useState2 = _slicedToArray(_useState, 2),
@@ -6934,12 +7549,53 @@ var DownloadSVG = function DownloadSVG(_ref) {
     label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('File Name', 'pixmagix'),
     value: filename,
     onChange: setFilename
+  }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.InputGroup, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Input, {
+    type: "number",
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Width', 'pixmagix'),
+    placeholder: canvasWidth,
+    value: svgWidth || canvasWidth,
+    onChange: function onChange(value) {
+      return setEditor('svgWidth', value);
+    },
+    min: 0,
+    max: 4000
+  }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Input, {
+    type: "number",
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Height', 'pixmagix'),
+    placeholder: canvasHeight,
+    value: svgHeight || canvasHeight,
+    onChange: function onChange(value) {
+      return setEditor('svgHeight', value);
+    },
+    min: 0,
+    max: 4000
+  })), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Select, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Preserve Aspect Ratio', 'pixmagix'),
+    help: (0,_utils_help_texts_js__WEBPACK_IMPORTED_MODULE_7__["default"])('par'),
+    options: [{
+      label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Default', 'pixmagix'),
+      value: ''
+    }].concat(_utils_lists_js__WEBPACK_IMPORTED_MODULE_6__.preserveAspectRatios.map(function (value) {
+      return {
+        label: value,
+        value: value
+      };
+    })),
+    value: preserveAspectRatio,
+    onChange: function onChange(value) {
+      return setEditor('preserveAspectRatio', value);
+    }
   })))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(function (state) {
   return {
     projectName: state.editor.projectName,
-    svgString: state.editor.svgString
+    svgString: state.editor.svgString,
+    svgWidth: state.editor.svgWidth,
+    svgHeight: state.editor.svgHeight,
+    preserveAspectRatio: state.editor.preserveAspectRatio,
+    canvasWidth: state.data.present.canvasWidth,
+    canvasHeight: state.data.present.canvasHeight
   };
 }, {
   setEditor: _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_4__.setEditor
@@ -6969,6 +7625,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var wp_api_fetch__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(wp_api_fetch__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../redux/actions-editor.js */ "./src/editor/redux/actions-editor.js");
 /* harmony import */ var _utils_constants_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../../utils/constants.js */ "./src/editor/utils/constants.js");
+/* harmony import */ var _utils_help_texts_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../../utils/help-texts.js */ "./src/editor/utils/help-texts.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -6982,9 +7639,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var ExportMedia = function ExportMedia(_ref) {
   var imageDataURL = _ref.imageDataURL,
     fileFormat = _ref.fileFormat,
+    fileQuality = _ref.fileQuality,
     setEditor = _ref.setEditor,
     sendNotice = _ref.sendNotice;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
@@ -7030,6 +7689,12 @@ var ExportMedia = function ExportMedia(_ref) {
       console.log(response);
       (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.batch)(function () {
         setLoading(false);
+        if (response.media) {
+          setEditor({
+            mediaId: response.media.id,
+            mediaUrl: response.media.url
+          });
+        }
         sendNotice((0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Image Exported Successfully', 'pixmagix'), 'success');
       });
     })["catch"](function (error) {
@@ -7068,6 +7733,16 @@ var ExportMedia = function ExportMedia(_ref) {
     onChange: function onChange(value) {
       return setEditor('fileFormat', value);
     }
+  }), fileFormat === 'jpeg' && /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Range, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Quality', 'pixmagix'),
+    help: (0,_utils_help_texts_js__WEBPACK_IMPORTED_MODULE_7__["default"])('jpgQuality'),
+    value: fileQuality,
+    onChange: function onChange(value) {
+      return setEditor('fileQuality', value);
+    },
+    min: 0.01,
+    max: 1,
+    step: 0.01
   }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Input, {
     label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Title', 'pixmagix'),
     value: title,
@@ -7091,7 +7766,8 @@ var ExportMedia = function ExportMedia(_ref) {
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(function (state) {
   return {
     imageDataURL: state.editor.imageDataURL,
-    fileFormat: state.editor.fileFormat
+    fileFormat: state.editor.fileFormat,
+    fileQuality: state.editor.fileQuality
   };
 }, {
   setEditor: _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_5__.setEditor,
@@ -7509,6 +8185,10 @@ var OpenProject = function OpenProject(_ref) {
     _useState12 = _slicedToArray(_useState11, 2),
     date = _useState12[0],
     setDate = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState14 = _slicedToArray(_useState13, 2),
+    author = _useState14[0],
+    setAuthor = _useState14[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     isMounting = true;
     var query = {
@@ -7521,6 +8201,9 @@ var OpenProject = function OpenProject(_ref) {
     if (date) {
       query.yearmonth = date;
     }
+    if (author) {
+      query.author = author;
+    }
     wp_api_fetch__WEBPACK_IMPORTED_MODULE_5___default()({
       path: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_7__.addQueryArgs)(query, _utils_constants_js__WEBPACK_IMPORTED_MODULE_8__.PROJECTS_REST_PATH),
       withTotalPages: true
@@ -7532,11 +8215,11 @@ var OpenProject = function OpenProject(_ref) {
           setItems(items.map(function (_ref2) {
             var _meta$pixmagix_projec;
             var id = _ref2.id,
-              title = _ref2.title,
+              caption = _ref2.caption,
               meta = _ref2.meta;
             return {
               id: id,
-              title: (title === null || title === void 0 ? void 0 : title.rendered) || '',
+              caption: caption,
               thumbnail: (meta === null || meta === void 0 ? void 0 : (_meta$pixmagix_projec = meta.pixmagix_project) === null || _meta$pixmagix_projec === void 0 ? void 0 : _meta$pixmagix_projec.thumbnail) || ''
             };
           }));
@@ -7548,7 +8231,7 @@ var OpenProject = function OpenProject(_ref) {
     return function () {
       isMounting = false;
     };
-  }, [search, date, page]);
+  }, [search, date, author, page]);
   return /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Modal, {
     title: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Open Project', 'pixmagix'),
     onClose: function onClose() {
@@ -7573,6 +8256,15 @@ var OpenProject = function OpenProject(_ref) {
       setPage(1);
       setLoading(true);
     }
+  }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Select, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Author', 'pixmagix'),
+    value: author,
+    options: editor_globals__WEBPACK_IMPORTED_MODULE_3__.users,
+    onChange: function onChange(value) {
+      setAuthor(value);
+      setPage(1);
+      setLoading(true);
+    }
   })), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Pagination, {
     page: page,
     maxPages: maxPages,
@@ -7587,11 +8279,11 @@ var OpenProject = function OpenProject(_ref) {
     caption: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('No Items Found', 'pixmagix')
   }) : items.map(function (_ref3) {
     var id = _ref3.id,
-      title = _ref3.title,
+      caption = _ref3.caption,
       thumbnail = _ref3.thumbnail;
     return /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.GridItem, {
       key: id,
-      caption: title,
+      caption: caption,
       href: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_7__.addQueryArgs)({
         id: id
       }, editor_globals__WEBPACK_IMPORTED_MODULE_3__.new_url),
@@ -8219,8 +8911,11 @@ var AddIcon = function AddIcon(_ref) {
     fillColor = _ref.fillColor,
     canvasWidth = _ref.canvasWidth,
     canvasHeight = _ref.canvasHeight,
+    layer = _ref.layer,
     setEditor = _ref.setEditor,
+    sendNotice = _ref.sendNotice,
     addLayer = _ref.addLayer,
+    setLayerProps = _ref.setLayerProps,
     setDatasWithAddLayer = _ref.setDatasWithAddLayer;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
     _useState2 = _slicedToArray(_useState, 2),
@@ -8238,6 +8933,16 @@ var AddIcon = function AddIcon(_ref) {
     _useState8 = _slicedToArray(_useState7, 2),
     resize = _useState8[0],
     setResize = _useState8[1];
+  var onChange = function onChange(editorState, property) {
+    return function (value) {
+      (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.batch)(function () {
+        setEditor(editorState, value);
+        if (layer && (layer.type === 'path' || layer.type === 'polygon' || layer.type === 'polyline')) {
+          setLayerProps(layer.id, property, value);
+        }
+      });
+    };
+  };
   return /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Widget, {
     tabs: [{
       name: 'icons',
@@ -8319,6 +9024,8 @@ var AddIcon = function AddIcon(_ref) {
           addLayer(layers);
         }
         setSvgSource('');
+      }, function () {
+        sendNotice((0,wp_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('SVG Parsing Failed', 'pixmagix'), 'error');
       });
     }
   })), showSettings && /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Widget, {
@@ -8329,18 +9036,14 @@ var AddIcon = function AddIcon(_ref) {
       content: /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Range, {
         label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Stroke Width', 'pixmagix'),
         value: pencilWidth,
-        onChange: function onChange(value) {
-          return setEditor('pencilWidth', value);
-        },
+        onChange: onChange('pencilWidth', 'strokeWidth'),
         min: _utils_constants_js__WEBPACK_IMPORTED_MODULE_5__.PENCIL_MIN_WIDTH,
         max: _utils_constants_js__WEBPACK_IMPORTED_MODULE_5__.PENCIL_MAX_WIDTH,
         step: 1
       }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.ColorPicker, {
         label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Stroke Color', 'pixmagix'),
         color: pencilColor,
-        onChange: function onChange(color) {
-          return setEditor('pencilColor', color);
-        }
+        onChange: onChange('pencilColor', 'stroke')
       }))
     }, {
       name: 'fill',
@@ -8349,9 +9052,7 @@ var AddIcon = function AddIcon(_ref) {
       content: /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.ColorPicker, {
         label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Fill Color', 'pixmagix'),
         color: fillColor,
-        onChange: function onChange(color) {
-          return setEditor('fillColor', color);
-        }
+        onChange: onChange('fillColor', 'fill')
       }))
     }, {
       name: 'shadow',
@@ -8359,25 +9060,28 @@ var AddIcon = function AddIcon(_ref) {
       icon: 'circle-half-stroke',
       content: /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.ShadowPicker, {
         value: pencilShadow,
-        onChange: function onChange(value) {
-          return setEditor('pencilShadow', value);
-        }
+        onChange: onChange('pencilShadow', 'shadow')
       }))
     }]
   }));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(function (state) {
+  var activeLayer = state.editor.activeLayers[0];
+  var layer = activeLayer ? state.data.present.layers[activeLayer] : null;
   return {
     pencilWidth: state.editor.pencilWidth,
     pencilColor: state.editor.pencilColor,
     pencilShadow: state.editor.pencilShadow,
     fillColor: state.editor.fillColor,
+    layer: layer,
     canvasWidth: state.data.present.canvasWidth,
     canvasHeight: state.data.present.canvasHeight
   };
 }, {
   setEditor: _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_6__.setEditor,
+  sendNotice: _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_6__.sendNotice,
   addLayer: _redux_actions_data_js__WEBPACK_IMPORTED_MODULE_7__.addLayer,
+  setLayerProps: _redux_actions_data_js__WEBPACK_IMPORTED_MODULE_7__.setLayerProps,
   setDatasWithAddLayer: _redux_actions_data_js__WEBPACK_IMPORTED_MODULE_7__.setDatasWithAddLayer
 })(AddIcon));
 
@@ -8564,6 +9268,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _redux_actions_data_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../redux/actions-data.js */ "./src/editor/redux/actions-data.js");
 /* harmony import */ var _utils_utils_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../../utils/utils.js */ "./src/editor/utils/utils.js");
 /* harmony import */ var _utils_constants_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../../utils/constants.js */ "./src/editor/utils/constants.js");
+/* harmony import */ var _utils_help_texts_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./../../utils/help-texts.js */ "./src/editor/utils/help-texts.js");
+
 
 
 
@@ -8582,8 +9288,20 @@ var AddQRCode = function AddQRCode(_ref) {
     fillColor = _ref.fillColor,
     canvasWidth = _ref.canvasWidth,
     canvasHeight = _ref.canvasHeight,
+    layer = _ref.layer,
     setEditor = _ref.setEditor,
-    addLayer = _ref.addLayer;
+    addLayer = _ref.addLayer,
+    setLayerProps = _ref.setLayerProps;
+  var onChange = function onChange(editorState, property) {
+    return function (value) {
+      (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.batch)(function () {
+        setEditor(editorState, value);
+        if (layer && layer.type === 'qrcode') {
+          setLayerProps(layer.id, property, value);
+        }
+      });
+    };
+  };
   return /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Widget, {
     label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Add QR Code', 'pixmagix')
   }, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Input, {
@@ -8618,23 +9336,20 @@ var AddQRCode = function AddQRCode(_ref) {
       content: /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Range, {
         label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Size', 'pixmagix'),
         value: qrCodeSize,
-        onChange: function onChange(value) {
-          return setEditor('qrCodeSize', value);
-        },
+        onChange: onChange('qrCodeSize', 'size'),
         min: _utils_constants_js__WEBPACK_IMPORTED_MODULE_7__.QRCODE_MIN_SIZE,
         max: _utils_constants_js__WEBPACK_IMPORTED_MODULE_7__.QRCODE_MAX_SIZE,
         step: 1
       }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Range, {
         label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Padding', 'pixmagix'),
         value: qrCodePadding,
-        onChange: function onChange(value) {
-          return setEditor('qrCodePadding', value);
-        },
+        onChange: onChange('qrCodePadding', 'qrPadding'),
         min: 0,
         max: 20,
         step: 1
       }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Select, {
         label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Error Correction Level', 'pixmagix'),
+        help: (0,_utils_help_texts_js__WEBPACK_IMPORTED_MODULE_8__["default"])('ecl'),
         options: [{
           label: 'L',
           value: 'L'
@@ -8649,9 +9364,7 @@ var AddQRCode = function AddQRCode(_ref) {
           value: 'H'
         }],
         value: qrCodeECL,
-        onChange: function onChange(value) {
-          return setEditor('qrCodeECL', value);
-        }
+        onChange: onChange('qrCodeECL', 'ecl')
       }))
     }, {
       name: 'color',
@@ -8662,9 +9375,7 @@ var AddQRCode = function AddQRCode(_ref) {
       }, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.ColorPicker, {
         label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Color', 'pixmagix'),
         color: pencilColor,
-        onChange: function onChange(color) {
-          return setEditor('pencilColor', color);
-        }
+        onChange: onChange('pencilColor', 'stroke')
       }))
     }, {
       name: 'background',
@@ -8675,9 +9386,7 @@ var AddQRCode = function AddQRCode(_ref) {
       }, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.ColorPicker, {
         label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Background', 'pixmagix'),
         color: fillColor,
-        onChange: function onChange(color) {
-          return setEditor('fillColor', color);
-        }
+        onChange: onChange('fillColor', 'fill')
       }))
     }, {
       name: 'shadow',
@@ -8685,14 +9394,14 @@ var AddQRCode = function AddQRCode(_ref) {
       icon: 'circle-half-stroke',
       content: /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.ShadowPicker, {
         value: pencilShadow,
-        onChange: function onChange(value) {
-          return setEditor('pencilShadow', value);
-        }
+        onChange: onChange('pencilShadow', 'shadow')
       }))
     }]
   }));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(function (state) {
+  var activeLayer = state.editor.activeLayers[0];
+  var layer = activeLayer ? state.data.present.layers[activeLayer] : null;
   return {
     qrCodeSize: state.editor.qrCodeSize,
     qrCodeText: state.editor.qrCodeText,
@@ -8701,12 +9410,14 @@ var AddQRCode = function AddQRCode(_ref) {
     pencilColor: state.editor.pencilColor,
     pencilShadow: state.editor.pencilShadow,
     fillColor: state.editor.fillColor,
+    layer: layer,
     canvasWidth: state.data.present.canvasWidth,
     canvasHeight: state.data.present.canvasHeight
   };
 }, {
   setEditor: _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_4__.setEditor,
-  addLayer: _redux_actions_data_js__WEBPACK_IMPORTED_MODULE_5__.addLayer
+  addLayer: _redux_actions_data_js__WEBPACK_IMPORTED_MODULE_5__.addLayer,
+  setLayerProps: _redux_actions_data_js__WEBPACK_IMPORTED_MODULE_5__.setLayerProps
 })(AddQRCode));
 
 /***/ }),
@@ -8730,8 +9441,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! wp-i18n */ "wp-i18n");
 /* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(wp_i18n__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _utils_constants_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../utils/constants.js */ "./src/editor/utils/constants.js");
-/* harmony import */ var _utils_lists_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../utils/lists.js */ "./src/editor/utils/lists.js");
-/* harmony import */ var _utils_utils_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../../utils/utils.js */ "./src/editor/utils/utils.js");
+/* harmony import */ var _utils_utils_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../utils/utils.js */ "./src/editor/utils/utils.js");
+/* harmony import */ var _utils_fonts_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../../utils/fonts.js */ "./src/editor/utils/fonts.js");
 /* harmony import */ var _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../../redux/actions-editor.js */ "./src/editor/redux/actions-editor.js");
 /* harmony import */ var _redux_actions_data_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./../../redux/actions-data.js */ "./src/editor/redux/actions-data.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
@@ -8775,7 +9486,7 @@ var AddText = function AddText(_ref) {
         setEditor(editorState, value);
         if (layer && (layer.type === 'i-text' || layer.type === 'text')) {
           var _setLayerProps;
-          var options = (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_6__.createLayerObject)(_objectSpread(_objectSpread({}, layer), {}, _defineProperty({}, property, value)));
+          var options = (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_5__.createLayerObject)(_objectSpread(_objectSpread({}, layer), {}, _defineProperty({}, property, value)));
           setLayerProps(layer.id, (_setLayerProps = {}, _defineProperty(_setLayerProps, property, value), _defineProperty(_setLayerProps, "width", options.width), _defineProperty(_setLayerProps, "height", options.height), _setLayerProps));
         }
       });
@@ -8805,7 +9516,7 @@ var AddText = function AddText(_ref) {
     onClick: function onClick() {
       var name = newText.substring(0, 20).replace(/\n/g, ' ').trim();
       name = name.length < newText.length ? name + '...' : name;
-      var object = (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_6__.createLayerObject)({
+      var object = (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_5__.createLayerObject)({
         type: 'i-text',
         name: name,
         text: newText,
@@ -8854,7 +9565,7 @@ var AddText = function AddText(_ref) {
         step: 1
       }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Select, {
         label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Font Family', 'pixmagix'),
-        options: _utils_lists_js__WEBPACK_IMPORTED_MODULE_5__.webSafeFonts,
+        options: (0,_utils_fonts_js__WEBPACK_IMPORTED_MODULE_6__.getFonts)(),
         value: fontFamily,
         onChange: onChangeWithUpdateSize('fontFamily', 'fontFamily')
       }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.MulticheckButtons, {
@@ -9739,13 +10450,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_utils_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../../utils/utils.js */ "./src/editor/utils/utils.js");
 /* harmony import */ var _utils_lists_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./../../utils/lists.js */ "./src/editor/utils/lists.js");
 /* harmony import */ var _utils_constants_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./../../utils/constants.js */ "./src/editor/utils/constants.js");
-/* harmony import */ var _redux_actions_data_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./../../redux/actions-data.js */ "./src/editor/redux/actions-data.js");
+/* harmony import */ var _utils_fonts_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./../../utils/fonts.js */ "./src/editor/utils/fonts.js");
+/* harmony import */ var _redux_actions_data_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./../../redux/actions-data.js */ "./src/editor/redux/actions-data.js");
+/* harmony import */ var _utils_help_texts_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./../../utils/help-texts.js */ "./src/editor/utils/help-texts.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
 function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+
+
 
 
 
@@ -9998,7 +10713,7 @@ var SettingsLayer = function SettingsLayer(_ref) {
           step: 1
         }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_4__.Select, {
           label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Font Family', 'pixmagix'),
-          options: _utils_lists_js__WEBPACK_IMPORTED_MODULE_8__.webSafeFonts,
+          options: (0,_utils_fonts_js__WEBPACK_IMPORTED_MODULE_10__.getFonts)(),
           value: fontFamily,
           onChange: function onChange(value) {
             return setLayerProps(id, 'fontFamily', value);
@@ -10087,6 +10802,7 @@ var SettingsLayer = function SettingsLayer(_ref) {
           step: 1
         }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_4__.Select, {
           label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Error Correction Level', 'pixmagix'),
+          help: (0,_utils_help_texts_js__WEBPACK_IMPORTED_MODULE_12__["default"])('ecl'),
           options: [{
             label: 'L',
             value: 'L'
@@ -10186,7 +10902,6 @@ var SettingsLayer = function SettingsLayer(_ref) {
                     newList[index] = _objectSpread(_objectSpread({}, newList[index]), {}, _defineProperty({}, control.name, value));
                   }
                   setLayerProps(id, 'filters', newList);
-                  console.log(newList);
                 }
               });
             });
@@ -10236,13 +10951,17 @@ var SettingsLayer = function SettingsLayer(_ref) {
       name: 'fill',
       label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Fill', 'pixmagix'),
       icon: 'fill',
-      content: /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_4__.ColorPicker, {
-        label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Fill Color', 'pixmagix'),
-        color: fill,
-        onChange: function onChange(color) {
-          return setLayerProps(id, 'fill', color);
+      content: /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_4__.ColorStyleControl, {
+        labels: {
+          style: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Fill Style', 'pixmagix'),
+          color: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Fill Color', 'pixmagix'),
+          gradient: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Fill Gradient', 'pixmagix')
+        },
+        value: fill,
+        onChange: function onChange(value) {
+          return setLayerProps(id, 'fill', value);
         }
-      }))
+      })
     });
   }
   tabs.push({
@@ -10270,6 +10989,7 @@ var SettingsLayer = function SettingsLayer(_ref) {
       step: 0.01
     }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_4__.Select, {
       label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Blending Mode', 'pixmagix'),
+      help: (0,_utils_help_texts_js__WEBPACK_IMPORTED_MODULE_12__["default"])('blendingMode'),
       options: _utils_lists_js__WEBPACK_IMPORTED_MODULE_8__.blendingModes,
       value: globalCompositeOperation,
       onChange: function onChange(value) {
@@ -10287,7 +11007,7 @@ var SettingsLayer = function SettingsLayer(_ref) {
     activeLayers: state.editor.activeLayers
   };
 }, {
-  setLayerProps: _redux_actions_data_js__WEBPACK_IMPORTED_MODULE_10__.setLayerProps
+  setLayerProps: _redux_actions_data_js__WEBPACK_IMPORTED_MODULE_11__.setLayerProps
 })(SettingsLayer));
 
 /***/ }),
@@ -10357,13 +11077,18 @@ var SettingsProject = function SettingsProject(_ref) {
     }, {
       name: 'background',
       label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Background', 'pixmagix'),
-      content: /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.ColorPicker, {
-        label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Background', 'pixmagix'),
-        color: canvasBackground,
-        onChange: function onChange(color) {
-          return setData('canvasBackground', color);
+      content: /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.ColorStyleControl, {
+        labels: {
+          style: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Background Style', 'pixmagix'),
+          color: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Background Color', 'pixmagix'),
+          gradient: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Background Gradient', 'pixmagix')
+        },
+        value: canvasBackground,
+        allowReset: true,
+        onChange: function onChange(value) {
+          return console.log(value) || setData('canvasBackground', value);
         }
-      }))
+      })
     }]
   });
 };
@@ -10856,13 +11581,14 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
  * @since 1.0.0
  * @param {number} id
  * @param {string} title
+ * @param {number} author
  * @param {number} mediaId
  * @param {string} mediaUrl
  * @param {string} revisionUrl
  * @return {object}
  */
 
-var getInitialStateEditor = function getInitialStateEditor(id, title, mediaId, mediaUrl, revisionUrl) {
+var getInitialStateEditor = function getInitialStateEditor(id, title, author, mediaId, mediaUrl, revisionUrl) {
   var data = window.localStorage.getItem('pixmagixEditor');
   var stateFromLocalStorage = {};
   try {
@@ -10874,14 +11600,20 @@ var getInitialStateEditor = function getInitialStateEditor(id, title, mediaId, m
     // Project
     projectId: id,
     projectName: title,
+    projectAuthor: author,
     mediaId: mediaId,
     mediaUrl: mediaUrl,
     thumbnail: editor_globals__WEBPACK_IMPORTED_MODULE_1__.thumbnails_folder + 'project-' + id + '.jpg',
     revisionURL: revisionUrl || '',
     imageDataURL: '',
     svgString: '',
+    svgWidth: 0,
+    svgHeight: 0,
+    preserveAspectRatio: '',
     fileFormat: 'jpeg',
     // 'jpeg', or 'png'
+    fileQuality: 0.92,
+    // Only makes effect if fileFormat is jpeg.
     isSaving: false,
     selectedMedia: null,
     fullScreen: false,
@@ -11133,13 +11865,14 @@ __webpack_require__.r(__webpack_exports__);
  * @since 1.0.0
  * @param {number} id
  * @param {string} title
+ * @param {number} author
  * @param {number} mediaId
  * @param {string} mediaUrl
  * @param {string} revisionUrl
  */
 
-var getReducerEditor = function getReducerEditor(id, title, mediaId, mediaUrl, revisionUrl) {
-  return (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createReducer)((0,_initial_state_editor_js__WEBPACK_IMPORTED_MODULE_1__["default"])(id, title, mediaId, mediaUrl, revisionUrl), function (builder) {
+var getReducerEditor = function getReducerEditor(id, title, author, mediaId, mediaUrl, revisionUrl) {
+  return (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createReducer)((0,_initial_state_editor_js__WEBPACK_IMPORTED_MODULE_1__["default"])(id, title, author, mediaId, mediaUrl, revisionUrl), function (builder) {
     builder.addCase('SET_EDITOR', function (state, _ref) {
       var payload = _ref.payload;
       if ((0,lodash__WEBPACK_IMPORTED_MODULE_0__.isObject)(payload.key)) {
@@ -11209,14 +11942,15 @@ __webpack_require__.r(__webpack_exports__);
  * @since 1.0.0
  * @param {number} id
  * @param {string} title
+ * @param {number} author
  * @param {object} project
  * @param {object} media
  */
 
-var getReducer = function getReducer(id, title, project, media) {
+var getReducer = function getReducer(id, title, author, project, media) {
   return (0,redux__WEBPACK_IMPORTED_MODULE_3__.combineReducers)({
     data: (0,redux_undo__WEBPACK_IMPORTED_MODULE_0__["default"])((0,_reducer_data_js__WEBPACK_IMPORTED_MODULE_1__["default"])(project, media.url, media.width, media.height)),
-    editor: (0,_reducer_editor_js__WEBPACK_IMPORTED_MODULE_2__["default"])(id, title, media.id || project.mediaId, media.url || project.mediaUrl, project.revisionURL || media.revision)
+    editor: (0,_reducer_editor_js__WEBPACK_IMPORTED_MODULE_2__["default"])(id, title, author, media.id || project.mediaId, media.url || project.mediaUrl, project.revisionURL || media.revision)
   });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getReducer);
@@ -11304,6 +12038,140 @@ var MAX_CROP_SCALE = 1.2;
 
 /***/ }),
 
+/***/ "./src/editor/utils/fonts.js":
+/*!***********************************!*\
+  !*** ./src/editor/utils/fonts.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   getFonts: () => (/* binding */ getFonts),
+/* harmony export */   loadFonts: () => (/* binding */ loadFonts)
+/* harmony export */ });
+/* harmony import */ var editor_globals__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! editor-globals */ "editor-globals");
+/* harmony import */ var editor_globals__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(editor_globals__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var fontfaceobserver__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! fontfaceobserver */ "./node_modules/fontfaceobserver/fontfaceobserver.standalone.js");
+/* harmony import */ var fontfaceobserver__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(fontfaceobserver__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+/**
+ * 
+ * @since 1.1.0
+ * @param {function} callback
+ */
+
+var loadFonts = function loadFonts(callback) {
+  var promises = (editor_globals__WEBPACK_IMPORTED_MODULE_0__.gfonts || []).map(function (_ref) {
+    var family = _ref.family;
+    var ffo = new (fontfaceobserver__WEBPACK_IMPORTED_MODULE_1___default())(family);
+    return ffo.load();
+  });
+  if (!promises.length) {
+    return;
+  }
+  Promise.all(promises).then(function () {
+    return callback === null || callback === void 0 ? void 0 : callback();
+  });
+};
+
+/**
+ * 
+ * @since 1.1.0
+ * @return {array}
+ */
+
+var getFonts = function getFonts() {
+  return (editor_globals__WEBPACK_IMPORTED_MODULE_0__.wsfonts || []).concat(editor_globals__WEBPACK_IMPORTED_MODULE_0__.gfonts || []).map(function (_ref2) {
+    var family = _ref2.family;
+    return {
+      label: family,
+      value: family
+    };
+  });
+};
+
+
+/***/ }),
+
+/***/ "./src/editor/utils/help-texts.js":
+/*!****************************************!*\
+  !*** ./src/editor/utils/help-texts.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! wp-i18n */ "wp-i18n");
+/* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(wp_i18n__WEBPACK_IMPORTED_MODULE_0__);
+
+var HELP_TEXTS = {
+  ecl: {
+    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Error correction level (ECL) refers to the ability of a QR code to withstand damage caused by scratches, stains, or other distortions. When creating a QR code, it is essential to choose an appropriate error correction level to ensure that the code remains scannable even under less-than-ideal conditions.', 'pixmagix'),
+    link: 'https://pixmagix-photo-editor.com/miscellaneous/understanding-error-correction-level-in-qr-codes/'
+  },
+  blendingMode: {
+    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Blending modes are essentially filters that can be applied to layers in your design project. They let you control how one layer interacts with another, by altering the way the colors blend together.', 'pixmagix'),
+    link: 'https://pixmagix-photo-editor.com/graphic-design/understanding-blending-modes-in-graphic-design/'
+  },
+  par: {
+    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('The preserveAspectRatio attribute is used to control how an SVG element is scaled and positioned within its container. It allows you to define the aspect ratio, define alignment, and specify how to handle overflowing content.', 'pixmagix'),
+    link: 'https://pixmagix-photo-editor.com/graphic-design/understanding-the-preserveaspectratio-svg-attribute/'
+  },
+  jpgQuality: {
+    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('JPEG is a widely used image format that utilizes lossy compression. This means that when an image is saved in JPEG format, some of the image data is permanently discarded to reduce file size. The JPEG quality setting determines the degree of compression applied to an image.', 'pixmagix'),
+    link: 'https://pixmagix-photo-editor.com/miscellaneous/the-impact-of-jpeg-quality-on-web-performance/'
+  },
+  fontFamily: {
+    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'pixmagix'),
+    link: ''
+  },
+  lineHeight: {
+    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Line height refers to the vertical space between lines of text. It plays a crucial role in determining the overall legibility and readability of a piece of content.', 'pixmagix'),
+    link: 'https://pixmagix-photo-editor.com/miscellaneous/understanding-line-height-in-typography/'
+  },
+  pixabayApiKey: {
+    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'pixmagix'),
+    link: ''
+  },
+  unsplashApiKey: {
+    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'pixmagix'),
+    link: ''
+  },
+  gfontsApiKey: {
+    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'pixmagix'),
+    link: ''
+  },
+  webSafeFonts: {
+    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'pixmagix'),
+    link: ''
+  },
+  userCaps: {
+    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'pixmagix'),
+    link: ''
+  }
+};
+
+/**
+ * 
+ * @since 1.1.0
+ * @param {string} key
+ * @return {object|undefined}
+ */
+
+function getHelpText() {
+  var key = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+  return HELP_TEXTS[key];
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getHelpText);
+
+/***/ }),
+
 /***/ "./src/editor/utils/keyboard-shortcuts.js":
 /*!************************************************!*\
   !*** ./src/editor/utils/keyboard-shortcuts.js ***!
@@ -11322,7 +12190,7 @@ __webpack_require__.r(__webpack_exports__);
   title: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Globals', 'pixmagix'),
   description: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'pixmagix'),
   items: [{
-    combination: 'Ctrl + Alt + N',
+    combination: 'Shift + Alt + N',
     description: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Open New Project', 'pixmagix')
   }, {
     combination: 'Ctrl + S',
@@ -11338,13 +12206,13 @@ __webpack_require__.r(__webpack_exports__);
   title: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Toolbar', 'pixmagix'),
   description: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'pixmagix'),
   items: [{
-    combination: 'M',
+    combination: 'I',
     description: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Add Image', 'pixmagix')
   }, {
     combination: 'T',
     description: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Add Text', 'pixmagix')
   }, {
-    combination: 'I',
+    combination: 'E',
     description: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Add Icon', 'pixmagix')
   }, {
     combination: 'Q',
@@ -11413,7 +12281,7 @@ __webpack_require__.r(__webpack_exports__);
     combination: 'Ctrl + L',
     description: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Lock/Unlock Layer', 'pixmagix')
   }, {
-    combination: 'Ctrl + T',
+    combination: 'Ctrl + V',
     description: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Toggle Layer is Visible', 'pixmagix')
   }, {
     combination: 'Ctrl + D',
@@ -11647,10 +12515,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   cropAspectRatios: () => (/* binding */ cropAspectRatios),
 /* harmony export */   imageFilters: () => (/* binding */ imageFilters),
 /* harmony export */   modals: () => (/* binding */ modals),
+/* harmony export */   preserveAspectRatios: () => (/* binding */ preserveAspectRatios),
 /* harmony export */   propsToSaveLocalStorage: () => (/* binding */ propsToSaveLocalStorage),
 /* harmony export */   shapeTypes: () => (/* binding */ shapeTypes),
-/* harmony export */   toolbarItems: () => (/* binding */ toolbarItems),
-/* harmony export */   webSafeFonts: () => (/* binding */ webSafeFonts)
+/* harmony export */   toolbarItems: () => (/* binding */ toolbarItems)
 /* harmony export */ });
 /* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! wp-i18n */ "wp-i18n");
 /* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(wp_i18n__WEBPACK_IMPORTED_MODULE_0__);
@@ -11781,6 +12649,10 @@ var shapeTypes = {
     label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Polygon', 'pixmagix'),
     icon: 'star'
   },
+  'text': {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Text', 'pixmagix'),
+    icon: 'font'
+  },
   'i-text': {
     label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Text', 'pixmagix'),
     icon: 'font'
@@ -11798,38 +12670,6 @@ var shapeTypes = {
     icon: 'layer-group'
   }
 };
-
-/**
- *
- * @since 1.0.0
- * @var {array}
- */
-
-var webSafeFonts = [{
-  label: 'Arial',
-  value: 'Arial'
-}, {
-  label: 'Arial Black',
-  value: 'Arial Black'
-}, {
-  label: 'Times New Roman',
-  value: 'Times New Roman'
-}, {
-  label: 'Courier',
-  value: 'Courier'
-}, {
-  label: 'Verdana',
-  value: 'Verdana'
-}, {
-  label: 'Georgia',
-  value: 'Georgia'
-}, {
-  label: 'Impact',
-  value: 'Impact'
-}, {
-  label: 'Comic Sans MS',
-  value: 'Comic Sans MS'
-}];
 
 /**
  *
@@ -11916,6 +12756,14 @@ var blendingModes = [{
   label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Luminosity', 'pixmagix'),
   value: 'luminosity'
 }];
+
+/**
+ *
+ * @since 1.1.0
+ * @var {array}
+ */
+
+var preserveAspectRatios = ['none', 'xMinYMin meet', 'xMinYMin slice', 'xMidYMin meet', 'xMidYMin slice', 'xMaxYMin meet', 'xMaxYMin slice', 'xMinYMid meet', 'xMinYMid slice', 'xMidYMid meet', 'xMidYMid slice', 'xMaxYMid meet', 'xMaxYMid slice', 'xMinYMax meet', 'xMinYMax slice', 'xMidYMax meet', 'xMidYMax slice', 'xMaxYMax meet', 'xMaxYMax slice'];
 
 /**
  *
@@ -12277,7 +13125,7 @@ var attachmentSizes = {
  * @var {array}
  */
 
-var propsToSaveLocalStorage = ['fullScreen', 'fileFormat', 'snapToGrid', 'snapObjects', 'gridSize', 'showRulers', 'showRulerCursors', 'cropAspectRatio', 'pencilType', 'pencilWidth', 'pencilDecimate', 'pencilDensity', 'pencilDotWidth', 'pencilDotWidthVariance', 'pencilRandomOpacity', 'pencilColor', 'pencilShadow', 'fillColor', 'drawnShape', 'pathType', 'newText', 'fontFamily', 'fontSize', 'fontStyle', 'fontWeight', 'textAlign', 'lineHeight', 'charSpacing', 'underline', 'qrCodeText', 'qrCodeSize', 'qrCodePadding', 'qrCodeECL'];
+var propsToSaveLocalStorage = ['fullScreen', 'fileFormat', 'fileQuality', 'preserveAspectRatio', 'snapToGrid', 'snapObjects', 'gridSize', 'showRulers', 'showRulerCursors', 'cropAspectRatio', 'pencilType', 'pencilWidth', 'pencilDecimate', 'pencilDensity', 'pencilDotWidth', 'pencilDotWidthVariance', 'pencilRandomOpacity', 'pencilColor', 'pencilShadow', 'fillColor', 'drawnShape', 'pathType', 'newText', 'fontFamily', 'fontSize', 'fontStyle', 'fontWeight', 'textAlign', 'lineHeight', 'charSpacing', 'underline', 'qrCodeText', 'qrCodeSize', 'qrCodePadding', 'qrCodeECL'];
 
 /***/ }),
 
@@ -13008,7 +13856,7 @@ function loadSVGFromString() {
   try {
     (0,fabric__WEBPACK_IMPORTED_MODULE_1__.loadSVGFromString)(source, onSuccess);
   } catch (error) {
-    onError(error);
+    onError === null || onError === void 0 ? void 0 : onError(error);
   }
 }
 
@@ -13146,6 +13994,24 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	} else {}
 }());
+
+
+/***/ }),
+
+/***/ "./node_modules/fontfaceobserver/fontfaceobserver.standalone.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/fontfaceobserver/fontfaceobserver.standalone.js ***!
+  \**********************************************************************/
+/***/ ((module) => {
+
+/* Font Face Observer v2.3.0 - © Bram Stein. License: BSD-3-Clause */(function(){function p(a,c){document.addEventListener?a.addEventListener("scroll",c,!1):a.attachEvent("scroll",c)}function u(a){document.body?a():document.addEventListener?document.addEventListener("DOMContentLoaded",function b(){document.removeEventListener("DOMContentLoaded",b);a()}):document.attachEvent("onreadystatechange",function g(){if("interactive"==document.readyState||"complete"==document.readyState)document.detachEvent("onreadystatechange",g),a()})};function w(a){this.g=document.createElement("div");this.g.setAttribute("aria-hidden","true");this.g.appendChild(document.createTextNode(a));this.h=document.createElement("span");this.i=document.createElement("span");this.m=document.createElement("span");this.j=document.createElement("span");this.l=-1;this.h.style.cssText="max-width:none;display:inline-block;position:absolute;height:100%;width:100%;overflow:scroll;font-size:16px;";this.i.style.cssText="max-width:none;display:inline-block;position:absolute;height:100%;width:100%;overflow:scroll;font-size:16px;";
+this.j.style.cssText="max-width:none;display:inline-block;position:absolute;height:100%;width:100%;overflow:scroll;font-size:16px;";this.m.style.cssText="display:inline-block;width:200%;height:200%;font-size:16px;max-width:none;";this.h.appendChild(this.m);this.i.appendChild(this.j);this.g.appendChild(this.h);this.g.appendChild(this.i)}
+function x(a,c){a.g.style.cssText="max-width:none;min-width:20px;min-height:20px;display:inline-block;overflow:hidden;position:absolute;width:auto;margin:0;padding:0;top:-999px;white-space:nowrap;font-synthesis:none;font:"+c+";"}function B(a){var c=a.g.offsetWidth,b=c+100;a.j.style.width=b+"px";a.i.scrollLeft=b;a.h.scrollLeft=a.h.scrollWidth+100;return a.l!==c?(a.l=c,!0):!1}function C(a,c){function b(){var e=g;B(e)&&null!==e.g.parentNode&&c(e.l)}var g=a;p(a.h,b);p(a.i,b);B(a)};function D(a,c,b){c=c||{};b=b||window;this.family=a;this.style=c.style||"normal";this.weight=c.weight||"normal";this.stretch=c.stretch||"normal";this.context=b}var E=null,F=null,G=null,H=null;function I(a){null===F&&(M(a)&&/Apple/.test(window.navigator.vendor)?(a=/AppleWebKit\/([0-9]+)(?:\.([0-9]+))(?:\.([0-9]+))/.exec(window.navigator.userAgent),F=!!a&&603>parseInt(a[1],10)):F=!1);return F}function M(a){null===H&&(H=!!a.document.fonts);return H}
+function N(a,c){var b=a.style,g=a.weight;if(null===G){var e=document.createElement("div");try{e.style.font="condensed 100px sans-serif"}catch(q){}G=""!==e.style.font}return[b,g,G?a.stretch:"","100px",c].join(" ")}
+D.prototype.load=function(a,c){var b=this,g=a||"BESbswy",e=0,q=c||3E3,J=(new Date).getTime();return new Promise(function(K,L){if(M(b.context)&&!I(b.context)){var O=new Promise(function(r,t){function h(){(new Date).getTime()-J>=q?t(Error(""+q+"ms timeout exceeded")):b.context.document.fonts.load(N(b,'"'+b.family+'"'),g).then(function(n){1<=n.length?r():setTimeout(h,25)},t)}h()}),P=new Promise(function(r,t){e=setTimeout(function(){t(Error(""+q+"ms timeout exceeded"))},q)});Promise.race([P,O]).then(function(){clearTimeout(e);
+K(b)},L)}else u(function(){function r(){var d;if(d=-1!=k&&-1!=l||-1!=k&&-1!=m||-1!=l&&-1!=m)(d=k!=l&&k!=m&&l!=m)||(null===E&&(d=/AppleWebKit\/([0-9]+)(?:\.([0-9]+))/.exec(window.navigator.userAgent),E=!!d&&(536>parseInt(d[1],10)||536===parseInt(d[1],10)&&11>=parseInt(d[2],10))),d=E&&(k==y&&l==y&&m==y||k==z&&l==z&&m==z||k==A&&l==A&&m==A)),d=!d;d&&(null!==f.parentNode&&f.parentNode.removeChild(f),clearTimeout(e),K(b))}function t(){if((new Date).getTime()-J>=q)null!==f.parentNode&&f.parentNode.removeChild(f),
+L(Error(""+q+"ms timeout exceeded"));else{var d=b.context.document.hidden;if(!0===d||void 0===d)k=h.g.offsetWidth,l=n.g.offsetWidth,m=v.g.offsetWidth,r();e=setTimeout(t,50)}}var h=new w(g),n=new w(g),v=new w(g),k=-1,l=-1,m=-1,y=-1,z=-1,A=-1,f=document.createElement("div");f.dir="ltr";x(h,N(b,"sans-serif"));x(n,N(b,"serif"));x(v,N(b,"monospace"));f.appendChild(h.g);f.appendChild(n.g);f.appendChild(v.g);b.context.document.body.appendChild(f);y=h.g.offsetWidth;z=n.g.offsetWidth;A=v.g.offsetWidth;t();
+C(h,function(d){k=d;r()});x(h,N(b,'"'+b.family+'",sans-serif'));C(n,function(d){l=d;r()});x(n,N(b,'"'+b.family+'",serif'));C(v,function(d){m=d;r()});x(v,N(b,'"'+b.family+'",monospace'))})})}; true?module.exports=D:(0);}());
 
 
 /***/ }),
@@ -18514,7 +19380,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   initialize: () => (/* binding */ initialize)
 /* harmony export */ });
 /* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var wp_api_fetch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! wp-api-fetch */ "wp-api-fetch");
 /* harmony import */ var wp_api_fetch__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(wp_api_fetch__WEBPACK_IMPORTED_MODULE_2__);
@@ -18524,9 +19390,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _editor_canvas_extend_fabric_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./editor/canvas/extend-fabric.js */ "./src/editor/canvas/extend-fabric.js");
 /* harmony import */ var _editor_canvas_extend_point_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./editor/canvas/extend-point.js */ "./src/editor/canvas/extend-point.js");
 /* harmony import */ var _editor_canvas_extend_filters_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./editor/canvas/extend-filters.js */ "./src/editor/canvas/extend-filters.js");
-/* harmony import */ var _editor_canvas_extend_object_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./editor/canvas/extend-object.js */ "./src/editor/canvas/extend-object.js");
-/* harmony import */ var _editor_canvas_extend_image_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./editor/canvas/extend-image.js */ "./src/editor/canvas/extend-image.js");
-/* harmony import */ var _editor_canvas_extend_group_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./editor/canvas/extend-group.js */ "./src/editor/canvas/extend-group.js");
+/* harmony import */ var _editor_canvas_extend_gradient_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./editor/canvas/extend-gradient.js */ "./src/editor/canvas/extend-gradient.js");
+/* harmony import */ var _editor_canvas_extend_shadow_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./editor/canvas/extend-shadow.js */ "./src/editor/canvas/extend-shadow.js");
+/* harmony import */ var _editor_canvas_extend_object_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./editor/canvas/extend-object.js */ "./src/editor/canvas/extend-object.js");
+/* harmony import */ var _editor_canvas_extend_image_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./editor/canvas/extend-image.js */ "./src/editor/canvas/extend-image.js");
+/* harmony import */ var _editor_canvas_extend_group_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./editor/canvas/extend-group.js */ "./src/editor/canvas/extend-group.js");
+/* harmony import */ var _editor_canvas_extend_text_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./editor/canvas/extend-text.js */ "./src/editor/canvas/extend-text.js");
+/* harmony import */ var _editor_canvas_extend_path_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./editor/canvas/extend-path.js */ "./src/editor/canvas/extend-path.js");
+/* harmony import */ var _editor_canvas_extend_polyline_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./editor/canvas/extend-polyline.js */ "./src/editor/canvas/extend-polyline.js");
+
+
+
+
+
 
 
 
@@ -18550,9 +19426,10 @@ wp_api_fetch__WEBPACK_IMPORTED_MODULE_2___default().use(_editor_utils_middleware
 var Editor = function Editor(_ref) {
   var id = _ref.id,
     title = _ref.title,
+    author = _ref.author,
     project = _ref.project,
     media = _ref.media;
-  var store = (0,redux__WEBPACK_IMPORTED_MODULE_12__.createStore)((0,_editor_redux_reducer_js__WEBPACK_IMPORTED_MODULE_4__["default"])(id, title, project, media));
+  var store = (0,redux__WEBPACK_IMPORTED_MODULE_17__.createStore)((0,_editor_redux_reducer_js__WEBPACK_IMPORTED_MODULE_4__["default"])(id, title, author, project, media));
   return /*#__PURE__*/React.createElement(react_redux__WEBPACK_IMPORTED_MODULE_1__.Provider, {
     store: store
   }, /*#__PURE__*/React.createElement(_editor_components_editor_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null));
@@ -18561,25 +19438,13 @@ var Editor = function Editor(_ref) {
 /**
  * Initialize editor.
  * @since 1.0.0
- * @param {number} id
- * @param {string} title
- * @param {object} project
- * @param {object} media
+ * @param {object} params
  */
 
-var initialize = function initialize() {
-  var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-  var title = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-  var project = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-  var media = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+var initialize = function initialize(params) {
   var container = document.getElementById('pixmagix');
   var root = (0,react_dom_client__WEBPACK_IMPORTED_MODULE_0__.createRoot)(container);
-  root.render( /*#__PURE__*/React.createElement(Editor, {
-    id: id,
-    title: title,
-    project: project,
-    media: media
-  }));
+  root.render( /*#__PURE__*/React.createElement(Editor, params));
 };
 
 })();
