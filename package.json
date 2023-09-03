@@ -1,0 +1,46 @@
+{
+  "name": "pixmagix",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/index.js",
+  "scripts": {
+    "start": "webpack --config webpack.config.js",
+    "build": "webpack --env production --config webpack.config.js"
+  },
+  "author": "Andras Tovishati",
+  "license": "GPLv2",
+  "devDependencies": {
+    "@babel/core": "^7.22.5",
+    "@babel/preset-env": "^7.22.5",
+    "@babel/preset-react": "^7.22.5",
+    "babel-loader": "^9.1.2",
+    "css-loader": "^6.8.1",
+    "mini-css-extract-plugin": "^2.7.6",
+    "sass": "^1.63.6",
+    "sass-loader": "^13.3.2",
+    "webpack": "^5.88.1",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.4.0",
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@reduxjs/toolkit": "^1.9.5",
+    "array-move": "^4.0.0",
+    "classnames": "^2.3.2",
+    "fabric": "^5.3.0",
+    "fontfaceobserver": "^2.3.0",
+    "qrcode-svg": "^1.1.0",
+    "react": "^18.2.0",
+    "react-color": "^2.19.3",
+    "react-debounce-input": "^3.3.0",
+    "react-dom": "^18.2.0",
+    "react-linear-gradient-picker": "^3.0.1",
+    "react-redux": "^8.1.1",
+    "react-select": "^5.7.3",
+    "reactjs-popup": "^2.0.5",
+    "redux-undo": "^1.0.1"
+  }
+}
