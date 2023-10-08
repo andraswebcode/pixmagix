@@ -10,7 +10,8 @@ const Textarea = ({
 	value,
 	onChange,
 	placeholder,
-	debounce = 400
+	debounce = 400,
+	rows = 5
 }) => {
 
 	const id = uniqueId('pixmagix_input_');
@@ -30,6 +31,7 @@ const Textarea = ({
 					id={id}
 					className='widefat'
 					value={value}
+					rows={rows}
 					onChange={e => onChange(e.target.value)}
 					placeholder={placeholder}
 					debounceTimeout={debounce} />

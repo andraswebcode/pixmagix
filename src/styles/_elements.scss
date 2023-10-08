@@ -60,6 +60,7 @@
 	&-color-palette-wrapper,
 	&-shadow-picker-wrapper,
 	&-libraryselect-wrapper,
+	&-stroke-dasharray-control,
 	&-repeater-wrapper {
 		margin-bottom: $margin;
 		.pixmagix-label {
@@ -95,7 +96,7 @@
 	input[type=number],
 	textarea,
 	&-color-picker__editable-input > div > input {
-		line-height: 1;
+		line-height: 1.5;
 		padding: 0; // Reset wp default.
 		width: 100%;
 		min-height: auto; // Reset wp default.
@@ -107,6 +108,9 @@
 		&:focus {
 			outline: none !important;
 		}
+	}
+	textarea {
+		line-height: 1.1;
 	}
 	&-range {
 		display: flex;
@@ -194,6 +198,27 @@
 						}
 					}
 				}
+			}
+		}
+	}
+	&-stroke-dasharray-control {
+		.pixmagix-button-group {
+			padding-top: $padding-sm;
+			.pixmagix-range-wrapper {
+				margin-bottom: 0;
+			}
+			.pixmagix-button {
+				padding: $button-padding-tn;
+			}
+		}
+		&__labels {
+			display: flex;
+			flex-flow: row;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			width: calc(100% - 36px);
+			.pixmagix-label {
+				flex-grow: 1;
 			}
 		}
 	}
@@ -635,6 +660,7 @@
 			color: $editor-color;
 			margin: 0;
 			line-height: 1;
+			font-size: $h2-font-size;
 		}
 		&__inner {
 			flex: 1 1 auto;
@@ -819,6 +845,7 @@
 		&__content {
 			padding: $padding-sm;
 			border: $input-border;
+			background-color: $editor-bg-light;
 		}
 	}
 	&-widget {
@@ -844,6 +871,12 @@
 		&__content {
 			padding: $padding-sm;
 			background: $editor-bg-light;
+			h2 {
+				margin: 0;
+				margin-bottom: $margin;
+				line-height: 2em;
+				border-bottom: solid 1px;
+			}
 			& > .pixmagix-inline-controls {
 				margin: -$padding-sm;
 			}

@@ -1,3 +1,6 @@
+import {
+	forwardRef
+} from 'react';
 import cn from 'classnames';
 
 import Button from './button.jsx';
@@ -15,8 +18,9 @@ const Grid = ({
 	</ul>
 );
 
-const GridItem = ({
+const Item = ({
 	className,
+	style,
 	title,
 	caption,
 	isEmpty,
@@ -26,8 +30,11 @@ const GridItem = ({
 	selected,
 	children,
 	onClick
-}) => isEmpty ? (
-	<li className='pixmagix-grid__item pixmagix-grid__item-empty'>
+}, ref) => isEmpty ? (
+	<li
+		ref={ref}
+		className='pixmagix-grid__item pixmagix-grid__item-empty'
+		style={style} >
 		<div className='pixmagix-grid__item-inner'>
 			<div className='pixmagix-grid__item-figure'>
 				<p>
@@ -38,17 +45,19 @@ const GridItem = ({
 	</li>
 ) : (
 	<li
+		ref={ref}
 		className={cn('pixmagix-grid__item', className, {
 			active:selected
-		})} >
+		})}
+		style={style} >
 		{!!(actions?.length) && (
 			<ButtonGroup className='pixmagix-grid__actions'>
-				{actions.map(action => (
+				{actions.map(action => action ? (
 					<Button
 						key={action.name}
 						{...action}
 						small />
-				))}
+				) : null)}
 			</ButtonGroup>
 		)}
 		<a
@@ -78,6 +87,8 @@ const GridItem = ({
 		</a>
 	</li>
 );
+
+const GridItem = forwardRef(Item);
 
 export {
 	Grid,

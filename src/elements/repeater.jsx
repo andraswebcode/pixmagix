@@ -12,6 +12,7 @@ import cn from 'classnames';
 import Button from './button.jsx';
 import ButtonGroup from './button-group.jsx';
 import Input from './input.jsx';
+import Textarea from './textarea.jsx';
 import Range from './range.jsx';
 import Checkbox from './checkbox.jsx';
 import Select from './select.jsx';
@@ -73,6 +74,11 @@ const RepeaterItem = ({
 						key={name}
 						value={value || defValue}
 						{...control} />
+				) : (type === 'textarea') ? (
+					<Textarea
+						key={name}
+						value={value || defValue}
+						{...control} />
 				) : (type === 'range' && show) ? (
 					<Range
 						key={name}
@@ -99,6 +105,12 @@ const RepeaterItem = ({
 						{...control}
 						show={true}
 						type={control.msgType} />
+				) : (type === 'button' && show) ? (
+					<Button
+						key={name}
+						{...control} >
+						{control.label}
+					</Button>
 				) : content)}
 			</div>
 		)}

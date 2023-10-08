@@ -28,6 +28,9 @@
 		padding: 0;
 	}
 	&__layeritem {
+		list-style: none;
+		margin: 0;
+		margin-bottom: $label-margin;
 		.pixmagix-input-wrapper {
 			margin: 0;
 		}

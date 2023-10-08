@@ -176,6 +176,24 @@ import {
 	faPalette
 } from '@fortawesome/free-solid-svg-icons/faPalette';
 import {
+	faMaximize
+} from '@fortawesome/free-solid-svg-icons/faMaximize';
+import {
+	faBoxArchive
+} from '@fortawesome/free-solid-svg-icons/faBoxArchive';
+import {
+	faServer
+} from '@fortawesome/free-solid-svg-icons/faServer';
+import {
+	faDownload
+} from '@fortawesome/free-solid-svg-icons/faDownload';
+import {
+	faFileLines
+} from '@fortawesome/free-solid-svg-icons/faFileLines';
+import {
+	faFilePen
+} from '@fortawesome/free-solid-svg-icons/faFilePen';
+import {
 	FontAwesomeIcon
 } from '@fortawesome/react-fontawesome';
 
@@ -236,7 +254,13 @@ library.add(
 	faSpinner,
 	faCircleInfo,
 	faEyeDropper,
-	faPalette
+	faPalette,
+	faMaximize,
+	faBoxArchive,
+	faServer,
+	faDownload,
+	faFileLines,
+	faFilePen
 );
 
 const Icon = (props, ref) => <FontAwesomeIcon ref={ref} {...props} />;

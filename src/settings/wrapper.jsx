@@ -25,7 +25,8 @@ const Wrapper = props => {
 				sendNotice={setNotice} />
 			<Content
 				{...settings}
-				onSettingChange={onSettingChange} />
+				onSettingChange={onSettingChange}
+				sendNotice={setNotice} />
 			<Notification
 				{...notice}
 				onExpire={setNotice} />

@@ -10,7 +10,7 @@ $button-bg:							darken($editor-bg, 5%);
 $button-hover-bg:					darken($button-bg, 5%);
 $button-active-bg:					#228B22; // https://www.canva.com/colors/color-meanings/forest-green/
 $button-active-hover-bg:			darken($button-active-bg, 5%);
-$input-bg:							$editor-bg-light;
+$input-bg:							transparent;
 $guide-color:						#FF0000;
 $selection-border-color:			#10BBE5;
 $overlay-bg:						rgba(0, 0, 0, 0.5);
@@ -67,6 +67,7 @@ $alpha-bg:							url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYA
 // Fonts
 
 $h1-font-size:						1.5em;
+$h2-font-size:						1.3em;
 $spinner-size:						2em;
 $font-size-sm:						0.8em;
 

@@ -8,6 +8,17 @@ import cn from 'classnames';
 
 import Icon from './icon.jsx';
 
+const onClickHref = (href, target) => {
+	const a = document.createElement('a');
+	if (href){
+		a.href = href;
+	}
+	if (target){
+		a.target = target;
+	}
+	a.click();
+};
+
 const Button = ({
 	className,
 	label,
@@ -16,6 +27,8 @@ const Button = ({
 	small,
 	block,
 	disabled,
+	href,
+	target,
 	onClick,
 	children
 }, ref) => icon ? (
@@ -28,7 +41,7 @@ const Button = ({
 		})}
 		disabled={disabled}
 		title={!disabled ? label : undefined}
-		onClick={onClick} >
+		onClick={href ? () => onClickHref(href, target) : onClick} >
 		{isObject(icon) ? (
 			<Icon {...icon} />
 		) : (
@@ -44,7 +57,7 @@ const Button = ({
 			block
 		})}
 		disabled={disabled}
-		onClick={onClick} >
+		onClick={href ? () => onClickHref(href, target) : onClick} >
 		{children}
 	</button>
 );

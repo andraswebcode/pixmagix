@@ -34,6 +34,7 @@ const PreviewModal = ({
 	title = '',
 	preview,
 	sizes = [],
+	canEdit,
 	hasPrev,
 	hasNext,
 	onNavigate,
@@ -82,7 +83,7 @@ const PreviewModal = ({
 				title,
 				author
 			)}
-			actions={(
+			actions={canEdit ? (
 				<ButtonGroup>
 					<Button
 						active
@@ -94,6 +95,11 @@ const PreviewModal = ({
 						{__('Just Save', 'pixmagix')}
 					</Button>
 				</ButtonGroup>
+			) : (
+				<Button
+					onClick={() => onSave()} >
+					{__('Save', 'pixmagix')}
+				</Button>
 			)}
 			navigation={{
 				prev:{

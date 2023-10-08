@@ -35,9 +35,8 @@ const Help = ({
 			<Button
 				active
 				small
-				onClick={() => {
-					window.open(link);
-				}} >
+				href={link}
+				target='_blank' >
 				{__('Read More', 'pixmagix')}
 			</Button>
 		)}

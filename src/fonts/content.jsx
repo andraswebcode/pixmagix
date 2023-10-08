@@ -30,17 +30,21 @@ import {
 	addQueryArgs,
 	addToRouter
 } from './../utils/utils.js';
+import {
+	applyFilters
+} from './../utils/hooks.js';
 
-const Content = ({
-	items,
-	gFonts,
-	wsFonts,
-	maxPages,
-	hasGFontsKey,
-	sendNotice,
-	...filters
-}) => {
+const Content = props => {
 
+	const {
+		items,
+		gFonts,
+		wsFonts,
+		maxPages,
+		hasGFontsKey,
+		sendNotice,
+		...filters
+	} = props;
 	const didMount = useRef(false);
 	const [_filters, setFilters] = useState(filters);
 	const [_items, setItems] = useState(items);
@@ -79,6 +83,23 @@ const Content = ({
 			collection:'gfonts'
 		})));
 	};
+	const tabs = applyFilters('fonts.tabs', [{
+		name:'websafe',
+		label:__('Web Safe Fonts', 'pixmagix'),
+		content:(
+			<FiltersWSFonts
+				selected={_wsFonts}
+				onAdd={onSelectWSFont} />
+		)
+	},{
+		name:'gfonts',
+		label:__('Google Fonts', 'pixmagix'),
+		content:(
+			<FiltersGFonts
+				{..._filters}
+				onChange={onFilterChange} />
+		)
+	}], props);
 
 	useEffect(() => {
 
@@ -107,23 +128,7 @@ const Content = ({
 	return (
 		<div className='pixmagix-content'>
 			<Widget
-				tabs={[{
-					name:'websafe',
-					label:__('Web Safe Fonts', 'pixmagix'),
-					content:(
-						<FiltersWSFonts
-							selected={_wsFonts}
-							onAdd={onSelectWSFont} />
-					)
-				},{
-					name:'gfonts',
-					label:__('Google Fonts', 'pixmagix'),
-					content:(
-						<FiltersGFonts
-							{..._filters}
-							onChange={onFilterChange} />
-					)
-				}]}
+				tabs={tabs}
 				initShow={_filters.collection}
 				onChange={({name}) => onFilterChange('collection', name)} />
 			{(_filters.collection === 'gfonts') ? (

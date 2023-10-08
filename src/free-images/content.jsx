@@ -26,6 +26,7 @@ import {
 import apiFetch from 'wp-api-fetch';
 
 import FiltersPixabay from './filters-pixabay.jsx';
+import FiltersPexels from './filters-pexels.jsx';
 import FiltersUnsplash from './filters-unsplash.jsx';
 import PreviewModal from './preview-modal.jsx';
 import {
@@ -39,14 +40,17 @@ import {
 
 const Content = ({
 	hasPixabayKey,
+	hasPexelsKey,
 	hasUnsplashKey,
 	items = [],
 	maxPages,
+	canEdit,
 	...filters
 }) => {
 
 	const didMount = useRef(false);
 	const [_hasPixabayKey, setHasPixabayKey] = useState(hasPixabayKey);
+	const [_hasPexelsKey, setHasPexelsKey] = useState(hasPexelsKey);
 	const [_hasUnsplashKey, setHasUnsplashKey] = useState(hasUnsplashKey);
 	const [_filters, setFilters] = useState(filters);
 	const [_items, setItems] = useState(items);
@@ -56,6 +60,8 @@ const Content = ({
 	const hasNotApiKey = useMemo(() => {
 		if (_filters.service === 'pixabay'){
 			return !_hasPixabayKey;
+		} else if (_filters.service === 'pexels'){
+			return !_hasPexelsKey;
 		} else if (_filters.service === 'unsplash'){
 			return !_hasUnsplashKey;
 		}
@@ -63,6 +69,7 @@ const Content = ({
 	},[
 		_filters,
 		_hasPixabayKey,
+		_hasPexelsKey,
 		_hasUnsplashKey
 	]);
 	const activeItemIndex = useMemo(() => {
@@ -114,6 +121,7 @@ const Content = ({
 	},[
 		_filters,
 		_hasPixabayKey,
+		_hasPexelsKey,
 		_hasUnsplashKey
 	]);
 
@@ -134,6 +142,19 @@ const Content = ({
 							}} />
 					)
 				},{
+					name:'pexels',
+					label:__('Pexels', 'pixmagix'),
+					content:(
+						<FiltersPexels
+							{..._filters}
+							hasKey={_hasPexelsKey}
+							onChange={onFiltersChange}
+							onContinue={() => {
+								setLoading(true);
+								setHasPexelsKey(true);
+							}} />
+					)
+				},{
 					name:'unsplash',
 					label:__('Unsplash', 'pixmagix'),
 					content:(
@@ -143,7 +164,7 @@ const Content = ({
 							onChange={onFiltersChange}
 							onContinue={() => {
 								setLoading(true);
-								setHasUnsplashyKey(true);
+								setHasUnsplashKey(true);
 							}} />
 					)
 				}]}
@@ -184,6 +205,7 @@ const Content = ({
 				<PreviewModal
 					key={activeItem.id}
 					{...activeItem}
+					canEdit={canEdit}
 					hasPrev={activeItemIndex > 0}
 					hasNext={activeItemIndex < items.length - 1}
 					onNavigate={onNavigate}
