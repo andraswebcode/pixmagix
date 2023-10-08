@@ -5,15 +5,21 @@ import {
 	createStore
 } from 'redux';
 import {
-	Provider
+	Provider,
+	connect,
+	batch
 } from 'react-redux';
 import apiFetch from 'wp-api-fetch';
 
 import EditorBase from './editor/components/editor.jsx';
 import getReducer from './editor/redux/reducer.js';
+import * as editorActions from './editor/redux/actions-editor.js';
+import * as dataActions from './editor/redux/actions-data.js';
 import {
 	createPaginatingMiddleware
 } from './editor/utils/middlewares.js';
+import * as utils from './editor/utils/utils.js';
+import * as hooks from './utils/hooks.js';
 
 import './editor/canvas/extend-fabric.js';
 import './editor/canvas/extend-point.js';
@@ -36,13 +42,12 @@ apiFetch.use(createPaginatingMiddleware);
 
 const Editor = ({
 	id,
-	title,
-	author,
+	metadata,
 	project,
 	media
 }) => {
 
-	const store = createStore(getReducer(id, title, author, project, media));
+	const store = createStore(getReducer(id, metadata, project, media));
 
 	return (
 		<Provider store={store}>
@@ -66,7 +71,23 @@ const initialize = params => {
 	);
 };
 
+/**
+ * 
+ * @since 1.2.0
+ * @var {object}
+ */
+
+const data = {
+	batch,
+	connect,
+	...editorActions,
+	...dataActions
+};
+
 export {
+	hooks,
+	data,
+	utils,
 	initialize,
 	Editor
 };

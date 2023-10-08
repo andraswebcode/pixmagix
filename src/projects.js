@@ -1,23 +1,41 @@
 import {
 	createRoot
 } from 'react-dom/client';
+import {
+	createStore
+} from 'redux';
+import {
+	Provider
+} from 'react-redux';
 import apiFetch from 'wp-api-fetch';
 
-import Wrapper from './projects/wrapper.jsx';
+import Wrapper from './projects/components/wrapper.jsx';
+import getReducer from './projects/redux/reducer.js';
 import {
-	createPaginatingMiddleware
+	createPaginatingMiddleware,
+	createArrangedMiddleware
 } from './editor/utils/middlewares.js';
 
 apiFetch.use(createPaginatingMiddleware);
+apiFetch.use(createArrangedMiddleware);
 
 /**
  *
- * @since 1.0.0
+ * @since 1.2.0
+ * @param {object} params
  */
 
-const ProjectsList = props => (
-	<Wrapper {...props} />
-);
+const ProjectsList = params => {
+
+	const store = createStore(getReducer(params));
+
+	return (
+		<Provider store={store}>
+			<Wrapper />
+		</Provider>
+	);
+
+};
 
 /**
  * 

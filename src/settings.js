@@ -3,6 +3,7 @@ import {
 } from 'react-dom/client';
 
 import Wrapper from './settings/wrapper.jsx';
+import * as hooks from './utils/hooks.js';
 
 /**
  *
@@ -29,5 +30,6 @@ const initialize = params => {
 
 export {
 	Settings,
-	initialize
+	initialize,
+	hooks
 };

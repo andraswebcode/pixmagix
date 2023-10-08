@@ -3,6 +3,7 @@ import {
 } from 'react-dom/client';
 
 import Wrapper from './fonts/wrapper.jsx';
+import * as hooks from './utils/hooks.js';
 
 /**
  *
@@ -29,5 +30,6 @@ const initialize = params => {
 
 export {
 	Fonts,
-	initialize
+	initialize,
+	hooks
 };

@@ -31,6 +31,7 @@ import Range from './elements/range.jsx';
 import Repeater from './elements/repeater.jsx';
 import Select from './elements/select.jsx';
 import ShadowPicker from './elements/shadow-picker.jsx';
+import StrokeDashArrayControl from './elements/stroke-dasharray-control.jsx';
 import Textarea from './elements/textarea.jsx';
 import Widget from './elements/widget.jsx';
 
@@ -64,6 +65,7 @@ export {
 	Repeater,
 	Select,
 	ShadowPicker,
+	StrokeDashArrayControl,
 	Textarea,
 	Widget
 };
