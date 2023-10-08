@@ -3,11 +3,6 @@
 namespace AndrasWeb\PixMagix\Editor;
 
 use function AndrasWeb\PixMagix\Utils\get_asset_url;
-use function AndrasWeb\PixMagix\Utils\admin_editor_url;
-use function AndrasWeb\PixMagix\Utils\admin_page_url;
-use function AndrasWeb\PixMagix\Utils\get_upload_url;
-use function AndrasWeb\PixMagix\Utils\get_months_dropdown_items;
-use function AndrasWeb\PixMagix\Utils\get_json_data;
 use function AndrasWeb\PixMagix\Settings\get_setting;
 
 // Exit, if accessed directly.
@@ -17,11 +12,11 @@ if (!defined('ABSPATH')){
 }
 
 /**
- * Render div in pages for react app.
+ * Render div for react app.
  * @since 1.0.0
  */
 
-function render_page(){
+function render(){
 	echo '<div id="pixmagix" class="pixmagix"><p class="hide-if-js">';
 	esc_html_e('The editor requires JavaScript. Please enable JavaScript in your browser settings.', 'pixmagix');
 	echo '</p></div>';
@@ -88,12 +83,12 @@ function enqueue_fonts(){
 }
 
 /**
- * Enqueue styles for a specific admin page.
+ * Enqueue styles for a specific page.
  * @since 1.1.0
  * @param array $styles
  */
 
-function enqueue_admin_styles(...$styles){
+function enqueue_styles(...$styles){
 	if (!empty($styles)){
 		foreach ($styles as $style){
 			if (!isset($style['handle']) || !isset($style['src'])){
@@ -113,12 +108,12 @@ function enqueue_admin_styles(...$styles){
 }
 
 /**
- * Enqueue scripts for a specific admin page.
+ * Enqueue scripts for a specific page.
  * @since 1.1.0
  * @param array $scripts
  */
 
-function enqueue_admin_scripts(...$scripts){
+function enqueue_scripts(...$scripts){
 	$def_deps = array(
 		'react',
 		'react-dom',
@@ -126,6 +121,7 @@ function enqueue_admin_scripts(...$scripts){
 		'wp-dom-ready',
 		'wp-api-fetch',
 		'wp-i18n',
+		'wp-hooks',
 		'pixmagix-elements'
 	);
 	if (!empty($scripts)){
@@ -156,25 +152,25 @@ function enqueue_admin_scripts(...$scripts){
 }
 
 /**
- * Initialize react application on a specific admin page.
+ * Initialize react application on a specific page.
  * @since 1.1.0
  * @param string $handle
  * @param array $params
  */
 
-function initialize_admin_page($handle = '', $params = array()){
+function initialize($handle = '', $params = array()){
 
 	if (empty($handle)){
 		return;
 	}
 
-	$init_script = <<<JS
+	$init_script = "
 		(function(){
 			wp.domReady(function(){
 				pixmagixEditor.initialize(%s);
 			});
 		})();
-	JS;
+	";
 	$script = sprintf(
 		$init_script,
 		wp_json_encode($params)

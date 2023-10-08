@@ -5,6 +5,7 @@ namespace AndrasWeb\PixMagix;
 use function AndrasWeb\PixMagix\Utils\get_filesystem;
 use function AndrasWeb\PixMagix\Utils\get_upload_dir;
 use function AndrasWeb\PixMagix\Utils\get_upload_url;
+use function AndrasWeb\PixMagix\Utils\move_image_on_server;
 use function AndrasWeb\PixMagix\Utils\delete_attachment_subsizes;
 use function AndrasWeb\PixMagix\Utils\get_cropped_image_size;
 use function AndrasWeb\PixMagix\Utils\get_json_data;
@@ -55,6 +56,24 @@ final class Rest_Api {
 	 */
 
 	private $pixabay_key = '';
+
+	/**
+	 * The Pixabay API url.
+	 * @since 1.2.0
+	 * @access private
+	 * @var string
+	 */
+
+	private $pexels_url = 'https://api.pexels.com/v1/curated/';
+
+	/**
+	 * Holds the Pixabay API key.
+	 * @since 1.2.0
+	 * @access private
+	 * @var string
+	 */
+
+	private $pexels_key = '';
 
 	/**
 	 * The Unsplash API url.
@@ -111,10 +130,14 @@ final class Rest_Api {
 
 	public function set_api_keys(){
 		$pixabay_key = get_setting('pixabay_api_key');
+		$pexels_key = get_setting('pexels_api_key');
 		$unsplash_key = get_setting('unsplash_api_key');
 		$gfonts_key = get_setting('gfonts_api_key');
 		if (!empty($pixabay_key)){
 			$this->pixabay_key = $pixabay_key;
+		}
+		if (!empty($pexels_key)){
+			$this->pexels_key = $pexels_key;
 		}
 		if (!empty($unsplash_key)){
 			$this->unsplash_key = $unsplash_key;
@@ -138,7 +161,7 @@ final class Rest_Api {
 			array(
 				'methods' => \WP_REST_Server::CREATABLE,
 				'callback' => array($this, 'export_image'),
-				'permission_callback' => array($this, 'upload_files_permission')
+				'permission_callback' => __NAMESPACE__ . '\\Rest\Utils\upload_files_permission'
 			)
 		);
 
@@ -148,7 +171,7 @@ final class Rest_Api {
 			array(
 				'methods' => \WP_REST_Server::CREATABLE,
 				'callback' => array($this, 'restore_image'),
-				'permission_callback' => array($this, 'upload_files_permission')
+				'permission_callback' => __NAMESPACE__ . '\\Rest\Utils\upload_files_permission'
 			)
 		);
 
@@ -158,7 +181,7 @@ final class Rest_Api {
 			array(
 				'methods' => \WP_REST_Server::READABLE,
 				'callback' => array($this, 'get_templates'),
-				'permission_callback' => array($this, 'access_list_permission')
+				'permission_callback' => __NAMESPACE__ . '\\Rest\Utils\access_list_permission'
 			)
 		);
 
@@ -168,7 +191,7 @@ final class Rest_Api {
 			array(
 				'methods' => \WP_REST_Server::CREATABLE,
 				'callback' => array($this, 'save_template'),
-				'permission_callback' => array($this, 'create_projects_permission')
+				'permission_callback' => __NAMESPACE__ . '\\Rest\Utils\create_projects_permission'
 			)
 		);
 
@@ -178,7 +201,7 @@ final class Rest_Api {
 			array(
 				'methods' => \WP_REST_Server::READABLE,
 				'callback' => array($this, 'get_free_images'),
-				'permission_callback' => array($this, 'access_list_permission')
+				'permission_callback' => __NAMESPACE__ . '\\Rest\Utils\access_list_permission'
 			)
 		);
 
@@ -188,7 +211,7 @@ final class Rest_Api {
 			array(
 				'methods' => \WP_REST_Server::CREATABLE,
 				'callback' => array($this, 'save_free_image'),
-				'permission_callback' => array($this, 'upload_files_permission')
+				'permission_callback' => __NAMESPACE__ . '\\Rest\Utils\upload_files_permission'
 			)
 		);
 
@@ -198,7 +221,7 @@ final class Rest_Api {
 			array(
 				'methods' => \WP_REST_Server::READABLE,
 				'callback' => array($this, 'get_fonts'),
-				'permission_callback' => array($this, 'access_list_permission')
+				'permission_callback' => __NAMESPACE__ . '\\Rest\Utils\access_list_permission'
 			)
 		);
 
@@ -208,7 +231,7 @@ final class Rest_Api {
 			array(
 				'methods' => \WP_REST_Server::CREATABLE,
 				'callback' => array($this, 'save_settings'),
-				'permission_callback' => array($this, 'manage_options_permission')
+				'permission_callback' => __NAMESPACE__ . '\\Rest\Utils\manage_options_permission'
 			)
 		);
 
@@ -218,8 +241,8 @@ final class Rest_Api {
 	 *
 	 * @since 1.0.0
 	 * @access public
-	 * @param WP_Rest_Request $request
-	 * @return WP_Rest_Response|WP_Error
+	 * @param WP_REST_Request $request
+	 * @return WP_REST_Response|WP_Error
 	 */
 
 	public function export_image($request){
@@ -307,9 +330,9 @@ final class Rest_Api {
 				wp_delete_file($original_image_path);
 			}
 			delete_attachment_subsizes($attachment_id);
-			add_filter('wp_unique_filename', array($this, 'unique_filename'), 99, 6);
+			add_filter('wp_unique_filename', __NAMESPACE__ . '\\Rest\Utils\unique_filename', 99, 6);
 			$upload_file = wp_upload_bits($filename, null, $image_data, $time);
-			remove_filter('wp_unique_filename', array($this, 'unique_filename'), 99);
+			remove_filter('wp_unique_filename', __NAMESPACE__ . '\\Rest\Utils\unique_filename', 99);
 			if (isset($upload_file['error']) && !empty($upload_file['error'])){
 				return new \WP_Error(
 					'upload_failed',
@@ -327,7 +350,7 @@ final class Rest_Api {
 			$response['revision_url'] = esc_url($revision_url);
 		}
 
-		return new \WP_Rest_Response($response);
+		return new \WP_REST_Response($response);
 
 	}
 
@@ -335,8 +358,8 @@ final class Rest_Api {
 	 *
 	 * @since 1.0.0
 	 * @access public
-	 * @param WP_Rest_Request $request
-	 * @return WP_Rest_Response|WP_Error
+	 * @param WP_REST_Request $request
+	 * @return WP_REST_Response|WP_Error
 	 */
 
 	public function restore_image($request){
@@ -384,9 +407,9 @@ final class Rest_Api {
 		wp_delete_file($revision_path);
 		wp_delete_file($original_image_path);
 		delete_attachment_subsizes($attachment_id);
-		add_filter('wp_unique_filename', array($this, 'unique_filename'), 99, 6);
+		add_filter('wp_unique_filename', __NAMESPACE__ . '\\Rest\Utils\unique_filename', 99, 6);
 		$upload_file = wp_upload_bits($filename, null, $image_data, $time);
-		remove_filter('wp_unique_filename', array($this, 'unique_filename'), 99);
+		remove_filter('wp_unique_filename', __NAMESPACE__ . '\\Rest\Utils\unique_filename', 99);
 
 		if (isset($upload_file['error']) && !empty($upload_file['error'])){
 			return new \WP_Error(
@@ -404,7 +427,7 @@ final class Rest_Api {
 		);
 		update_post_meta($attachment_id, 'pixmagix_revision_url', '');
 
-		return new \WP_Rest_Response(
+		return new \WP_REST_Response(
 			array(
 				'success' => true
 			)
@@ -416,8 +439,8 @@ final class Rest_Api {
 	 *
 	 * @since 1.1.0
 	 * @access public
-	 * @param WP_Rest_Request $request
-	 * @return WP_Rest_Response|WP_Error
+	 * @param WP_REST_Request $request
+	 * @return WP_REST_Response|WP_Error
 	 */
 
 	public function get_templates($request){
@@ -447,7 +470,7 @@ final class Rest_Api {
 		$response['maxPages'] = ceil(count($items) / 12);
 		$response['items'] = array_slice($items, $page * 12 - 12, 12);
 
-		return new \WP_Rest_Response($response);
+		return new \WP_REST_Response($response);
 
 	}
 
@@ -455,8 +478,8 @@ final class Rest_Api {
 	 *
 	 * @since 1.1.0
 	 * @access public
-	 * @param WP_Rest_Request $request
-	 * @return WP_Rest_Response|WP_Error
+	 * @param WP_REST_Request $request
+	 * @return WP_REST_Response|WP_Error
 	 */
 
 	public function save_template($request){
@@ -497,14 +520,17 @@ final class Rest_Api {
 		}
 
 		$title = $selected_template['title'] ?? '';
+		$description = $selected_template['description'] ?? '';
 		$width = $selected_template['width'] ?? 0;
 		$height = $selected_template['height'] ?? 0;
-		$background = $selected_template['canvasBackground'] ?? '';
+		$background = $selected_template['background'] ?? '';
 		$thumbnail = $selected_template['thumbnail'] ?? '';
+		$preview = $selected_template['preview'] ?? '';
 		$layers = $selected_template['layers'] ?? array();
 		$has_image = boolval(find_object($layers, 'type', 'image'));
 		$body_params = array(
 			'title' => sanitize_text_field(!empty($project_name) ? $project_name : $title),
+			'content' => sanitize_textarea_field($description),
 			'status' => 'publish',
 			'meta' => array(
 				'pixmagix_project' => array(
@@ -512,6 +538,7 @@ final class Rest_Api {
 					'canvasHeight' => $height,
 					'canvasBackground' => $background,
 					'thumbnail' => $thumbnail,
+					'preview' => $preview,
 					'layers' => array()
 				)
 			)
@@ -534,11 +561,16 @@ final class Rest_Api {
 			}
 		}
 
-		$post_request = new \WP_Rest_Request('POST', 'wp/v2/pixmagix/');
+		$post_request = new \WP_REST_Request('POST', 'wp/v2/pixmagix/');
 		$post_request->set_body_params($body_params);
 		$post_controller = new Rest\Post_Controller();
 		$post_response = $post_controller->create_item($post_request);
-		$post_id = $post_response->get_data()['id'] ?? 0;
+
+		if (is_wp_error($post_response)){
+			return $post_response;
+		}
+
+		$post_id = absint($post_response->get_data()['id'] ?? 0);
 		$new_meta = $body_params['meta'];
 
 		// Save, and move remote images to the layers folder.
@@ -560,11 +592,11 @@ final class Rest_Api {
 					// Follow the structure of file names inside layers directory.
 					// @see Post_Type::create_images()
 					$filename = 'layer-' . $post_id . '-' . $layer_id . '.' . $extension;
-					$destination = get_upload_dir('layers', $filename);
-					$copied = copy($tmp_name, $destination);
-					@unlink($tmp_name);
-					if ($copied){
-						$new_meta['pixmagix_project']['layers'][$index]['src'] = get_upload_url('layers', $filename);
+					$new_src = move_image_on_server($tmp_name, 'layers', $filename);
+					if ($new_src){
+						$new_meta['pixmagix_project']['layers'][$index]['src'] = $new_src;
+					} else {
+						return new \WP_Error();
 					}
 				}
 			}
@@ -585,8 +617,8 @@ final class Rest_Api {
 	 *
 	 * @since 1.1.0
 	 * @access public
-	 * @param WP_Rest_Request $request
-	 * @return WP_Rest_Response|WP_Error
+	 * @param WP_REST_Request $request
+	 * @return WP_REST_Response|WP_Error
 	 */
 
 	public function get_free_images($request){
@@ -614,7 +646,7 @@ final class Rest_Api {
 		$url = $service . '_url';
 		$api_key = $this->$key;
 
-		if (empty($this->$key)){
+		if (empty($api_key)){
 			return new \WP_Error(
 				'authorization_failed',
 				esc_html__('API Key is Not Set', 'pixmagix'),
@@ -629,6 +661,7 @@ final class Rest_Api {
 			'per_page' => 12
 		);
 		$api_url = $this->$url;
+		$remote_args = array();
 
 		if ($service === 'pixabay'){
 			$args = array_merge(
@@ -641,6 +674,19 @@ final class Rest_Api {
 						'category' => $category,
 						'orientation' => $orientation,
 						'colors' => $color
+					)
+				)
+			);
+		} elseif ($service === 'pexels'){
+			$api_url = $search ? str_replace('/curated', '/search', $api_url) : $api_url;
+			$remote_args['headers'] = 'Authorization: ' . $api_key;
+			$args = array_merge(
+				$args,
+				array_filter(
+					array(
+						'query' => $search,
+						'orientation' => $orientation,
+						'color' => $color
 					)
 				)
 			);
@@ -660,7 +706,7 @@ final class Rest_Api {
 		}
 
 		$api_url = add_query_arg($args, $api_url);
-		$remote_response = wp_remote_get($api_url);
+		$remote_response = wp_remote_get($api_url, $remote_args);
 
 		if (is_wp_error($remote_response)){
 			return $remote_response;
@@ -714,6 +760,88 @@ final class Rest_Api {
 								$size_tm['height']
 							),
 							'value' => esc_url($item['previewURL'])
+						)
+					)
+				);
+			}
+			$response['maxPages'] = ceil($total_items / 12);
+		} elseif ($service === 'pexels'){
+			$items = isset($data['photos']) ? $data['photos'] : array();
+			$total_items = isset($data['total_results']) ? absint($data['total_results']) : 12;
+			foreach ($items as $item){
+				$size_lg = get_cropped_image_size($item['width'], $item['height'], 1280);
+				$size_md = get_cropped_image_size($item['width'], $item['height'], 640);
+				$size_tm = get_cropped_image_size($item['width'], $item['height'], 150);
+				$response['items'][] = array(
+					'id' => absint($item['id']),
+					'title' => esc_html($item['alt']),
+					'author' => esc_html($item['photographer']),
+					'thumbnail' => esc_url($item['src']['tiny']),
+					'preview' => esc_url(
+						add_query_arg(
+							array(
+								'w' => 640,
+								'h' => 640,
+								'auto' => 'compress',
+								'cs' => 'tinysrgb'
+							),
+							$item['src']['original']
+						)
+					),
+					'sizes' => array(
+						array(
+							'label' => sprintf(
+								esc_html__('Large - %dx%d', 'pixmagix'),
+								$size_lg['width'],
+								$size_lg['height']
+							),
+							'value' => esc_url(
+								add_query_arg(
+									array(
+										'w' => 1280,
+										'h' => 1280,
+										'auto' => 'compress',
+										'cs' => 'tinysrgb'
+									),
+									$item['src']['original']
+								)
+							)
+						),
+						array(
+							'label' => sprintf(
+								esc_html__('Medium - %dx%d', 'pixmagix'),
+								$size_md['width'],
+								$size_md['height']
+							),
+							'value' => esc_url(
+								add_query_arg(
+									array(
+										'w' => 640,
+										'h' => 640,
+										'auto' => 'compress',
+										'cs' => 'tinysrgb'
+									),
+									$item['src']['original']
+								)
+							)
+						),
+						array(
+							'label' => sprintf(
+								esc_html__('Thumbnail - %dx%d', 'pixmagix'),
+								$size_tm['width'],
+								$size_tm['height']
+							),
+							'value' => esc_url(
+								add_query_arg(
+									array(
+										'w' => 150,
+										'h' => 150,
+										'auto' => 'compress',
+										'cs' => 'tinysrgb'
+									),
+									$item['src']['original']
+								)
+							)
 						)
 					)
 				);
@@ -807,7 +935,7 @@ final class Rest_Api {
 			$response['maxPages'] = $total_pages;
 		}
 
-		return new \WP_Rest_Response($response);
+		return new \WP_REST_Response($response);
 
 	}
 
@@ -815,8 +943,8 @@ final class Rest_Api {
 	 *
 	 * @since 1.1.0
 	 * @access public
-	 * @param WP_Rest_Request $request
-	 * @return WP_Rest_Response|WP_Error
+	 * @param WP_REST_Request $request
+	 * @return WP_REST_Response|WP_Error
 	 */
 
 	public function save_free_image($request){
@@ -884,7 +1012,7 @@ final class Rest_Api {
 			return $id;
 		}
 
-		return new \WP_Rest_Response(
+		return new \WP_REST_Response(
 			array(
 				'mediaId' => $id
 			)
@@ -896,8 +1024,8 @@ final class Rest_Api {
 	 *
 	 * @since 1.1.0
 	 * @access public
-	 * @param WP_Rest_Request $request
-	 * @return WP_Rest_Response|WP_Error
+	 * @param WP_REST_Request $request
+	 * @return WP_REST_Response|WP_Error
 	 */
 
 	public function get_fonts($request){
@@ -943,7 +1071,9 @@ final class Rest_Api {
 				}
 				$body = wp_remote_retrieve_body($remote_response);
 				$data = json_decode($body, true);
-				$items = $data['items'];
+				if (!empty($data) && isset($data['items'])){
+					$items = $data['items'];
+				}
 			}
 			if ($has_filters){
 				$items = array_filter($items, function($item) use ($search, $category, $language){
@@ -959,7 +1089,7 @@ final class Rest_Api {
 		$response['maxPages'] = ceil(count($items) / 12);
 		$response['items'] = array_slice($items, $page * 12 - 12, 12);
 
-		return new \WP_Rest_Response($response);
+		return new \WP_REST_Response($response);
 
 	}
 
@@ -967,8 +1097,8 @@ final class Rest_Api {
 	 *
 	 * @since 1.1.0
 	 * @access public
-	 * @param WP_Rest_Request $request
-	 * @return WP_Rest_Response|WP_Error
+	 * @param WP_REST_Request $request
+	 * @return WP_REST_Response|WP_Error
 	 */
 
 	public function save_settings($request){
@@ -987,76 +1117,13 @@ final class Rest_Api {
 
 		$settings_success = update_settings($settings);
 
-		return new \WP_Rest_Response(
+		return new \WP_REST_Response(
 			array(
 				'settings_success' => $settings_success,
 				'roles_success' => $roles_success
 			)
 		);
 
-	}
-
-	/**
-	 * Manage options permission callback for routes.
-	 * @since 1.1.0
-	 * @access public
-	 * @return bool
-	 */
-
-	public function manage_options_permission(){
-		return apply_filters('pixmagix_rest_permission_manage_options', current_user_can('manage_options'));
-	}
-
-	/**
-	 * Create projects permission callback for routes.
-	 * @since 1.1.0
-	 * @access public
-	 * @return bool
-	 */
-
-	public function create_projects_permission(){
-		$permission = (current_user_can('edit_pixmagix') && current_user_can('upload_files'));
-		return apply_filters('pixmagix_rest_permission_create_projects', $permission);
-	}
-
-	/**
-	 * Upload files permission callback for routes.
-	 * @since 1.0.0
-	 * @access public
-	 * @return bool
-	 */
-
-	public function upload_files_permission(){
-		return apply_filters('pixmagix_rest_permission_upload_files', current_user_can('upload_files'));
-	}
-
-	/**
-	 * Access list permission callback for routes.
-	 * @since 1.1.0
-	 * @access public
-	 * @return bool
-	 */
-
-	public function access_list_permission(){
-		return apply_filters('pixmagix_rest_permission_access_list', true);
-	}
-
-	/**
-	 * Helper function for wp_unique_filename filter hook to keep filename the same while replacing image.
-	 * @see self::export_image()
-	 * @see self::restore_image()
-	 * @since 1.0.0
-	 * @access public
-	 * @param string $filename
-	 * @param string $ext
-	 * @param string $dir
-	 * @param callable $unique_filename_callback
-	 * @param string[] $alt_filenames
-	 * @param int|string $number
-	 */
-
-	public function unique_filename($filename, $ext, $dir, $unique_filename_callback, $alt_filenames, $number){
-		return str_replace('-' . $number . $ext, $ext, $filename);
 	}
 
 }

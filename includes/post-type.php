@@ -2,11 +2,11 @@
 
 namespace AndrasWeb\PixMagix;
 
-use function AndrasWeb\PixMagix\Utils\get_filesystem;
 use function AndrasWeb\PixMagix\Utils\get_json_data;
 use function AndrasWeb\PixMagix\Utils\get_upload_dir;
-use function AndrasWeb\PixMagix\Utils\get_upload_url;
 use function AndrasWeb\PixMagix\Utils\get_file_extension;
+use function AndrasWeb\PixMagix\Utils\create_image_from_base64;
+use function AndrasWeb\PixMagix\Settings\get_setting;
 
 // Exit, if accessed directly.
 
@@ -35,8 +35,8 @@ final class Post_Type {
 		add_action('init', array($this, 'register'), 99, 0);
 		add_action('rest_insert_pixmagix', array($this, 'create_images'), 99, 3);
 		add_action('rest_delete_pixmagix', array($this, 'delete_images'), 99, 2);
-		add_filter('rest_attachment_query', array($this, 'add_date_arg'), 99, 2);
-		add_filter('rest_pixmagix_query', array($this, 'add_date_arg'), 99, 2);
+		add_filter('rest_attachment_query', __NAMESPACE__ . '\\Rest\Utils\add_date_arg', 99, 2);
+		add_filter('rest_pixmagix_query', __NAMESPACE__ . '\\Rest\Utils\add_date_arg', 99, 2);
 	}
 
 	/**
@@ -54,8 +54,12 @@ final class Post_Type {
 				'show_in_rest' => true,
 				'supports' => array(
 					'title',
+					'editor', // To save project description.
 					'custom-fields',
 					'author'
+				),
+				'taxonomies' => array(
+					'pixmagix_category'
 				),
 				'rewrite' => false,
 				'query_var' => false,
@@ -74,6 +78,18 @@ final class Post_Type {
 				'show_in_rest' => array(
 					'schema' => get_json_data('project-schema')
 				)
+			)
+		);
+		register_taxonomy(
+			'pixmagix_category',
+			'pixmagix',
+			array(
+				'public' => false,
+				'show_in_rest' => true,
+				'hierarchical' => false,
+				'rewrite' => false,
+				'query_var' => false,
+				'rest_controller_class' => __NAMESPACE__ . '\\Rest\\Terms_Controller'
 			)
 		);
 		register_post_meta(
@@ -126,6 +142,7 @@ final class Post_Type {
 		}
 
 		$thumbnail = isset($project['thumbnail']) ? $project['thumbnail'] : '';
+		$preview = isset($project['preview']) ? $project['preview'] : '';
 		$layers = isset($project['layers']) ? (array) $project['layers'] : array();
 		$new_layers = array();
 
@@ -137,7 +154,13 @@ final class Post_Type {
 		// Create thumbnail image
 		if (strpos($thumbnail, ';base64,') !== false){
 			$filename = 'project-' . $id . '.jpg';
-			$meta['pixmagix_project']['thumbnail'] = $this->_create_image($thumbnail, 'thumbnails', $filename);
+			$meta['pixmagix_project']['thumbnail'] = create_image_from_base64($thumbnail, 'thumbnails', $filename);
+		}
+
+		// Create preview image, if you have allowed it in general settings.
+		if (!empty(get_setting('create_previews')) && strpos($preview, ';base64,') !== false){
+			$filename = 'project-' . $id . '.jpg';
+			$meta['pixmagix_project']['preview'] = create_image_from_base64($preview, 'previews', $filename);
 		}
 
 		// Create layer images.
@@ -146,7 +169,7 @@ final class Post_Type {
 				if ($layer['type'] === 'image' && isset($layer['src']) && strpos($layer['src'], ';base64,') !== false){
 					$layer_id = $layer['id'];
 					$filename = 'layer-' . $id . '-' . $layer_id . '.png';
-					$layer['src'] = $this->_create_image($layer['src'], 'layers', $filename);
+					$layer['src'] = create_image_from_base64($layer['src'], 'layers', $filename);
 				}
 				$new_layers[] = $layer;
 			}
@@ -184,8 +207,12 @@ final class Post_Type {
 		}
 
 		$thumbnail = get_upload_dir('thumbnails', 'project-' . $id . '.jpg');
+		$preview = get_upload_dir('previews', 'project-' . $id . '.jpg');
 		if (file_exists($thumbnail)){
 			wp_delete_file($thumbnail);
+		}
+		if (file_exists($preview)){
+			wp_delete_file($preview);
 		}
 
 		if (!empty($layers)){
@@ -200,60 +227,6 @@ final class Post_Type {
 				}
 			}
 		}
-
-	}
-
-	/**
-	 * Add YearMonth argument, when querying items via REST API to can be filtered them by dates.
-	 * @since 1.0.0
-	 * @access public
-	 * @param array $args
-	 * @param array $request
-	 * @return array
-	 */
-
-	public function add_date_arg($args, $request){
-
-		if (isset($request['yearmonth'])){
-			$args['m'] = intval($request['yearmonth']);
-		}
-
-		return $args;
-
-	}
-
-	/**
-	 * This private method handles file creation from base64 string.
-	 * @since 1.0.0
-	 * @access private
-	 * @param string $base64
-	 * @param string $folder_name
-	 * @param string $file_name
-	 * @return string URL of the created image.
-	 */
-
-	private function _create_image($base64 = '', $folder_name = '', $file_name = ''){
-
-		$data = explode(',', $base64);
-		$src = get_upload_url($folder_name, $file_name);
-
-		if (strpos($data[0], ';base64') === false){
-			return $src;
-		}
-
-		$filesystem = get_filesystem();
-		$dir = get_upload_dir($folder_name);
-		$file = $dir . $file_name;
-
-		if (wp_mkdir_p($dir) === false){
-			return '';
-		}
-
-		if ($filesystem->put_contents($file, base64_decode($data[1]), FS_CHMOD_FILE) === false){
-			return '';
-		}
-
-		return $src;
 
 	}
 
@@ -273,7 +246,9 @@ final class Post_Type {
 
 		$dir = get_upload_dir('layers');
 		$files = @scandir($dir);
-		$layer_ids = array_map(array($this, '_get_layer_ids'), $layers);
+		$layer_ids = array_map(function($layer){
+			return $layer['id'] ?? '';
+		}, $layers);
 
 		if (!empty($files)){
 			foreach ($files as $filename){
@@ -296,18 +271,6 @@ final class Post_Type {
 			}
 		}
 
-	}
-
-	/**
-	 * Helper function for array_map() in self::_remove_old_layers().
-	 * @since 1.0.0
-	 * @access private
-	 * @param array $layers
-	 * @return array List of layer ids.
-	 */
-
-	private function _get_layer_ids($layer){
-		return isset($layer['id']) ? $layer['id'] : '';
 	}
 
 }

@@ -29,27 +29,111 @@ function get_asset_url($folder = '', $file_name = '', $extension = 'js', $with_m
 }
 
 /**
- * Get project data using rest request to run all necessary things, eg.: permissions.
- * @since 1.1.0
- * @param int $id
+ * Get path of a specific file from the plugin's includes folder.
+ * @since 1.2.0
+ * @param string $file_name
+ * @return string
+ */
+
+function get_include_path($file_name = ''){
+	return PIXMAGIX_DIR . 'includes/' . $file_name . '.php';
+}
+
+/**
+ * Get list of projects using rest request to run all necessary things, eg.: permissions.
+ * @since 1.2.0
+ * @param array $args
+ * @param bool $with_total_pages
+ * @param string $post_type
  * @return array
  */
 
-function get_project_data($id = 0){
+function get_projects($args = array(), $with_total_pages = false, $post_type = 'pixmagix'){
 
-	if (empty($id)){
-		return array();
+	$args = array_filter($args);
+	$request = new \WP_Rest_Request('GET', '/wp/v2/' . $post_type);
+	$request->set_query_params($args);
+	$response = rest_get_server()->dispatch($request);
+	$data = $response->get_data();
+	$max_pages = absint($response->get_headers()['X-WP-TotalPages'] ?? 1);
+	$items = array();
+	$default_projects = $with_total_pages ? array(
+		'max_pages' => 1,
+		'items' => array()
+	) : array();
+
+	if ($response->is_error()){
+		return $default_projects;
 	}
 
-	$request = new \WP_Rest_Request('GET', '/wp/v2/pixmagix/' . $id);
+	// Restore the $post global to the current post.
+	wp_reset_postdata();
+
+	if (empty($data)){
+		return $default_projects;
+	}
+
+	foreach ($data as $item){
+		$items[] = array(
+			'id' => $item['id'],
+			'metadata' => array(
+				'title' => esc_html($item['title']['rendered'] ?? ''),
+				'caption' => esc_html($item['caption'] ?? ''),
+				'description' => esc_html($item['description'] ?? ''),
+				'author' => absint($item['author'] ?? 0),
+				'category' => absint($item['pixmagix_category'][0] ?? 0),
+				'status' => esc_attr($item['status'] ?? 'publish')
+			),
+			'project' => $item['meta']['pixmagix_project'] ?? array()
+		);
+	}
+
+	return $with_total_pages ? array(
+		'max_pages' => $max_pages,
+		'items' => $items
+	) : $items;
+
+}
+
+/**
+ * Get project using rest request to run all necessary things, eg.: permissions.
+ * @since 1.2.0
+ * @param int $id
+ * @param string $post_type
+ * @return array
+ */
+
+function get_project($id = 0, $post_type = 'pixmagix'){
+
+	$default_project = array(
+		'id' => $id,
+		'metadata' => array(),
+		'project' => array()
+	);
+
+	if (empty($id)){
+		return $default_project;
+	}
+
+	$request = new \WP_Rest_Request('GET', '/wp/v2/' . $post_type . '/' . $id);
 	$response = rest_get_server()->dispatch($request);
 	$data = $response->get_data();
 
 	if ($response->is_error()){
-		return array();
+		return $default_project;
 	}
 
-	return $data['meta']['pixmagix_project'] ?? array();
+	return array(
+		'id' => absint($id),
+		'metadata' => array(
+			'title' => esc_html($data['title']['rendered'] ?? ''),
+			'description' => esc_html($data['description'] ?? ''),
+			'author' => absint($data['author'] ?? 0),
+			'category' => absint($data['pixmagix_category'][0] ?? 0),
+			'status' => esc_attr($data['status'] ?? 'publish')
+		),
+		'project' => $data['meta'][$post_type . '_project'] ?? array()
+	);
 
 }
 
@@ -269,6 +353,110 @@ function get_months_dropdown_items($post_type = 'pixmagix'){
 
 /**
  *
+ * @since 1.2.0
+ * @param array $args
+ * @return array
+ */
+
+function get_categories_dropdown_items($args = array()){
+
+	$output = array(
+		array(
+			'label' => esc_html__('All Categories', 'pixmagix'),
+			'value' => 0
+		)
+	);
+	$args = wp_parse_args(
+		$args,
+		array(
+			'taxonomy' => 'pixmagix_category',
+			'hide_empty' => false
+		)
+	);
+	$categories = get_categories($args);
+
+	if (!empty($categories)){
+		foreach ($categories as $category){
+			$output[] = array(
+				'label' => esc_html($category->cat_name),
+				'value' => absint($category->cat_ID)
+			);
+		}
+	}
+
+	return $output;
+
+}
+
+/**
+ * Creates image from base64 code, and uploads to the server.
+ * @since 1.2.0
+ * @param string $base64
+ * @param string $folder_name
+ * @param string $file_name
+ * @return string URL of the created image.
+ */
+
+function create_image_from_base64($base64 = '', $folder_name = '', $file_name = ''){
+
+	$data = explode(',', $base64);
+	$src = get_upload_url($folder_name, $file_name);
+
+	if (strpos($data[0], ';base64') === false){
+		return $src;
+	}
+
+	$filesystem = get_filesystem();
+	$dir = get_upload_dir($folder_name);
+	$file = $dir . $file_name;
+
+	if (wp_mkdir_p($dir) === false){
+		return '';
+	}
+
+	if ($filesystem->put_contents($file, base64_decode($data[1]), FS_CHMOD_FILE) === false){
+		return '';
+	}
+
+	return $src;
+
+}
+
+/**
+ * Copies an image, and upload it to a new destination folder on the same server.
+ * @since 1.2.0
+ * @param string $from
+ * @param string $to_folder
+ * @param string $to_filename
+ * @param bool $unlink
+ * @return string URL of the new image.
+ */
+
+function move_image_on_server($from, $to_folder, $to_filename, $unlink = true){
+
+	$dir = get_upload_dir($to_folder);
+
+	if (wp_mkdir_p($dir) === false){
+		return '';
+	}
+
+	$to = $dir . $to_filename;
+	$copied = copy($from, $to);
+
+	if ($unlink){
+		unlink($from);
+	}
+
+	if ($copied){
+		return get_upload_url($to_folder, $to_filename);
+	}
+
+	return '';
+
+}
+
+/**
+ *
  * @since 1.0.0
  * @param int $attachment_id
  */
@@ -364,12 +552,32 @@ function find_object($list = array(), $where = '', $is = ''){
 function get_file_extension($url = '', $default = ''){
 
 	if (empty($url)){
-		return '';
+		return $default;
 	}
 
 	$basename = wp_basename($url);
 
 	return wp_check_filetype($basename)['ext'] ?? $default;
+
+}
+
+/**
+ * 
+ * @since 1.2.0
+ * @param string $prefix
+ * @return string
+ */
+
+function create_unique_id($prefix = 'pixmagix'){
+
+	$characters = '0123456789abcdefghijklmnopqrstuvwxyz';
+	$id = '';
+
+	for ($i = 0; $i < 20; $i++){
+		$id .= $characters[rand(0, 19)];
+	}
+
+	return $prefix . '-' . $id;
 
 }
 
