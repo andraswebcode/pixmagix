@@ -8,6 +8,7 @@ import {
 } from 'react-redux';
 import {
 	Rect,
+	Gradient,
 	util
 } from 'fabric';
 import {
@@ -18,6 +19,11 @@ import {
 	map,
 	isEqual
 } from 'lodash';
+import {
+	thumbnail_width,
+	preview_width,
+	has_previews
+} from 'editor-globals';
 
 import Canvas from './../../canvas/class-canvas.js';
 import {
@@ -41,7 +47,6 @@ import {
 	createLayerObject
 } from './../../utils/utils.js';
 import {
-	PREVIEW_IMAGE_MAX_WIDTH,
 	TARGET_FIND_TOLERANCE
 } from './../../utils/constants.js';
 
@@ -55,7 +60,7 @@ class FabricCanvas extends Component {
 	constructor(){
 		super(...arguments);
 		this._containerRef = createRef();
-		this._updateThumbnail = debounce(this._updateThumbnail.bind(this), 800);
+		this._updateThumbnailAndPreview = debounce(this._updateThumbnailAndPreview.bind(this), 800);
 		this._updateCanvasElementSize = this._updateCanvasElementSize.bind(this);
 		this._createImageDataURL = debounce(this._createImageDataURL.bind(this), 40);
 		this._createSVGString = debounce(this._createSVGString.bind(this), 40);
@@ -86,10 +91,11 @@ class FabricCanvas extends Component {
 			width,
 			height
 		} = this._getCanvasElementSize();
+		const backgroundColor = canvasBackground?.colorStops ? new Gradient(canvasBackground) : canvasBackground;
 
 		this._fabricCanvas = new Canvas('pixmagix_canvas'); window._fabricCanvas = this._fabricCanvas;
 		this._fabricCanvas.loadFromJSON({
-			backgroundColor:canvasBackground,
+			backgroundColor,
 			clipPath:new Rect({
 				top:0,
 				left:0,
@@ -180,7 +186,7 @@ class FabricCanvas extends Component {
 			svgWidth,
 			svgHeight,
 			setEditor
-		} = nextProps;console.log(nextProps);
+		} = nextProps;
 		const canvas = this._fabricCanvas;
 
 		// Update project dimensions.
@@ -306,7 +312,7 @@ class FabricCanvas extends Component {
 
 		// Update thumbnail.
 		if (!isEqual(layers, this.props.layers) || !isEqual(canvasBackground, this.props.canvasBackground)){
-			this._updateThumbnail();
+			this._updateThumbnailAndPreview();
 		}
 
 		canvas.requestRenderAll();
@@ -439,7 +445,7 @@ class FabricCanvas extends Component {
 	 * @access private
 	 */
 
-	_updateThumbnail(){
+	_updateThumbnailAndPreview(){
 		const {
 			canvasWidth,
 			canvasHeight,
@@ -447,19 +453,35 @@ class FabricCanvas extends Component {
 		} = this.props;
 		const canvas = this._fabricCanvas;
 		const vpt = canvas.viewportTransform.slice();
+		const thumbWidth = parseInt(thumbnail_width) || 200;
+		const prevsWidth = parseInt(preview_width) || 1280;
 		// console.time('updatePreviewURL');
 		canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
-		const dataURL = canvas.toDataURL({
+		const thumbnail = canvas.toDataURL({
 			format:'jpeg',
-			quality:1,
+			quality:0.92,
 			top:0,
 			left:0,
 			width:canvasWidth,
 			height:canvasHeight,
-			multiplier:PREVIEW_IMAGE_MAX_WIDTH / canvasWidth
+			multiplier:thumbWidth / canvasWidth
 		});
+		const newState = {
+			thumbnail
+		};
+		if (has_previews){
+			newState.preview = canvas.toDataURL({
+				format:'jpeg',
+				quality:0.92,
+				top:0,
+				left:0,
+				width:canvasWidth,
+				height:canvasHeight,
+				multiplier:prevsWidth / canvasWidth
+			});
+		}
 		canvas.setViewportTransform(vpt);
-		setEditor('thumbnail', dataURL);
+		setEditor(newState);
 		// console.timeEnd('updatePreviewURL');
 	}
 

@@ -15,6 +15,14 @@ const HELP_TEXTS = {
 		text:__('The preserveAspectRatio attribute is used to control how an SVG element is scaled and positioned within its container. It allows you to define the aspect ratio, define alignment, and specify how to handle overflowing content.', 'pixmagix'),
 		link:'https://pixmagix-photo-editor.com/graphic-design/understanding-the-preserveaspectratio-svg-attribute/'
 	},
+	strokeWidth:{
+		text:__('Stroke width is the thickness of a line used in creating graphical elements, shapes, or text. It is typically measured in points or pixels and greatly influences the visual perception of design elements.', 'pixmagix'),
+		link:'https://pixmagix-photo-editor.com/graphic-design/the-importance-of-stroke-width-in-design/'
+	},
+	sda:{
+		text:__('The stroke-dasharray is primarily used to create dashed lines, dotted lines, or more complex patterns. It controls the pattern of dashes and gaps used to paint the outline of shapes.', 'pixmagix'),
+		link:'https://pixmagix-photo-editor.com/graphic-design/understanding-the-stroke-dasharray-a-detailed-overview/'
+	},
 	jpgQuality:{
 		text:__('JPEG is a widely used image format that utilizes lossy compression. This means that when an image is saved in JPEG format, some of the image data is permanently discarded to reduce file size. The JPEG quality setting determines the degree of compression applied to an image.', 'pixmagix'),
 		link:'https://pixmagix-photo-editor.com/miscellaneous/the-impact-of-jpeg-quality-on-web-performance/'
@@ -29,6 +37,10 @@ const HELP_TEXTS = {
 	},
 	pixabayApiKey:{
 		text:__('', 'pixmagix'),
+		link:'https://pixmagix-photo-editor.com/tutorials/how-to-get-and-connect-pixabay-api-key-to-pixmagix/'
+	},
+	pexelsApiKey:{
+		text:__('', 'pixmagix'),
 		link:''
 	},
 	unsplashApiKey:{
@@ -36,8 +48,8 @@ const HELP_TEXTS = {
 		link:''
 	},
 	gfontsApiKey:{
-		text:__('', 'pixmagix'),
-		link:''
+		text:__('By default, you can access the first 200 most popular fonts from Google Fonts. But what if you want more variety? By obtaining a Google Fonts API key, you can gain real-time access to all available font families, enhancing your design choices even further.', 'pixmagix'),
+		link:'https://pixmagix-photo-editor.com/tutorials/how-to-get-and-connect-google-fonts-api-key-to-pixmagix/'
 	},
 	webSafeFonts:{
 		text:__('', 'pixmagix'),

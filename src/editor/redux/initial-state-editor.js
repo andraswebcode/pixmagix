@@ -2,7 +2,9 @@ import {
 	__
 } from 'wp-i18n';
 import {
-	thumbnails_folder
+	thumbnails_folder,
+	previews_folder,
+	project_categories
 } from 'editor-globals';
 
 import {
@@ -18,16 +20,22 @@ import {
  * 
  * @since 1.0.0
  * @param {number} id
- * @param {string} title
- * @param {number} author
+ * @param {object} metadata
  * @param {number} mediaId
  * @param {string} mediaUrl
- * @param {string} revisionUrl
+ * @param {string} revisionURL
  * @return {object}
  */
 
-const getInitialStateEditor = (id, title, author, mediaId, mediaUrl, revisionUrl) => {
+const getInitialStateEditor = (id, metadata = {}, mediaId, mediaUrl = '', revisionURL = '') => {
 
+	const {
+		title,
+		description,
+		author,
+		category,
+		status = 'publish'
+	} = metadata;
 	const data = window.localStorage.getItem('pixmagixEditor');
 	let stateFromLocalStorage = {};
 
@@ -41,11 +49,18 @@ const getInitialStateEditor = (id, title, author, mediaId, mediaUrl, revisionUrl
 		// Project
 		projectId:id,
 		projectName:title,
+		projectDescription:description,
 		projectAuthor:author,
+		projectCategory:category,
+		projectStatus:status,
+		// Media
 		mediaId,
 		mediaUrl,
 		thumbnail:thumbnails_folder + 'project-' + id + '.jpg',
-		revisionURL:revisionUrl || '',
+		preview:previews_folder + 'project-' + id + '.jpg',
+		revisionURL,
+		// Globals
+		categoryList:project_categories || [],
 		imageDataURL:'',
 		svgString:'',
 		svgWidth:0,

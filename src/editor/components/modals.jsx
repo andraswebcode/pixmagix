@@ -5,12 +5,16 @@ import {
 import {
 	modals
 } from './../utils/lists.js';
+import {
+	applyFilters
+} from './../../utils/hooks.js';
 
 const Modals = ({
 	activeModal
 }) => {
 
-	const ActiveModal = modals[activeModal];
+	const _modals = applyFilters('editor.modals', modals, activeModal);
+	const ActiveModal = _modals[activeModal];
 
 	return ActiveModal ? <ActiveModal /> : null;
 

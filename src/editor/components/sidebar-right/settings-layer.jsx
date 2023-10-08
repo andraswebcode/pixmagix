@@ -25,6 +25,7 @@ import {
 	LibrarySelect,
 	Repeater,
 	MulticheckButtons,
+	StrokeDashArrayControl,
 	RadioButtons
 } from 'elements';
 import {
@@ -89,6 +90,8 @@ const SettingsLayer = ({
 		rx,
 		stroke,
 		strokeWidth,
+		strokeDashArray,
+		strokeDashOffset,
 		fill,
 		shadow,
 		opacity,
@@ -297,6 +300,7 @@ const SettingsLayer = ({
 						step={1} />
 					<Range
 						label={__('Line Height', 'pixmagix')}
+						help={getHelpText('lineHeight')}
 						value={lineHeight}
 						onChange={value => setLayerProps(id, 'lineHeight', value)}
 						min={0.01}
@@ -311,6 +315,7 @@ const SettingsLayer = ({
 						step={1} />
 					<Select
 						label={__('Font Family', 'pixmagix')}
+						help={getHelpText('fontFamily')}
 						options={getFonts()}
 						value={fontFamily}
 						onChange={value => setLayerProps(id, 'fontFamily', value)} />
@@ -519,6 +524,7 @@ const SettingsLayer = ({
 				<Fragment>
 					<Range
 						label={__('Stroke Width', 'pixmagix')}
+						help={getHelpText('strokeWidth')}
 						value={strokeWidth}
 						onChange={value => setLayerProps(id, 'strokeWidth', value)}
 						min={PENCIL_MIN_WIDTH}
@@ -528,6 +534,19 @@ const SettingsLayer = ({
 						label={__('Stroke Color', 'pixmagix')}
 						color={stroke}
 						onChange={color => setLayerProps(id, 'stroke', color)} />
+					<StrokeDashArrayControl
+						label={__('Stroke Dash Array', 'pixmagix')}
+						help={getHelpText('sda')}
+						value={strokeDashArray}
+						onChange={value => setLayerProps(id, 'strokeDashArray', value)} />
+					<Range
+						label={__('Stroke Dash Offset', 'pixmagix')}
+						help={getHelpText('sdo')}
+						value={strokeDashOffset}
+						onChange={value => setLayerProps(id, 'strokeDashOffset', value)}
+						min={PENCIL_MIN_WIDTH}
+						max={PENCIL_MAX_WIDTH}
+						step={1} />
 				</Fragment>
 			)
 		},{

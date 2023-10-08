@@ -23,6 +23,7 @@ import {
 import {
 	setEditor
 } from './../../redux/actions-editor.js';
+import getHelpText from './../../utils/help-texts.js';
 
 const DrawPath = ({
 	isDrawingMode,
@@ -71,6 +72,7 @@ const DrawPath = ({
 						<Fragment>
 							<Range
 								label={__('Stroke Width', 'pixmagix')}
+								help={getHelpText('strokeWidth')}
 								value={pencilWidth}
 								onChange={value => setEditor('pencilWidth', value)}
 								min={PENCIL_MIN_WIDTH}

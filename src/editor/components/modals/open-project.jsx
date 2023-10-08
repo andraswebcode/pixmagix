@@ -20,7 +20,8 @@ import {
 import {
 	new_url,
 	project_dates,
-	users
+	users,
+	has_previews
 } from 'editor-globals';
 import {
 	__
@@ -38,6 +39,7 @@ import {
 } from './../../utils/constants.js';
 
 const OpenProject = ({
+	categoryList,
 	setEditor
 }) => {
 
@@ -47,6 +49,8 @@ const OpenProject = ({
 	const [page, setPage] = useState(1);
 	const [maxPages, setMaxPages] = useState(1);
 	const [search, setSearch] = useState('');
+	const [category, setCategory] = useState(0);
+	const [status, setStatus] = useState('any');
 	const [date, setDate] = useState('');
 	const [author, setAuthor] = useState('');
 
@@ -60,6 +64,14 @@ const OpenProject = ({
 
 		if (search){
 			query.search = search;
+		}
+
+		if (category){
+			query.pixmagix_category = category;
+		}
+
+		if (status){
+			query.status = status;
 		}
 
 		if (date){
@@ -99,7 +111,7 @@ const OpenProject = ({
 			isMounting = false;
 		}
 
-	}, [search, date, author, page]);
+	}, [search, category, status, date, author, page]);
 
 	return (
 		<Modal
@@ -115,6 +127,33 @@ const OpenProject = ({
 							setPage(1);
 							setLoading(true);
 						})
+					}} />
+				<Select
+					label={__('Category', 'pixmagix')}
+					value={category}
+					options={categoryList}
+					onChange={value => {
+						setCategory(value);
+						setPage(1);
+						setLoading(true);
+					}} />
+				<Select
+					label={__('Status', 'pixmagix')}
+					value={status}
+					options={[{
+						label:__('All', 'pixmagix'),
+						value:'any'
+					},{
+						label:__('Publish', 'pixmagix'),
+						value:'publish'
+					},{
+						label:__('Private', 'pixmagix'),
+						value:'private'
+					}]}
+					onChange={value => {
+						setStatus(value);
+						setPage(1);
+						setLoading(true);
 					}} />
 				<Select
 					label={__('Date', 'pixmagix')}
@@ -152,7 +191,8 @@ const OpenProject = ({
 				) : items.map(({
 					id,
 					caption,
-					thumbnail
+					thumbnail,
+					preview
 				}) => (
 					<GridItem
 						key={id}
@@ -160,7 +200,12 @@ const OpenProject = ({
 						href={addQueryArgs({id}, new_url)}
 						src={addQueryArgs({
 							r:Math.ceil(Math.random() * 1000)
-						}, thumbnail)} />
+						}, thumbnail)}
+						actions={[!!(has_previews && preview) && {
+							name:'preview',
+							label:__('Preview', 'pixmagix'),
+							icon:'magnifying-glass'
+						}]} />
 				))}
 			</Grid>
 			<Pagination
@@ -178,6 +223,8 @@ const OpenProject = ({
 
 };
 
-export default connect(state => ({}),{
+export default connect(state => ({
+	categoryList:state.editor.categoryList
+}),{
 	setEditor
 })(OpenProject);

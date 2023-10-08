@@ -39,6 +39,7 @@ import {
 	addLayer,
 	setLayerProps
 } from './../../redux/actions-data.js';
+import getHelpText from './../../utils/help-texts.js';
 
 const AddText = ({
 	canvasWidth,
@@ -141,6 +142,7 @@ const AddText = ({
 								step={1} />
 							<Range
 								label={__('Line Height', 'pixmagix')}
+								help={getHelpText('lineHeight')}
 								value={lineHeight}
 								onChange={onChangeWithUpdateSize('lineHeight', 'lineHeight')}
 								min={0.01}
@@ -155,6 +157,7 @@ const AddText = ({
 								step={1} />
 							<Select
 								label={__('Font Family', 'pixmagix')}
+								help={getHelpText('fontFamily')}
 								options={getFonts()}
 								value={fontFamily}
 								onChange={onChangeWithUpdateSize('fontFamily', 'fontFamily')} />
@@ -213,6 +216,7 @@ const AddText = ({
 						<Fragment>
 							<Range
 								label={__('Stroke Width', 'pixmagix')}
+								help={getHelpText('strokeWidth')}
 								value={pencilWidth}
 								onChange={onChange('pencilWidth', 'strokeWidth')}
 								min={PENCIL_MIN_WIDTH}

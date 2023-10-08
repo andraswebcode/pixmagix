@@ -12,6 +12,9 @@ import {
 import {
 	setEditor
 } from './../../redux/actions-editor.js';
+import {
+	applyFilters
+} from './../../../utils/hooks.js';
 
 const Item = ({
 	name,
@@ -40,7 +43,7 @@ const Tools = ({
 	setEditor
 }) => (
 	<ul className='pixmagix-toolbar__list'>
-		{toolbarItems.map(item => (
+		{applyFilters('editor.toolbarItems', toolbarItems).map(item => (
 			<Item
 				key={item.name}
 				active={item.name === activeTool}

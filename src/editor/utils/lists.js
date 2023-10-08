@@ -15,6 +15,7 @@ import CropCanvas from './../components/sidebar-left/crop-canvas.jsx';
 
 // Modals.
 
+import CategoryManager from './../components/modals/category-manager.jsx';
 import ImportMedia from './../components/modals/import-media.jsx';
 import OpenProject from './../components/modals/open-project.jsx';
 import SaveAs from './../components/modals/save-as.jsx';
@@ -574,6 +575,7 @@ export const imageFilters = [{
  */
 
 export const modals = {
+	'category-manager':CategoryManager,
 	'import-media':ImportMedia,
 	'open-project':OpenProject,
 	'save-as':SaveAs,

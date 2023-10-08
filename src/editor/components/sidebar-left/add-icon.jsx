@@ -43,6 +43,7 @@ import {
 	getHiddenFileInput,
 	loadSVGFromString
 } from './../../utils/utils.js';
+import getHelpText from './../../utils/help-texts.js';
 
 const AddIcon = ({
 	pencilWidth,
@@ -180,6 +181,7 @@ const AddIcon = ({
 								<Fragment>
 									<Range
 										label={__('Stroke Width', 'pixmagix')}
+										help={getHelpText('strokeWidth')}
 										value={pencilWidth}
 										onChange={onChange('pencilWidth', 'strokeWidth')}
 										min={PENCIL_MIN_WIDTH}

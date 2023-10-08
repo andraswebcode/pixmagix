@@ -22,10 +22,13 @@ const CanvasPan = ({
 	return (
 		<div
 			className='pixmagix-canvas__pan'
-			onMouseDown={e => {
+			onMouseDown={({
+				clientX,
+				clientY
+			}) => {
 				setStartPoint({
-					x:e.clientX,
-					y:e.clientY
+					x:clientX,
+					y:clientY
 				});
 				setStartPan({
 					x:canvasPanX,
@@ -45,7 +48,11 @@ const CanvasPan = ({
 					canvasPanY:startPan.y + (clientY - y)
 				});
 			}}
-			onMouseUp={e => {
+			onMouseUp={() => {
+				setStartPoint(null);
+				setStartPan(null);
+			}}
+			onMouseLeave={() => {
 				setStartPoint(null);
 				setStartPan(null);
 			}} />

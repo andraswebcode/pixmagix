@@ -17,6 +17,9 @@ import {
 import {
 	toolbarItems
 } from './../utils/lists.js';
+import {
+	applyFilters
+} from './../../utils/hooks.js';
 
 const SidebarLeft = ({
 	activeTool,
@@ -24,7 +27,7 @@ const SidebarLeft = ({
 	setEditor
 }) => {
 
-	const Content = _find(toolbarItems, {
+	const Content = _find(applyFilters('editor.toolbarItems', toolbarItems), {
 		name:activeTool
 	})?.component || (() => null);
 

@@ -15,14 +15,13 @@ import getInitialStateEditor from './initial-state-editor.js';
  * 
  * @since 1.0.0
  * @param {number} id
- * @param {string} title
- * @param {number} author
+ * @param {object} metadata
  * @param {number} mediaId
  * @param {string} mediaUrl
  * @param {string} revisionUrl
  */
 
-const getReducerEditor = (id, title, author, mediaId, mediaUrl, revisionUrl) => createReducer(getInitialStateEditor(id, title, author, mediaId, mediaUrl, revisionUrl), builder => {
+const getReducerEditor = (id, metadata, mediaId, mediaUrl, revisionUrl) => createReducer(getInitialStateEditor(id, metadata, mediaId, mediaUrl, revisionUrl), builder => {
 	builder.addCase('SET_EDITOR', (state, {payload}) => {
 		if (isObject(payload.key)){
 			each(payload.key, (v, k) => {

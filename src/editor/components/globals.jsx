@@ -20,7 +20,8 @@ import {
 	propsToSaveLocalStorage
 } from './../utils/lists.js';
 import {
-	setEditor
+	setEditor,
+	sendNotice
 } from './../redux/actions-editor.js';
 import {
 	undo,
@@ -34,6 +35,10 @@ import {
 import getRulerMenu from './../utils/ruler-menu.js';
 import getOptionsMenu from './../utils/options-menu.js';
 import getLayerActions from './../utils/layer-actions.js';
+import save from './../utils/save.js';
+import {
+	applyFilters
+} from './../../utils/hooks.js';
 
 class Globals extends Component {
 
@@ -121,7 +126,7 @@ class Globals extends Component {
 	 * @since 1.0.0
 	 */
 
-	_onKeyDown(e){console.log(e.keyCode)
+	_onKeyDown(e){
 
 		const {
 			activeTool,
@@ -137,7 +142,7 @@ class Globals extends Component {
 		const isCtrlPressed = (e.ctrlKey || e.metaKey) && !e.shiftKey && !e.altKey;
 		const isCtrlShiftPressed = (e.ctrlKey || e.metaKey) && e.shiftKey && !e.altKey;
 		const isShiftAltPressed = !(e.ctrlKey || e.metaKey) && e.shiftKey && e.altKey;
-		const keyMaps = {
+		const keyMaps = applyFilters('editor.keyboardShortcuts', {
 			13:{ // Enter
 				fn:() => (activeTool?.indexOf('draw') >= 0) && setEditor('isDrawingMode', !isDrawingMode)
 			},
@@ -269,9 +274,7 @@ class Globals extends Component {
 				fn:{
 					activeTool:'draw-shape'
 				},
-				ctrl:() => {
-					console.log('save')
-				},
+				ctrl:() => save(this.props),
 				ctrlShift:{
 					menu:'options',
 					name:'save-as'
@@ -296,14 +299,13 @@ class Globals extends Component {
 				ctrl:() => undo(),
 				ctrlShift:() => redo()
 			}
-		};
+		}, this.props);
 
 		if (keyMaps[e.keyCode] && !hasFocusedInput){
 			e.preventDefault();
 			// e.stopPropagation();
 			// e.returnValue=false;
 			const action = isCtrlPressed ? 'ctrl' : isCtrlShiftPressed ? 'ctrlShift' : isShiftAltPressed ? 'shiftAlt' : 'fn';
-			console.log(action)
 			const object = keyMaps[e.keyCode][action];
 			if (isFunction(object)){
 				object();
@@ -353,6 +355,13 @@ export default connect(state => {
 	};
 	const props = [
 		'projectId',
+		'projectName',
+		'projectDescription',
+		'projectAuthor',
+		'projectCategory',
+		'projectStatus',
+		'thumbnail',
+		'preview',
 		'activeTool',
 		'isDrawingMode',
 		'showRulers',
@@ -378,6 +387,7 @@ export default connect(state => {
 
 },{
 	setEditor,
+	sendNotice,
 	undo,
 	redo,
 	setData,

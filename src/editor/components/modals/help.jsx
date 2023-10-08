@@ -24,13 +24,6 @@ const Help = ({
 	setEditor
 }) => {
 
-	const onClick = slug => () => {
-		const a = document.createElement('a');
-		a.href = PIXMAGIX_WEBSITE + slug + '/';
-		a.target = '_blank';
-		a.click();
-	};
-
 	return (
 		<Modal
 			title={__('Welcome to PixMagix Help Center!', 'pixmagix')}
@@ -60,7 +53,8 @@ const Help = ({
 							</p>
 							<Button
 								active
-								onClick={onClick('support/documentation')} >
+								href={PIXMAGIX_WEBSITE + 'support/documentation/'}
+								target='_blank' >
 								{__('See Docs', 'pixmagix')}
 							</Button>
 						</Fragment>
@@ -75,7 +69,8 @@ const Help = ({
 							</p>
 							<Button
 								active
-								onClick={onClick('support/faq')} >
+								href={PIXMAGIX_WEBSITE + 'support/faq/'}
+								target='_blank' >
 								{__('Visit FAQ', 'pixmagix')}
 							</Button>
 						</Fragment>
@@ -90,7 +85,8 @@ const Help = ({
 							</p>
 							<Button
 								active
-								onClick={onClick('features')} >
+								href={PIXMAGIX_WEBSITE + 'features/'}
+								target='_blank' >
 								{__('Explore Features', 'pixmagix')}
 							</Button>
 						</Fragment>
@@ -105,7 +101,8 @@ const Help = ({
 							</p>
 							<Button
 								active
-								onClick={onClick('blog')} >
+								href={PIXMAGIX_WEBSITE + 'blog/'}
+								target='_blank' >
 								{__('Check Blog', 'pixmagix')}
 							</Button>
 						</Fragment>
@@ -120,7 +117,8 @@ const Help = ({
 							</p>
 							<Button
 								active
-								onClick={onClick('support/contact')} >
+								href={PIXMAGIX_WEBSITE + 'support/contact/'}
+								target='_blank' >
 								{__('Contact us', 'pixmagix')}
 							</Button>
 						</Fragment>
@@ -136,6 +134,6 @@ const Help = ({
 
 };
 
-export default connect(state => ({}),{
+export default connect(null, {
 	setEditor
 })(Help);
