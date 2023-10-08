@@ -105,10 +105,10 @@
   justify-content: space-between;
   align-items: center;
 }
-.pixmagix-input-wrapper, .pixmagix-range-wrapper, .pixmagix-checkbox-wrapper, .pixmagix-radio-buttons-wrapper, .pixmagix-multicheck-buttons-wrapper, .pixmagix-color-picker-wrapper, .pixmagix-color-palette-wrapper, .pixmagix-shadow-picker-wrapper, .pixmagix-libraryselect-wrapper, .pixmagix-repeater-wrapper {
+.pixmagix-input-wrapper, .pixmagix-range-wrapper, .pixmagix-checkbox-wrapper, .pixmagix-radio-buttons-wrapper, .pixmagix-multicheck-buttons-wrapper, .pixmagix-color-picker-wrapper, .pixmagix-color-palette-wrapper, .pixmagix-shadow-picker-wrapper, .pixmagix-libraryselect-wrapper, .pixmagix-stroke-dasharray-control, .pixmagix-repeater-wrapper {
   margin-bottom: 8px;
 }
-.pixmagix-input-wrapper .pixmagix-label, .pixmagix-range-wrapper .pixmagix-label, .pixmagix-checkbox-wrapper .pixmagix-label, .pixmagix-radio-buttons-wrapper .pixmagix-label, .pixmagix-multicheck-buttons-wrapper .pixmagix-label, .pixmagix-color-picker-wrapper .pixmagix-label, .pixmagix-color-palette-wrapper .pixmagix-label, .pixmagix-shadow-picker-wrapper .pixmagix-label, .pixmagix-libraryselect-wrapper .pixmagix-label, .pixmagix-repeater-wrapper .pixmagix-label {
+.pixmagix-input-wrapper .pixmagix-label, .pixmagix-range-wrapper .pixmagix-label, .pixmagix-checkbox-wrapper .pixmagix-label, .pixmagix-radio-buttons-wrapper .pixmagix-label, .pixmagix-multicheck-buttons-wrapper .pixmagix-label, .pixmagix-color-picker-wrapper .pixmagix-label, .pixmagix-color-palette-wrapper .pixmagix-label, .pixmagix-shadow-picker-wrapper .pixmagix-label, .pixmagix-libraryselect-wrapper .pixmagix-label, .pixmagix-stroke-dasharray-control .pixmagix-label, .pixmagix-repeater-wrapper .pixmagix-label {
   display: block;
   margin-bottom: 4px;
 }
@@ -132,7 +132,7 @@
 .pixmagix input[type=text],
 .pixmagix input[type=number],
 .pixmagix textarea, .pixmagix-color-picker__editable-input > div > input {
-  line-height: 1;
+  line-height: 1.5;
   padding: 0;
   width: 100%;
   min-height: auto;
@@ -140,12 +140,15 @@
   border: solid 1px #1b2124;
   border-radius: 0;
   color: #ffffff;
-  background: #2a3339;
+  background: transparent;
 }
 .pixmagix input[type=text]:focus,
 .pixmagix input[type=number]:focus,
 .pixmagix textarea:focus, .pixmagix-color-picker__editable-input > div > input:focus {
   outline: none !important;
+}
+.pixmagix textarea {
+  line-height: 1.1;
 }
 .pixmagix-range {
   display: flex;
@@ -229,6 +232,25 @@
 .pixmagix-checkbox-wrapper input[type=checkbox]:checked + label .pixmagix-checkbox-switch:after {
   left: 15px;
   transition: 0.2s;
+}
+.pixmagix-stroke-dasharray-control .pixmagix-button-group {
+  padding-top: 8px;
+}
+.pixmagix-stroke-dasharray-control .pixmagix-button-group .pixmagix-range-wrapper {
+  margin-bottom: 0;
+}
+.pixmagix-stroke-dasharray-control .pixmagix-button-group .pixmagix-button {
+  padding: 2px 6px;
+}
+.pixmagix-stroke-dasharray-control__labels {
+  display: flex;
+  flex-flow: row;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: calc(100% - 36px);
+}
+.pixmagix-stroke-dasharray-control__labels .pixmagix-label {
+  flex-grow: 1;
 }
 .pixmagix-color-palette {
   list-style: none;
@@ -649,6 +671,7 @@
   color: #ffffff;
   margin: 0;
   line-height: 1;
+  font-size: 1.3em;
 }
 .pixmagix-modal__inner {
   flex: 1 1 auto;
@@ -882,6 +905,7 @@
 .pixmagix-repeater__content {
   padding: 8px;
   border: solid 1px #1b2124;
+  background-color: #2a3339;
 }
 .pixmagix-widget:not(:last-child) {
   margin-bottom: 18px;
@@ -905,6 +929,12 @@
 .pixmagix-widget__content {
   padding: 8px;
   background: #2a3339;
+}
+.pixmagix-widget__content h2 {
+  margin: 0;
+  margin-bottom: 8px;
+  line-height: 2em;
+  border-bottom: solid 1px;
 }
 .pixmagix-widget__content > .pixmagix-inline-controls {
   margin: -8px;
@@ -1419,6 +1449,11 @@
   margin: 0;
   padding: 0;
 }
+.pixmagix-toolbar__item {
+  list-style: none;
+  margin: 0;
+  margin-bottom: 4px;
+}
 .pixmagix-toolbar__item .pixmagix-button {
   display: block;
   width: 100%;
@@ -1480,6 +1515,11 @@
   list-style: none;
   margin: 0;
   padding: 0;
+}
+.pixmagix-sidebarright__layeritem {
+  list-style: none;
+  margin: 0;
+  margin-bottom: 4px;
 }
 .pixmagix-sidebarright__layeritem .pixmagix-input-wrapper {
   margin: 0;

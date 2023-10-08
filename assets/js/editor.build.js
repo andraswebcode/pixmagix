@@ -5366,19 +5366,21 @@ var CanvasPan = function CanvasPan(_ref) {
     setStartPan = _useState4[1];
   return /*#__PURE__*/React.createElement("div", {
     className: "pixmagix-canvas__pan",
-    onMouseDown: function onMouseDown(e) {
+    onMouseDown: function onMouseDown(_ref2) {
+      var clientX = _ref2.clientX,
+        clientY = _ref2.clientY;
       setStartPoint({
-        x: e.clientX,
-        y: e.clientY
+        x: clientX,
+        y: clientY
       });
       setStartPan({
         x: canvasPanX,
         y: canvasPanY
       });
     },
-    onMouseMove: function onMouseMove(_ref2) {
-      var clientX = _ref2.clientX,
-        clientY = _ref2.clientY;
+    onMouseMove: function onMouseMove(_ref3) {
+      var clientX = _ref3.clientX,
+        clientY = _ref3.clientY;
       if (!startPoint) {
         return;
       }
@@ -5389,7 +5391,11 @@ var CanvasPan = function CanvasPan(_ref) {
         canvasPanY: startPan.y + (clientY - y)
       });
     },
-    onMouseUp: function onMouseUp(e) {
+    onMouseUp: function onMouseUp() {
+      setStartPoint(null);
+      setStartPan(null);
+    },
+    onMouseLeave: function onMouseLeave() {
       setStartPoint(null);
       setStartPan(null);
     }
@@ -5425,14 +5431,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var fabric__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(fabric__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash */ "lodash");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _canvas_class_canvas_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../canvas/class-canvas.js */ "./src/editor/canvas/class-canvas.js");
-/* harmony import */ var _canvas_class_brushes_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../canvas/class-brushes.js */ "./src/editor/canvas/class-brushes.js");
-/* harmony import */ var _canvas_class_brush_shape_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../../canvas/class-brush-shape.js */ "./src/editor/canvas/class-brush-shape.js");
-/* harmony import */ var _canvas_class_brush_path_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../../canvas/class-brush-path.js */ "./src/editor/canvas/class-brush-path.js");
-/* harmony import */ var _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./../../redux/actions-editor.js */ "./src/editor/redux/actions-editor.js");
-/* harmony import */ var _redux_actions_data_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./../../redux/actions-data.js */ "./src/editor/redux/actions-data.js");
-/* harmony import */ var _utils_utils_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./../../utils/utils.js */ "./src/editor/utils/utils.js");
-/* harmony import */ var _utils_constants_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./../../utils/constants.js */ "./src/editor/utils/constants.js");
+/* harmony import */ var editor_globals__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! editor-globals */ "editor-globals");
+/* harmony import */ var editor_globals__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(editor_globals__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _canvas_class_canvas_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../canvas/class-canvas.js */ "./src/editor/canvas/class-canvas.js");
+/* harmony import */ var _canvas_class_brushes_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../../canvas/class-brushes.js */ "./src/editor/canvas/class-brushes.js");
+/* harmony import */ var _canvas_class_brush_shape_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../../canvas/class-brush-shape.js */ "./src/editor/canvas/class-brush-shape.js");
+/* harmony import */ var _canvas_class_brush_path_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./../../canvas/class-brush-path.js */ "./src/editor/canvas/class-brush-path.js");
+/* harmony import */ var _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./../../redux/actions-editor.js */ "./src/editor/redux/actions-editor.js");
+/* harmony import */ var _redux_actions_data_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./../../redux/actions-data.js */ "./src/editor/redux/actions-data.js");
+/* harmony import */ var _utils_utils_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./../../utils/utils.js */ "./src/editor/utils/utils.js");
+/* harmony import */ var _utils_constants_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./../../utils/constants.js */ "./src/editor/utils/constants.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
@@ -5458,6 +5466,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var FabricCanvas = /*#__PURE__*/function (_Component) {
   _inherits(FabricCanvas, _Component);
   var _super = _createSuper(FabricCanvas);
@@ -5471,7 +5480,7 @@ var FabricCanvas = /*#__PURE__*/function (_Component) {
     _classCallCheck(this, FabricCanvas);
     _this = _super.apply(this, arguments);
     _this._containerRef = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.createRef)();
-    _this._updateThumbnail = (0,lodash__WEBPACK_IMPORTED_MODULE_3__.debounce)(_this._updateThumbnail.bind(_assertThisInitialized(_this)), 800);
+    _this._updateThumbnailAndPreview = (0,lodash__WEBPACK_IMPORTED_MODULE_3__.debounce)(_this._updateThumbnailAndPreview.bind(_assertThisInitialized(_this)), 800);
     _this._updateCanvasElementSize = _this._updateCanvasElementSize.bind(_assertThisInitialized(_this));
     _this._createImageDataURL = (0,lodash__WEBPACK_IMPORTED_MODULE_3__.debounce)(_this._createImageDataURL.bind(_assertThisInitialized(_this)), 40);
     _this._createSVGString = (0,lodash__WEBPACK_IMPORTED_MODULE_3__.debounce)(_this._createSVGString.bind(_assertThisInitialized(_this)), 40);
@@ -5502,10 +5511,11 @@ var FabricCanvas = /*#__PURE__*/function (_Component) {
       var _this$_getCanvasEleme = this._getCanvasElementSize(),
         width = _this$_getCanvasEleme.width,
         height = _this$_getCanvasEleme.height;
-      this._fabricCanvas = new _canvas_class_canvas_js__WEBPACK_IMPORTED_MODULE_4__["default"]('pixmagix_canvas');
+      var backgroundColor = canvasBackground !== null && canvasBackground !== void 0 && canvasBackground.colorStops ? new fabric__WEBPACK_IMPORTED_MODULE_2__.Gradient(canvasBackground) : canvasBackground;
+      this._fabricCanvas = new _canvas_class_canvas_js__WEBPACK_IMPORTED_MODULE_5__["default"]('pixmagix_canvas');
       window._fabricCanvas = this._fabricCanvas;
       this._fabricCanvas.loadFromJSON({
-        backgroundColor: canvasBackground,
+        backgroundColor: backgroundColor,
         clipPath: new fabric__WEBPACK_IMPORTED_MODULE_2__.Rect({
           top: 0,
           left: 0,
@@ -5521,7 +5531,7 @@ var FabricCanvas = /*#__PURE__*/function (_Component) {
       setEditor({
         canvasElementWidth: width,
         canvasElementHeight: height,
-        canvasZoom: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_10__.getFitZoom)(canvasWidth, canvasHeight, width, height)
+        canvasZoom: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_11__.getFitZoom)(canvasWidth, canvasHeight, width, height)
       });
 
       // Set up events.
@@ -5596,7 +5606,6 @@ var FabricCanvas = /*#__PURE__*/function (_Component) {
         svgWidth = nextProps.svgWidth,
         svgHeight = nextProps.svgHeight,
         setEditor = nextProps.setEditor;
-      console.log(nextProps);
       var canvas = this._fabricCanvas;
 
       // Update project dimensions.
@@ -5632,7 +5641,7 @@ var FabricCanvas = /*#__PURE__*/function (_Component) {
       // this.__freeDrawingPathAdded = !(isDrawingMode && activeTool === 'draw-path');
       if (isDrawingMode) {
         if (activeTool === 'free-hand-draw') {
-          canvas.freeDrawingBrush = new (pencilType === 'circle' ? _canvas_class_brushes_js__WEBPACK_IMPORTED_MODULE_5__.CircleBrush : pencilType === 'spray' ? _canvas_class_brushes_js__WEBPACK_IMPORTED_MODULE_5__.SprayBrush : _canvas_class_brushes_js__WEBPACK_IMPORTED_MODULE_5__.PencilBrush)(canvas, {
+          canvas.freeDrawingBrush = new (pencilType === 'circle' ? _canvas_class_brushes_js__WEBPACK_IMPORTED_MODULE_6__.CircleBrush : pencilType === 'spray' ? _canvas_class_brushes_js__WEBPACK_IMPORTED_MODULE_6__.SprayBrush : _canvas_class_brushes_js__WEBPACK_IMPORTED_MODULE_6__.PencilBrush)(canvas, {
             color: pencilColor,
             width: pencilWidth,
             shadow: pencilShadow,
@@ -5643,7 +5652,7 @@ var FabricCanvas = /*#__PURE__*/function (_Component) {
             randomOpacity: pencilRandomOpacity
           });
         } else if (activeTool === 'draw-shape') {
-          canvas.freeDrawingBrush = new _canvas_class_brush_shape_js__WEBPACK_IMPORTED_MODULE_6__["default"](canvas, {
+          canvas.freeDrawingBrush = new _canvas_class_brush_shape_js__WEBPACK_IMPORTED_MODULE_7__["default"](canvas, {
             name: drawnShape,
             color: pencilColor,
             width: pencilWidth,
@@ -5658,14 +5667,14 @@ var FabricCanvas = /*#__PURE__*/function (_Component) {
             width: pencilWidth,
             shadow: pencilShadow
           };
-          if (canvas.freeDrawingBrush instanceof _canvas_class_brush_path_js__WEBPACK_IMPORTED_MODULE_7__["default"] && canvas.freeDrawingBrush.setOptions) {
+          if (canvas.freeDrawingBrush instanceof _canvas_class_brush_path_js__WEBPACK_IMPORTED_MODULE_8__["default"] && canvas.freeDrawingBrush.setOptions) {
             canvas.freeDrawingBrush.setOptions(options);
           } else {
-            canvas.freeDrawingBrush = new _canvas_class_brush_path_js__WEBPACK_IMPORTED_MODULE_7__["default"](canvas, options);
+            canvas.freeDrawingBrush = new _canvas_class_brush_path_js__WEBPACK_IMPORTED_MODULE_8__["default"](canvas, options);
           }
         }
       }
-      if ((isDrawingMode !== this.props.isDrawingMode && !isDrawingMode || pathType !== this.props.pathType) && canvas.freeDrawingBrush instanceof _canvas_class_brush_path_js__WEBPACK_IMPORTED_MODULE_7__["default"] && canvas.freeDrawingBrush.finalizeAndAddPath) {
+      if ((isDrawingMode !== this.props.isDrawingMode && !isDrawingMode || pathType !== this.props.pathType) && canvas.freeDrawingBrush instanceof _canvas_class_brush_path_js__WEBPACK_IMPORTED_MODULE_8__["default"] && canvas.freeDrawingBrush.finalizeAndAddPath) {
         canvas.freeDrawingBrush.finalizeAndAddPath();
       }
 
@@ -5683,7 +5692,7 @@ var FabricCanvas = /*#__PURE__*/function (_Component) {
           if (!layers[id] || canvas.getObjectById(id)) {
             return;
           }
-          canvas.add((0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_10__.createLayerObject)(layers[id], true));
+          canvas.add((0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_11__.createLayerObject)(layers[id], true));
           newLayerId = id;
         });
         newLayerId && canvas.setActiveObject(canvas.getObjectById(newLayerId));
@@ -5710,7 +5719,7 @@ var FabricCanvas = /*#__PURE__*/function (_Component) {
 
       // Update thumbnail.
       if (!(0,lodash__WEBPACK_IMPORTED_MODULE_3__.isEqual)(layers, this.props.layers) || !(0,lodash__WEBPACK_IMPORTED_MODULE_3__.isEqual)(canvasBackground, this.props.canvasBackground)) {
-        this._updateThumbnail();
+        this._updateThumbnailAndPreview();
       }
       canvas.requestRenderAll();
 
@@ -5808,27 +5817,43 @@ var FabricCanvas = /*#__PURE__*/function (_Component) {
      * @access private
      */
   }, {
-    key: "_updateThumbnail",
-    value: function _updateThumbnail() {
+    key: "_updateThumbnailAndPreview",
+    value: function _updateThumbnailAndPreview() {
       var _this$props2 = this.props,
         canvasWidth = _this$props2.canvasWidth,
         canvasHeight = _this$props2.canvasHeight,
         setEditor = _this$props2.setEditor;
       var canvas = this._fabricCanvas;
       var vpt = canvas.viewportTransform.slice();
+      var thumbWidth = parseInt(editor_globals__WEBPACK_IMPORTED_MODULE_4__.thumbnail_width) || 200;
+      var prevsWidth = parseInt(editor_globals__WEBPACK_IMPORTED_MODULE_4__.preview_width) || 1280;
       // console.time('updatePreviewURL');
       canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
-      var dataURL = canvas.toDataURL({
+      var thumbnail = canvas.toDataURL({
         format: 'jpeg',
-        quality: 1,
+        quality: 0.92,
         top: 0,
         left: 0,
         width: canvasWidth,
         height: canvasHeight,
-        multiplier: _utils_constants_js__WEBPACK_IMPORTED_MODULE_11__.PREVIEW_IMAGE_MAX_WIDTH / canvasWidth
+        multiplier: thumbWidth / canvasWidth
       });
+      var newState = {
+        thumbnail: thumbnail
+      };
+      if (editor_globals__WEBPACK_IMPORTED_MODULE_4__.has_previews) {
+        newState.preview = canvas.toDataURL({
+          format: 'jpeg',
+          quality: 0.92,
+          top: 0,
+          left: 0,
+          width: canvasWidth,
+          height: canvasHeight,
+          multiplier: prevsWidth / canvasWidth
+        });
+      }
       canvas.setViewportTransform(vpt);
-      setEditor('thumbnail', dataURL);
+      setEditor(newState);
       // console.timeEnd('updatePreviewURL');
     }
 
@@ -5974,13 +5999,13 @@ var FabricCanvas = /*#__PURE__*/function (_Component) {
             translateX = _util$qrDecompose.translateX,
             translateY = _util$qrDecompose.translateY;
           memo[object.id] = {
-            left: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_10__.toFixed)(translateX),
-            top: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_10__.toFixed)(translateY),
-            scaleX: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_10__.toFixed)(scaleX),
-            scaleY: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_10__.toFixed)(scaleY),
-            skewX: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_10__.toFixed)(skewX),
-            skewY: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_10__.toFixed)(skewY),
-            angle: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_10__.toFixed)(angle)
+            left: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_11__.toFixed)(translateX),
+            top: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_11__.toFixed)(translateY),
+            scaleX: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_11__.toFixed)(scaleX),
+            scaleY: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_11__.toFixed)(scaleY),
+            skewX: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_11__.toFixed)(skewX),
+            skewY: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_11__.toFixed)(skewY),
+            angle: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_11__.toFixed)(angle)
           };
           return memo;
         }, {});
@@ -5995,13 +6020,13 @@ var FabricCanvas = /*#__PURE__*/function (_Component) {
         skewY = target.skewY,
         angle = target.angle;
       var newProps = {
-        left: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_10__.toFixed)(left),
-        top: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_10__.toFixed)(top),
-        scaleX: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_10__.toFixed)(scaleX),
-        scaleY: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_10__.toFixed)(scaleY),
-        skewX: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_10__.toFixed)(skewX),
-        skewY: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_10__.toFixed)(skewY),
-        angle: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_10__.toFixed)(angle)
+        left: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_11__.toFixed)(left),
+        top: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_11__.toFixed)(top),
+        scaleX: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_11__.toFixed)(scaleX),
+        scaleY: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_11__.toFixed)(scaleY),
+        skewX: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_11__.toFixed)(skewX),
+        skewY: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_11__.toFixed)(skewY),
+        angle: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_11__.toFixed)(angle)
       };
       setLayerProps(target.id, newProps);
     }
@@ -6023,7 +6048,7 @@ var FabricCanvas = /*#__PURE__*/function (_Component) {
       if (!guides.length) {
         return;
       }
-      var distance = _utils_constants_js__WEBPACK_IMPORTED_MODULE_11__.TARGET_FIND_TOLERANCE / canvasZoom;
+      var distance = _utils_constants_js__WEBPACK_IMPORTED_MODULE_12__.TARGET_FIND_TOLERANCE / canvasZoom;
       var _target$getBoundingRe = target.getBoundingRect(true),
         width = _target$getBoundingRe.width,
         height = _target$getBoundingRe.height;
@@ -6035,9 +6060,9 @@ var FabricCanvas = /*#__PURE__*/function (_Component) {
         var orientation = _ref5.orientation,
           position = _ref5.position;
         if (orientation === 'vertical') {
-          left = (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_10__.isAround)(left, position, distance) ? position : (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_10__.isAround)(left - w2, position, distance) ? position + w2 : (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_10__.isAround)(left + w2, position, distance) ? position - w2 : left;
+          left = (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_11__.isAround)(left, position, distance) ? position : (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_11__.isAround)(left - w2, position, distance) ? position + w2 : (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_11__.isAround)(left + w2, position, distance) ? position - w2 : left;
         } else {
-          top = (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_10__.isAround)(top, position, distance) ? position : (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_10__.isAround)(top - h2, position, distance) ? position + h2 : (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_10__.isAround)(top + h2, position, distance) ? position - h2 : top;
+          top = (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_11__.isAround)(top, position, distance) ? position : (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_11__.isAround)(top - h2, position, distance) ? position + h2 : (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_11__.isAround)(top + h2, position, distance) ? position - h2 : top;
         }
       });
       target.set({
@@ -6130,9 +6155,9 @@ var FabricCanvas = /*#__PURE__*/function (_Component) {
     svgHeight: state.editor.svgHeight
   };
 }, {
-  setEditor: _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_8__.setEditor,
-  addLayer: _redux_actions_data_js__WEBPACK_IMPORTED_MODULE_9__.addLayer,
-  setLayerProps: _redux_actions_data_js__WEBPACK_IMPORTED_MODULE_9__.setLayerProps
+  setEditor: _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_9__.setEditor,
+  addLayer: _redux_actions_data_js__WEBPACK_IMPORTED_MODULE_10__.addLayer,
+  setLayerProps: _redux_actions_data_js__WEBPACK_IMPORTED_MODULE_10__.setLayerProps
 })(FabricCanvas));
 
 /***/ }),
@@ -6701,6 +6726,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_ruler_menu_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./../utils/ruler-menu.js */ "./src/editor/utils/ruler-menu.js");
 /* harmony import */ var _utils_options_menu_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./../utils/options-menu.js */ "./src/editor/utils/options-menu.js");
 /* harmony import */ var _utils_layer_actions_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./../utils/layer-actions.js */ "./src/editor/utils/layer-actions.js");
+/* harmony import */ var _utils_save_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./../utils/save.js */ "./src/editor/utils/save.js");
+/* harmony import */ var _utils_hooks_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./../../utils/hooks.js */ "./src/utils/hooks.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
@@ -6714,6 +6741,8 @@ function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) ===
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
 
 
 
@@ -6814,8 +6843,11 @@ var Globals = /*#__PURE__*/function (_Component) {
   }, {
     key: "_onKeyDown",
     value: function _onKeyDown(e) {
-      var _document$activeEleme, _document$activeEleme2, _document$activeEleme3, _document$activeEleme4;
-      console.log(e.keyCode);
+      var _document$activeEleme,
+        _document$activeEleme2,
+        _document$activeEleme3,
+        _document$activeEleme4,
+        _this3 = this;
       var _this$props = this.props,
         activeTool = _this$props.activeTool,
         isDrawingMode = _this$props.isDrawingMode,
@@ -6826,7 +6858,7 @@ var Globals = /*#__PURE__*/function (_Component) {
       var isCtrlPressed = (e.ctrlKey || e.metaKey) && !e.shiftKey && !e.altKey;
       var isCtrlShiftPressed = (e.ctrlKey || e.metaKey) && e.shiftKey && !e.altKey;
       var isShiftAltPressed = !(e.ctrlKey || e.metaKey) && e.shiftKey && e.altKey;
-      var keyMaps = {
+      var keyMaps = (0,_utils_hooks_js__WEBPACK_IMPORTED_MODULE_12__.applyFilters)('editor.keyboardShortcuts', {
         13: {
           // Enter
           fn: function fn() {
@@ -6983,7 +7015,7 @@ var Globals = /*#__PURE__*/function (_Component) {
             activeTool: 'draw-shape'
           },
           ctrl: function ctrl() {
-            console.log('save');
+            return (0,_utils_save_js__WEBPACK_IMPORTED_MODULE_11__["default"])(_this3.props);
           },
           ctrlShift: {
             menu: 'options',
@@ -7016,13 +7048,12 @@ var Globals = /*#__PURE__*/function (_Component) {
             return redo();
           }
         }
-      };
+      }, this.props);
       if (keyMaps[e.keyCode] && !hasFocusedInput) {
         e.preventDefault();
         // e.stopPropagation();
         // e.returnValue=false;
         var action = isCtrlPressed ? 'ctrl' : isCtrlShiftPressed ? 'ctrlShift' : isShiftAltPressed ? 'shiftAlt' : 'fn';
-        console.log(action);
         var object = keyMaps[e.keyCode][action];
         if ((0,lodash__WEBPACK_IMPORTED_MODULE_3__.isFunction)(object)) {
           object();
@@ -7070,7 +7101,7 @@ var Globals = /*#__PURE__*/function (_Component) {
     layerIds: state.data.present.layerIds,
     canvasBackground: state.data.present.canvasBackground
   };
-  var props = ['projectId', 'activeTool', 'isDrawingMode', 'showRulers', 'showRulerCursors', 'snapObjects', 'snapToGrid', 'guides', 'mediaId', 'revisionURL', 'fullScreen', 'activeLayers'];
+  var props = ['projectId', 'projectName', 'projectDescription', 'projectAuthor', 'projectCategory', 'projectStatus', 'thumbnail', 'preview', 'activeTool', 'isDrawingMode', 'showRulers', 'showRulerCursors', 'snapObjects', 'snapToGrid', 'guides', 'mediaId', 'revisionURL', 'fullScreen', 'activeLayers'];
   props.forEach(function (prop) {
     output[prop] = state.editor[prop];
   });
@@ -7080,6 +7111,7 @@ var Globals = /*#__PURE__*/function (_Component) {
   return output;
 }, {
   setEditor: _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_6__.setEditor,
+  sendNotice: _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_6__.sendNotice,
   undo: _redux_actions_data_js__WEBPACK_IMPORTED_MODULE_7__.undo,
   redo: _redux_actions_data_js__WEBPACK_IMPORTED_MODULE_7__.redo,
   setData: _redux_actions_data_js__WEBPACK_IMPORTED_MODULE_7__.setData,
@@ -7133,13 +7165,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var elements__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(elements__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! wp-i18n */ "wp-i18n");
 /* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(wp_i18n__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var wp_api_fetch__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! wp-api-fetch */ "wp-api-fetch");
-/* harmony import */ var wp_api_fetch__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(wp_api_fetch__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var editor_globals__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! editor-globals */ "editor-globals");
-/* harmony import */ var editor_globals__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(editor_globals__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _utils_options_menu_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../utils/options-menu.js */ "./src/editor/utils/options-menu.js");
-/* harmony import */ var _utils_constants_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../../utils/constants.js */ "./src/editor/utils/constants.js");
-/* harmony import */ var _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../../redux/actions-editor.js */ "./src/editor/redux/actions-editor.js");
+/* harmony import */ var editor_globals__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! editor-globals */ "editor-globals");
+/* harmony import */ var editor_globals__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(editor_globals__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _utils_options_menu_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../utils/options-menu.js */ "./src/editor/utils/options-menu.js");
+/* harmony import */ var _utils_save_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../utils/save.js */ "./src/editor/utils/save.js");
+/* harmony import */ var _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../../redux/actions-editor.js */ "./src/editor/redux/actions-editor.js");
+/* harmony import */ var _utils_hooks_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../../../utils/hooks.js */ "./src/utils/hooks.js");
 
 
 
@@ -7149,71 +7180,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Publish = function Publish(props) {
-  var projectId = props.projectId,
-    projectName = props.projectName,
-    projectAuthor = props.projectAuthor,
-    thumbnail = props.thumbnail,
-    mediaId = props.mediaId,
-    mediaUrl = props.mediaUrl,
-    revisionURL = props.revisionURL,
-    canvasWidth = props.canvasWidth,
-    canvasHeight = props.canvasHeight,
-    canvasBackground = props.canvasBackground,
-    layers = props.layers,
-    layerIds = props.layerIds,
-    setEditor = props.setEditor,
-    sendNotice = props.sendNotice;
-  return /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_1__.ButtonGroup, {
+  return (0,_utils_hooks_js__WEBPACK_IMPORTED_MODULE_7__.applyFilters)('editor.publish', /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_1__.ButtonGroup, {
     className: "pixmagix-header__publish"
   }, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_1__.Button, {
     label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('New', 'pixmagix'),
     icon: "plus",
-    onClick: function onClick() {
-      window.location.replace(editor_globals__WEBPACK_IMPORTED_MODULE_4__.new_url);
-    }
+    href: editor_globals__WEBPACK_IMPORTED_MODULE_3__.new_url
   }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_1__.Button, {
     label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Save', 'pixmagix'),
     icon: "floppy-disk",
     active: true,
     onClick: function onClick() {
-      if (!layerIds.length && !canvasBackground) {
-        sendNotice((0,wp_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Please create something, before you save!', 'pixmagix'), 'warning');
-        return;
-      }
-      wp_api_fetch__WEBPACK_IMPORTED_MODULE_3___default()({
-        path: _utils_constants_js__WEBPACK_IMPORTED_MODULE_6__.PROJECTS_REST_PATH + (projectId || ''),
-        method: 'POST',
-        data: {
-          title: projectName || '',
-          status: 'publish',
-          author: projectAuthor,
-          meta: {
-            pixmagix_project: {
-              canvasWidth: canvasWidth,
-              canvasHeight: canvasHeight,
-              canvasBackground: canvasBackground,
-              layers: layerIds.map(function (id) {
-                return layers[id];
-              }),
-              thumbnail: thumbnail,
-              mediaId: mediaId,
-              mediaUrl: mediaUrl,
-              revisionURL: revisionURL
-            }
-          }
-        }
-      }).then(function (response) {
-        (0,react_redux__WEBPACK_IMPORTED_MODULE_0__.batch)(function () {
-          setEditor({
-            projectId: response.id,
-            projectAuthor: response.author
-          });
-          sendNotice((0,wp_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Project Saved Successfully', 'pixmagix'), 'success');
-        });
-      })["catch"](function (_ref) {
-        var message = _ref.message;
-        sendNotice(message, 'error');
-      });
+      return (0,_utils_save_js__WEBPACK_IMPORTED_MODULE_5__["default"])(props);
     }
   }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_1__.Dropdown, {
     position: "bottom right",
@@ -7223,18 +7201,22 @@ var Publish = function Publish(props) {
         icon: "bars"
       });
     },
-    items: (0,_utils_options_menu_js__WEBPACK_IMPORTED_MODULE_5__["default"])(props)
-  }));
+    items: (0,_utils_options_menu_js__WEBPACK_IMPORTED_MODULE_4__["default"])(props)
+  })), props, _utils_options_menu_js__WEBPACK_IMPORTED_MODULE_4__["default"]);
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(function (state) {
   return {
     projectId: state.editor.projectId,
     projectName: state.editor.projectName,
+    projectDescription: state.editor.projectDescription,
     projectAuthor: state.editor.projectAuthor,
+    projectCategory: state.editor.projectCategory,
+    projectStatus: state.editor.projectStatus,
     mediaId: state.editor.mediaId,
     mediaUrl: state.editor.mediaUrl,
     revisionURL: state.editor.revisionURL,
     thumbnail: state.editor.thumbnail,
+    preview: state.editor.preview,
     canvasWidth: state.data.present.canvasWidth,
     canvasHeight: state.data.present.canvasHeight,
     canvasBackground: state.data.present.canvasBackground,
@@ -7243,8 +7225,8 @@ var Publish = function Publish(props) {
     fullScreen: state.editor.fullScreen
   };
 }, {
-  setEditor: _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_7__.setEditor,
-  sendNotice: _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_7__.sendNotice
+  setEditor: _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_6__.setEditor,
+  sendNotice: _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_6__.sendNotice
 })(Publish));
 
 /***/ }),
@@ -7267,21 +7249,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var elements__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(elements__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var editor_globals__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! editor-globals */ "editor-globals");
 /* harmony import */ var editor_globals__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(editor_globals__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _utils_hooks_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../../utils/hooks.js */ "./src/utils/hooks.js");
 
 
 
 
-var Title = function Title(_ref) {
-  var fullScreen = _ref.fullScreen;
-  return /*#__PURE__*/React.createElement("div", {
+
+var Title = function Title(props) {
+  return (0,_utils_hooks_js__WEBPACK_IMPORTED_MODULE_4__.applyFilters)('editor.title', /*#__PURE__*/React.createElement("div", {
     className: "pixmagix-header__title"
-  }, fullScreen && /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Button, {
+  }, props.fullScreen && /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Button, {
     label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Back to Dashboard', 'pixmagix'),
     icon: "right-to-bracket",
-    onClick: function onClick() {
-      window.location.replace(editor_globals__WEBPACK_IMPORTED_MODULE_3__.projects_url);
-    }
-  }), /*#__PURE__*/React.createElement("h1", null, (0,wp_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('PixMagix', 'pixmagix')));
+    href: editor_globals__WEBPACK_IMPORTED_MODULE_3__.projects_url
+  }), /*#__PURE__*/React.createElement("h1", null, (0,wp_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('PixMagix', 'pixmagix'))), props);
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(function (state) {
   return {
@@ -7361,11 +7342,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _utils_lists_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../utils/lists.js */ "./src/editor/utils/lists.js");
+/* harmony import */ var _utils_hooks_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../utils/hooks.js */ "./src/utils/hooks.js");
+
 
 
 var Modals = function Modals(_ref) {
   var activeModal = _ref.activeModal;
-  var ActiveModal = _utils_lists_js__WEBPACK_IMPORTED_MODULE_1__.modals[activeModal];
+  var _modals = (0,_utils_hooks_js__WEBPACK_IMPORTED_MODULE_2__.applyFilters)('editor.modals', _utils_lists_js__WEBPACK_IMPORTED_MODULE_1__.modals, activeModal);
+  var ActiveModal = _modals[activeModal];
   return ActiveModal ? /*#__PURE__*/React.createElement(ActiveModal, null) : null;
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(function (state) {
@@ -7373,6 +7357,210 @@ var Modals = function Modals(_ref) {
     activeModal: state.editor.activeModal
   };
 })(Modals));
+
+/***/ }),
+
+/***/ "./src/editor/components/modals/category-manager.jsx":
+/*!***********************************************************!*\
+  !*** ./src/editor/components/modals/category-manager.jsx ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var elements__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! elements */ "elements");
+/* harmony import */ var elements__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(elements__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash */ "lodash");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! wp-i18n */ "wp-i18n");
+/* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(wp_i18n__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var wp_api_fetch__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! wp-api-fetch */ "wp-api-fetch");
+/* harmony import */ var wp_api_fetch__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(wp_api_fetch__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../../redux/actions-editor.js */ "./src/editor/redux/actions-editor.js");
+/* harmony import */ var _utils_utils_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../../utils/utils.js */ "./src/editor/utils/utils.js");
+/* harmony import */ var _utils_constants_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./../../utils/constants.js */ "./src/editor/utils/constants.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+var CategoryManager = function CategoryManager(_ref) {
+  var categoryList = _ref.categoryList,
+    setEditor = _ref.setEditor,
+    sendNotice = _ref.sendNotice;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState2 = _slicedToArray(_useState, 2),
+    items = _useState2[0],
+    setItems = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+    _useState4 = _slicedToArray(_useState3, 2),
+    loading = _useState4[0],
+    setLoading = _useState4[1];
+  var onSave = function onSave(id, name) {
+    var _find2;
+    if (!name) {
+      sendNotice((0,wp_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Please enter a name, before you save!', 'pixmagix'), 'warning');
+      return;
+    }
+    setLoading(true);
+    wp_api_fetch__WEBPACK_IMPORTED_MODULE_5___default()({
+      path: _utils_constants_js__WEBPACK_IMPORTED_MODULE_8__.CATEGORIES_REST_PATH + (id || ''),
+      method: 'POST',
+      data: {
+        name: ((_find2 = (0,lodash__WEBPACK_IMPORTED_MODULE_3__.find)(items, {
+          id: id
+        })) === null || _find2 === void 0 ? void 0 : _find2.name) || ''
+      }
+    }).then(function (response) {
+      var name = response.name,
+        id = response.id;
+      (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.batch)(function () {
+        setLoading(false);
+        setEditor('categoryList', categoryList.concat([{
+          label: name,
+          value: id
+        }]));
+        sendNotice((0,wp_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Category Saved Successfully', 'pixmagix'), 'success');
+      });
+    })["catch"](function (_ref2) {
+      var message = _ref2.message;
+      (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.batch)(function () {
+        setLoading(false);
+        sendNotice(message, 'error');
+      });
+    });
+  };
+  var _onRemove = function onRemove(id) {
+    if (!id) {
+      setItems(items.filter(function (item) {
+        return !!item.id;
+      }));
+      return;
+    }
+    var ok = confirm((0,wp_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Do you really want to permanently delete this category?', 'pixmagix'));
+    var query = {
+      force: true
+    };
+    if (!ok) {
+      return;
+    }
+    setLoading(true);
+    wp_api_fetch__WEBPACK_IMPORTED_MODULE_5___default()({
+      path: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_7__.addQueryArgs)(query, _utils_constants_js__WEBPACK_IMPORTED_MODULE_8__.CATEGORIES_REST_PATH + id),
+      method: 'DELETE'
+    }).then(function (response) {
+      (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.batch)(function () {
+        setLoading(false);
+        setEditor('categoryList', categoryList.filter(function (_ref3) {
+          var value = _ref3.value;
+          return value !== id;
+        }));
+        sendNotice((0,wp_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Category Deleted Successfully', 'pixmagix'), 'success');
+        setItems(items.filter(function (item) {
+          return item.id !== id;
+        }));
+      });
+    })["catch"](function (_ref4) {
+      var message = _ref4.message;
+      (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.batch)(function () {
+        setLoading(false);
+        sendNotice(message, 'error');
+      });
+    });
+  };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var query = {
+      per_page: -1,
+      hide_empty: false
+    };
+    wp_api_fetch__WEBPACK_IMPORTED_MODULE_5___default()({
+      path: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_7__.addQueryArgs)(query, _utils_constants_js__WEBPACK_IMPORTED_MODULE_8__.CATEGORIES_REST_PATH)
+    }).then(function (response) {
+      (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.batch)(function () {
+        setItems(response);
+        setLoading(false);
+      });
+    })["catch"](console.error);
+  }, []);
+  return /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Modal, {
+    title: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Categories', 'pixmagix'),
+    onClose: function onClose() {
+      return setEditor('activeModal', '');
+    },
+    middle: true
+  }, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Repeater, {
+    items: items.map(function (_ref5) {
+      var id = _ref5.id,
+        name = _ref5.name,
+        caption = _ref5.caption;
+      return {
+        name: id,
+        label: caption,
+        onRemove: function onRemove() {
+          return _onRemove(id);
+        },
+        controls: [{
+          name: 'name',
+          type: 'input',
+          label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Name', 'pixmagix'),
+          value: name,
+          onChange: function onChange(value) {
+            var newItems = (0,lodash__WEBPACK_IMPORTED_MODULE_3__.cloneDeep)(items);
+            var item = (0,lodash__WEBPACK_IMPORTED_MODULE_3__.find)(newItems, {
+              id: id
+            });
+            item.name = value;
+            setItems(newItems);
+          }
+        }, {
+          name: 'save',
+          type: 'button',
+          label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Save', 'pixmagix'),
+          small: true,
+          active: true,
+          onClick: function onClick() {
+            return onSave(id, name);
+          }
+        }]
+      };
+    })
+  }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    onClick: function onClick() {
+      var newItem = [{
+        id: 0,
+        name: '',
+        caption: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('New Category', 'pixmagix')
+      }];
+      setItems(newItem.concat(items));
+    }
+  }, (0,wp_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Add New Category', 'pixmagix')), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Loader, {
+    show: loading
+  }));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(function (state) {
+  return {
+    categoryList: state.editor.categoryList
+  };
+}, {
+  setEditor: _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_6__.setEditor,
+  sendNotice: _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_6__.sendNotice
+})(CategoryManager));
 
 /***/ }),
 
@@ -7804,14 +7992,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var Help = function Help(_ref) {
   var setEditor = _ref.setEditor;
-  var onClick = function onClick(slug) {
-    return function () {
-      var a = document.createElement('a');
-      a.href = _utils_constants_js__WEBPACK_IMPORTED_MODULE_5__.PIXMAGIX_WEBSITE + slug + '/';
-      a.target = '_blank';
-      a.click();
-    };
-  };
   return /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Modal, {
     title: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Welcome to PixMagix Help Center!', 'pixmagix'),
     middle: true,
@@ -7824,42 +8004,45 @@ var Help = function Help(_ref) {
       label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Documentation', 'pixmagix'),
       content: /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement("p", null, (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Our documentation provides comprehensive information on how to use PixMagix. It covers topics from the basic functionality to advanced techniques. Click the button to access the documentation.', 'pixmagix')), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Button, {
         active: true,
-        onClick: onClick('support/documentation')
+        href: _utils_constants_js__WEBPACK_IMPORTED_MODULE_5__.PIXMAGIX_WEBSITE + 'support/documentation/',
+        target: "_blank"
       }, (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('See Docs', 'pixmagix')))
     }, {
       name: 'faq',
       label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('FAQ', 'pixmagix'),
       content: /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement("p", null, (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Find quick answers to common questions about using our plugin. From beginners to experts, our FAQ section is a valuable resource to troubleshoot issues and maximize plugin functionality. Explore the comprehensive list of frequently asked questions for a convenient and time-saving solution.', 'pixmagix')), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Button, {
         active: true,
-        onClick: onClick('support/faq')
+        href: _utils_constants_js__WEBPACK_IMPORTED_MODULE_5__.PIXMAGIX_WEBSITE + 'support/faq/',
+        target: "_blank"
       }, (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Visit FAQ', 'pixmagix')))
     }, {
       name: 'features',
       label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Features', 'pixmagix'),
       content: /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement("p", null, (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('See the full range of tools and features available in PixMagix. Browse through the feature list to discover new and exciting ways to create beautiful graphics. Click the button to see the full list.', 'pixmagix')), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Button, {
         active: true,
-        onClick: onClick('features')
+        href: _utils_constants_js__WEBPACK_IMPORTED_MODULE_5__.PIXMAGIX_WEBSITE + 'features/',
+        target: "_blank"
       }, (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Explore Features', 'pixmagix')))
     }, {
       name: 'blog',
       label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Blog', 'pixmagix'),
       content: /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement("p", null, (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Stay updated with step-by-step guides, tips, and news in the world of PixMagix on our regularly updated blog. Learn new skills, get inspiration, and stay at the forefront of design trends with our informative and engaging blog posts. Check it out today!', 'pixmagix')), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Button, {
         active: true,
-        onClick: onClick('blog')
+        href: _utils_constants_js__WEBPACK_IMPORTED_MODULE_5__.PIXMAGIX_WEBSITE + 'blog/',
+        target: "_blank"
       }, (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Check Blog', 'pixmagix')))
     }, {
       name: 'contact',
       label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Contact', 'pixmagix'),
       content: /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement("p", null, (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('If you have any queries or issues, don\'t hesitate to contact our support team. Our team is available to assist you 24/7. Click the button to access the support page.', 'pixmagix')), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Button, {
         active: true,
-        onClick: onClick('support/contact')
+        href: _utils_constants_js__WEBPACK_IMPORTED_MODULE_5__.PIXMAGIX_WEBSITE + 'support/contact/',
+        target: "_blank"
       }, (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Contact us', 'pixmagix')))
     }]
   }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Widget, null, /*#__PURE__*/React.createElement("p", null, (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('We hope these resources are useful in your creative journey with PixMagix. Happy designing!', 'pixmagix'))));
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(function (state) {
-  return {};
-}, {
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(null, {
   setEditor: _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_4__.setEditor
 })(Help));
 
@@ -8074,7 +8257,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! wp-i18n */ "wp-i18n");
 /* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(wp_i18n__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../redux/actions-editor.js */ "./src/editor/redux/actions-editor.js");
-/* harmony import */ var _utils_keyboard_shortcuts_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../utils/keyboard-shortcuts.js */ "./src/editor/utils/keyboard-shortcuts.js");
+/* harmony import */ var _utils_hooks_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../../utils/hooks.js */ "./src/utils/hooks.js");
+/* harmony import */ var _utils_keyboard_shortcuts_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../../utils/keyboard-shortcuts.js */ "./src/editor/utils/keyboard-shortcuts.js");
+
 
 
 
@@ -8089,7 +8274,7 @@ var KeyboardShortcuts = function KeyboardShortcuts(_ref) {
     onClose: function onClose() {
       return setEditor('activeModal', '');
     }
-  }, _utils_keyboard_shortcuts_js__WEBPACK_IMPORTED_MODULE_5__["default"].map(function (_ref2, i) {
+  }, (0,_utils_hooks_js__WEBPACK_IMPORTED_MODULE_5__.applyFilters)('editor.modals.keyboardShortcuts', _utils_keyboard_shortcuts_js__WEBPACK_IMPORTED_MODULE_6__["default"]).map(function (_ref2, i) {
     var title = _ref2.title,
       description = _ref2.description,
       items = _ref2.items;
@@ -8105,14 +8290,13 @@ var KeyboardShortcuts = function KeyboardShortcuts(_ref) {
       var description = _ref3.description,
         combination = _ref3.combination;
       return /*#__PURE__*/React.createElement("li", {
+        key: i,
         className: "pixmagix-kbsc__item"
       }, /*#__PURE__*/React.createElement("span", null, description), /*#__PURE__*/React.createElement("kbd", null, combination));
     })));
   }));
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(function (state) {
-  return {};
-}, {
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(null, {
   setEditor: _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_4__.setEditor
 })(KeyboardShortcuts));
 
@@ -8159,7 +8343,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var OpenProject = function OpenProject(_ref) {
-  var setEditor = _ref.setEditor;
+  var categoryList = _ref.categoryList,
+    setEditor = _ref.setEditor;
   var isMounting = false;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState2 = _slicedToArray(_useState, 2),
@@ -8181,14 +8366,22 @@ var OpenProject = function OpenProject(_ref) {
     _useState10 = _slicedToArray(_useState9, 2),
     search = _useState10[0],
     setSearch = _useState10[1];
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
     _useState12 = _slicedToArray(_useState11, 2),
-    date = _useState12[0],
-    setDate = _useState12[1];
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    category = _useState12[0],
+    setCategory = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('any'),
     _useState14 = _slicedToArray(_useState13, 2),
-    author = _useState14[0],
-    setAuthor = _useState14[1];
+    status = _useState14[0],
+    setStatus = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState16 = _slicedToArray(_useState15, 2),
+    date = _useState16[0],
+    setDate = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState18 = _slicedToArray(_useState17, 2),
+    author = _useState18[0],
+    setAuthor = _useState18[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     isMounting = true;
     var query = {
@@ -8197,6 +8390,12 @@ var OpenProject = function OpenProject(_ref) {
     };
     if (search) {
       query.search = search;
+    }
+    if (category) {
+      query.pixmagix_category = category;
+    }
+    if (status) {
+      query.status = status;
     }
     if (date) {
       query.yearmonth = date;
@@ -8231,7 +8430,7 @@ var OpenProject = function OpenProject(_ref) {
     return function () {
       isMounting = false;
     };
-  }, [search, date, author, page]);
+  }, [search, category, status, date, author, page]);
   return /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Modal, {
     title: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Open Project', 'pixmagix'),
     onClose: function onClose() {
@@ -8246,6 +8445,33 @@ var OpenProject = function OpenProject(_ref) {
         setPage(1);
         setLoading(true);
       });
+    }
+  }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Select, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Category', 'pixmagix'),
+    value: category,
+    options: categoryList,
+    onChange: function onChange(value) {
+      setCategory(value);
+      setPage(1);
+      setLoading(true);
+    }
+  }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Select, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Status', 'pixmagix'),
+    value: status,
+    options: [{
+      label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('All', 'pixmagix'),
+      value: 'any'
+    }, {
+      label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Publish', 'pixmagix'),
+      value: 'publish'
+    }, {
+      label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Private', 'pixmagix'),
+      value: 'private'
+    }],
+    onChange: function onChange(value) {
+      setStatus(value);
+      setPage(1);
+      setLoading(true);
     }
   }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Select, {
     label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Date', 'pixmagix'),
@@ -8280,7 +8506,8 @@ var OpenProject = function OpenProject(_ref) {
   }) : items.map(function (_ref3) {
     var id = _ref3.id,
       caption = _ref3.caption,
-      thumbnail = _ref3.thumbnail;
+      thumbnail = _ref3.thumbnail,
+      preview = _ref3.preview;
     return /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.GridItem, {
       key: id,
       caption: caption,
@@ -8289,7 +8516,12 @@ var OpenProject = function OpenProject(_ref) {
       }, editor_globals__WEBPACK_IMPORTED_MODULE_3__.new_url),
       src: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_7__.addQueryArgs)({
         r: Math.ceil(Math.random() * 1000)
-      }, thumbnail)
+      }, thumbnail),
+      actions: [!!(editor_globals__WEBPACK_IMPORTED_MODULE_3__.has_previews && preview) && {
+        name: 'preview',
+        label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Preview', 'pixmagix'),
+        icon: 'magnifying-glass'
+      }]
     });
   })), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Pagination, {
     page: page,
@@ -8305,7 +8537,9 @@ var OpenProject = function OpenProject(_ref) {
   }));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(function (state) {
-  return {};
+  return {
+    categoryList: state.editor.categoryList
+  };
 }, {
   setEditor: _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_6__.setEditor
 })(OpenProject));
@@ -8825,6 +9059,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../redux/actions-editor.js */ "./src/editor/redux/actions-editor.js");
 /* harmony import */ var _utils_lists_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../utils/lists.js */ "./src/editor/utils/lists.js");
+/* harmony import */ var _utils_hooks_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../../utils/hooks.js */ "./src/utils/hooks.js");
+
 
 
 
@@ -8836,7 +9072,7 @@ var SidebarLeft = function SidebarLeft(_ref) {
   var activeTool = _ref.activeTool,
     isSidebarLeftOpened = _ref.isSidebarLeftOpened,
     setEditor = _ref.setEditor;
-  var Content = ((_find2 = (0,lodash__WEBPACK_IMPORTED_MODULE_3__.find)(_utils_lists_js__WEBPACK_IMPORTED_MODULE_5__.toolbarItems, {
+  var Content = ((_find2 = (0,lodash__WEBPACK_IMPORTED_MODULE_3__.find)((0,_utils_hooks_js__WEBPACK_IMPORTED_MODULE_6__.applyFilters)('editor.toolbarItems', _utils_lists_js__WEBPACK_IMPORTED_MODULE_5__.toolbarItems), {
     name: activeTool
   })) === null || _find2 === void 0 ? void 0 : _find2.component) || function () {
     return null;
@@ -8889,12 +9125,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../../redux/actions-editor.js */ "./src/editor/redux/actions-editor.js");
 /* harmony import */ var _redux_actions_data_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../../redux/actions-data.js */ "./src/editor/redux/actions-data.js");
 /* harmony import */ var _utils_utils_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./../../utils/utils.js */ "./src/editor/utils/utils.js");
+/* harmony import */ var _utils_help_texts_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./../../utils/help-texts.js */ "./src/editor/utils/help-texts.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -9035,6 +9273,7 @@ var AddIcon = function AddIcon(_ref) {
       icon: 'paintbrush',
       content: /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Range, {
         label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Stroke Width', 'pixmagix'),
+        help: (0,_utils_help_texts_js__WEBPACK_IMPORTED_MODULE_9__["default"])('strokeWidth'),
         value: pencilWidth,
         onChange: onChange('pencilWidth', 'strokeWidth'),
         min: _utils_constants_js__WEBPACK_IMPORTED_MODULE_5__.PENCIL_MIN_WIDTH,
@@ -9445,12 +9684,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_fonts_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../../utils/fonts.js */ "./src/editor/utils/fonts.js");
 /* harmony import */ var _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../../redux/actions-editor.js */ "./src/editor/redux/actions-editor.js");
 /* harmony import */ var _redux_actions_data_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./../../redux/actions-data.js */ "./src/editor/redux/actions-data.js");
+/* harmony import */ var _utils_help_texts_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./../../utils/help-texts.js */ "./src/editor/utils/help-texts.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
 function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+
 
 
 
@@ -9551,6 +9792,7 @@ var AddText = function AddText(_ref) {
         step: 1
       }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Range, {
         label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Line Height', 'pixmagix'),
+        help: (0,_utils_help_texts_js__WEBPACK_IMPORTED_MODULE_9__["default"])('lineHeight'),
         value: lineHeight,
         onChange: onChangeWithUpdateSize('lineHeight', 'lineHeight'),
         min: 0.01,
@@ -9565,6 +9807,7 @@ var AddText = function AddText(_ref) {
         step: 1
       }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Select, {
         label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Font Family', 'pixmagix'),
+        help: (0,_utils_help_texts_js__WEBPACK_IMPORTED_MODULE_9__["default"])('fontFamily'),
         options: (0,_utils_fonts_js__WEBPACK_IMPORTED_MODULE_6__.getFonts)(),
         value: fontFamily,
         onChange: onChangeWithUpdateSize('fontFamily', 'fontFamily')
@@ -9620,6 +9863,7 @@ var AddText = function AddText(_ref) {
       icon: 'paintbrush',
       content: /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Range, {
         label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Stroke Width', 'pixmagix'),
+        help: (0,_utils_help_texts_js__WEBPACK_IMPORTED_MODULE_9__["default"])('strokeWidth'),
         value: pencilWidth,
         onChange: onChange('pencilWidth', 'strokeWidth'),
         min: _utils_constants_js__WEBPACK_IMPORTED_MODULE_4__.PENCIL_MIN_WIDTH,
@@ -9814,6 +10058,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(wp_i18n__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _utils_constants_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../utils/constants.js */ "./src/editor/utils/constants.js");
 /* harmony import */ var _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../redux/actions-editor.js */ "./src/editor/redux/actions-editor.js");
+/* harmony import */ var _utils_help_texts_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../../utils/help-texts.js */ "./src/editor/utils/help-texts.js");
+
 
 
 
@@ -9864,6 +10110,7 @@ var DrawPath = function DrawPath(_ref) {
       icon: 'paintbrush',
       content: /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Range, {
         label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Stroke Width', 'pixmagix'),
+        help: (0,_utils_help_texts_js__WEBPACK_IMPORTED_MODULE_6__["default"])('strokeWidth'),
         value: pencilWidth,
         onChange: function onChange(value) {
           return setEditor('pencilWidth', value);
@@ -9926,6 +10173,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_shapes_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../utils/shapes.js */ "./src/editor/utils/shapes.js");
 /* harmony import */ var _utils_constants_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../utils/constants.js */ "./src/editor/utils/constants.js");
 /* harmony import */ var _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../../redux/actions-editor.js */ "./src/editor/redux/actions-editor.js");
+/* harmony import */ var _utils_help_texts_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../../utils/help-texts.js */ "./src/editor/utils/help-texts.js");
+
 
 
 
@@ -9969,6 +10218,7 @@ var DrawShape = function DrawShape(_ref) {
       icon: 'paintbrush',
       content: /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Range, {
         label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Stroke Width', 'pixmagix'),
+        help: (0,_utils_help_texts_js__WEBPACK_IMPORTED_MODULE_7__["default"])('strokeWidth'),
         value: pencilWidth,
         onChange: function onChange(value) {
           return setEditor('pencilWidth', value);
@@ -10042,6 +10292,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(wp_i18n__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _utils_constants_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../utils/constants.js */ "./src/editor/utils/constants.js");
 /* harmony import */ var _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../redux/actions-editor.js */ "./src/editor/redux/actions-editor.js");
+/* harmony import */ var _utils_help_texts_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../../utils/help-texts.js */ "./src/editor/utils/help-texts.js");
+
 
 
 
@@ -10091,6 +10343,7 @@ var FreeHandDraw = function FreeHandDraw(_ref) {
       icon: 'paintbrush',
       content: /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Range, {
         label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Stroke Width', 'pixmagix'),
+        help: (0,_utils_help_texts_js__WEBPACK_IMPORTED_MODULE_6__["default"])('strokeWidth'),
         value: pencilWidth,
         onChange: function onChange(value) {
           return setEditor('pencilWidth', value);
@@ -10233,6 +10486,129 @@ var SidebarRight = function SidebarRight(_ref) {
 }, {
   setEditor: _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_2__.setEditor
 })(SidebarRight));
+
+/***/ }),
+
+/***/ "./src/editor/components/sidebar-right/category-manager.jsx":
+/*!******************************************************************!*\
+  !*** ./src/editor/components/sidebar-right/category-manager.jsx ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var elements__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! elements */ "elements");
+/* harmony import */ var elements__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(elements__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! wp-i18n */ "wp-i18n");
+/* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(wp_i18n__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var wp_api_fetch__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! wp-api-fetch */ "wp-api-fetch");
+/* harmony import */ var wp_api_fetch__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(wp_api_fetch__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../redux/actions-editor.js */ "./src/editor/redux/actions-editor.js");
+/* harmony import */ var _utils_constants_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../../utils/constants.js */ "./src/editor/utils/constants.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+var CategoryManager = function CategoryManager(_ref) {
+  var projectCategory = _ref.projectCategory,
+    categoryList = _ref.categoryList,
+    setEditor = _ref.setEditor,
+    sendNotice = _ref.sendNotice;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    addNewCat = _useState2[0],
+    setAddNewCat = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState4 = _slicedToArray(_useState3, 2),
+    catName = _useState4[0],
+    setCatName = _useState4[1];
+  var onCreateCat = function onCreateCat() {
+    if (!catName) {
+      sendNotice((0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Enter a Category Name', 'pixmagix'), 'warning');
+      return;
+    }
+    wp_api_fetch__WEBPACK_IMPORTED_MODULE_4___default()({
+      path: _utils_constants_js__WEBPACK_IMPORTED_MODULE_6__.CATEGORIES_REST_PATH,
+      method: 'POST',
+      data: {
+        name: catName
+      }
+    }).then(function (_ref2) {
+      var id = _ref2.id;
+      (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.batch)(function () {
+        setAddNewCat(false);
+        setEditor({
+          categoryList: categoryList.concat([{
+            label: catName,
+            value: id
+          }]),
+          projectCategory: id
+        });
+        sendNotice((0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Category Created Successfully', 'pixmagix'), 'success');
+      });
+    })["catch"](function (_ref3) {
+      var message = _ref3.message;
+      sendNotice(message, 'error');
+    });
+  };
+  return addNewCat ? /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Input, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('New Category Name', 'pixmagix'),
+    value: catName,
+    onChange: setCatName
+  }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.ButtonGroup, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    active: true,
+    small: true,
+    onClick: onCreateCat
+  }, (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Create', 'pixmagix')), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    small: true,
+    onClick: function onClick() {
+      return setAddNewCat(false);
+    }
+  }, (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Cancel', 'pixmagix')))) : /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Select, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Category', 'pixmagix'),
+    options: categoryList,
+    value: projectCategory,
+    onChange: function onChange(value) {
+      return setEditor('projectCategory', value);
+    }
+  }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    small: true,
+    block: true,
+    onClick: function onClick() {
+      return setAddNewCat(true);
+    }
+  }, (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Add New Category', 'pixmagix')), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    small: true,
+    block: true,
+    onClick: function onClick() {
+      return setEditor('activeModal', 'category-manager');
+    }
+  }, (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Manage Categories', 'pixmagix')));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(function (state) {
+  return {
+    projectCategory: state.editor.projectCategory,
+    categoryList: state.editor.categoryList
+  };
+}, {
+  setEditor: _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_5__.setEditor,
+  sendNotice: _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_5__.sendNotice
+})(CategoryManager));
 
 /***/ }),
 
@@ -10502,6 +10878,8 @@ var SettingsLayer = function SettingsLayer(_ref) {
     rx = layer.rx,
     stroke = layer.stroke,
     strokeWidth = layer.strokeWidth,
+    strokeDashArray = layer.strokeDashArray,
+    strokeDashOffset = layer.strokeDashOffset,
     fill = layer.fill,
     shadow = layer.shadow,
     opacity = layer.opacity,
@@ -10695,6 +11073,7 @@ var SettingsLayer = function SettingsLayer(_ref) {
           step: 1
         }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_4__.Range, {
           label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Line Height', 'pixmagix'),
+          help: (0,_utils_help_texts_js__WEBPACK_IMPORTED_MODULE_12__["default"])('lineHeight'),
           value: lineHeight,
           onChange: function onChange(value) {
             return setLayerProps(id, 'lineHeight', value);
@@ -10713,6 +11092,7 @@ var SettingsLayer = function SettingsLayer(_ref) {
           step: 1
         }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_4__.Select, {
           label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Font Family', 'pixmagix'),
+          help: (0,_utils_help_texts_js__WEBPACK_IMPORTED_MODULE_12__["default"])('fontFamily'),
           options: (0,_utils_fonts_js__WEBPACK_IMPORTED_MODULE_10__.getFonts)(),
           value: fontFamily,
           onChange: function onChange(value) {
@@ -10933,6 +11313,7 @@ var SettingsLayer = function SettingsLayer(_ref) {
       icon: 'paintbrush',
       content: /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_4__.Range, {
         label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Stroke Width', 'pixmagix'),
+        help: (0,_utils_help_texts_js__WEBPACK_IMPORTED_MODULE_12__["default"])('strokeWidth'),
         value: strokeWidth,
         onChange: function onChange(value) {
           return setLayerProps(id, 'strokeWidth', value);
@@ -10946,6 +11327,23 @@ var SettingsLayer = function SettingsLayer(_ref) {
         onChange: function onChange(color) {
           return setLayerProps(id, 'stroke', color);
         }
+      }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_4__.StrokeDashArrayControl, {
+        label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Stroke Dash Array', 'pixmagix'),
+        help: (0,_utils_help_texts_js__WEBPACK_IMPORTED_MODULE_12__["default"])('sda'),
+        value: strokeDashArray,
+        onChange: function onChange(value) {
+          return setLayerProps(id, 'strokeDashArray', value);
+        }
+      }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_4__.Range, {
+        label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Stroke Dash Offset', 'pixmagix'),
+        help: (0,_utils_help_texts_js__WEBPACK_IMPORTED_MODULE_12__["default"])('sdo'),
+        value: strokeDashOffset,
+        onChange: function onChange(value) {
+          return setLayerProps(id, 'strokeDashOffset', value);
+        },
+        min: _utils_constants_js__WEBPACK_IMPORTED_MODULE_9__.PENCIL_MIN_WIDTH,
+        max: _utils_constants_js__WEBPACK_IMPORTED_MODULE_9__.PENCIL_MAX_WIDTH,
+        step: 1
       }))
     }, {
       name: 'fill',
@@ -11032,6 +11430,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(wp_i18n__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _redux_actions_data_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../redux/actions-data.js */ "./src/editor/redux/actions-data.js");
 /* harmony import */ var _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../redux/actions-editor.js */ "./src/editor/redux/actions-editor.js");
+/* harmony import */ var _utils_hooks_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../../../utils/hooks.js */ "./src/utils/hooks.js");
+/* harmony import */ var _category_manager_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./category-manager.jsx */ "./src/editor/components/sidebar-right/category-manager.jsx");
+
+
 
 
 
@@ -11043,61 +11445,92 @@ var SettingsProject = function SettingsProject(_ref) {
     canvasHeight = _ref.canvasHeight,
     canvasBackground = _ref.canvasBackground,
     projectName = _ref.projectName,
+    projectDescription = _ref.projectDescription,
+    projectStatus = _ref.projectStatus,
     setData = _ref.setData,
     setEditor = _ref.setEditor;
-  return /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Widget, {
-    tabs: [{
-      name: 'settings',
-      label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Settings', 'pixmagix'),
-      content: /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Input, {
-        label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Title', 'pixmagix'),
-        value: projectName,
-        onChange: function onChange(value) {
-          return setEditor('projectName', value);
-        }
-      }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.InputGroup, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Input, {
-        type: "number",
-        label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Width', 'pixmagix'),
-        value: canvasWidth,
-        onChange: function onChange(value) {
-          return setData('canvasWidth', value);
-        },
-        min: 100,
-        max: 4000
-      }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Input, {
-        type: "number",
-        label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Height', 'pixmagix'),
-        value: canvasHeight,
-        onChange: function onChange(value) {
-          return setData('canvasHeight', value);
-        },
-        min: 100,
-        max: 4000
-      })))
-    }, {
-      name: 'background',
-      label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Background', 'pixmagix'),
-      content: /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.ColorStyleControl, {
-        labels: {
-          style: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Background Style', 'pixmagix'),
-          color: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Background Color', 'pixmagix'),
-          gradient: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Background Gradient', 'pixmagix')
-        },
-        value: canvasBackground,
-        allowReset: true,
-        onChange: function onChange(value) {
-          return console.log(value) || setData('canvasBackground', value);
-        }
-      })
-    }]
-  });
+  var tabs = (0,_utils_hooks_js__WEBPACK_IMPORTED_MODULE_6__.applyFilters)('editor.settingsProject.tabs', [{
+    name: 'settings',
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Canvas Settings', 'pixmagix'),
+    icon: 'gear',
+    content: /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.InputGroup, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Input, {
+      type: "number",
+      label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Width', 'pixmagix'),
+      value: canvasWidth,
+      onChange: function onChange(value) {
+        return setData('canvasWidth', value);
+      },
+      min: 100,
+      max: 4000
+    }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Input, {
+      type: "number",
+      label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Height', 'pixmagix'),
+      value: canvasHeight,
+      onChange: function onChange(value) {
+        return setData('canvasHeight', value);
+      },
+      min: 100,
+      max: 4000
+    })))
+  }, {
+    name: 'background',
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Canvas Background', 'pixmagix'),
+    icon: 'fill',
+    content: /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.ColorStyleControl, {
+      labels: {
+        style: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Background Style', 'pixmagix'),
+        color: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Background Color', 'pixmagix'),
+        gradient: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Background Gradient', 'pixmagix')
+      },
+      value: canvasBackground,
+      allowReset: true,
+      onChange: function onChange(value) {
+        return console.log(value) || setData('canvasBackground', value);
+      }
+    })
+  }, {
+    name: 'metadata',
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Project Metadata', 'pixmagix'),
+    icon: 'file-lines',
+    content: /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Input, {
+      label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Title', 'pixmagix'),
+      value: projectName,
+      onChange: function onChange(value) {
+        return setEditor('projectName', value);
+      }
+    }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Textarea, {
+      label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Description', 'pixmagix'),
+      value: projectDescription,
+      onChange: function onChange(value) {
+        return setEditor('projectDescription', value);
+      }
+    }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.RadioButtons, {
+      label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Status', 'pixmagix'),
+      value: projectStatus,
+      options: [{
+        label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Publish', 'pixmagix'),
+        value: 'publish'
+      }, {
+        label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Private', 'pixmagix'),
+        value: 'private'
+      }],
+      onChange: function onChange(value) {
+        return setEditor('projectStatus', value);
+      }
+    }), /*#__PURE__*/React.createElement(_category_manager_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], null))
+  }]);
+  return tabs !== null && tabs !== void 0 && tabs.length ? /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Widget, {
+    tabs: tabs
+  }) : null;
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(function (state) {
   return {
     canvasWidth: state.data.present.canvasWidth,
     canvasHeight: state.data.present.canvasHeight,
     canvasBackground: state.data.present.canvasBackground,
-    projectName: state.editor.projectName
+    projectName: state.editor.projectName,
+    projectDescription: state.editor.projectDescription,
+    projectStatus: state.editor.projectStatus
   };
 }, {
   setData: _redux_actions_data_js__WEBPACK_IMPORTED_MODULE_4__.setData,
@@ -11146,11 +11579,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _utils_lists_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../utils/lists.js */ "./src/editor/utils/lists.js");
 /* harmony import */ var _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../redux/actions-editor.js */ "./src/editor/redux/actions-editor.js");
+/* harmony import */ var _utils_hooks_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../../utils/hooks.js */ "./src/utils/hooks.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
 function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+
 
 
 
@@ -11180,7 +11615,7 @@ var Tools = function Tools(_ref2) {
     setEditor = _ref2.setEditor;
   return /*#__PURE__*/React.createElement("ul", {
     className: "pixmagix-toolbar__list"
-  }, _utils_lists_js__WEBPACK_IMPORTED_MODULE_3__.toolbarItems.map(function (item) {
+  }, (0,_utils_hooks_js__WEBPACK_IMPORTED_MODULE_5__.applyFilters)('editor.toolbarItems', _utils_lists_js__WEBPACK_IMPORTED_MODULE_3__.toolbarItems).map(function (item) {
     return /*#__PURE__*/React.createElement(Item, _extends({
       key: item.name,
       active: item.name === activeTool,
@@ -11580,15 +12015,24 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
  * 
  * @since 1.0.0
  * @param {number} id
- * @param {string} title
- * @param {number} author
+ * @param {object} metadata
  * @param {number} mediaId
  * @param {string} mediaUrl
- * @param {string} revisionUrl
+ * @param {string} revisionURL
  * @return {object}
  */
 
-var getInitialStateEditor = function getInitialStateEditor(id, title, author, mediaId, mediaUrl, revisionUrl) {
+var getInitialStateEditor = function getInitialStateEditor(id) {
+  var metadata = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var mediaId = arguments.length > 2 ? arguments[2] : undefined;
+  var mediaUrl = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
+  var revisionURL = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : '';
+  var title = metadata.title,
+    description = metadata.description,
+    author = metadata.author,
+    category = metadata.category,
+    _metadata$status = metadata.status,
+    status = _metadata$status === void 0 ? 'publish' : _metadata$status;
   var data = window.localStorage.getItem('pixmagixEditor');
   var stateFromLocalStorage = {};
   try {
@@ -11600,11 +12044,18 @@ var getInitialStateEditor = function getInitialStateEditor(id, title, author, me
     // Project
     projectId: id,
     projectName: title,
+    projectDescription: description,
     projectAuthor: author,
+    projectCategory: category,
+    projectStatus: status,
+    // Media
     mediaId: mediaId,
     mediaUrl: mediaUrl,
     thumbnail: editor_globals__WEBPACK_IMPORTED_MODULE_1__.thumbnails_folder + 'project-' + id + '.jpg',
-    revisionURL: revisionUrl || '',
+    preview: editor_globals__WEBPACK_IMPORTED_MODULE_1__.previews_folder + 'project-' + id + '.jpg',
+    revisionURL: revisionURL,
+    // Globals
+    categoryList: editor_globals__WEBPACK_IMPORTED_MODULE_1__.project_categories || [],
     imageDataURL: '',
     svgString: '',
     svgWidth: 0,
@@ -11864,15 +12315,14 @@ __webpack_require__.r(__webpack_exports__);
  * 
  * @since 1.0.0
  * @param {number} id
- * @param {string} title
- * @param {number} author
+ * @param {object} metadata
  * @param {number} mediaId
  * @param {string} mediaUrl
  * @param {string} revisionUrl
  */
 
-var getReducerEditor = function getReducerEditor(id, title, author, mediaId, mediaUrl, revisionUrl) {
-  return (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createReducer)((0,_initial_state_editor_js__WEBPACK_IMPORTED_MODULE_1__["default"])(id, title, author, mediaId, mediaUrl, revisionUrl), function (builder) {
+var getReducerEditor = function getReducerEditor(id, metadata, mediaId, mediaUrl, revisionUrl) {
+  return (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createReducer)((0,_initial_state_editor_js__WEBPACK_IMPORTED_MODULE_1__["default"])(id, metadata, mediaId, mediaUrl, revisionUrl), function (builder) {
     builder.addCase('SET_EDITOR', function (state, _ref) {
       var payload = _ref.payload;
       if ((0,lodash__WEBPACK_IMPORTED_MODULE_0__.isObject)(payload.key)) {
@@ -11941,16 +12391,17 @@ __webpack_require__.r(__webpack_exports__);
  * 
  * @since 1.0.0
  * @param {number} id
- * @param {string} title
- * @param {number} author
+ * @param {object} metadata
  * @param {object} project
  * @param {object} media
  */
 
-var getReducer = function getReducer(id, title, author, project, media) {
+var getReducer = function getReducer(id, metadata) {
+  var project = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  var media = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
   return (0,redux__WEBPACK_IMPORTED_MODULE_3__.combineReducers)({
     data: (0,redux_undo__WEBPACK_IMPORTED_MODULE_0__["default"])((0,_reducer_data_js__WEBPACK_IMPORTED_MODULE_1__["default"])(project, media.url, media.width, media.height)),
-    editor: (0,_reducer_editor_js__WEBPACK_IMPORTED_MODULE_2__["default"])(id, title, author, media.id || project.mediaId, media.url || project.mediaUrl, project.revisionURL || media.revision)
+    editor: (0,_reducer_editor_js__WEBPACK_IMPORTED_MODULE_2__["default"])(id, metadata, media.id || project.mediaId, media.url || project.mediaUrl, project.revisionURL || media.revision)
   });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getReducer);
@@ -11971,6 +12422,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   BORDER_OPACITY_WHEN_MOVING: () => (/* binding */ BORDER_OPACITY_WHEN_MOVING),
 /* harmony export */   CANVAS_MAX_ZOOM: () => (/* binding */ CANVAS_MAX_ZOOM),
 /* harmony export */   CANVAS_MIN_ZOOM: () => (/* binding */ CANVAS_MIN_ZOOM),
+/* harmony export */   CATEGORIES_REST_PATH: () => (/* binding */ CATEGORIES_REST_PATH),
 /* harmony export */   CORNER_SIZE: () => (/* binding */ CORNER_SIZE),
 /* harmony export */   DEFAULT_CANVAS_HEIGHT: () => (/* binding */ DEFAULT_CANVAS_HEIGHT),
 /* harmony export */   DEFAULT_CANVAS_WIDTH: () => (/* binding */ DEFAULT_CANVAS_WIDTH),
@@ -11987,7 +12439,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   PENCIL_MAX_WIDTH: () => (/* binding */ PENCIL_MAX_WIDTH),
 /* harmony export */   PENCIL_MIN_WIDTH: () => (/* binding */ PENCIL_MIN_WIDTH),
 /* harmony export */   PIXMAGIX_WEBSITE: () => (/* binding */ PIXMAGIX_WEBSITE),
-/* harmony export */   PREVIEW_IMAGE_MAX_WIDTH: () => (/* binding */ PREVIEW_IMAGE_MAX_WIDTH),
 /* harmony export */   PROJECTS_REST_PATH: () => (/* binding */ PROJECTS_REST_PATH),
 /* harmony export */   QRCODE_DEFAULT_ECL: () => (/* binding */ QRCODE_DEFAULT_ECL),
 /* harmony export */   QRCODE_DEFAULT_PADDING: () => (/* binding */ QRCODE_DEFAULT_PADDING),
@@ -12003,9 +12454,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 var PIXMAGIX_WEBSITE = 'https://pixmagix-photo-editor.com/';
 var PROJECTS_REST_PATH = 'wp/v2/pixmagix/';
+var CATEGORIES_REST_PATH = 'wp/v2/pixmagix_category/';
 var IMAGES_REST_PATH = 'wp/v2/media/';
 var REST_PATH = 'pixmagix/v1/';
-var PREVIEW_IMAGE_MAX_WIDTH = 200;
 var CANVAS_MIN_ZOOM = 10;
 var CANVAS_MAX_ZOOM = 200;
 var DEFAULT_CANVAS_WIDTH = 1280;
@@ -12123,6 +12574,14 @@ var HELP_TEXTS = {
     text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('The preserveAspectRatio attribute is used to control how an SVG element is scaled and positioned within its container. It allows you to define the aspect ratio, define alignment, and specify how to handle overflowing content.', 'pixmagix'),
     link: 'https://pixmagix-photo-editor.com/graphic-design/understanding-the-preserveaspectratio-svg-attribute/'
   },
+  strokeWidth: {
+    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Stroke width is the thickness of a line used in creating graphical elements, shapes, or text. It is typically measured in points or pixels and greatly influences the visual perception of design elements.', 'pixmagix'),
+    link: 'https://pixmagix-photo-editor.com/graphic-design/the-importance-of-stroke-width-in-design/'
+  },
+  sda: {
+    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('The stroke-dasharray is primarily used to create dashed lines, dotted lines, or more complex patterns. It controls the pattern of dashes and gaps used to paint the outline of shapes.', 'pixmagix'),
+    link: 'https://pixmagix-photo-editor.com/graphic-design/understanding-the-stroke-dasharray-a-detailed-overview/'
+  },
   jpgQuality: {
     text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('JPEG is a widely used image format that utilizes lossy compression. This means that when an image is saved in JPEG format, some of the image data is permanently discarded to reduce file size. The JPEG quality setting determines the degree of compression applied to an image.', 'pixmagix'),
     link: 'https://pixmagix-photo-editor.com/miscellaneous/the-impact-of-jpeg-quality-on-web-performance/'
@@ -12137,6 +12596,10 @@ var HELP_TEXTS = {
   },
   pixabayApiKey: {
     text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'pixmagix'),
+    link: 'https://pixmagix-photo-editor.com/tutorials/how-to-get-and-connect-pixabay-api-key-to-pixmagix/'
+  },
+  pexelsApiKey: {
+    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'pixmagix'),
     link: ''
   },
   unsplashApiKey: {
@@ -12144,8 +12607,8 @@ var HELP_TEXTS = {
     link: ''
   },
   gfontsApiKey: {
-    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'pixmagix'),
-    link: ''
+    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('By default, you can access the first 200 most popular fonts from Google Fonts. But what if you want more variety? By obtaining a Google Fonts API key, you can gain real-time access to all available font families, enhancing your design choices even further.', 'pixmagix'),
+    link: 'https://pixmagix-photo-editor.com/tutorials/how-to-get-and-connect-google-fonts-api-key-to-pixmagix/'
   },
   webSafeFonts: {
     text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'pixmagix'),
@@ -12530,16 +12993,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_sidebar_left_free_hand_draw_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../components/sidebar-left/free-hand-draw.jsx */ "./src/editor/components/sidebar-left/free-hand-draw.jsx");
 /* harmony import */ var _components_sidebar_left_draw_path_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../components/sidebar-left/draw-path.jsx */ "./src/editor/components/sidebar-left/draw-path.jsx");
 /* harmony import */ var _components_sidebar_left_crop_canvas_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./../components/sidebar-left/crop-canvas.jsx */ "./src/editor/components/sidebar-left/crop-canvas.jsx");
-/* harmony import */ var _components_modals_import_media_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./../components/modals/import-media.jsx */ "./src/editor/components/modals/import-media.jsx");
-/* harmony import */ var _components_modals_open_project_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./../components/modals/open-project.jsx */ "./src/editor/components/modals/open-project.jsx");
-/* harmony import */ var _components_modals_save_as_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./../components/modals/save-as.jsx */ "./src/editor/components/modals/save-as.jsx");
-/* harmony import */ var _components_modals_export_media_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./../components/modals/export-media.jsx */ "./src/editor/components/modals/export-media.jsx");
-/* harmony import */ var _components_modals_replace_media_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./../components/modals/replace-media.jsx */ "./src/editor/components/modals/replace-media.jsx");
-/* harmony import */ var _components_modals_restore_media_jsx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./../components/modals/restore-media.jsx */ "./src/editor/components/modals/restore-media.jsx");
-/* harmony import */ var _components_modals_download_image_jsx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./../components/modals/download-image.jsx */ "./src/editor/components/modals/download-image.jsx");
-/* harmony import */ var _components_modals_download_svg_jsx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./../components/modals/download-svg.jsx */ "./src/editor/components/modals/download-svg.jsx");
-/* harmony import */ var _components_modals_keyboard_shortcuts_jsx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./../components/modals/keyboard-shortcuts.jsx */ "./src/editor/components/modals/keyboard-shortcuts.jsx");
-/* harmony import */ var _components_modals_help_jsx__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./../components/modals/help.jsx */ "./src/editor/components/modals/help.jsx");
+/* harmony import */ var _components_modals_category_manager_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./../components/modals/category-manager.jsx */ "./src/editor/components/modals/category-manager.jsx");
+/* harmony import */ var _components_modals_import_media_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./../components/modals/import-media.jsx */ "./src/editor/components/modals/import-media.jsx");
+/* harmony import */ var _components_modals_open_project_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./../components/modals/open-project.jsx */ "./src/editor/components/modals/open-project.jsx");
+/* harmony import */ var _components_modals_save_as_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./../components/modals/save-as.jsx */ "./src/editor/components/modals/save-as.jsx");
+/* harmony import */ var _components_modals_export_media_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./../components/modals/export-media.jsx */ "./src/editor/components/modals/export-media.jsx");
+/* harmony import */ var _components_modals_replace_media_jsx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./../components/modals/replace-media.jsx */ "./src/editor/components/modals/replace-media.jsx");
+/* harmony import */ var _components_modals_restore_media_jsx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./../components/modals/restore-media.jsx */ "./src/editor/components/modals/restore-media.jsx");
+/* harmony import */ var _components_modals_download_image_jsx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./../components/modals/download-image.jsx */ "./src/editor/components/modals/download-image.jsx");
+/* harmony import */ var _components_modals_download_svg_jsx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./../components/modals/download-svg.jsx */ "./src/editor/components/modals/download-svg.jsx");
+/* harmony import */ var _components_modals_keyboard_shortcuts_jsx__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./../components/modals/keyboard-shortcuts.jsx */ "./src/editor/components/modals/keyboard-shortcuts.jsx");
+/* harmony import */ var _components_modals_help_jsx__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./../components/modals/help.jsx */ "./src/editor/components/modals/help.jsx");
 
 
 // Toolbar components.
@@ -12554,6 +13018,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // Modals.
+
 
 
 
@@ -13094,16 +13559,17 @@ var imageFilters = [{
  */
 
 var modals = {
-  'import-media': _components_modals_import_media_jsx__WEBPACK_IMPORTED_MODULE_9__["default"],
-  'open-project': _components_modals_open_project_jsx__WEBPACK_IMPORTED_MODULE_10__["default"],
-  'save-as': _components_modals_save_as_jsx__WEBPACK_IMPORTED_MODULE_11__["default"],
-  'export-media': _components_modals_export_media_jsx__WEBPACK_IMPORTED_MODULE_12__["default"],
-  'replace-media': _components_modals_replace_media_jsx__WEBPACK_IMPORTED_MODULE_13__["default"],
-  'restore-media': _components_modals_restore_media_jsx__WEBPACK_IMPORTED_MODULE_14__["default"],
-  'download-image': _components_modals_download_image_jsx__WEBPACK_IMPORTED_MODULE_15__["default"],
-  'download-svg': _components_modals_download_svg_jsx__WEBPACK_IMPORTED_MODULE_16__["default"],
-  'keyboard-shortcuts': _components_modals_keyboard_shortcuts_jsx__WEBPACK_IMPORTED_MODULE_17__["default"],
-  'help': _components_modals_help_jsx__WEBPACK_IMPORTED_MODULE_18__["default"]
+  'category-manager': _components_modals_category_manager_jsx__WEBPACK_IMPORTED_MODULE_9__["default"],
+  'import-media': _components_modals_import_media_jsx__WEBPACK_IMPORTED_MODULE_10__["default"],
+  'open-project': _components_modals_open_project_jsx__WEBPACK_IMPORTED_MODULE_11__["default"],
+  'save-as': _components_modals_save_as_jsx__WEBPACK_IMPORTED_MODULE_12__["default"],
+  'export-media': _components_modals_export_media_jsx__WEBPACK_IMPORTED_MODULE_13__["default"],
+  'replace-media': _components_modals_replace_media_jsx__WEBPACK_IMPORTED_MODULE_14__["default"],
+  'restore-media': _components_modals_restore_media_jsx__WEBPACK_IMPORTED_MODULE_15__["default"],
+  'download-image': _components_modals_download_image_jsx__WEBPACK_IMPORTED_MODULE_16__["default"],
+  'download-svg': _components_modals_download_svg_jsx__WEBPACK_IMPORTED_MODULE_17__["default"],
+  'keyboard-shortcuts': _components_modals_keyboard_shortcuts_jsx__WEBPACK_IMPORTED_MODULE_18__["default"],
+  'help': _components_modals_help_jsx__WEBPACK_IMPORTED_MODULE_19__["default"]
 };
 
 /**
@@ -13138,6 +13604,7 @@ var propsToSaveLocalStorage = ['fullScreen', 'fileFormat', 'fileQuality', 'prese
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   createArrangedMiddleware: () => (/* binding */ createArrangedMiddleware),
 /* harmony export */   createPaginatingMiddleware: () => (/* binding */ createPaginatingMiddleware)
 /* harmony export */ });
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
@@ -13149,9 +13616,20 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, defineProperty = Object.defineProperty || function (obj, key, desc) { obj[key] = desc.value; }, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return defineProperty(generator, "_invoke", { value: makeInvokeMethod(innerFn, self, context) }), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; defineProperty(this, "_invoke", { value: function value(method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; } function maybeInvokeDelegate(delegate, context) { var methodName = context.method, method = delegate.iterator[methodName]; if (undefined === method) return context.delegate = null, "throw" === methodName && delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method) || "return" !== methodName && (context.method = "throw", context.arg = new TypeError("The iterator does not provide a '" + methodName + "' method")), ContinueSentinel; var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), defineProperty(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (val) { var object = Object(val), keys = []; for (var key in object) keys.push(key); return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+/**
+ * 
+ * @since 1.0.0
+ */
+
 var parseResponse = function parseResponse(response) {
   return response.json ? response.json() : Promise.reject(response);
 };
+
+/**
+ * 
+ * @since 1.0.0
+ */
+
 var paginatingMiddlewareResponse = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(response) {
     var _response$headers;
@@ -13183,10 +13661,77 @@ var paginatingMiddlewareResponse = /*#__PURE__*/function () {
     return _ref.apply(this, arguments);
   };
 }();
+
+/**
+ * 
+ * @since 1.2.0
+ */
+
+var arrangedMiddlewareResponse = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(response) {
+    var hasAdditionalDatas, items, newItems;
+    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+      while (1) switch (_context2.prev = _context2.next) {
+        case 0:
+          hasAdditionalDatas = !!response.items;
+          items = hasAdditionalDatas ? response.items : response;
+          newItems = (items === null || items === void 0 ? void 0 : items.map(function (_ref3) {
+            var id = _ref3.id,
+              _ref3$title = _ref3.title,
+              title = _ref3$title === void 0 ? {} : _ref3$title,
+              caption = _ref3.caption,
+              description = _ref3.description,
+              author = _ref3.author,
+              _ref3$pixmagix_catego = _ref3.pixmagix_category,
+              pixmagix_category = _ref3$pixmagix_catego === void 0 ? [] : _ref3$pixmagix_catego,
+              status = _ref3.status,
+              _ref3$meta = _ref3.meta,
+              meta = _ref3$meta === void 0 ? {} : _ref3$meta;
+            return {
+              id: id,
+              metadata: {
+                title: title.rendered || '',
+                caption: caption,
+                description: description,
+                author: author,
+                category: pixmagix_category[0] || 0,
+                status: status
+              },
+              project: meta.pixmagix_project || {}
+            };
+          })) || [];
+          return _context2.abrupt("return", hasAdditionalDatas ? _objectSpread(_objectSpread({}, response), {}, {
+            items: newItems
+          }) : newItems);
+        case 4:
+        case "end":
+          return _context2.stop();
+      }
+    }, _callee2);
+  }));
+  return function arrangedMiddlewareResponse(_x2) {
+    return _ref2.apply(this, arguments);
+  };
+}();
+
+/**
+ * 
+ * @since 1.0.0
+ */
+
 var createPaginatingMiddleware = function createPaginatingMiddleware(options, next) {
   return options.withTotalPages && (options.method === 'GET' || !options.method) ? next(_objectSpread(_objectSpread({}, options), {}, {
     parse: false
   })).then(paginatingMiddlewareResponse) : next(options);
+};
+
+/**
+ * 
+ * @since 1.2.0
+ */
+
+var createArrangedMiddleware = function createArrangedMiddleware(options, next) {
+  return options.arrangeParams ? next(options).then(arrangedMiddlewareResponse) : next(options);
 };
 
 /***/ }),
@@ -13204,6 +13749,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! wp-i18n */ "wp-i18n");
 /* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(wp_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utils_hooks_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../utils/hooks.js */ "./src/utils/hooks.js");
 
 
 /**
@@ -13212,14 +13758,14 @@ __webpack_require__.r(__webpack_exports__);
  * @return {array}
  */
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (_ref) {
-  var layerIds = _ref.layerIds,
-    canvasBackground = _ref.canvasBackground,
-    mediaId = _ref.mediaId,
-    revisionURL = _ref.revisionURL,
-    fullScreen = _ref.fullScreen,
-    setEditor = _ref.setEditor;
-  return [{
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (props) {
+  var layerIds = props.layerIds,
+    canvasBackground = props.canvasBackground,
+    mediaId = props.mediaId,
+    revisionURL = props.revisionURL,
+    fullScreen = props.fullScreen,
+    setEditor = props.setEditor;
+  return (0,_utils_hooks_js__WEBPACK_IMPORTED_MODULE_1__.applyFilters)('editor.optionsMenu', [{
     name: 'open-project',
     label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Open', 'pixmagix'),
     onClick: function onClick() {
@@ -13305,7 +13851,7 @@ __webpack_require__.r(__webpack_exports__);
     onClick: function onClick() {
       setEditor('activeModal', 'help');
     }
-  }];
+  }], props);
 });
 
 /***/ }),
@@ -13371,6 +13917,97 @@ __webpack_require__.r(__webpack_exports__);
     label:snapToGrid ? __('Turn Off Snap to Grid', 'pixmagix') : __('Snap to Grid', 'pixmagix'),
     onClick:() => setEditor('snapToGrid', !snapToGrid)
     }*/];
+});
+
+/***/ }),
+
+/***/ "./src/editor/utils/save.js":
+/*!**********************************!*\
+  !*** ./src/editor/utils/save.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! wp-i18n */ "wp-i18n");
+/* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(wp_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var wp_api_fetch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! wp-api-fetch */ "wp-api-fetch");
+/* harmony import */ var wp_api_fetch__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(wp_api_fetch__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _utils_constants_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../utils/constants.js */ "./src/utils/constants.js");
+
+
+
+
+
+/**
+ * 
+ * @since 1.2.0
+ */
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (_ref) {
+  var projectId = _ref.projectId,
+    projectName = _ref.projectName,
+    projectDescription = _ref.projectDescription,
+    projectAuthor = _ref.projectAuthor,
+    projectCategory = _ref.projectCategory,
+    projectStatus = _ref.projectStatus,
+    layers = _ref.layers,
+    layerIds = _ref.layerIds,
+    canvasWidth = _ref.canvasWidth,
+    canvasHeight = _ref.canvasHeight,
+    canvasBackground = _ref.canvasBackground,
+    mediaId = _ref.mediaId,
+    mediaUrl = _ref.mediaUrl,
+    revisionURL = _ref.revisionURL,
+    thumbnail = _ref.thumbnail,
+    preview = _ref.preview,
+    setEditor = _ref.setEditor,
+    sendNotice = _ref.sendNotice;
+  if (!layerIds.length && !canvasBackground) {
+    sendNotice((0,wp_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Please create something, before you save!', 'pixmagix'), 'warning');
+    return;
+  }
+  wp_api_fetch__WEBPACK_IMPORTED_MODULE_2___default()({
+    path: _utils_constants_js__WEBPACK_IMPORTED_MODULE_3__.PROJECTS_REST_PATH + (projectId || ''),
+    method: 'POST',
+    data: {
+      title: projectName || '',
+      content: projectDescription || '',
+      status: projectStatus || 'publish',
+      author: projectAuthor,
+      pixmagix_category: projectCategory ? [projectCategory] : [],
+      meta: {
+        pixmagix_project: {
+          canvasWidth: canvasWidth,
+          canvasHeight: canvasHeight,
+          canvasBackground: canvasBackground,
+          layers: layerIds.map(function (id) {
+            return layers[id];
+          }),
+          thumbnail: thumbnail,
+          preview: preview,
+          mediaId: mediaId,
+          mediaUrl: mediaUrl,
+          revisionURL: revisionURL
+        }
+      }
+    }
+  }).then(function (response) {
+    (0,react_redux__WEBPACK_IMPORTED_MODULE_0__.batch)(function () {
+      setEditor({
+        projectId: response.id,
+        projectAuthor: response.author
+      });
+      sendNotice((0,wp_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Project Saved Successfully', 'pixmagix'), 'success');
+    });
+  })["catch"](function (_ref2) {
+    var message = _ref2.message;
+    sendNotice(message, 'error');
+  });
 });
 
 /***/ }),
@@ -13925,6 +14562,127 @@ function getCropShapeSize(canvasWidth, canvasHeight, cropAspectRatio) {
     x: width * canvasZoom * scale,
     y: height * canvasZoom * scale
   };
+}
+
+/***/ }),
+
+/***/ "./src/utils/constants.js":
+/*!********************************!*\
+  !*** ./src/utils/constants.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   CATEGORIES_REST_PATH: () => (/* binding */ CATEGORIES_REST_PATH),
+/* harmony export */   IMAGES_REST_PATH: () => (/* binding */ IMAGES_REST_PATH),
+/* harmony export */   NOTIFICATION_EXPIRATION_TIME: () => (/* binding */ NOTIFICATION_EXPIRATION_TIME),
+/* harmony export */   PIXMAGIX_WEBSITE: () => (/* binding */ PIXMAGIX_WEBSITE),
+/* harmony export */   PROJECTS_REST_PATH: () => (/* binding */ PROJECTS_REST_PATH),
+/* harmony export */   REST_PATH: () => (/* binding */ REST_PATH)
+/* harmony export */ });
+var PIXMAGIX_WEBSITE = 'https://pixmagix-photo-editor.com/';
+var PROJECTS_REST_PATH = 'wp/v2/pixmagix/';
+var CATEGORIES_REST_PATH = 'wp/v2/pixmagix_category/';
+var IMAGES_REST_PATH = 'wp/v2/media/';
+var REST_PATH = 'pixmagix/v1/';
+var NOTIFICATION_EXPIRATION_TIME = 4000;
+
+/***/ }),
+
+/***/ "./src/utils/hooks.js":
+/*!****************************!*\
+  !*** ./src/utils/hooks.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   HOOKS: () => (/* binding */ HOOKS),
+/* harmony export */   addAction: () => (/* binding */ addAction),
+/* harmony export */   addComponent: () => (/* binding */ addComponent),
+/* harmony export */   addFilter: () => (/* binding */ addFilter),
+/* harmony export */   applyFilters: () => (/* binding */ applyFilters),
+/* harmony export */   doAction: () => (/* binding */ doAction),
+/* harmony export */   doComponents: () => (/* binding */ doComponents)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var wp_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! wp-hooks */ "wp-hooks");
+/* harmony import */ var wp_hooks__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(wp_hooks__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+/**
+ * 
+ * @since 1.2.0
+ * @const {object}
+ */
+
+var HOOKS = (0,wp_hooks__WEBPACK_IMPORTED_MODULE_1__.createHooks)();
+
+/**
+ *
+ * @param {string} hookName
+ * @since 1.2.0
+ */
+
+function applyFilters(hookName) {
+  for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    args[_key - 1] = arguments[_key];
+  }
+  return HOOKS.applyFilters.apply(HOOKS, [hookName].concat(args));
+}
+
+/**
+ *
+ * @param {string} hookName
+ * @since 1.2.0
+ */
+
+function addFilter(hookName, namespace, callback, priority) {
+  return HOOKS.addFilter(hookName, namespace, callback, priority);
+}
+
+/**
+ *
+ * @param {string} hookName
+ * @since 1.2.0
+ */
+
+function doAction() {}
+
+/**
+ *
+ * @param {string} hookName
+ * @since 1.2.0
+ */
+
+function addAction() {}
+
+/**
+ *
+ * @param {string} hookName
+ * @param {object} props
+ * @since 1.2.0
+ */
+
+function doComponents(hookName, props) {
+  return applyFilters(hookName, null, props);
+}
+
+/**
+ *
+ * @param {string} hookName
+ * @since 1.2.0
+ */
+
+function addComponent(hookName, namespace, component, priority) {
+  return addFilter(hookName, namespace, function (_defEl, props) {
+    return component ? /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(component, props) : null;
+  }, priority);
 }
 
 /***/ }),
@@ -19014,6 +19772,17 @@ module.exports = wp.apiFetch;
 
 /***/ }),
 
+/***/ "wp-hooks":
+/*!***************************!*\
+  !*** external "wp.hooks" ***!
+  \***************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = wp.hooks;
+
+/***/ }),
+
 /***/ "wp-i18n":
 /*!**************************!*\
   !*** external "wp.i18n" ***!
@@ -19377,27 +20146,40 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   Editor: () => (/* binding */ Editor),
-/* harmony export */   initialize: () => (/* binding */ initialize)
+/* harmony export */   data: () => (/* binding */ data),
+/* harmony export */   hooks: () => (/* reexport module object */ _utils_hooks_js__WEBPACK_IMPORTED_MODULE_9__),
+/* harmony export */   initialize: () => (/* binding */ initialize),
+/* harmony export */   utils: () => (/* reexport module object */ _editor_utils_utils_js__WEBPACK_IMPORTED_MODULE_8__)
 /* harmony export */ });
 /* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var wp_api_fetch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! wp-api-fetch */ "wp-api-fetch");
 /* harmony import */ var wp_api_fetch__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(wp_api_fetch__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _editor_components_editor_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./editor/components/editor.jsx */ "./src/editor/components/editor.jsx");
 /* harmony import */ var _editor_redux_reducer_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./editor/redux/reducer.js */ "./src/editor/redux/reducer.js");
-/* harmony import */ var _editor_utils_middlewares_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./editor/utils/middlewares.js */ "./src/editor/utils/middlewares.js");
-/* harmony import */ var _editor_canvas_extend_fabric_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./editor/canvas/extend-fabric.js */ "./src/editor/canvas/extend-fabric.js");
-/* harmony import */ var _editor_canvas_extend_point_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./editor/canvas/extend-point.js */ "./src/editor/canvas/extend-point.js");
-/* harmony import */ var _editor_canvas_extend_filters_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./editor/canvas/extend-filters.js */ "./src/editor/canvas/extend-filters.js");
-/* harmony import */ var _editor_canvas_extend_gradient_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./editor/canvas/extend-gradient.js */ "./src/editor/canvas/extend-gradient.js");
-/* harmony import */ var _editor_canvas_extend_shadow_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./editor/canvas/extend-shadow.js */ "./src/editor/canvas/extend-shadow.js");
-/* harmony import */ var _editor_canvas_extend_object_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./editor/canvas/extend-object.js */ "./src/editor/canvas/extend-object.js");
-/* harmony import */ var _editor_canvas_extend_image_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./editor/canvas/extend-image.js */ "./src/editor/canvas/extend-image.js");
-/* harmony import */ var _editor_canvas_extend_group_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./editor/canvas/extend-group.js */ "./src/editor/canvas/extend-group.js");
-/* harmony import */ var _editor_canvas_extend_text_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./editor/canvas/extend-text.js */ "./src/editor/canvas/extend-text.js");
-/* harmony import */ var _editor_canvas_extend_path_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./editor/canvas/extend-path.js */ "./src/editor/canvas/extend-path.js");
-/* harmony import */ var _editor_canvas_extend_polyline_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./editor/canvas/extend-polyline.js */ "./src/editor/canvas/extend-polyline.js");
+/* harmony import */ var _editor_redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./editor/redux/actions-editor.js */ "./src/editor/redux/actions-editor.js");
+/* harmony import */ var _editor_redux_actions_data_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./editor/redux/actions-data.js */ "./src/editor/redux/actions-data.js");
+/* harmony import */ var _editor_utils_middlewares_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./editor/utils/middlewares.js */ "./src/editor/utils/middlewares.js");
+/* harmony import */ var _editor_utils_utils_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./editor/utils/utils.js */ "./src/editor/utils/utils.js");
+/* harmony import */ var _utils_hooks_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./utils/hooks.js */ "./src/utils/hooks.js");
+/* harmony import */ var _editor_canvas_extend_fabric_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./editor/canvas/extend-fabric.js */ "./src/editor/canvas/extend-fabric.js");
+/* harmony import */ var _editor_canvas_extend_point_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./editor/canvas/extend-point.js */ "./src/editor/canvas/extend-point.js");
+/* harmony import */ var _editor_canvas_extend_filters_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./editor/canvas/extend-filters.js */ "./src/editor/canvas/extend-filters.js");
+/* harmony import */ var _editor_canvas_extend_gradient_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./editor/canvas/extend-gradient.js */ "./src/editor/canvas/extend-gradient.js");
+/* harmony import */ var _editor_canvas_extend_shadow_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./editor/canvas/extend-shadow.js */ "./src/editor/canvas/extend-shadow.js");
+/* harmony import */ var _editor_canvas_extend_object_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./editor/canvas/extend-object.js */ "./src/editor/canvas/extend-object.js");
+/* harmony import */ var _editor_canvas_extend_image_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./editor/canvas/extend-image.js */ "./src/editor/canvas/extend-image.js");
+/* harmony import */ var _editor_canvas_extend_group_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./editor/canvas/extend-group.js */ "./src/editor/canvas/extend-group.js");
+/* harmony import */ var _editor_canvas_extend_text_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./editor/canvas/extend-text.js */ "./src/editor/canvas/extend-text.js");
+/* harmony import */ var _editor_canvas_extend_path_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./editor/canvas/extend-path.js */ "./src/editor/canvas/extend-path.js");
+/* harmony import */ var _editor_canvas_extend_polyline_js__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./editor/canvas/extend-polyline.js */ "./src/editor/canvas/extend-polyline.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -19416,7 +20198,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-wp_api_fetch__WEBPACK_IMPORTED_MODULE_2___default().use(_editor_utils_middlewares_js__WEBPACK_IMPORTED_MODULE_5__.createPaginatingMiddleware);
+
+
+
+
+wp_api_fetch__WEBPACK_IMPORTED_MODULE_2___default().use(_editor_utils_middlewares_js__WEBPACK_IMPORTED_MODULE_7__.createPaginatingMiddleware);
 
 /**
  *
@@ -19425,11 +20211,10 @@ wp_api_fetch__WEBPACK_IMPORTED_MODULE_2___default().use(_editor_utils_middleware
 
 var Editor = function Editor(_ref) {
   var id = _ref.id,
-    title = _ref.title,
-    author = _ref.author,
+    metadata = _ref.metadata,
     project = _ref.project,
     media = _ref.media;
-  var store = (0,redux__WEBPACK_IMPORTED_MODULE_17__.createStore)((0,_editor_redux_reducer_js__WEBPACK_IMPORTED_MODULE_4__["default"])(id, title, author, project, media));
+  var store = (0,redux__WEBPACK_IMPORTED_MODULE_21__.createStore)((0,_editor_redux_reducer_js__WEBPACK_IMPORTED_MODULE_4__["default"])(id, metadata, project, media));
   return /*#__PURE__*/React.createElement(react_redux__WEBPACK_IMPORTED_MODULE_1__.Provider, {
     store: store
   }, /*#__PURE__*/React.createElement(_editor_components_editor_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null));
@@ -19446,6 +20231,17 @@ var initialize = function initialize(params) {
   var root = (0,react_dom_client__WEBPACK_IMPORTED_MODULE_0__.createRoot)(container);
   root.render( /*#__PURE__*/React.createElement(Editor, params));
 };
+
+/**
+ * 
+ * @since 1.2.0
+ * @var {object}
+ */
+
+var data = _objectSpread(_objectSpread({
+  batch: react_redux__WEBPACK_IMPORTED_MODULE_1__.batch,
+  connect: react_redux__WEBPACK_IMPORTED_MODULE_1__.connect
+}, _editor_redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_5__), _editor_redux_actions_data_js__WEBPACK_IMPORTED_MODULE_6__);
 
 })();
 

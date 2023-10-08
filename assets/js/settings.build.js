@@ -117,6 +117,14 @@ var HELP_TEXTS = {
     text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('The preserveAspectRatio attribute is used to control how an SVG element is scaled and positioned within its container. It allows you to define the aspect ratio, define alignment, and specify how to handle overflowing content.', 'pixmagix'),
     link: 'https://pixmagix-photo-editor.com/graphic-design/understanding-the-preserveaspectratio-svg-attribute/'
   },
+  strokeWidth: {
+    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Stroke width is the thickness of a line used in creating graphical elements, shapes, or text. It is typically measured in points or pixels and greatly influences the visual perception of design elements.', 'pixmagix'),
+    link: 'https://pixmagix-photo-editor.com/graphic-design/the-importance-of-stroke-width-in-design/'
+  },
+  sda: {
+    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('The stroke-dasharray is primarily used to create dashed lines, dotted lines, or more complex patterns. It controls the pattern of dashes and gaps used to paint the outline of shapes.', 'pixmagix'),
+    link: 'https://pixmagix-photo-editor.com/graphic-design/understanding-the-stroke-dasharray-a-detailed-overview/'
+  },
   jpgQuality: {
     text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('JPEG is a widely used image format that utilizes lossy compression. This means that when an image is saved in JPEG format, some of the image data is permanently discarded to reduce file size. The JPEG quality setting determines the degree of compression applied to an image.', 'pixmagix'),
     link: 'https://pixmagix-photo-editor.com/miscellaneous/the-impact-of-jpeg-quality-on-web-performance/'
@@ -131,6 +139,10 @@ var HELP_TEXTS = {
   },
   pixabayApiKey: {
     text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'pixmagix'),
+    link: 'https://pixmagix-photo-editor.com/tutorials/how-to-get-and-connect-pixabay-api-key-to-pixmagix/'
+  },
+  pexelsApiKey: {
+    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'pixmagix'),
     link: ''
   },
   unsplashApiKey: {
@@ -138,8 +150,8 @@ var HELP_TEXTS = {
     link: ''
   },
   gfontsApiKey: {
-    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'pixmagix'),
-    link: ''
+    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('By default, you can access the first 200 most popular fonts from Google Fonts. But what if you want more variety? By obtaining a Google Fonts API key, you can gain real-time access to all available font families, enhancing your design choices even further.', 'pixmagix'),
+    link: 'https://pixmagix-photo-editor.com/tutorials/how-to-get-and-connect-google-fonts-api-key-to-pixmagix/'
   },
   webSafeFonts: {
     text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'pixmagix'),
@@ -184,21 +196,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! wp-i18n */ "wp-i18n");
 /* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(wp_i18n__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _editor_utils_help_texts_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../editor/utils/help-texts.js */ "./src/editor/utils/help-texts.js");
+/* harmony import */ var _utils_hooks_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../utils/hooks.js */ "./src/utils/hooks.js");
 
 
 
 
-var ContentApiKeys = function ContentApiKeys(_ref) {
-  var pixabay_api_key = _ref.pixabay_api_key,
-    unsplash_api_key = _ref.unsplash_api_key,
-    gfonts_api_key = _ref.gfonts_api_key,
-    onSettingChange = _ref.onSettingChange;
+
+var ContentApiKeys = function ContentApiKeys(props) {
+  var pixabay_api_key = props.pixabay_api_key,
+    pexels_api_key = props.pexels_api_key,
+    unsplash_api_key = props.unsplash_api_key,
+    gfonts_api_key = props.gfonts_api_key,
+    onSettingChange = props.onSettingChange;
   return /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_1__.Input, {
     label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Pixabay API Key', 'pixmagix'),
     help: (0,_editor_utils_help_texts_js__WEBPACK_IMPORTED_MODULE_3__["default"])('pixabayApiKey'),
     value: pixabay_api_key,
     onChange: function onChange(value) {
       return onSettingChange('pixabay_api_key', value);
+    }
+  }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_1__.Input, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Pexels API Key', 'pixmagix'),
+    help: (0,_editor_utils_help_texts_js__WEBPACK_IMPORTED_MODULE_3__["default"])('pexelsApiKey'),
+    value: pexels_api_key,
+    onChange: function onChange(value) {
+      return onSettingChange('pexels_api_key', value);
     }
   }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_1__.Input, {
     label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Unsplash API Key', 'pixmagix'),
@@ -214,9 +236,66 @@ var ContentApiKeys = function ContentApiKeys(_ref) {
     onChange: function onChange(value) {
       return onSettingChange('gfonts_api_key', value);
     }
-  }));
+  }), (0,_utils_hooks_js__WEBPACK_IMPORTED_MODULE_4__.doComponents)('settings.apiKeys', props));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ContentApiKeys);
+
+/***/ }),
+
+/***/ "./src/settings/content-performance.jsx":
+/*!**********************************************!*\
+  !*** ./src/settings/content-performance.jsx ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var elements__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! elements */ "elements");
+/* harmony import */ var elements__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(elements__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! wp-i18n */ "wp-i18n");
+/* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(wp_i18n__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+var ContentPerformance = function ContentPerformance(_ref) {
+  var thumbnail_width = _ref.thumbnail_width,
+    create_previews = _ref.create_previews,
+    preview_width = _ref.preview_width,
+    onSettingChange = _ref.onSettingChange;
+  return /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_1__.Input, {
+    type: "number",
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Thumbnails Width', 'pixmagix'),
+    value: thumbnail_width,
+    onChange: function onChange(value) {
+      return onSettingChange('thumbnail_width', value);
+    },
+    min: 100,
+    max: 800,
+    step: 1
+  }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_1__.Checkbox, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Create Preview Images', 'pixmagix'),
+    checked: create_previews,
+    onChange: function onChange(value) {
+      return onSettingChange('create_previews', value);
+    }
+  }), create_previews && /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_1__.Input, {
+    type: "number",
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Previews Width', 'pixmagix'),
+    value: preview_width,
+    onChange: function onChange(value) {
+      return onSettingChange('preview_width', value);
+    },
+    min: 360,
+    max: 1920,
+    step: 1
+  }));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ContentPerformance);
 
 /***/ }),
 
@@ -347,7 +426,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(wp_i18n__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _content_api_keys_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./content-api-keys.jsx */ "./src/settings/content-api-keys.jsx");
 /* harmony import */ var _content_users_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./content-users.jsx */ "./src/settings/content-users.jsx");
-/* harmony import */ var _utils_utils_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../utils/utils.js */ "./src/utils/utils.js");
+/* harmony import */ var _content_performance_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./content-performance.jsx */ "./src/settings/content-performance.jsx");
+/* harmony import */ var _utils_utils_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../utils/utils.js */ "./src/utils/utils.js");
+/* harmony import */ var _utils_hooks_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../utils/hooks.js */ "./src/utils/hooks.js");
+
+
 
 
 
@@ -355,22 +438,27 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Content = function Content(props) {
+  var tabs = (0,_utils_hooks_js__WEBPACK_IMPORTED_MODULE_7__.applyFilters)('settings.tabs', [{
+    name: 'apikeys',
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('API Keys', 'pixmagix'),
+    content: /*#__PURE__*/React.createElement(_content_api_keys_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], props)
+  }, {
+    name: 'users',
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Users', 'pixmagix'),
+    content: /*#__PURE__*/React.createElement(_content_users_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], props)
+  }, {
+    name: 'performance',
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Performance', 'pixmagix'),
+    content: /*#__PURE__*/React.createElement(_content_performance_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], props)
+  }], props);
   return /*#__PURE__*/React.createElement("div", {
     className: "pixmagix-content"
   }, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_0__.Widget, {
-    tabs: [{
-      name: 'apikeys',
-      label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('API Keys', 'pixmagix'),
-      content: /*#__PURE__*/React.createElement(_content_api_keys_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], props)
-    }, {
-      name: 'users',
-      label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Users', 'pixmagix'),
-      content: /*#__PURE__*/React.createElement(_content_users_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], props)
-    }],
+    tabs: tabs,
     initShow: props.tab,
     onChange: function onChange(_ref) {
       var name = _ref.name;
-      return (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_5__.addToRouter)({
+      return (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_6__.addToRouter)({
         tab: name
       }, editor_globals__WEBPACK_IMPORTED_MODULE_1__.self_url);
     }
@@ -497,7 +585,8 @@ var Wrapper = function Wrapper(props) {
     settings: settings,
     sendNotice: setNotice
   }), /*#__PURE__*/React.createElement(_content_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], _extends({}, settings, {
-    onSettingChange: onSettingChange
+    onSettingChange: onSettingChange,
+    sendNotice: setNotice
   })), /*#__PURE__*/React.createElement(_utils_notification_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], _extends({}, notice, {
     onExpire: setNotice
   })));
@@ -515,6 +604,7 @@ var Wrapper = function Wrapper(props) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   CATEGORIES_REST_PATH: () => (/* binding */ CATEGORIES_REST_PATH),
 /* harmony export */   IMAGES_REST_PATH: () => (/* binding */ IMAGES_REST_PATH),
 /* harmony export */   NOTIFICATION_EXPIRATION_TIME: () => (/* binding */ NOTIFICATION_EXPIRATION_TIME),
 /* harmony export */   PIXMAGIX_WEBSITE: () => (/* binding */ PIXMAGIX_WEBSITE),
@@ -523,9 +613,106 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 var PIXMAGIX_WEBSITE = 'https://pixmagix-photo-editor.com/';
 var PROJECTS_REST_PATH = 'wp/v2/pixmagix/';
+var CATEGORIES_REST_PATH = 'wp/v2/pixmagix_category/';
 var IMAGES_REST_PATH = 'wp/v2/media/';
 var REST_PATH = 'pixmagix/v1/';
 var NOTIFICATION_EXPIRATION_TIME = 4000;
+
+/***/ }),
+
+/***/ "./src/utils/hooks.js":
+/*!****************************!*\
+  !*** ./src/utils/hooks.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   HOOKS: () => (/* binding */ HOOKS),
+/* harmony export */   addAction: () => (/* binding */ addAction),
+/* harmony export */   addComponent: () => (/* binding */ addComponent),
+/* harmony export */   addFilter: () => (/* binding */ addFilter),
+/* harmony export */   applyFilters: () => (/* binding */ applyFilters),
+/* harmony export */   doAction: () => (/* binding */ doAction),
+/* harmony export */   doComponents: () => (/* binding */ doComponents)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var wp_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! wp-hooks */ "wp-hooks");
+/* harmony import */ var wp_hooks__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(wp_hooks__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+/**
+ * 
+ * @since 1.2.0
+ * @const {object}
+ */
+
+var HOOKS = (0,wp_hooks__WEBPACK_IMPORTED_MODULE_1__.createHooks)();
+
+/**
+ *
+ * @param {string} hookName
+ * @since 1.2.0
+ */
+
+function applyFilters(hookName) {
+  for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    args[_key - 1] = arguments[_key];
+  }
+  return HOOKS.applyFilters.apply(HOOKS, [hookName].concat(args));
+}
+
+/**
+ *
+ * @param {string} hookName
+ * @since 1.2.0
+ */
+
+function addFilter(hookName, namespace, callback, priority) {
+  return HOOKS.addFilter(hookName, namespace, callback, priority);
+}
+
+/**
+ *
+ * @param {string} hookName
+ * @since 1.2.0
+ */
+
+function doAction() {}
+
+/**
+ *
+ * @param {string} hookName
+ * @since 1.2.0
+ */
+
+function addAction() {}
+
+/**
+ *
+ * @param {string} hookName
+ * @param {object} props
+ * @since 1.2.0
+ */
+
+function doComponents(hookName, props) {
+  return applyFilters(hookName, null, props);
+}
+
+/**
+ *
+ * @param {string} hookName
+ * @since 1.2.0
+ */
+
+function addComponent(hookName, namespace, component, priority) {
+  return addFilter(hookName, namespace, function (_defEl, props) {
+    return component ? /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(component, props) : null;
+  }, priority);
+}
 
 /***/ }),
 
@@ -872,6 +1059,17 @@ module.exports = wp.apiFetch;
 
 /***/ }),
 
+/***/ "wp-hooks":
+/*!***************************!*\
+  !*** external "wp.hooks" ***!
+  \***************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = wp.hooks;
+
+/***/ }),
+
 /***/ "wp-i18n":
 /*!**************************!*\
   !*** external "wp.i18n" ***!
@@ -961,10 +1159,13 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   Settings: () => (/* binding */ Settings),
+/* harmony export */   hooks: () => (/* reexport module object */ _utils_hooks_js__WEBPACK_IMPORTED_MODULE_2__),
 /* harmony export */   initialize: () => (/* binding */ initialize)
 /* harmony export */ });
 /* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
 /* harmony import */ var _settings_wrapper_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./settings/wrapper.jsx */ "./src/settings/wrapper.jsx");
+/* harmony import */ var _utils_hooks_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/hooks.js */ "./src/utils/hooks.js");
+
 
 
 

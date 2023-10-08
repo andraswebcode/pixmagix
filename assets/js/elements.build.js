@@ -2715,6 +2715,46 @@ exports.aliases = aliases;
 
 /***/ }),
 
+/***/ "./node_modules/@fortawesome/free-solid-svg-icons/faBoxArchive.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/@fortawesome/free-solid-svg-icons/faBoxArchive.js ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var prefix = 'fas';
+var iconName = 'box-archive';
+var width = 512;
+var height = 512;
+var aliases = ["archive"];
+var unicode = 'f187';
+var svgPathData = 'M32 32H480c17.7 0 32 14.3 32 32V96c0 17.7-14.3 32-32 32H32C14.3 128 0 113.7 0 96V64C0 46.3 14.3 32 32 32zm0 128H480V416c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V160zm128 80c0 8.8 7.2 16 16 16H336c8.8 0 16-7.2 16-16s-7.2-16-16-16H176c-8.8 0-16 7.2-16 16z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faBoxArchive = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;
+
+/***/ }),
+
 /***/ "./node_modules/@fortawesome/free-solid-svg-icons/faCircle.js":
 /*!********************************************************************!*\
   !*** ./node_modules/@fortawesome/free-solid-svg-icons/faCircle.js ***!
@@ -2915,6 +2955,46 @@ exports.aliases = aliases;
 
 /***/ }),
 
+/***/ "./node_modules/@fortawesome/free-solid-svg-icons/faDownload.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@fortawesome/free-solid-svg-icons/faDownload.js ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var prefix = 'fas';
+var iconName = 'download';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'f019';
+var svgPathData = 'M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faDownload = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;
+
+/***/ }),
+
 /***/ "./node_modules/@fortawesome/free-solid-svg-icons/faEye.js":
 /*!*****************************************************************!*\
   !*** ./node_modules/@fortawesome/free-solid-svg-icons/faEye.js ***!
@@ -3024,6 +3104,86 @@ exports.definition = {
   ]};
 
 exports.faEyeSlash = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;
+
+/***/ }),
+
+/***/ "./node_modules/@fortawesome/free-solid-svg-icons/faFileLines.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/@fortawesome/free-solid-svg-icons/faFileLines.js ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var prefix = 'fas';
+var iconName = 'file-lines';
+var width = 384;
+var height = 512;
+var aliases = [128441,128462,61686,"file-alt","file-text"];
+var unicode = 'f15c';
+var svgPathData = 'M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM112 256H272c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64H272c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64H272c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faFileLines = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;
+
+/***/ }),
+
+/***/ "./node_modules/@fortawesome/free-solid-svg-icons/faFilePen.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/@fortawesome/free-solid-svg-icons/faFilePen.js ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var prefix = 'fas';
+var iconName = 'file-pen';
+var width = 576;
+var height = 512;
+var aliases = [128221,"file-edit"];
+var unicode = 'f31c';
+var svgPathData = 'M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V285.7l-86.8 86.8c-10.3 10.3-17.5 23.1-21 37.2l-18.7 74.9c-2.3 9.2-1.8 18.8 1.3 27.5H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128zM549.8 235.7l14.4 14.4c15.6 15.6 15.6 40.9 0 56.6l-29.4 29.4-71-71 29.4-29.4c15.6-15.6 40.9-15.6 56.6 0zM311.9 417L441.1 287.8l71 71L382.9 487.9c-4.1 4.1-9.2 7-14.9 8.4l-60.1 15c-5.5 1.4-11.2-.2-15.2-4.2s-5.6-9.7-4.2-15.2l15-60.1c1.4-5.6 4.3-10.8 8.4-14.9z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faFilePen = exports.definition;
 exports.prefix = prefix;
 exports.iconName = iconName;
 exports.width = width;
@@ -3555,6 +3715,46 @@ exports.aliases = aliases;
 
 /***/ }),
 
+/***/ "./node_modules/@fortawesome/free-solid-svg-icons/faMaximize.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@fortawesome/free-solid-svg-icons/faMaximize.js ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var prefix = 'fas';
+var iconName = 'maximize';
+var width = 512;
+var height = 512;
+var aliases = ["expand-arrows-alt"];
+var unicode = 'f31e';
+var svgPathData = 'M200 32H56C42.7 32 32 42.7 32 56V200c0 9.7 5.8 18.5 14.8 22.2s19.3 1.7 26.2-5.2l40-40 79 79-79 79L73 295c-6.9-6.9-17.2-8.9-26.2-5.2S32 302.3 32 312V456c0 13.3 10.7 24 24 24H200c9.7 0 18.5-5.8 22.2-14.8s1.7-19.3-5.2-26.2l-40-40 79-79 79 79-40 40c-6.9 6.9-8.9 17.2-5.2 26.2s12.5 14.8 22.2 14.8H456c13.3 0 24-10.7 24-24V312c0-9.7-5.8-18.5-14.8-22.2s-19.3-1.7-26.2 5.2l-40 40-79-79 79-79 40 40c6.9 6.9 17.2 8.9 26.2 5.2s14.8-12.5 14.8-22.2V56c0-13.3-10.7-24-24-24H312c-9.7 0-18.5 5.8-22.2 14.8s-1.7 19.3 5.2 26.2l40 40-79 79-79-79 40-40c6.9-6.9 8.9-17.2 5.2-26.2S209.7 32 200 32z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faMaximize = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;
+
+/***/ }),
+
 /***/ "./node_modules/@fortawesome/free-solid-svg-icons/faObjectGroup.js":
 /*!*************************************************************************!*\
   !*** ./node_modules/@fortawesome/free-solid-svg-icons/faObjectGroup.js ***!
@@ -4024,6 +4224,46 @@ exports.definition = {
   ]};
 
 exports.faRuler = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;
+
+/***/ }),
+
+/***/ "./node_modules/@fortawesome/free-solid-svg-icons/faServer.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@fortawesome/free-solid-svg-icons/faServer.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var prefix = 'fas';
+var iconName = 'server';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'f233';
+var svgPathData = 'M64 32C28.7 32 0 60.7 0 96v64c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm280 72a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm48 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zM64 288c-35.3 0-64 28.7-64 64v64c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V352c0-35.3-28.7-64-64-64H64zm280 72a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm56 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faServer = exports.definition;
 exports.prefix = prefix;
 exports.iconName = iconName;
 exports.width = width;
@@ -5094,6 +5334,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var onClickHref = function onClickHref(href, target) {
+  var a = document.createElement('a');
+  if (href) {
+    a.href = href;
+  }
+  if (target) {
+    a.target = target;
+  }
+  a.click();
+};
 var Button = function Button(_ref, ref) {
   var className = _ref.className,
     label = _ref.label,
@@ -5102,6 +5352,8 @@ var Button = function Button(_ref, ref) {
     small = _ref.small,
     block = _ref.block,
     disabled = _ref.disabled,
+    href = _ref.href,
+    target = _ref.target,
     onClick = _ref.onClick,
     children = _ref.children;
   return icon ? /*#__PURE__*/React.createElement("button", {
@@ -5113,7 +5365,9 @@ var Button = function Button(_ref, ref) {
     }),
     disabled: disabled,
     title: !disabled ? label : undefined,
-    onClick: onClick
+    onClick: href ? function () {
+      return onClickHref(href, target);
+    } : onClick
   }, (0,lodash__WEBPACK_IMPORTED_MODULE_1__.isObject)(icon) ? /*#__PURE__*/React.createElement(_icon_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], icon) : /*#__PURE__*/React.createElement(_icon_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
     icon: icon
   })) : /*#__PURE__*/React.createElement("button", {
@@ -5124,7 +5378,9 @@ var Button = function Button(_ref, ref) {
       block: block
     }),
     disabled: disabled,
-    onClick: onClick
+    onClick: href ? function () {
+      return onClickHref(href, target);
+    } : onClick
   }, children);
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (/*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(Button));
@@ -5810,10 +6066,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   Grid: () => (/* binding */ Grid),
 /* harmony export */   GridItem: () => (/* binding */ GridItem)
 /* harmony export */ });
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _button_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./button.jsx */ "./src/elements/button.jsx");
-/* harmony import */ var _button_group_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./button-group.jsx */ "./src/elements/button-group.jsx");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _button_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./button.jsx */ "./src/elements/button.jsx");
+/* harmony import */ var _button_group_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./button-group.jsx */ "./src/elements/button-group.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -5822,16 +6080,18 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 
 
 
+
 var Grid = function Grid(_ref) {
   var className = _ref.className,
     columns = _ref.columns,
     children = _ref.children;
   return /*#__PURE__*/React.createElement("ul", {
-    className: classnames__WEBPACK_IMPORTED_MODULE_0___default()('pixmagix-grid', className, _defineProperty({}, "pixmagix-grid__cols-".concat(columns), columns))
+    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()('pixmagix-grid', className, _defineProperty({}, "pixmagix-grid__cols-".concat(columns), columns))
   }, children);
 };
-var GridItem = function GridItem(_ref2) {
+var Item = function Item(_ref2, ref) {
   var className = _ref2.className,
+    style = _ref2.style,
     title = _ref2.title,
     caption = _ref2.caption,
     isEmpty = _ref2.isEmpty,
@@ -5843,25 +6103,29 @@ var GridItem = function GridItem(_ref2) {
     children = _ref2.children,
     onClick = _ref2.onClick;
   return isEmpty ? /*#__PURE__*/React.createElement("li", {
-    className: "pixmagix-grid__item pixmagix-grid__item-empty"
+    ref: ref,
+    className: "pixmagix-grid__item pixmagix-grid__item-empty",
+    style: style
   }, /*#__PURE__*/React.createElement("div", {
     className: "pixmagix-grid__item-inner"
   }, /*#__PURE__*/React.createElement("div", {
     className: "pixmagix-grid__item-figure"
   }, /*#__PURE__*/React.createElement("p", null, caption)))) : /*#__PURE__*/React.createElement("li", {
-    className: classnames__WEBPACK_IMPORTED_MODULE_0___default()('pixmagix-grid__item', className, {
+    ref: ref,
+    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()('pixmagix-grid__item', className, {
       active: selected
-    })
-  }, !!(actions !== null && actions !== void 0 && actions.length) && /*#__PURE__*/React.createElement(_button_group_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    }),
+    style: style
+  }, !!(actions !== null && actions !== void 0 && actions.length) && /*#__PURE__*/React.createElement(_button_group_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
     className: "pixmagix-grid__actions"
   }, actions.map(function (action) {
-    return /*#__PURE__*/React.createElement(_button_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], _extends({
+    return action ? /*#__PURE__*/React.createElement(_button_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], _extends({
       key: action.name
     }, action, {
       small: true
-    }));
+    })) : null;
   })), /*#__PURE__*/React.createElement("a", {
-    className: classnames__WEBPACK_IMPORTED_MODULE_0___default()('pixmagix-grid__item-inner', className),
+    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()('pixmagix-grid__item-inner', className),
     title: title,
     href: href,
     onClick: onClick
@@ -5877,6 +6141,7 @@ var GridItem = function GridItem(_ref2) {
     className: "pixmagix-grid__item-caption"
   }, caption))));
 };
+var GridItem = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(Item);
 
 
 /***/ }),
@@ -5926,9 +6191,8 @@ var Help = function Help(_ref) {
   }, /*#__PURE__*/React.createElement("p", null, text), !!link && /*#__PURE__*/React.createElement(_button_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
     active: true,
     small: true,
-    onClick: function onClick() {
-      window.open(link);
-    }
+    href: link,
+    target: "_blank"
   }, (0,wp_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Read More', 'pixmagix'))) : null;
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Help);
@@ -6006,6 +6270,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fortawesome_free_solid_svg_icons_faCircleInfo__WEBPACK_IMPORTED_MODULE_57__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faCircleInfo */ "./node_modules/@fortawesome/free-solid-svg-icons/faCircleInfo.js");
 /* harmony import */ var _fortawesome_free_solid_svg_icons_faEyeDropper__WEBPACK_IMPORTED_MODULE_58__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faEyeDropper */ "./node_modules/@fortawesome/free-solid-svg-icons/faEyeDropper.js");
 /* harmony import */ var _fortawesome_free_solid_svg_icons_faPalette__WEBPACK_IMPORTED_MODULE_59__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faPalette */ "./node_modules/@fortawesome/free-solid-svg-icons/faPalette.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faMaximize__WEBPACK_IMPORTED_MODULE_60__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faMaximize */ "./node_modules/@fortawesome/free-solid-svg-icons/faMaximize.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faBoxArchive__WEBPACK_IMPORTED_MODULE_61__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faBoxArchive */ "./node_modules/@fortawesome/free-solid-svg-icons/faBoxArchive.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faServer__WEBPACK_IMPORTED_MODULE_62__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faServer */ "./node_modules/@fortawesome/free-solid-svg-icons/faServer.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faDownload__WEBPACK_IMPORTED_MODULE_63__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faDownload */ "./node_modules/@fortawesome/free-solid-svg-icons/faDownload.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faFileLines__WEBPACK_IMPORTED_MODULE_64__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faFileLines */ "./node_modules/@fortawesome/free-solid-svg-icons/faFileLines.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faFilePen__WEBPACK_IMPORTED_MODULE_65__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faFilePen */ "./node_modules/@fortawesome/free-solid-svg-icons/faFilePen.js");
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
 function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
@@ -6068,7 +6338,13 @@ function _extends() { _extends = Object.assign ? Object.assign.bind() : function
 
 
 
-_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_1__.library.add(_fortawesome_free_solid_svg_icons_faRightToBracket__WEBPACK_IMPORTED_MODULE_3__.faRightToBracket, _fortawesome_free_solid_svg_icons_faArrowPointer__WEBPACK_IMPORTED_MODULE_4__.faArrowPointer, _fortawesome_free_solid_svg_icons_faHand__WEBPACK_IMPORTED_MODULE_5__.faHand, _fortawesome_free_solid_svg_icons_faRotateLeft__WEBPACK_IMPORTED_MODULE_6__.faRotateLeft, _fortawesome_free_solid_svg_icons_faRotateRight__WEBPACK_IMPORTED_MODULE_7__.faRotateRight, _fortawesome_free_solid_svg_icons_faAngleLeft__WEBPACK_IMPORTED_MODULE_8__.faAngleLeft, _fortawesome_free_solid_svg_icons_faAngleRight__WEBPACK_IMPORTED_MODULE_9__.faAngleRight, _fortawesome_free_solid_svg_icons_faAngleUp__WEBPACK_IMPORTED_MODULE_10__.faAngleUp, _fortawesome_free_solid_svg_icons_faAngleDown__WEBPACK_IMPORTED_MODULE_11__.faAngleDown, _fortawesome_free_solid_svg_icons_faImage__WEBPACK_IMPORTED_MODULE_12__.faImage, _fortawesome_free_solid_svg_icons_faLayerGroup__WEBPACK_IMPORTED_MODULE_13__.faLayerGroup, _fortawesome_free_solid_svg_icons_faFont__WEBPACK_IMPORTED_MODULE_14__.faFont, _fortawesome_free_solid_svg_icons_faIcons__WEBPACK_IMPORTED_MODULE_15__.faIcons, _fortawesome_free_solid_svg_icons_faQrcode__WEBPACK_IMPORTED_MODULE_16__.faQrcode, _fortawesome_free_solid_svg_icons_faShapes__WEBPACK_IMPORTED_MODULE_17__.faShapes, _fortawesome_free_solid_svg_icons_faPen__WEBPACK_IMPORTED_MODULE_18__.faPen, _fortawesome_free_solid_svg_icons_faPenNib__WEBPACK_IMPORTED_MODULE_19__.faPenNib, _fortawesome_free_solid_svg_icons_faCrop__WEBPACK_IMPORTED_MODULE_20__.faCrop, _fortawesome_free_solid_svg_icons_faPlus__WEBPACK_IMPORTED_MODULE_21__.faPlus, _fortawesome_free_solid_svg_icons_faSquarePlus__WEBPACK_IMPORTED_MODULE_22__.faSquarePlus, _fortawesome_free_solid_svg_icons_faFloppyDisk__WEBPACK_IMPORTED_MODULE_23__.faFloppyDisk, _fortawesome_free_solid_svg_icons_faBars__WEBPACK_IMPORTED_MODULE_24__.faBars, _fortawesome_free_solid_svg_icons_faGear__WEBPACK_IMPORTED_MODULE_25__.faGear, _fortawesome_free_solid_svg_icons_faSquare__WEBPACK_IMPORTED_MODULE_26__.faSquare, _fortawesome_free_solid_svg_icons_faCircle__WEBPACK_IMPORTED_MODULE_27__.faCircle, _fortawesome_free_solid_svg_icons_faStar__WEBPACK_IMPORTED_MODULE_28__.faStar, _fortawesome_free_solid_svg_icons_faRuler__WEBPACK_IMPORTED_MODULE_29__.faRuler, _fortawesome_free_solid_svg_icons_faSliders__WEBPACK_IMPORTED_MODULE_30__.faSliders, _fortawesome_free_solid_svg_icons_faPaintbrush__WEBPACK_IMPORTED_MODULE_31__.faPaintbrush, _fortawesome_free_solid_svg_icons_faFill__WEBPACK_IMPORTED_MODULE_32__.faFill, _fortawesome_free_solid_svg_icons_faBlender__WEBPACK_IMPORTED_MODULE_33__.faBlender, _fortawesome_free_solid_svg_icons_faWandMagicSparkles__WEBPACK_IMPORTED_MODULE_34__.faWandMagicSparkles, _fortawesome_free_solid_svg_icons_faBezierCurve__WEBPACK_IMPORTED_MODULE_35__.faBezierCurve, _fortawesome_free_solid_svg_icons_faCircleHalfStroke__WEBPACK_IMPORTED_MODULE_36__.faCircleHalfStroke, _fortawesome_free_solid_svg_icons_faMagnifyingGlass__WEBPACK_IMPORTED_MODULE_37__.faMagnifyingGlass, _fortawesome_free_solid_svg_icons_faUpload__WEBPACK_IMPORTED_MODULE_38__.faUpload, _fortawesome_free_solid_svg_icons_faCopy__WEBPACK_IMPORTED_MODULE_39__.faCopy, _fortawesome_free_solid_svg_icons_faObjectGroup__WEBPACK_IMPORTED_MODULE_40__.faObjectGroup, _fortawesome_free_solid_svg_icons_faObjectUngroup__WEBPACK_IMPORTED_MODULE_41__.faObjectUngroup, _fortawesome_free_solid_svg_icons_faEye__WEBPACK_IMPORTED_MODULE_42__.faEye, _fortawesome_free_solid_svg_icons_faEyeSlash__WEBPACK_IMPORTED_MODULE_43__.faEyeSlash, _fortawesome_free_solid_svg_icons_faLock__WEBPACK_IMPORTED_MODULE_44__.faLock, _fortawesome_free_solid_svg_icons_faLockOpen__WEBPACK_IMPORTED_MODULE_45__.faLockOpen, _fortawesome_free_solid_svg_icons_faTimes__WEBPACK_IMPORTED_MODULE_46__.faTimes, _fortawesome_free_solid_svg_icons_faLightbulb__WEBPACK_IMPORTED_MODULE_47__.faLightbulb, _fortawesome_free_solid_svg_icons_faBold__WEBPACK_IMPORTED_MODULE_48__.faBold, _fortawesome_free_solid_svg_icons_faItalic__WEBPACK_IMPORTED_MODULE_49__.faItalic, _fortawesome_free_solid_svg_icons_faUnderline__WEBPACK_IMPORTED_MODULE_50__.faUnderline, _fortawesome_free_solid_svg_icons_faAlignLeft__WEBPACK_IMPORTED_MODULE_51__.faAlignLeft, _fortawesome_free_solid_svg_icons_faAlignCenter__WEBPACK_IMPORTED_MODULE_52__.faAlignCenter, _fortawesome_free_solid_svg_icons_faAlignRight__WEBPACK_IMPORTED_MODULE_53__.faAlignRight, _fortawesome_free_solid_svg_icons_faAlignJustify__WEBPACK_IMPORTED_MODULE_54__.faAlignJustify, _fortawesome_free_solid_svg_icons_faTrashCan__WEBPACK_IMPORTED_MODULE_55__.faTrashCan, _fortawesome_free_solid_svg_icons_faSpinner__WEBPACK_IMPORTED_MODULE_56__.faSpinner, _fortawesome_free_solid_svg_icons_faCircleInfo__WEBPACK_IMPORTED_MODULE_57__.faCircleInfo, _fortawesome_free_solid_svg_icons_faEyeDropper__WEBPACK_IMPORTED_MODULE_58__.faEyeDropper, _fortawesome_free_solid_svg_icons_faPalette__WEBPACK_IMPORTED_MODULE_59__.faPalette);
+
+
+
+
+
+
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_1__.library.add(_fortawesome_free_solid_svg_icons_faRightToBracket__WEBPACK_IMPORTED_MODULE_3__.faRightToBracket, _fortawesome_free_solid_svg_icons_faArrowPointer__WEBPACK_IMPORTED_MODULE_4__.faArrowPointer, _fortawesome_free_solid_svg_icons_faHand__WEBPACK_IMPORTED_MODULE_5__.faHand, _fortawesome_free_solid_svg_icons_faRotateLeft__WEBPACK_IMPORTED_MODULE_6__.faRotateLeft, _fortawesome_free_solid_svg_icons_faRotateRight__WEBPACK_IMPORTED_MODULE_7__.faRotateRight, _fortawesome_free_solid_svg_icons_faAngleLeft__WEBPACK_IMPORTED_MODULE_8__.faAngleLeft, _fortawesome_free_solid_svg_icons_faAngleRight__WEBPACK_IMPORTED_MODULE_9__.faAngleRight, _fortawesome_free_solid_svg_icons_faAngleUp__WEBPACK_IMPORTED_MODULE_10__.faAngleUp, _fortawesome_free_solid_svg_icons_faAngleDown__WEBPACK_IMPORTED_MODULE_11__.faAngleDown, _fortawesome_free_solid_svg_icons_faImage__WEBPACK_IMPORTED_MODULE_12__.faImage, _fortawesome_free_solid_svg_icons_faLayerGroup__WEBPACK_IMPORTED_MODULE_13__.faLayerGroup, _fortawesome_free_solid_svg_icons_faFont__WEBPACK_IMPORTED_MODULE_14__.faFont, _fortawesome_free_solid_svg_icons_faIcons__WEBPACK_IMPORTED_MODULE_15__.faIcons, _fortawesome_free_solid_svg_icons_faQrcode__WEBPACK_IMPORTED_MODULE_16__.faQrcode, _fortawesome_free_solid_svg_icons_faShapes__WEBPACK_IMPORTED_MODULE_17__.faShapes, _fortawesome_free_solid_svg_icons_faPen__WEBPACK_IMPORTED_MODULE_18__.faPen, _fortawesome_free_solid_svg_icons_faPenNib__WEBPACK_IMPORTED_MODULE_19__.faPenNib, _fortawesome_free_solid_svg_icons_faCrop__WEBPACK_IMPORTED_MODULE_20__.faCrop, _fortawesome_free_solid_svg_icons_faPlus__WEBPACK_IMPORTED_MODULE_21__.faPlus, _fortawesome_free_solid_svg_icons_faSquarePlus__WEBPACK_IMPORTED_MODULE_22__.faSquarePlus, _fortawesome_free_solid_svg_icons_faFloppyDisk__WEBPACK_IMPORTED_MODULE_23__.faFloppyDisk, _fortawesome_free_solid_svg_icons_faBars__WEBPACK_IMPORTED_MODULE_24__.faBars, _fortawesome_free_solid_svg_icons_faGear__WEBPACK_IMPORTED_MODULE_25__.faGear, _fortawesome_free_solid_svg_icons_faSquare__WEBPACK_IMPORTED_MODULE_26__.faSquare, _fortawesome_free_solid_svg_icons_faCircle__WEBPACK_IMPORTED_MODULE_27__.faCircle, _fortawesome_free_solid_svg_icons_faStar__WEBPACK_IMPORTED_MODULE_28__.faStar, _fortawesome_free_solid_svg_icons_faRuler__WEBPACK_IMPORTED_MODULE_29__.faRuler, _fortawesome_free_solid_svg_icons_faSliders__WEBPACK_IMPORTED_MODULE_30__.faSliders, _fortawesome_free_solid_svg_icons_faPaintbrush__WEBPACK_IMPORTED_MODULE_31__.faPaintbrush, _fortawesome_free_solid_svg_icons_faFill__WEBPACK_IMPORTED_MODULE_32__.faFill, _fortawesome_free_solid_svg_icons_faBlender__WEBPACK_IMPORTED_MODULE_33__.faBlender, _fortawesome_free_solid_svg_icons_faWandMagicSparkles__WEBPACK_IMPORTED_MODULE_34__.faWandMagicSparkles, _fortawesome_free_solid_svg_icons_faBezierCurve__WEBPACK_IMPORTED_MODULE_35__.faBezierCurve, _fortawesome_free_solid_svg_icons_faCircleHalfStroke__WEBPACK_IMPORTED_MODULE_36__.faCircleHalfStroke, _fortawesome_free_solid_svg_icons_faMagnifyingGlass__WEBPACK_IMPORTED_MODULE_37__.faMagnifyingGlass, _fortawesome_free_solid_svg_icons_faUpload__WEBPACK_IMPORTED_MODULE_38__.faUpload, _fortawesome_free_solid_svg_icons_faCopy__WEBPACK_IMPORTED_MODULE_39__.faCopy, _fortawesome_free_solid_svg_icons_faObjectGroup__WEBPACK_IMPORTED_MODULE_40__.faObjectGroup, _fortawesome_free_solid_svg_icons_faObjectUngroup__WEBPACK_IMPORTED_MODULE_41__.faObjectUngroup, _fortawesome_free_solid_svg_icons_faEye__WEBPACK_IMPORTED_MODULE_42__.faEye, _fortawesome_free_solid_svg_icons_faEyeSlash__WEBPACK_IMPORTED_MODULE_43__.faEyeSlash, _fortawesome_free_solid_svg_icons_faLock__WEBPACK_IMPORTED_MODULE_44__.faLock, _fortawesome_free_solid_svg_icons_faLockOpen__WEBPACK_IMPORTED_MODULE_45__.faLockOpen, _fortawesome_free_solid_svg_icons_faTimes__WEBPACK_IMPORTED_MODULE_46__.faTimes, _fortawesome_free_solid_svg_icons_faLightbulb__WEBPACK_IMPORTED_MODULE_47__.faLightbulb, _fortawesome_free_solid_svg_icons_faBold__WEBPACK_IMPORTED_MODULE_48__.faBold, _fortawesome_free_solid_svg_icons_faItalic__WEBPACK_IMPORTED_MODULE_49__.faItalic, _fortawesome_free_solid_svg_icons_faUnderline__WEBPACK_IMPORTED_MODULE_50__.faUnderline, _fortawesome_free_solid_svg_icons_faAlignLeft__WEBPACK_IMPORTED_MODULE_51__.faAlignLeft, _fortawesome_free_solid_svg_icons_faAlignCenter__WEBPACK_IMPORTED_MODULE_52__.faAlignCenter, _fortawesome_free_solid_svg_icons_faAlignRight__WEBPACK_IMPORTED_MODULE_53__.faAlignRight, _fortawesome_free_solid_svg_icons_faAlignJustify__WEBPACK_IMPORTED_MODULE_54__.faAlignJustify, _fortawesome_free_solid_svg_icons_faTrashCan__WEBPACK_IMPORTED_MODULE_55__.faTrashCan, _fortawesome_free_solid_svg_icons_faSpinner__WEBPACK_IMPORTED_MODULE_56__.faSpinner, _fortawesome_free_solid_svg_icons_faCircleInfo__WEBPACK_IMPORTED_MODULE_57__.faCircleInfo, _fortawesome_free_solid_svg_icons_faEyeDropper__WEBPACK_IMPORTED_MODULE_58__.faEyeDropper, _fortawesome_free_solid_svg_icons_faPalette__WEBPACK_IMPORTED_MODULE_59__.faPalette, _fortawesome_free_solid_svg_icons_faMaximize__WEBPACK_IMPORTED_MODULE_60__.faMaximize, _fortawesome_free_solid_svg_icons_faBoxArchive__WEBPACK_IMPORTED_MODULE_61__.faBoxArchive, _fortawesome_free_solid_svg_icons_faServer__WEBPACK_IMPORTED_MODULE_62__.faServer, _fortawesome_free_solid_svg_icons_faDownload__WEBPACK_IMPORTED_MODULE_63__.faDownload, _fortawesome_free_solid_svg_icons_faFileLines__WEBPACK_IMPORTED_MODULE_64__.faFileLines, _fortawesome_free_solid_svg_icons_faFilePen__WEBPACK_IMPORTED_MODULE_65__.faFilePen);
 var Icon = function Icon(props, ref) {
   return /*#__PURE__*/React.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, _extends({
     ref: ref
@@ -6812,16 +7088,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _button_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./button.jsx */ "./src/elements/button.jsx");
 /* harmony import */ var _button_group_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./button-group.jsx */ "./src/elements/button-group.jsx");
 /* harmony import */ var _input_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./input.jsx */ "./src/elements/input.jsx");
-/* harmony import */ var _range_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./range.jsx */ "./src/elements/range.jsx");
-/* harmony import */ var _checkbox_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./checkbox.jsx */ "./src/elements/checkbox.jsx");
-/* harmony import */ var _select_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./select.jsx */ "./src/elements/select.jsx");
-/* harmony import */ var _color_picker_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./color-picker.jsx */ "./src/elements/color-picker.jsx");
-/* harmony import */ var _inline_notice_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./inline-notice.jsx */ "./src/elements/inline-notice.jsx");
-/* harmony import */ var _help_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./help.jsx */ "./src/elements/help.jsx");
+/* harmony import */ var _textarea_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./textarea.jsx */ "./src/elements/textarea.jsx");
+/* harmony import */ var _range_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./range.jsx */ "./src/elements/range.jsx");
+/* harmony import */ var _checkbox_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./checkbox.jsx */ "./src/elements/checkbox.jsx");
+/* harmony import */ var _select_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./select.jsx */ "./src/elements/select.jsx");
+/* harmony import */ var _color_picker_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./color-picker.jsx */ "./src/elements/color-picker.jsx");
+/* harmony import */ var _inline_notice_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./inline-notice.jsx */ "./src/elements/inline-notice.jsx");
+/* harmony import */ var _help_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./help.jsx */ "./src/elements/help.jsx");
 var _excluded = ["name", "type", "value", "defValue", "content", "show"];
 function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
 
 
 
@@ -6885,24 +7163,29 @@ var RepeaterItem = function RepeaterItem(_ref) {
     return type === 'input' && show ? /*#__PURE__*/React.createElement(_input_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], _extends({
       key: name,
       value: value || defValue
-    }, control)) : type === 'range' && show ? /*#__PURE__*/React.createElement(_range_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], _extends({
+    }, control)) : type === 'textarea' ? /*#__PURE__*/React.createElement(_textarea_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], _extends({
       key: name,
       value: value || defValue
-    }, control)) : type === 'color' && show ? /*#__PURE__*/React.createElement(_color_picker_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], _extends({
+    }, control)) : type === 'range' && show ? /*#__PURE__*/React.createElement(_range_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], _extends({
+      key: name,
+      value: value || defValue
+    }, control)) : type === 'color' && show ? /*#__PURE__*/React.createElement(_color_picker_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], _extends({
       key: name,
       color: value || defValue
-    }, control)) : type === 'select' && show ? /*#__PURE__*/React.createElement(_select_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], _extends({
+    }, control)) : type === 'select' && show ? /*#__PURE__*/React.createElement(_select_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], _extends({
       key: name,
       value: value || defValue
-    }, control)) : type === 'checkbox' && show ? /*#__PURE__*/React.createElement(_checkbox_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], _extends({
+    }, control)) : type === 'checkbox' && show ? /*#__PURE__*/React.createElement(_checkbox_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], _extends({
       key: name,
       checked: (0,lodash__WEBPACK_IMPORTED_MODULE_2__.isUndefined)(value) ? defValue : value
-    }, control)) : type === 'notice' && show ? /*#__PURE__*/React.createElement(_inline_notice_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], _extends({
+    }, control)) : type === 'notice' && show ? /*#__PURE__*/React.createElement(_inline_notice_jsx__WEBPACK_IMPORTED_MODULE_12__["default"], _extends({
       key: name
     }, control, {
       show: true,
       type: control.msgType
-    })) : content;
+    })) : type === 'button' && show ? /*#__PURE__*/React.createElement(_button_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], _extends({
+      key: name
+    }, control), control.label) : content;
   })));
 };
 var Repeater = function Repeater(_ref3) {
@@ -6921,7 +7204,7 @@ var Repeater = function Repeater(_ref3) {
     className: "pixmagix-label-wrapper"
   }, /*#__PURE__*/React.createElement("span", {
     className: "pixmagix-label"
-  }, label), !!help && /*#__PURE__*/React.createElement(_help_jsx__WEBPACK_IMPORTED_MODULE_12__["default"], help)), /*#__PURE__*/React.createElement("ul", {
+  }, label), !!help && /*#__PURE__*/React.createElement(_help_jsx__WEBPACK_IMPORTED_MODULE_13__["default"], help)), /*#__PURE__*/React.createElement("ul", {
     className: "pixmagix-repeater"
   }, items.length ? items.map(function (item) {
     return /*#__PURE__*/React.createElement(RepeaterItem, _extends({
@@ -7244,6 +7527,100 @@ var ShadowPicker = function ShadowPicker(_ref) {
 
 /***/ }),
 
+/***/ "./src/elements/stroke-dasharray-control.jsx":
+/*!***************************************************!*\
+  !*** ./src/elements/stroke-dasharray-control.jsx ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "lodash");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! wp-i18n */ "wp-i18n");
+/* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(wp_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _button_group_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./button-group.jsx */ "./src/elements/button-group.jsx");
+/* harmony import */ var _button_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./button.jsx */ "./src/elements/button.jsx");
+/* harmony import */ var _range_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./range.jsx */ "./src/elements/range.jsx");
+/* harmony import */ var _help_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./help.jsx */ "./src/elements/help.jsx");
+
+
+
+
+
+
+var StrokeDashArrayControl = function StrokeDashArrayControl(_ref) {
+  var label = _ref.label,
+    help = _ref.help,
+    value = _ref.value,
+    _onChange = _ref.onChange;
+  return /*#__PURE__*/React.createElement("div", {
+    className: "pixmagix-stroke-dasharray-control"
+  }, !!label && /*#__PURE__*/React.createElement("div", {
+    className: "pixmagix-label-wrapper"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "pixmagix-label"
+  }, label), !!help && /*#__PURE__*/React.createElement(_help_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], help)), !!(value !== null && value !== void 0 && value.length) && /*#__PURE__*/React.createElement("div", {
+    className: "pixmagix-stroke-dasharray-control__labels"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "pixmagix-label"
+  }, (0,wp_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Dashes', 'pixmagix')), /*#__PURE__*/React.createElement("span", {
+    className: "pixmagix-label"
+  }, (0,wp_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Gaps', 'pixmagix'))), /*#__PURE__*/React.createElement("div", {
+    className: "pixmagix-stroke-dasharray-control__inputs"
+  }, value && (0,lodash__WEBPACK_IMPORTED_MODULE_0__.times)(value.length / 2, function (i) {
+    return /*#__PURE__*/React.createElement("div", {
+      key: i,
+      className: "pixmagix-input-and-button"
+    }, /*#__PURE__*/React.createElement(_button_group_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], null, /*#__PURE__*/React.createElement(_range_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      value: value[i * 2],
+      onChange: function onChange(dash) {
+        var array = value.slice();
+        array[i * 2] = dash;
+        _onChange(array);
+      },
+      min: 0,
+      max: 100,
+      step: 1
+    }), /*#__PURE__*/React.createElement(_range_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      value: value[i * 2 + 1],
+      onChange: function onChange(gap) {
+        var array = value.slice();
+        array[i * 2 + 1] = gap;
+        _onChange(array);
+      },
+      min: 0,
+      max: 100,
+      step: 1
+    }), /*#__PURE__*/React.createElement(_button_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Remove', 'pixmagix'),
+      icon: "times",
+      small: true,
+      onClick: function onClick() {
+        var array = value.filter(function (_n, _i) {
+          return _i > i * 2 + 1 || _i < i * 2;
+        });
+        _onChange(array.length ? array : null);
+      }
+    })));
+  })), /*#__PURE__*/React.createElement(_button_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Add Value', 'pixmagix'),
+    icon: "plus",
+    small: true,
+    onClick: function onClick() {
+      var array = value ? value.slice() : [];
+      array.push(4, 4);
+      _onChange(array);
+    }
+  }));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (StrokeDashArrayControl);
+
+/***/ }),
+
 /***/ "./src/elements/textarea.jsx":
 /*!***********************************!*\
   !*** ./src/elements/textarea.jsx ***!
@@ -7267,7 +7644,9 @@ var Textarea = function Textarea(_ref) {
     _onChange = _ref.onChange,
     placeholder = _ref.placeholder,
     _ref$debounce = _ref.debounce,
-    debounce = _ref$debounce === void 0 ? 400 : _ref$debounce;
+    debounce = _ref$debounce === void 0 ? 400 : _ref$debounce,
+    _ref$rows = _ref.rows,
+    rows = _ref$rows === void 0 ? 5 : _ref$rows;
   var id = (0,lodash__WEBPACK_IMPORTED_MODULE_1__.uniqueId)('pixmagix_input_');
   return /*#__PURE__*/React.createElement("div", {
     className: "pixmagix-input-wrapper"
@@ -7283,6 +7662,7 @@ var Textarea = function Textarea(_ref) {
     id: id,
     className: "widefat",
     value: value,
+    rows: rows,
     onChange: function onChange(e) {
       return _onChange(e.target.value);
     },
@@ -31854,8 +32234,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   Row: () => (/* reexport safe */ _elements_column_jsx__WEBPACK_IMPORTED_MODULE_7__.Row),
 /* harmony export */   Select: () => (/* reexport safe */ _elements_select_jsx__WEBPACK_IMPORTED_MODULE_25__["default"]),
 /* harmony export */   ShadowPicker: () => (/* reexport safe */ _elements_shadow_picker_jsx__WEBPACK_IMPORTED_MODULE_26__["default"]),
-/* harmony export */   Textarea: () => (/* reexport safe */ _elements_textarea_jsx__WEBPACK_IMPORTED_MODULE_27__["default"]),
-/* harmony export */   Widget: () => (/* reexport safe */ _elements_widget_jsx__WEBPACK_IMPORTED_MODULE_28__["default"])
+/* harmony export */   StrokeDashArrayControl: () => (/* reexport safe */ _elements_stroke_dasharray_control_jsx__WEBPACK_IMPORTED_MODULE_27__["default"]),
+/* harmony export */   Textarea: () => (/* reexport safe */ _elements_textarea_jsx__WEBPACK_IMPORTED_MODULE_28__["default"]),
+/* harmony export */   Widget: () => (/* reexport safe */ _elements_widget_jsx__WEBPACK_IMPORTED_MODULE_29__["default"])
 /* harmony export */ });
 /* harmony import */ var _elements_before_after_slider_jsx__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./elements/before-after-slider.jsx */ "./src/elements/before-after-slider.jsx");
 /* harmony import */ var _elements_button_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./elements/button.jsx */ "./src/elements/button.jsx");
@@ -31884,8 +32265,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _elements_repeater_jsx__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./elements/repeater.jsx */ "./src/elements/repeater.jsx");
 /* harmony import */ var _elements_select_jsx__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./elements/select.jsx */ "./src/elements/select.jsx");
 /* harmony import */ var _elements_shadow_picker_jsx__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./elements/shadow-picker.jsx */ "./src/elements/shadow-picker.jsx");
-/* harmony import */ var _elements_textarea_jsx__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./elements/textarea.jsx */ "./src/elements/textarea.jsx");
-/* harmony import */ var _elements_widget_jsx__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./elements/widget.jsx */ "./src/elements/widget.jsx");
+/* harmony import */ var _elements_stroke_dasharray_control_jsx__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./elements/stroke-dasharray-control.jsx */ "./src/elements/stroke-dasharray-control.jsx");
+/* harmony import */ var _elements_textarea_jsx__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./elements/textarea.jsx */ "./src/elements/textarea.jsx");
+/* harmony import */ var _elements_widget_jsx__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./elements/widget.jsx */ "./src/elements/widget.jsx");
+
 
 
 

@@ -488,6 +488,7 @@ var Wrapper = function Wrapper(props) {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   CATEGORIES_REST_PATH: () => (/* binding */ CATEGORIES_REST_PATH),
 /* harmony export */   IMAGES_REST_PATH: () => (/* binding */ IMAGES_REST_PATH),
 /* harmony export */   NOTIFICATION_EXPIRATION_TIME: () => (/* binding */ NOTIFICATION_EXPIRATION_TIME),
 /* harmony export */   PIXMAGIX_WEBSITE: () => (/* binding */ PIXMAGIX_WEBSITE),
@@ -496,6 +497,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 var PIXMAGIX_WEBSITE = 'https://pixmagix-photo-editor.com/';
 var PROJECTS_REST_PATH = 'wp/v2/pixmagix/';
+var CATEGORIES_REST_PATH = 'wp/v2/pixmagix_category/';
 var IMAGES_REST_PATH = 'wp/v2/media/';
 var REST_PATH = 'pixmagix/v1/';
 var NOTIFICATION_EXPIRATION_TIME = 4000;

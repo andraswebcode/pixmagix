@@ -116,6 +116,14 @@ var HELP_TEXTS = {
     text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('The preserveAspectRatio attribute is used to control how an SVG element is scaled and positioned within its container. It allows you to define the aspect ratio, define alignment, and specify how to handle overflowing content.', 'pixmagix'),
     link: 'https://pixmagix-photo-editor.com/graphic-design/understanding-the-preserveaspectratio-svg-attribute/'
   },
+  strokeWidth: {
+    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Stroke width is the thickness of a line used in creating graphical elements, shapes, or text. It is typically measured in points or pixels and greatly influences the visual perception of design elements.', 'pixmagix'),
+    link: 'https://pixmagix-photo-editor.com/graphic-design/the-importance-of-stroke-width-in-design/'
+  },
+  sda: {
+    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('The stroke-dasharray is primarily used to create dashed lines, dotted lines, or more complex patterns. It controls the pattern of dashes and gaps used to paint the outline of shapes.', 'pixmagix'),
+    link: 'https://pixmagix-photo-editor.com/graphic-design/understanding-the-stroke-dasharray-a-detailed-overview/'
+  },
   jpgQuality: {
     text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('JPEG is a widely used image format that utilizes lossy compression. This means that when an image is saved in JPEG format, some of the image data is permanently discarded to reduce file size. The JPEG quality setting determines the degree of compression applied to an image.', 'pixmagix'),
     link: 'https://pixmagix-photo-editor.com/miscellaneous/the-impact-of-jpeg-quality-on-web-performance/'
@@ -130,6 +138,10 @@ var HELP_TEXTS = {
   },
   pixabayApiKey: {
     text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'pixmagix'),
+    link: 'https://pixmagix-photo-editor.com/tutorials/how-to-get-and-connect-pixabay-api-key-to-pixmagix/'
+  },
+  pexelsApiKey: {
+    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'pixmagix'),
     link: ''
   },
   unsplashApiKey: {
@@ -137,8 +149,8 @@ var HELP_TEXTS = {
     link: ''
   },
   gfontsApiKey: {
-    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'pixmagix'),
-    link: ''
+    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('By default, you can access the first 200 most popular fonts from Google Fonts. But what if you want more variety? By obtaining a Google Fonts API key, you can gain real-time access to all available font families, enhancing your design choices even further.', 'pixmagix'),
+    link: 'https://pixmagix-photo-editor.com/tutorials/how-to-get-and-connect-google-fonts-api-key-to-pixmagix/'
   },
   webSafeFonts: {
     text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'pixmagix'),
@@ -188,12 +200,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var wp_api_fetch__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! wp-api-fetch */ "wp-api-fetch");
 /* harmony import */ var wp_api_fetch__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(wp_api_fetch__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _filters_pixabay_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./filters-pixabay.jsx */ "./src/free-images/filters-pixabay.jsx");
-/* harmony import */ var _filters_unsplash_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./filters-unsplash.jsx */ "./src/free-images/filters-unsplash.jsx");
-/* harmony import */ var _preview_modal_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./preview-modal.jsx */ "./src/free-images/preview-modal.jsx");
-/* harmony import */ var _utils_constants_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./../utils/constants.js */ "./src/utils/constants.js");
-/* harmony import */ var _utils_utils_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./../utils/utils.js */ "./src/utils/utils.js");
+/* harmony import */ var _filters_pexels_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./filters-pexels.jsx */ "./src/free-images/filters-pexels.jsx");
+/* harmony import */ var _filters_unsplash_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./filters-unsplash.jsx */ "./src/free-images/filters-unsplash.jsx");
+/* harmony import */ var _preview_modal_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./preview-modal.jsx */ "./src/free-images/preview-modal.jsx");
+/* harmony import */ var _utils_constants_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./../utils/constants.js */ "./src/utils/constants.js");
+/* harmony import */ var _utils_utils_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./../utils/utils.js */ "./src/utils/utils.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-var _excluded = ["hasPixabayKey", "hasUnsplashKey", "items", "maxPages"];
+var _excluded = ["hasPixabayKey", "hasPexelsKey", "hasUnsplashKey", "items", "maxPages", "canEdit"];
 function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -219,50 +232,59 @@ function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) r
 
 
 
+
 var Content = function Content(_ref) {
   var hasPixabayKey = _ref.hasPixabayKey,
+    hasPexelsKey = _ref.hasPexelsKey,
     hasUnsplashKey = _ref.hasUnsplashKey,
     _ref$items = _ref.items,
     items = _ref$items === void 0 ? [] : _ref$items,
     maxPages = _ref.maxPages,
+    canEdit = _ref.canEdit,
     filters = _objectWithoutProperties(_ref, _excluded);
   var didMount = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(false);
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(hasPixabayKey),
     _useState2 = _slicedToArray(_useState, 2),
     _hasPixabayKey = _useState2[0],
     setHasPixabayKey = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(hasUnsplashKey),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(hasPexelsKey),
     _useState4 = _slicedToArray(_useState3, 2),
-    _hasUnsplashKey = _useState4[0],
-    setHasUnsplashKey = _useState4[1];
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(filters),
+    _hasPexelsKey = _useState4[0],
+    setHasPexelsKey = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(hasUnsplashKey),
     _useState6 = _slicedToArray(_useState5, 2),
-    _filters = _useState6[0],
-    setFilters = _useState6[1];
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(items),
+    _hasUnsplashKey = _useState6[0],
+    setHasUnsplashKey = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(filters),
     _useState8 = _slicedToArray(_useState7, 2),
-    _items = _useState8[0],
-    setItems = _useState8[1];
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(maxPages),
+    _filters = _useState8[0],
+    setFilters = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(items),
     _useState10 = _slicedToArray(_useState9, 2),
-    _maxPages = _useState10[0],
-    setMaxPages = _useState10[1];
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _items = _useState10[0],
+    setItems = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(maxPages),
     _useState12 = _slicedToArray(_useState11, 2),
-    activeItem = _useState12[0],
-    setActiveItem = _useState12[1];
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _maxPages = _useState12[0],
+    setMaxPages = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState14 = _slicedToArray(_useState13, 2),
-    loading = _useState14[0],
-    setLoading = _useState14[1];
+    activeItem = _useState14[0],
+    setActiveItem = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState16 = _slicedToArray(_useState15, 2),
+    loading = _useState16[0],
+    setLoading = _useState16[1];
   var hasNotApiKey = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(function () {
     if (_filters.service === 'pixabay') {
       return !_hasPixabayKey;
+    } else if (_filters.service === 'pexels') {
+      return !_hasPexelsKey;
     } else if (_filters.service === 'unsplash') {
       return !_hasUnsplashKey;
     }
     return false;
-  }, [_filters, _hasPixabayKey, _hasUnsplashKey]);
+  }, [_filters, _hasPixabayKey, _hasPexelsKey, _hasUnsplashKey]);
   var activeItemIndex = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(function () {
     return (0,lodash__WEBPACK_IMPORTED_MODULE_3__.findIndex)(_items, activeItem);
   }, [_items, activeItem]);
@@ -275,32 +297,32 @@ var Content = function Content(_ref) {
     setFilters(newFilters);
   };
   var onNavigate = function onNavigate(dir) {
-    var i = (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_10__.clamp)(dir === 'prev' ? activeItemIndex - 1 : activeItemIndex + 1, 0, _items.length - 1);
+    var i = (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_11__.clamp)(dir === 'prev' ? activeItemIndex - 1 : activeItemIndex + 1, 0, _items.length - 1);
     setActiveItem(_items[i]);
   };
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (didMount.current) {
       wp_api_fetch__WEBPACK_IMPORTED_MODULE_5___default()({
-        path: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_10__.addQueryArgs)(_filters, _utils_constants_js__WEBPACK_IMPORTED_MODULE_9__.REST_PATH + 'free_images/')
+        path: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_11__.addQueryArgs)(_filters, _utils_constants_js__WEBPACK_IMPORTED_MODULE_10__.REST_PATH + 'free_images/')
       }).then(function (response) {
         console.log(response);
         setItems(response.items);
         setMaxPages(response.maxPages);
         setLoading(false);
-        (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_10__.addToRouter)(_filters, editor_globals__WEBPACK_IMPORTED_MODULE_2__.self_url);
+        (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_11__.addToRouter)(_filters, editor_globals__WEBPACK_IMPORTED_MODULE_2__.self_url);
       })["catch"](function (error) {
         console.error(error);
         if (error.code === 'authorization_failed') {
           setItems([]);
           setMaxPages(0);
           setLoading(false);
-          (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_10__.addToRouter)(_filters, editor_globals__WEBPACK_IMPORTED_MODULE_2__.self_url);
+          (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_11__.addToRouter)(_filters, editor_globals__WEBPACK_IMPORTED_MODULE_2__.self_url);
         }
       });
     } else {
       didMount.current = true;
     }
-  }, [_filters, _hasPixabayKey, _hasUnsplashKey]);
+  }, [_filters, _hasPixabayKey, _hasPexelsKey, _hasUnsplashKey]);
   return /*#__PURE__*/React.createElement("div", {
     className: "pixmagix-content"
   }, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_1__.Widget, {
@@ -316,14 +338,25 @@ var Content = function Content(_ref) {
         }
       }))
     }, {
+      name: 'pexels',
+      label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Pexels', 'pixmagix'),
+      content: /*#__PURE__*/React.createElement(_filters_pexels_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], _extends({}, _filters, {
+        hasKey: _hasPexelsKey,
+        onChange: onFiltersChange,
+        onContinue: function onContinue() {
+          setLoading(true);
+          setHasPexelsKey(true);
+        }
+      }))
+    }, {
       name: 'unsplash',
       label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Unsplash', 'pixmagix'),
-      content: /*#__PURE__*/React.createElement(_filters_unsplash_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], _extends({}, _filters, {
+      content: /*#__PURE__*/React.createElement(_filters_unsplash_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], _extends({}, _filters, {
         hasKey: _hasUnsplashKey,
         onChange: onFiltersChange,
         onContinue: function onContinue() {
           setLoading(true);
-          setHasUnsplashyKey(true);
+          setHasUnsplashKey(true);
         }
       }))
     }],
@@ -362,9 +395,10 @@ var Content = function Content(_ref) {
     onChange: function onChange(page) {
       return onFiltersChange('page', page);
     }
-  }), !!activeItem && /*#__PURE__*/React.createElement(_preview_modal_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], _extends({
+  }), !!activeItem && /*#__PURE__*/React.createElement(_preview_modal_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], _extends({
     key: activeItem.id
   }, activeItem, {
+    canEdit: canEdit,
     hasPrev: activeItemIndex > 0,
     hasNext: activeItemIndex < items.length - 1,
     onNavigate: onNavigate,
@@ -376,6 +410,77 @@ var Content = function Content(_ref) {
   }));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Content);
+
+/***/ }),
+
+/***/ "./src/free-images/filters-pexels.jsx":
+/*!********************************************!*\
+  !*** ./src/free-images/filters-pexels.jsx ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var elements__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! elements */ "elements");
+/* harmony import */ var elements__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(elements__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var editor_globals__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! editor-globals */ "editor-globals");
+/* harmony import */ var editor_globals__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(editor_globals__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! wp-i18n */ "wp-i18n");
+/* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(wp_i18n__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _set_api_key_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./set-api-key.jsx */ "./src/free-images/set-api-key.jsx");
+/* harmony import */ var _lists_pexels_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./lists-pexels.js */ "./src/free-images/lists-pexels.js");
+
+
+
+
+
+
+var FiltersPexels = function FiltersPexels(_ref) {
+  var hasKey = _ref.hasKey,
+    search = _ref.search,
+    orientation = _ref.orientation,
+    color = _ref.color,
+    _onChange = _ref.onChange,
+    onContinue = _ref.onContinue;
+  if (!hasKey) {
+    return /*#__PURE__*/React.createElement(_set_api_key_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      service: "pexels",
+      onReady: onContinue
+    });
+  }
+  return /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_1__.InlineControls, {
+    logo: {
+      title: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Powered by Pexels', 'pixmagix'),
+      url: 'https://pexels.com/',
+      src: editor_globals__WEBPACK_IMPORTED_MODULE_2__.images_folder + 'pexels.jpg'
+    }
+  }, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_1__.Input, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Search', 'pixmagix'),
+    value: search,
+    onChange: function onChange(value) {
+      return _onChange('search', value);
+    }
+  }), !!search && /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_1__.Select, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Orientation', 'pixmagix'),
+    options: _lists_pexels_js__WEBPACK_IMPORTED_MODULE_5__.orientations,
+    value: orientation,
+    onChange: function onChange(value) {
+      return _onChange('orientation', value);
+    }
+  }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_1__.ColorPalette.Dropdown, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Color', 'pixmagix'),
+    options: _lists_pexels_js__WEBPACK_IMPORTED_MODULE_5__.colors,
+    color: color,
+    onChange: function onChange(value) {
+      return _onChange('color', value);
+    }
+  })));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FiltersPexels);
 
 /***/ }),
 
@@ -555,6 +660,87 @@ var Header = function Header() {
   }, /*#__PURE__*/React.createElement("h1", null, (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('PixMagix - Royalty Free Images', 'pixmagix'))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Header);
+
+/***/ }),
+
+/***/ "./src/free-images/lists-pexels.js":
+/*!*****************************************!*\
+  !*** ./src/free-images/lists-pexels.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   colors: () => (/* binding */ colors),
+/* harmony export */   orientations: () => (/* binding */ orientations)
+/* harmony export */ });
+/* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! wp-i18n */ "wp-i18n");
+/* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(wp_i18n__WEBPACK_IMPORTED_MODULE_0__);
+
+
+/**
+ *
+ * @since 1.1.0
+ * @var {array}
+ */
+
+var orientations = [{
+  label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Any Orientation', 'pixmagix'),
+  value: ''
+}, {
+  label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Landscape', 'pixmagix'),
+  value: 'landscape'
+}, {
+  label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Portrait', 'pixmagix'),
+  value: 'portrait'
+}, {
+  label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Square', 'pixmagix'),
+  value: 'square'
+}];
+
+/**
+ *
+ * @since 1.1.0
+ * @var {array}
+ */
+
+var colors = [{
+  label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Red', 'pixmagix'),
+  value: 'red'
+}, {
+  label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Orange', 'pixmagix'),
+  value: 'orange'
+}, {
+  label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Yellow', 'pixmagix'),
+  value: 'yellow'
+}, {
+  label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Green', 'pixmagix'),
+  value: 'green'
+}, {
+  label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Turquoise', 'pixmagix'),
+  value: 'turquoise'
+}, {
+  label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Blue', 'pixmagix'),
+  value: 'blue'
+}, {
+  label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Violet', 'pixmagix'),
+  value: 'violet'
+}, {
+  label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Pink', 'pixmagix'),
+  value: 'pink'
+}, {
+  label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Brown', 'pixmagix'),
+  value: 'brown'
+}, {
+  label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Black', 'pixmagix'),
+  value: 'black'
+}, {
+  label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Gray', 'pixmagix'),
+  value: 'gray'
+}, {
+  label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('White', 'pixmagix'),
+  value: 'white'
+}];
 
 /***/ }),
 
@@ -847,6 +1033,7 @@ var PreviewModal = function PreviewModal(_ref) {
     preview = _ref.preview,
     _ref$sizes = _ref.sizes,
     sizes = _ref$sizes === void 0 ? [] : _ref$sizes,
+    canEdit = _ref.canEdit,
     hasPrev = _ref.hasPrev,
     hasNext = _ref.hasNext,
     onNavigate = _ref.onNavigate,
@@ -909,7 +1096,7 @@ var PreviewModal = function PreviewModal(_ref) {
   };
   return /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_1__.Modal, {
     title: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.sprintf)((0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('%s by %s', 'pixmagix'), title, author),
-    actions: /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_1__.ButtonGroup, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_1__.Button, {
+    actions: canEdit ? /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_1__.ButtonGroup, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_1__.Button, {
       active: true,
       onClick: function onClick() {
         return onSave(true);
@@ -918,7 +1105,11 @@ var PreviewModal = function PreviewModal(_ref) {
       onClick: function onClick() {
         return onSave();
       }
-    }, (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Just Save', 'pixmagix'))),
+    }, (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Just Save', 'pixmagix'))) : /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_1__.Button, {
+      onClick: function onClick() {
+        return onSave();
+      }
+    }, (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Save', 'pixmagix')),
     navigation: {
       prev: {
         disabled: !hasPrev,
@@ -1073,6 +1264,7 @@ var Wrapper = function Wrapper(props) {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   CATEGORIES_REST_PATH: () => (/* binding */ CATEGORIES_REST_PATH),
 /* harmony export */   IMAGES_REST_PATH: () => (/* binding */ IMAGES_REST_PATH),
 /* harmony export */   NOTIFICATION_EXPIRATION_TIME: () => (/* binding */ NOTIFICATION_EXPIRATION_TIME),
 /* harmony export */   PIXMAGIX_WEBSITE: () => (/* binding */ PIXMAGIX_WEBSITE),
@@ -1081,6 +1273,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 var PIXMAGIX_WEBSITE = 'https://pixmagix-photo-editor.com/';
 var PROJECTS_REST_PATH = 'wp/v2/pixmagix/';
+var CATEGORIES_REST_PATH = 'wp/v2/pixmagix_category/';
 var IMAGES_REST_PATH = 'wp/v2/media/';
 var REST_PATH = 'pixmagix/v1/';
 var NOTIFICATION_EXPIRATION_TIME = 4000;
