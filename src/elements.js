@@ -16,6 +16,7 @@ import {
 	GridItem
 } from './elements/grid.jsx';
 import Icon from './elements/icon.jsx';
+import ImageResizer from './elements/image-resizer.jsx';
 import ImageSelect from './elements/image-select.jsx';
 import InlineControls from './elements/inline-controls.jsx';
 import InlineNotice from './elements/inline-notice.jsx';
@@ -50,6 +51,7 @@ export {
 	Grid,
 	GridItem,
 	Icon,
+	ImageResizer,
 	ImageSelect,
 	InlineControls,
 	InlineNotice,
