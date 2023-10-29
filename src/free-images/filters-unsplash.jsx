@@ -32,7 +32,7 @@ const FiltersUnsplash = ({
 	if (!hasKey){
 		return (
 			<SetAPIKey
-				service='unsplash'
+				platform='unsplash'
 				onReady={onContinue} />
 		);
 	}

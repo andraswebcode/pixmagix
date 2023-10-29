@@ -17,17 +17,17 @@ import {
 import getHelpText from './../editor/utils/help-texts.js';
 
 const SetAPIKey = ({
-	service,
+	platform,
 	onReady
 }) => {
 
 	const [key, setKey] = useState('');
 	const onClick = () => {
-		if (!service){
+		if (!platform){
 			return;
 		}
 		const data = {};
-		data[service + '_api_key'] = key;
+		data[platform + '_api_key'] = key;
 		apiFetch({
 			path:REST_PATH + 'settings/',
 			method:'POST',
@@ -44,7 +44,7 @@ const SetAPIKey = ({
 		<InlineControls>
 			<Input
 				label={__('API Key', 'pixmagix')}
-				help={getHelpText(service + 'ApiKey')}
+				help={getHelpText(platform + 'ApiKey')}
 				value={key}
 				onChange={setKey} />
 			<Button

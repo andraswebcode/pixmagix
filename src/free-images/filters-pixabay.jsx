@@ -33,7 +33,7 @@ const FiltersPixabay = ({
 	if (!hasKey){
 		return (
 			<SetAPIKey
-				service='pixabay'
+				platform='pixabay'
 				onReady={onContinue} />
 		);
 	}

@@ -39,7 +39,9 @@ export function addFilter(hookName, namespace, callback, priority){
  * @since 1.2.0
  */
 
-export function doAction(){}
+export function doAction(hookName, ...args){
+	return HOOKS.doAction(hookName, ...args);
+}
 
 /**
  *
@@ -47,7 +49,9 @@ export function doAction(){}
  * @since 1.2.0
  */
 
-export function addAction(){}
+export function addAction(hookName, namespace, callback, priority){
+	return HOOKS.addAction(hookName, namespace, callback, priority);
+}
 
 /**
  *

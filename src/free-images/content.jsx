@@ -58,11 +58,11 @@ const Content = ({
 	const [activeItem, setActiveItem] = useState(null);
 	const [loading, setLoading] = useState(false);
 	const hasNotApiKey = useMemo(() => {
-		if (_filters.service === 'pixabay'){
+		if (_filters.platform === 'pixabay'){
 			return !_hasPixabayKey;
-		} else if (_filters.service === 'pexels'){
+		} else if (_filters.platform === 'pexels'){
 			return !_hasPexelsKey;
-		} else if (_filters.service === 'unsplash'){
+		} else if (_filters.platform === 'unsplash'){
 			return !_hasUnsplashKey;
 		}
 		return false;
@@ -168,8 +168,8 @@ const Content = ({
 							}} />
 					)
 				}]}
-				initShow={_filters.service}
-				onChange={({name}) => onFiltersChange('service', name)} />
+				initShow={_filters.platform}
+				onChange={({name}) => onFiltersChange('platform', name)} />
 			<Pagination
 				page={_filters.page}
 				maxPages={_maxPages}
@@ -180,7 +180,7 @@ const Content = ({
 						isEmpty
 						caption={sprintf(
 							__('To access free images from %s, please enter a valid API key in the input field above and click the "Continue" button.', 'pixmagix'),
-							capitalize(_filters.service)
+							capitalize(_filters.platform)
 						)} />
 				) : _items.length ? _items.map(item => (
 					<GridItem

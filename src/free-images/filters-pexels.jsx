@@ -32,7 +32,7 @@ const FiltersPexels = ({
 	if (!hasKey){
 		return (
 			<SetAPIKey
-				service='pexels'
+				platform='pexels'
 				onReady={onContinue} />
 		);
 	}

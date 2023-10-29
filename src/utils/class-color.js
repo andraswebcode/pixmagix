@@ -3,6 +3,7 @@ import {
 	isNumber,
 	isUndefined,
 	isArray,
+	isObject,
 	isString
 } from 'lodash';
 
@@ -94,7 +95,7 @@ class Color {
 			this._g = r[1] || 0;
 			this._b = r[2] || 0;
 			this._a = !isUndefined(r[3]) ? r[3] : 1;
-		} else if (r instanceof this.constructor){
+		} else if (r instanceof this.constructor || isObject(r)){
 			this.set(r.r, r.g, r.b, r.a);
 		}
 

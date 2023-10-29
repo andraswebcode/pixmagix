@@ -8,6 +8,7 @@ import {
 	__
 } from 'wp-i18n';
 
+import ContentGeneral from './content-general.jsx';
 import ContentApiKeys from './content-api-keys.jsx';
 import ContentUsers from './content-users.jsx';
 import ContentPerformance from './content-performance.jsx';
@@ -21,6 +22,12 @@ import {
 const Content = props => {
 
 	const tabs = applyFilters('settings.tabs', [{
+		name:'general',
+		label:__('General Settings', 'pixmagix'),
+		content:(
+			<ContentGeneral {...props} />
+		)
+	},{
 		name:'apikeys',
 		label:__('API Keys', 'pixmagix'),
 		content:(

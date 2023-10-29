@@ -35,6 +35,12 @@ import {
 	faImage
 } from '@fortawesome/free-solid-svg-icons/faImage';
 import {
+	faFileImage
+} from '@fortawesome/free-solid-svg-icons/faFileImage';
+import {
+	faTableCells
+} from '@fortawesome/free-solid-svg-icons/faTableCells';
+import {
 	faLayerGroup
 } from '@fortawesome/free-solid-svg-icons/faLayerGroup';
 import {
@@ -55,6 +61,9 @@ import {
 import {
 	faPenNib
 } from '@fortawesome/free-solid-svg-icons/faPenNib';
+import {
+	faPenToSquare
+} from '@fortawesome/free-solid-svg-icons/faPenToSquare';
 import {
 	faCrop
 } from '@fortawesome/free-solid-svg-icons/faCrop';
@@ -95,6 +104,9 @@ import {
 	faFill
 } from '@fortawesome/free-solid-svg-icons/faFill';
 import {
+	faFilter
+} from '@fortawesome/free-solid-svg-icons/faFilter';
+import {
 	faWandMagicSparkles
 } from '@fortawesome/free-solid-svg-icons/faWandMagicSparkles';
 import {
@@ -109,6 +121,9 @@ import {
 import {
 	faMagnifyingGlass
 } from '@fortawesome/free-solid-svg-icons/faMagnifyingGlass';
+import {
+	faFontAwesome
+} from '@fortawesome/free-solid-svg-icons/faFontAwesome';
 import {
 	faUpload
 } from '@fortawesome/free-solid-svg-icons/faUpload';
@@ -194,6 +209,9 @@ import {
 	faFilePen
 } from '@fortawesome/free-solid-svg-icons/faFilePen';
 import {
+	faFileExport
+} from '@fortawesome/free-solid-svg-icons/faFileExport';
+import {
 	FontAwesomeIcon
 } from '@fortawesome/react-fontawesome';
 
@@ -208,6 +226,8 @@ library.add(
 	faAngleUp,
 	faAngleDown,
 	faImage,
+	faFileImage,
+	faTableCells,
 	faLayerGroup,
 	faFont,
 	faIcons,
@@ -215,6 +235,7 @@ library.add(
 	faShapes,
 	faPen,
 	faPenNib,
+	faPenToSquare,
 	faCrop,
 	faPlus,
 	faSquarePlus,
@@ -228,11 +249,13 @@ library.add(
 	faSliders,
 	faPaintbrush,
 	faFill,
+	faFilter,
 	faBlender,
 	faWandMagicSparkles,
 	faBezierCurve,
 	faCircleHalfStroke,
 	faMagnifyingGlass,
+	faFontAwesome,
 	faUpload,
 	faCopy,
 	faObjectGroup,
@@ -260,7 +283,8 @@ library.add(
 	faServer,
 	faDownload,
 	faFileLines,
-	faFilePen
+	faFilePen,
+	faFileExport
 );
 
 const Icon = (props, ref) => <FontAwesomeIcon ref={ref} {...props} />;

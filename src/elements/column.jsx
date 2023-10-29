@@ -1,3 +1,6 @@
+import {
+	forwardRef
+} from 'react';
 import cn from 'classnames';
 
 const Row = ({
@@ -9,17 +12,21 @@ const Row = ({
 	</div>
 );
 
-const Column = ({
+const ColumnBase = ({
 	className,
 	width,
 	children
-}) => (
-	<div className={cn('pixmagix-column', className, {
-		[`pixmagix-column__w-${width}`]:width
-	})}>
+}, ref) => (
+	<div
+		ref={ref}
+		className={cn('pixmagix-column', className, {
+			[`pixmagix-column__w-${width}`]:width
+		})} >
 		{children}
 	</div>
 );
+
+const Column = forwardRef(ColumnBase);
 
 export {
 	Row,
