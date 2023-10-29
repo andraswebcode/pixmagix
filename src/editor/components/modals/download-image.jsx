@@ -12,6 +12,7 @@ import {
 	Widget,
 	Input,
 	RadioButtons,
+	ImageResizer,
 	Range
 } from 'elements';
 import {
@@ -27,17 +28,21 @@ import {
 import getHelpText from './../../utils/help-texts.js';
 
 const DownloadImage = ({
+	canvasWidth,
+	canvasHeight,
 	projectName,
 	imageDataURL,
 	fileFormat,
 	fileQuality,
+	fileDPI,
+	fileScale,
 	setEditor
 }) => {
 
 	const [filename, setFilename] = useState('');
 	const downloadImage = () => {
 		const _filename = filename || projectName || 'pixmagix';
-		const _extension = (fileFormat === 'jpeg') ? 'jpg' : 'png';
+		const _extension = (fileFormat === 'jpeg') ? 'jpg' : fileFormat;
 		getDownloadAnchor(imageDataURL, _filename, _extension).click();
 	};
 
@@ -72,10 +77,13 @@ const DownloadImage = ({
 							},{
 								label:'JPEG',
 								value:'jpeg'
+							},{
+								label:'WEBP',
+								value:'webp'
 							}]}
 							value={fileFormat}
 							onChange={value => setEditor('fileFormat', value)} />
-						{(fileFormat === 'jpeg') && (
+						{(fileFormat !== 'png') && (
 							<Range
 								label={__('Quality', 'pixmagix')}
 								help={getHelpText('jpgQuality')}
@@ -85,6 +93,21 @@ const DownloadImage = ({
 								max={1}
 								step={0.01} />
 						)}
+						{(fileFormat !== 'webp') && (
+							<Range
+								label={__('DPI', 'pixmagix')}
+								help={getHelpText('dpi')}
+								value={fileDPI}
+								onChange={value => setEditor('fileDPI', value)}
+								min={60}
+								max={2400}
+								step={1} />
+						)}
+						<ImageResizer
+							value={fileScale}
+							originalWidth={canvasWidth}
+							originalHeight={canvasHeight}
+							onChange={value => setEditor('fileScale', value)} />
 					</Widget>
 				</Column>
 			</Row>
@@ -94,10 +117,14 @@ const DownloadImage = ({
 };
 
 export default connect(state => ({
+	canvasWidth:state.data.present.canvasWidth,
+	canvasHeight:state.data.present.canvasHeight,
 	projectName:state.editor.projectName,
 	imageDataURL:state.editor.imageDataURL,
 	fileFormat:state.editor.fileFormat,
-	fileQuality:state.editor.fileQuality
+	fileQuality:state.editor.fileQuality,
+	fileDPI:state.editor.fileDPI,
+	fileScale:state.editor.fileScale
 }),{
 	setEditor
 })(DownloadImage);

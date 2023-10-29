@@ -15,6 +15,7 @@ import {
 	Input,
 	Textarea,
 	RadioButtons,
+	ImageResizer,
 	Range
 } from 'elements';
 import {
@@ -32,9 +33,13 @@ import {
 import getHelpText from './../../utils/help-texts.js';
 
 const ExportMedia = ({
+	canvasWidth,
+	canvasHeight,
 	imageDataURL,
 	fileFormat,
 	fileQuality,
+	fileDPI,
+	fileScale,
 	setEditor,
 	sendNotice
 }) => {
@@ -50,7 +55,7 @@ const ExportMedia = ({
 		const data = {
 			imageDataURL,
 			filename:filename.replace(/\s/g, '-').toLowerCase(),
-			extension:(fileFormat === 'jpeg') ? 'jpg' : 'png',
+			extension:(fileFormat === 'jpeg') ? 'jpg' : fileFormat,
 			title,
 			alt,
 			caption,
@@ -64,7 +69,6 @@ const ExportMedia = ({
 			method:'POST',
 			data
 		}).then(response => {
-			console.log(response);
 			batch(() => {
 				setLoading(false);
 				if (response.media){
@@ -78,12 +82,11 @@ const ExportMedia = ({
 					'success'
 				);
 			});
-		}).catch(error => {
-			console.log(error);
+		}).catch(({message}) => {
 			batch(() => {
 				setLoading(false);
 				sendNotice(
-					__('', 'pixmagix'),
+					message,
 					'error'
 				);
 			});
@@ -110,6 +113,9 @@ const ExportMedia = ({
 				</Column>
 				<Column>
 					<Widget>
+						<h2>
+							{__('Image', 'pixmagix')}
+						</h2>
 						<Input
 							label={__('File Name', 'pixmagix')}
 							value={filename}
@@ -122,10 +128,13 @@ const ExportMedia = ({
 							},{
 								label:'JPEG',
 								value:'jpeg'
+							},{
+								label:'WEBP',
+								value:'webp'
 							}]}
 							value={fileFormat}
 							onChange={value => setEditor('fileFormat', value)} />
-						{(fileFormat === 'jpeg') && (
+						{(fileFormat !== 'png') && (
 							<Range
 								label={__('Quality', 'pixmagix')}
 								help={getHelpText('jpgQuality')}
@@ -135,6 +144,24 @@ const ExportMedia = ({
 								max={1}
 								step={0.01} />
 						)}
+						{(fileFormat !== 'webp') && (
+							<Range
+								label={__('DPI', 'pixmagix')}
+								help={getHelpText('dpi')}
+								value={fileDPI}
+								onChange={value => setEditor('fileDPI', value)}
+								min={60}
+								max={2400}
+								step={1} />
+						)}
+						<ImageResizer
+							value={fileScale}
+							originalWidth={canvasWidth}
+							originalHeight={canvasHeight}
+							onChange={value => setEditor('fileScale', value)} />
+						<h2>
+							{__('Metadata', 'pixmagix')}
+						</h2>
 						<Input
 							label={__('Title', 'pixmagix')}
 							value={title}
@@ -161,9 +188,13 @@ const ExportMedia = ({
 };
 
 export default connect(state => ({
+	canvasWidth:state.data.present.canvasWidth,
+	canvasHeight:state.data.present.canvasHeight,
 	imageDataURL:state.editor.imageDataURL,
 	fileFormat:state.editor.fileFormat,
-	fileQuality:state.editor.fileQuality
+	fileQuality:state.editor.fileQuality,
+	fileDPI:state.editor.fileDPI,
+	fileScale:state.editor.fileScale
 }),{
 	setEditor,
 	sendNotice

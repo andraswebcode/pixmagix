@@ -35,6 +35,10 @@ const HELP_TEXTS = {
 		text:__('Line height refers to the vertical space between lines of text. It plays a crucial role in determining the overall legibility and readability of a piece of content.', 'pixmagix'),
 		link:'https://pixmagix-photo-editor.com/miscellaneous/understanding-line-height-in-typography/'
 	},
+	dpi:{
+		text:__('DPI is a measure of spatial printing or image resolution. It refers to the number of individual dots that can be placed vertically and horizontally within a one-inch linear space. A higher DPI generally indicates a more detailed and smoother image, while a lower DPI means a less crisp output.', 'pixmagix'),
+		link:'https://pixmagix-photo-editor.com/graphic-design/dpi-meaning/'
+	},
 	pixabayApiKey:{
 		text:__('', 'pixmagix'),
 		link:'https://pixmagix-photo-editor.com/tutorials/how-to-get-and-connect-pixabay-api-key-to-pixmagix/'

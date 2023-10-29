@@ -8,8 +8,7 @@ import {
 } from 'react-redux';
 import {
 	Rect,
-	Gradient,
-	util
+	Gradient
 } from 'fabric';
 import {
 	throttle,
@@ -44,11 +43,18 @@ import {
 	isAround,
 	toFixed,
 	getFitZoom,
-	createLayerObject
+	createLayerObject,
+	qrDecompose
 } from './../../utils/utils.js';
 import {
 	TARGET_FIND_TOLERANCE
 } from './../../utils/constants.js';
+import {
+	changeDpiDataUrl
+} from './../../utils/change-dpi.js';
+import {
+	doAction
+} from './../../../utils/hooks.js';
 
 class FabricCanvas extends Component {
 
@@ -62,7 +68,7 @@ class FabricCanvas extends Component {
 		this._containerRef = createRef();
 		this._updateThumbnailAndPreview = debounce(this._updateThumbnailAndPreview.bind(this), 800);
 		this._updateCanvasElementSize = this._updateCanvasElementSize.bind(this);
-		this._createImageDataURL = debounce(this._createImageDataURL.bind(this), 40);
+		this._createImageDataURL = debounce(this._createImageDataURL.bind(this), 400);
 		this._createSVGString = debounce(this._createSVGString.bind(this), 40);
 		this._pickCursorPosition = throttle(this._pickCursorPosition.bind(this), 40);
 		this._onPathCreated = this._onPathCreated.bind(this);
@@ -153,6 +159,8 @@ class FabricCanvas extends Component {
 			layers,
 			fileFormat,
 			fileQuality,
+			fileScale,
+			fileDPI,
 			canvasElementWidth,
 			canvasElementHeight,
 			canvasWidth,
@@ -321,6 +329,8 @@ class FabricCanvas extends Component {
 		if (
 			fileFormat !== this.props.fileFormat ||
 			fileQuality !== this.props.fileQuality ||
+			fileScale !== this.props.fileScale ||
+			fileDPI !== this.props.fileDPI ||
 			(
 				activeModal !== this.props.activeModal &&
 				(
@@ -343,6 +353,15 @@ class FabricCanvas extends Component {
 		){
 			this._createSVGString();
 		}
+
+		/**
+		 * Run other actions from outside.
+		 * @since 1.3.0
+		 * @param {object} nextProps
+		 * @param {FabricCanvas} component
+		 */
+
+		doAction('editor.canvas.update', nextProps, this);
 
 		return (
 			activeTool !== this.props.activeTool ||
@@ -497,6 +516,8 @@ class FabricCanvas extends Component {
 			canvasHeight,
 			fileFormat,
 			fileQuality,
+			fileScale,
+			fileDPI,
 			setEditor
 		} = this.props;
 		const canvas = this._fabricCanvas;
@@ -505,17 +526,20 @@ class FabricCanvas extends Component {
 		// console.time('createImageDataURL');
 		canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
 		canvas.clipPath = null;
-		const dataURL = canvas.toDataURL({
+		let dataURL = canvas.toDataURL({
 			format:fileFormat,
 			quality:fileQuality,
 			top:0,
 			left:0,
 			width:canvasWidth,
 			height:canvasHeight,
-			multiplier:1
+			multiplier:fileScale
 		});
 		canvas.setViewportTransform(vpt);
 		canvas.clipPath = clipPath;
+		if (fileFormat !== 'webp'){ // webp file format is not supported by changeDpiDataUrl()
+			dataURL = changeDpiDataUrl(dataURL, fileDPI)
+		}
 		setEditor('imageDataURL', dataURL);
 		// console.timeEnd('createImageDataURL');
 	}
@@ -627,7 +651,7 @@ class FabricCanvas extends Component {
 					skewY,
 					translateX,
 					translateY
-				} = util.qrDecompose(matrix);
+				} = qrDecompose(matrix);
 				memo[object.id] = {
 					left:toFixed(translateX),
 					top:toFixed(translateY),
@@ -771,6 +795,8 @@ export default connect(state => ({
 	fullScreen:state.editor.fullScreen,
 	fileFormat:state.editor.fileFormat,
 	fileQuality:state.editor.fileQuality,
+	fileScale:state.editor.fileScale,
+	fileDPI:state.editor.fileDPI,
 	layers:state.data.present.layers,
 	layerIds:state.data.present.layerIds,
 	canvasWidth:state.data.present.canvasWidth,

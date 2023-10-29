@@ -6,7 +6,7 @@ import {
 
 import AddImage from './../components/sidebar-left/add-image.jsx';
 import AddText from './../components/sidebar-left/add-text.jsx';
-import AddIcon from './../components/sidebar-left/add-icon.jsx';
+import AddElement from './../components/sidebar-left/add-element.jsx';
 import AddQRCode from './../components/sidebar-left/add-qrcode.jsx';
 import DrawShape from './../components/sidebar-left/draw-shape.jsx';
 import FreeHandDraw from './../components/sidebar-left/free-hand-draw.jsx';
@@ -44,10 +44,10 @@ export const toolbarItems = [{
 	icon:'font',
 	component:AddText
 },{
-	name:'icon',
-	label:__('Add Icon', 'pixmagix'),
+	name:'element',
+	label:__('Add Element', 'pixmagix'),
 	icon:'icons',
-	component:AddIcon
+	component:AddElement
 },{
 	name:'qrcode',
 	label:__('Add QR Code', 'pixmagix'),
@@ -611,6 +611,8 @@ export const propsToSaveLocalStorage = [
 	'fullScreen',
 	'fileFormat',
 	'fileQuality',
+	'fileDPI',
+	'fileScale',
 	'preserveAspectRatio',
 	'snapToGrid',
 	'snapObjects',

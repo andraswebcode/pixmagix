@@ -444,7 +444,7 @@ const SettingsLayer = ({
 		tabs.push({
 			name:'filters',
 			label:__('Filters', 'pixmagix'),
-			icon:'wand-magic-sparkles',
+			icon:'filter',
 			content:(
 				<Fragment>
 					<LibrarySelect

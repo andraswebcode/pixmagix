@@ -1,7 +1,4 @@
 import {
-	util
-} from 'fabric';
-import {
 	reduce,
 	findIndex
 } from 'lodash';
@@ -16,7 +13,8 @@ import {
 import {
 	toFixed,
 	createUniqueId,
-	createLayerObject
+	createLayerObject,
+	qrDecompose
 } from './utils.js';
 
 /**
@@ -112,7 +110,7 @@ export default ({
 						skewX,
 						skewY,
 						angle
-					} = util.qrDecompose(obj.calcTransformMatrix());
+					} = qrDecompose(obj.calcTransformMatrix());
 					return createLayerObject({
 						...obj.toObject(),
 						left:toFixed(translateX),

@@ -66,8 +66,10 @@ const getInitialStateEditor = (id, metadata = {}, mediaId, mediaUrl = '', revisi
 		svgWidth:0,
 		svgHeight:0,
 		preserveAspectRatio:'',
-		fileFormat:'jpeg', // 'jpeg', or 'png'
+		fileFormat:'jpeg', // 'jpeg', 'png', or 'webp'
 		fileQuality:0.92, // Only makes effect if fileFormat is jpeg.
+		fileDPI:96,
+		fileScale:1,
 		isSaving:false,
 		selectedMedia:null,
 		fullScreen:false,

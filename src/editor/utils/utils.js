@@ -20,12 +20,14 @@ import {
 	loadSVGFromString as loadSVG
 } from 'fabric';
 import QRCode from './../canvas/class-qrcode.js';
+import Color from './../../utils/class-color.js';
 
 const {
 	findScaleToFit,
 	transformPoint,
 	invertTransform,
-	joinPath
+	joinPath,
+	qrDecompose
 } = util;
 
 /**
@@ -224,7 +226,7 @@ export function isSVGElement(type){
  * or creating a new fabric object synchronously, and returns it.
  * @param {object} options
  * @param {boolean} fabricObject If true it returns a fabric object, if false it returns a plain object for redux state.
- * @param {function} callback Optional callback function for image objects.
+ * @param {function} callback Optional onload callback function especially for image objects.
  * @return {object}
  * @since 1.0.0
  */
@@ -244,31 +246,50 @@ export function createLayerObject(options = {}, fabricObject = false, callback){
 		case 'text':
 		case 'i-text':
 		object = new IText(options.text, options);
+		callback && callback(object);
 		break;
 		case 'rect':
 		object = new Rect(options);
+		callback && callback(object);
 		break;
 		case 'circle':
 		object = new Circle(options);
+		callback && callback(object);
 		break;
 		case 'ellipse':
 		object = new Ellipse(options);
+		callback && callback(object);
 		break;
 		case 'path':
 		object = new Path(isArray(options.path) ? joinPath(options.path) : options.path, options);
+		callback && callback(object);
 		break;
 		case 'polygon':
 		object = new Polygon(options.points, options);
+		callback && callback(object);
 		break;
 		case 'polyline':
 		object = new Polyline(options.points, options);
+		callback && callback(object);
 		break;
 		case 'qrcode':
 		object = new QRCode(options);
+		callback && callback(object);
 		break;
 		case 'group':
-		const _objects = options.objects?.map(obj => createLayerObject(obj, true)).filter(obj => !!obj) || [];
+		const promises = [];
+		const _objects = options.objects?.map(obj => {
+			let _obj;
+			promises.push(new Promise(resolve => {
+				_obj = createLayerObject(obj, true, () => resolve());
+			}));
+			return _obj;
+		}).filter(obj => !!obj) || [];
 		object = new Group(_objects, options);
+		// Using Promise.all() for running callback() to make sure that all images in group has been loaded.
+		Promise.all(promises).then(() => {
+			callback && callback(object);
+		});
 		break;
 		default:
 		break;
@@ -296,26 +317,23 @@ export function createLayerObject(options = {}, fabricObject = false, callback){
 
 export function getHiddenFileInput(accept = '', readAs = '', onChange){
 
-	if (!getHiddenFileInput._element){
-		getHiddenFileInput._element = document.createElement('input');
-		getHiddenFileInput._element.type = 'file';
-		getHiddenFileInput._element.style.display = 'none';
-		document.body.appendChild(getHiddenFileInput._element);
-	}
+	const element = document.createElement('input');
+	const reader = new FileReader();
 
-	if (!getHiddenFileInput._reader){
-		getHiddenFileInput._reader = new FileReader();
-		getHiddenFileInput._element.onchange = e => {
-			getHiddenFileInput._reader[readAs](e.target.files[0]);
-		};
-	}
-
-	getHiddenFileInput._element.accept = accept;
-	getHiddenFileInput._reader.onload = e => {
-		onChange(getHiddenFileInput._reader.result);
+	element.type = 'file';
+	element.accept = accept;
+	element.style.display = 'none';
+	element.onchange = e => {
+		reader[readAs](e.target.files[0]);
 	};
 
-	return getHiddenFileInput._element;
+	reader.onload = e => {
+		onChange(reader.result);
+	};
+
+	document.body.appendChild(element);
+
+	return element;
 
 }
 
@@ -328,7 +346,7 @@ export function getHiddenFileInput(accept = '', readAs = '', onChange){
  * @return {HTMLAnchorElement}
  */
 
-export function getDownloadAnchor(href = '', filename = '', extension = ''){
+export function getDownloadAnchor(href = '', filename = 'pixmagix', extension = ''){
 
 	if (!getDownloadAnchor._anchor){
 		getDownloadAnchor._anchor = document.createElement('a');
@@ -407,7 +425,6 @@ export function getCropCSSClipPath(size = {}, position = {}, elementSize = {}){
 /**
  *
  * @since 1.0.0
- * @access private
  * @param {number} canvasWidth
  * @param {number} canvasHeight
  * @param {string} cropAspectRatio
@@ -437,3 +454,28 @@ export function getCropShapeSize(canvasWidth, canvasHeight, cropAspectRatio, sca
 	};
 
 }
+
+/**
+ *
+ * @since 1.3.0
+ * @param {mixed} color
+ * @return {string}
+ */
+
+export function colorToString(color){
+	const _color = new Color(color);
+	return _color.getHEX();
+}
+
+/**
+ * Also export utils from Fabric.js.
+ * @since 1.3.0
+ */
+
+export {
+	findScaleToFit,
+	transformPoint,
+	invertTransform,
+	joinPath,
+	qrDecompose
+};

@@ -40,7 +40,6 @@ const ImportMedia = ({
 	setEditor
 }) => {
 
-	let isMounting = false;
 	const [items, setItems] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [page, setPage] = useState(1);
@@ -51,7 +50,6 @@ const ImportMedia = ({
 
 	useEffect(() => {
 
-		isMounting = true;
 		const query = {
 			page,
 			per_page:12,
@@ -69,20 +67,16 @@ const ImportMedia = ({
 		apiFetch({
 			path:addQueryArgs(query, IMAGES_REST_PATH),
 			withTotalPages:true
-		}).then(response => {
-			console.log(response,isMounting);
-			if (isMounting){
-				batch(() => {
-					setItems(response.items);
-					setMaxPages(response.totalPages);
-					setLoading(false);
-				});
-			}
+		}).then(({
+			items,
+			totalPages
+		}) => {
+			batch(() => {
+				setItems(items);
+				setMaxPages(totalPages);
+				setLoading(false);
+			});
 		});
-
-		return () => {
-			isMounting = false;
-		}
 
 	}, [search, date, page]);
 
@@ -95,7 +89,11 @@ const ImportMedia = ({
 					active
 					onClick={() => setEditor({
 						activeModal:'',
-						selectedMedia:selected
+						selectedMedia:{
+							...selectedMedia,
+							...selected,
+							activeActionName:'media'
+						}
 					})} >
 					{__('Import', 'pixmagix')}
 				</Button>
