@@ -3,7 +3,7 @@
 	"use strict";
 
 	var render = media.view.Attachment.Details.prototype.render;
-	var mime_types = ['image/jpeg', 'image/png'];
+	var mime_types = ['image/jpeg', 'image/png', 'image/webp'];
 
 	/**
 	 * Extends the Attachment Details media view with a button,

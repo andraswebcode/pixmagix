@@ -136,6 +136,10 @@ var HELP_TEXTS = {
     text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Line height refers to the vertical space between lines of text. It plays a crucial role in determining the overall legibility and readability of a piece of content.', 'pixmagix'),
     link: 'https://pixmagix-photo-editor.com/miscellaneous/understanding-line-height-in-typography/'
   },
+  dpi: {
+    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('DPI is a measure of spatial printing or image resolution. It refers to the number of individual dots that can be placed vertically and horizontally within a one-inch linear space. A higher DPI generally indicates a more detailed and smoother image, while a lower DPI means a less crisp output.', 'pixmagix'),
+    link: 'https://pixmagix-photo-editor.com/graphic-design/dpi-meaning/'
+  },
   pixabayApiKey: {
     text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'pixmagix'),
     link: 'https://pixmagix-photo-editor.com/tutorials/how-to-get-and-connect-pixabay-api-key-to-pixmagix/'
@@ -276,11 +280,11 @@ var Content = function Content(_ref) {
     loading = _useState16[0],
     setLoading = _useState16[1];
   var hasNotApiKey = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(function () {
-    if (_filters.service === 'pixabay') {
+    if (_filters.platform === 'pixabay') {
       return !_hasPixabayKey;
-    } else if (_filters.service === 'pexels') {
+    } else if (_filters.platform === 'pexels') {
       return !_hasPexelsKey;
-    } else if (_filters.service === 'unsplash') {
+    } else if (_filters.platform === 'unsplash') {
       return !_hasUnsplashKey;
     }
     return false;
@@ -360,10 +364,10 @@ var Content = function Content(_ref) {
         }
       }))
     }],
-    initShow: _filters.service,
+    initShow: _filters.platform,
     onChange: function onChange(_ref2) {
       var name = _ref2.name;
-      return onFiltersChange('service', name);
+      return onFiltersChange('platform', name);
     }
   }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_1__.Pagination, {
     page: _filters.page,
@@ -373,7 +377,7 @@ var Content = function Content(_ref) {
     }
   }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_1__.Grid, null, hasNotApiKey ? /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_1__.GridItem, {
     isEmpty: true,
-    caption: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_4__.sprintf)((0,wp_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('To access free images from %s, please enter a valid API key in the input field above and click the "Continue" button.', 'pixmagix'), (0,lodash__WEBPACK_IMPORTED_MODULE_3__.capitalize)(_filters.service))
+    caption: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_4__.sprintf)((0,wp_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('To access free images from %s, please enter a valid API key in the input field above and click the "Continue" button.', 'pixmagix'), (0,lodash__WEBPACK_IMPORTED_MODULE_3__.capitalize)(_filters.platform))
   }) : _items.length ? _items.map(function (item) {
     var _item$thumbnail;
     return /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_1__.GridItem, {
@@ -448,7 +452,7 @@ var FiltersPexels = function FiltersPexels(_ref) {
     onContinue = _ref.onContinue;
   if (!hasKey) {
     return /*#__PURE__*/React.createElement(_set_api_key_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      service: "pexels",
+      platform: "pexels",
       onReady: onContinue
     });
   }
@@ -518,7 +522,7 @@ var FiltersPixabay = function FiltersPixabay(_ref) {
     onContinue = _ref.onContinue;
   if (!hasKey) {
     return /*#__PURE__*/React.createElement(_set_api_key_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      service: "pixabay",
+      platform: "pixabay",
       onReady: onContinue
     });
   }
@@ -603,7 +607,7 @@ var FiltersUnsplash = function FiltersUnsplash(_ref) {
     onContinue = _ref.onContinue;
   if (!hasKey) {
     return /*#__PURE__*/React.createElement(_set_api_key_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      service: "unsplash",
+      platform: "unsplash",
       onReady: onContinue
     });
   }
@@ -1194,18 +1198,18 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var SetAPIKey = function SetAPIKey(_ref) {
-  var service = _ref.service,
+  var platform = _ref.platform,
     onReady = _ref.onReady;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
     _useState2 = _slicedToArray(_useState, 2),
     key = _useState2[0],
     setKey = _useState2[1];
   var onClick = function onClick() {
-    if (!service) {
+    if (!platform) {
       return;
     }
     var data = {};
-    data[service + '_api_key'] = key;
+    data[platform + '_api_key'] = key;
     wp_api_fetch__WEBPACK_IMPORTED_MODULE_3___default()({
       path: _utils_constants_js__WEBPACK_IMPORTED_MODULE_4__.REST_PATH + 'settings/',
       method: 'POST',
@@ -1219,7 +1223,7 @@ var SetAPIKey = function SetAPIKey(_ref) {
   };
   return /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_1__.InlineControls, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_1__.Input, {
     label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('API Key', 'pixmagix'),
-    help: (0,_editor_utils_help_texts_js__WEBPACK_IMPORTED_MODULE_5__["default"])(service + 'ApiKey'),
+    help: (0,_editor_utils_help_texts_js__WEBPACK_IMPORTED_MODULE_5__["default"])(platform + 'ApiKey'),
     value: key,
     onChange: setKey
   }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_1__.Button, {

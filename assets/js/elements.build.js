@@ -3115,6 +3115,86 @@ exports.aliases = aliases;
 
 /***/ }),
 
+/***/ "./node_modules/@fortawesome/free-solid-svg-icons/faFileExport.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/@fortawesome/free-solid-svg-icons/faFileExport.js ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var prefix = 'fas';
+var iconName = 'file-export';
+var width = 576;
+var height = 512;
+var aliases = ["arrow-right-from-file"];
+var unicode = 'f56e';
+var svgPathData = 'M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V288H216c-13.3 0-24 10.7-24 24s10.7 24 24 24H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zM384 336V288H494.1l-39-39c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l80 80c9.4 9.4 9.4 24.6 0 33.9l-80 80c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l39-39H384zm0-208H256V0L384 128z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faFileExport = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;
+
+/***/ }),
+
+/***/ "./node_modules/@fortawesome/free-solid-svg-icons/faFileImage.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/@fortawesome/free-solid-svg-icons/faFileImage.js ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var prefix = 'fas';
+var iconName = 'file-image';
+var width = 384;
+var height = 512;
+var aliases = [128443];
+var unicode = 'f1c5';
+var svgPathData = 'M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM64 256a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm152 32c5.3 0 10.2 2.6 13.2 6.9l88 128c3.4 4.9 3.7 11.3 1 16.5s-8.2 8.6-14.2 8.6H216 176 128 80c-5.8 0-11.1-3.1-13.9-8.1s-2.8-11.2 .2-16.1l48-80c2.9-4.8 8.1-7.8 13.7-7.8s10.8 2.9 13.7 7.8l12.8 21.4 48.3-70.2c3-4.3 7.9-6.9 13.2-6.9z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faFileImage = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;
+
+/***/ }),
+
 /***/ "./node_modules/@fortawesome/free-solid-svg-icons/faFileLines.js":
 /*!***********************************************************************!*\
   !*** ./node_modules/@fortawesome/free-solid-svg-icons/faFileLines.js ***!
@@ -3235,6 +3315,46 @@ exports.aliases = aliases;
 
 /***/ }),
 
+/***/ "./node_modules/@fortawesome/free-solid-svg-icons/faFilter.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@fortawesome/free-solid-svg-icons/faFilter.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var prefix = 'fas';
+var iconName = 'filter';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'f0b0';
+var svgPathData = 'M3.9 54.9C10.5 40.9 24.5 32 40 32H472c15.5 0 29.5 8.9 36.1 22.9s4.6 30.5-5.2 42.5L320 320.9V448c0 12.1-6.8 23.2-17.7 28.6s-23.8 4.3-33.5-3l-64-48c-8.1-6-12.8-15.5-12.8-25.6V320.9L9 97.3C-.7 85.4-2.8 68.8 3.9 54.9z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faFilter = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;
+
+/***/ }),
+
 /***/ "./node_modules/@fortawesome/free-solid-svg-icons/faFloppyDisk.js":
 /*!************************************************************************!*\
   !*** ./node_modules/@fortawesome/free-solid-svg-icons/faFloppyDisk.js ***!
@@ -3304,6 +3424,46 @@ exports.definition = {
   ]};
 
 exports.faFont = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;
+
+/***/ }),
+
+/***/ "./node_modules/@fortawesome/free-solid-svg-icons/faFontAwesome.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/@fortawesome/free-solid-svg-icons/faFontAwesome.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var prefix = 'fas';
+var iconName = 'font-awesome';
+var width = 448;
+var height = 512;
+var aliases = [62501,62694,"font-awesome-flag","font-awesome-logo-full"];
+var unicode = 'f2b4';
+var svgPathData = 'M448 48V384c-63.1 22.5-82.3 32-119.5 32c-62.8 0-86.6-32-149.3-32c-20.6 0-36.6 3.6-51.2 8.2v-64c14.6-4.6 30.6-8.2 51.2-8.2c62.7 0 86.5 32 149.3 32c20.4 0 35.6-3 55.5-9.3v-208c-19.9 6.3-35.1 9.3-55.5 9.3c-62.8 0-86.6-32-149.3-32c-50.8 0-74.9 20.6-115.2 28.7V448c0 17.7-14.3 32-32 32s-32-14.3-32-32V64C0 46.3 14.3 32 32 32s32 14.3 32 32V76.7c40.3-8 64.4-28.7 115.2-28.7c62.7 0 86.5 32 149.3 32c37.1 0 56.4-9.5 119.5-32z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faFontAwesome = exports.definition;
 exports.prefix = prefix;
 exports.iconName = iconName;
 exports.width = width;
@@ -3995,6 +4155,46 @@ exports.aliases = aliases;
 
 /***/ }),
 
+/***/ "./node_modules/@fortawesome/free-solid-svg-icons/faPenToSquare.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/@fortawesome/free-solid-svg-icons/faPenToSquare.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var prefix = 'fas';
+var iconName = 'pen-to-square';
+var width = 512;
+var height = 512;
+var aliases = ["edit"];
+var unicode = 'f044';
+var svgPathData = 'M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faPenToSquare = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;
+
+/***/ }),
+
 /***/ "./node_modules/@fortawesome/free-solid-svg-icons/faPlus.js":
 /*!******************************************************************!*\
   !*** ./node_modules/@fortawesome/free-solid-svg-icons/faPlus.js ***!
@@ -4504,6 +4704,46 @@ exports.definition = {
   ]};
 
 exports.faStar = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;
+
+/***/ }),
+
+/***/ "./node_modules/@fortawesome/free-solid-svg-icons/faTableCells.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/@fortawesome/free-solid-svg-icons/faTableCells.js ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var prefix = 'fas';
+var iconName = 'table-cells';
+var width = 512;
+var height = 512;
+var aliases = ["th"];
+var unicode = 'f00a';
+var svgPathData = 'M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm88 64v64H64V96h88zm56 0h88v64H208V96zm240 0v64H360V96h88zM64 224h88v64H64V224zm232 0v64H208V224h88zm64 0h88v64H360V224zM152 352v64H64V352h88zm56 0h88v64H208V352zm240 0v64H360V352h88z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faTableCells = exports.definition;
 exports.prefix = prefix;
 exports.iconName = iconName;
 exports.width = width;
@@ -5864,28 +6104,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   Column: () => (/* binding */ Column),
 /* harmony export */   Row: () => (/* binding */ Row)
 /* harmony export */ });
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
 function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
+
 var Row = function Row(_ref) {
   var className = _ref.className,
     children = _ref.children;
   return /*#__PURE__*/React.createElement("div", {
-    className: classnames__WEBPACK_IMPORTED_MODULE_0___default()('pixmagix-row', className)
+    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()('pixmagix-row', className)
   }, children);
 };
-var Column = function Column(_ref2) {
+var ColumnBase = function ColumnBase(_ref2, ref) {
   var className = _ref2.className,
     width = _ref2.width,
     children = _ref2.children;
   return /*#__PURE__*/React.createElement("div", {
-    className: classnames__WEBPACK_IMPORTED_MODULE_0___default()('pixmagix-column', className, _defineProperty({}, "pixmagix-column__w-".concat(width), width))
+    ref: ref,
+    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()('pixmagix-column', className, _defineProperty({}, "pixmagix-column__w-".concat(width), width))
   }, children);
 };
+var Column = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(ColumnBase);
 
 
 /***/ }),
@@ -6223,59 +6468,65 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fortawesome_free_solid_svg_icons_faAngleUp__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faAngleUp */ "./node_modules/@fortawesome/free-solid-svg-icons/faAngleUp.js");
 /* harmony import */ var _fortawesome_free_solid_svg_icons_faAngleDown__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faAngleDown */ "./node_modules/@fortawesome/free-solid-svg-icons/faAngleDown.js");
 /* harmony import */ var _fortawesome_free_solid_svg_icons_faImage__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faImage */ "./node_modules/@fortawesome/free-solid-svg-icons/faImage.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faLayerGroup__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faLayerGroup */ "./node_modules/@fortawesome/free-solid-svg-icons/faLayerGroup.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faFont__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faFont */ "./node_modules/@fortawesome/free-solid-svg-icons/faFont.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faIcons__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faIcons */ "./node_modules/@fortawesome/free-solid-svg-icons/faIcons.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faQrcode__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faQrcode */ "./node_modules/@fortawesome/free-solid-svg-icons/faQrcode.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faShapes__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faShapes */ "./node_modules/@fortawesome/free-solid-svg-icons/faShapes.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faPen__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faPen */ "./node_modules/@fortawesome/free-solid-svg-icons/faPen.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faPenNib__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faPenNib */ "./node_modules/@fortawesome/free-solid-svg-icons/faPenNib.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faCrop__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faCrop */ "./node_modules/@fortawesome/free-solid-svg-icons/faCrop.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faPlus__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faPlus */ "./node_modules/@fortawesome/free-solid-svg-icons/faPlus.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faSquarePlus__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faSquarePlus */ "./node_modules/@fortawesome/free-solid-svg-icons/faSquarePlus.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faFloppyDisk__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faFloppyDisk */ "./node_modules/@fortawesome/free-solid-svg-icons/faFloppyDisk.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faBars__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faBars */ "./node_modules/@fortawesome/free-solid-svg-icons/faBars.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faGear__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faGear */ "./node_modules/@fortawesome/free-solid-svg-icons/faGear.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faSquare__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faSquare */ "./node_modules/@fortawesome/free-solid-svg-icons/faSquare.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faCircle__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faCircle */ "./node_modules/@fortawesome/free-solid-svg-icons/faCircle.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faStar__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faStar */ "./node_modules/@fortawesome/free-solid-svg-icons/faStar.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faRuler__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faRuler */ "./node_modules/@fortawesome/free-solid-svg-icons/faRuler.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faSliders__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faSliders */ "./node_modules/@fortawesome/free-solid-svg-icons/faSliders.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faPaintbrush__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faPaintbrush */ "./node_modules/@fortawesome/free-solid-svg-icons/faPaintbrush.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faFill__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faFill */ "./node_modules/@fortawesome/free-solid-svg-icons/faFill.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faWandMagicSparkles__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faWandMagicSparkles */ "./node_modules/@fortawesome/free-solid-svg-icons/faWandMagicSparkles.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faBezierCurve__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faBezierCurve */ "./node_modules/@fortawesome/free-solid-svg-icons/faBezierCurve.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faCircleHalfStroke__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faCircleHalfStroke */ "./node_modules/@fortawesome/free-solid-svg-icons/faCircleHalfStroke.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faBlender__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faBlender */ "./node_modules/@fortawesome/free-solid-svg-icons/faBlender.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faMagnifyingGlass__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faMagnifyingGlass */ "./node_modules/@fortawesome/free-solid-svg-icons/faMagnifyingGlass.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faUpload__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faUpload */ "./node_modules/@fortawesome/free-solid-svg-icons/faUpload.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faCopy__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faCopy */ "./node_modules/@fortawesome/free-solid-svg-icons/faCopy.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faObjectGroup__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faObjectGroup */ "./node_modules/@fortawesome/free-solid-svg-icons/faObjectGroup.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faObjectUngroup__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faObjectUngroup */ "./node_modules/@fortawesome/free-solid-svg-icons/faObjectUngroup.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faEye__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faEye */ "./node_modules/@fortawesome/free-solid-svg-icons/faEye.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faEyeSlash__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faEyeSlash */ "./node_modules/@fortawesome/free-solid-svg-icons/faEyeSlash.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faLock__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faLock */ "./node_modules/@fortawesome/free-solid-svg-icons/faLock.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faLockOpen__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faLockOpen */ "./node_modules/@fortawesome/free-solid-svg-icons/faLockOpen.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faTimes__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faTimes */ "./node_modules/@fortawesome/free-solid-svg-icons/faTimes.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faLightbulb__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faLightbulb */ "./node_modules/@fortawesome/free-solid-svg-icons/faLightbulb.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faBold__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faBold */ "./node_modules/@fortawesome/free-solid-svg-icons/faBold.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faItalic__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faItalic */ "./node_modules/@fortawesome/free-solid-svg-icons/faItalic.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faUnderline__WEBPACK_IMPORTED_MODULE_50__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faUnderline */ "./node_modules/@fortawesome/free-solid-svg-icons/faUnderline.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faAlignLeft__WEBPACK_IMPORTED_MODULE_51__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faAlignLeft */ "./node_modules/@fortawesome/free-solid-svg-icons/faAlignLeft.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faAlignCenter__WEBPACK_IMPORTED_MODULE_52__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faAlignCenter */ "./node_modules/@fortawesome/free-solid-svg-icons/faAlignCenter.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faAlignRight__WEBPACK_IMPORTED_MODULE_53__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faAlignRight */ "./node_modules/@fortawesome/free-solid-svg-icons/faAlignRight.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faAlignJustify__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faAlignJustify */ "./node_modules/@fortawesome/free-solid-svg-icons/faAlignJustify.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faTrashCan__WEBPACK_IMPORTED_MODULE_55__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faTrashCan */ "./node_modules/@fortawesome/free-solid-svg-icons/faTrashCan.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faSpinner__WEBPACK_IMPORTED_MODULE_56__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faSpinner */ "./node_modules/@fortawesome/free-solid-svg-icons/faSpinner.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faCircleInfo__WEBPACK_IMPORTED_MODULE_57__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faCircleInfo */ "./node_modules/@fortawesome/free-solid-svg-icons/faCircleInfo.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faEyeDropper__WEBPACK_IMPORTED_MODULE_58__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faEyeDropper */ "./node_modules/@fortawesome/free-solid-svg-icons/faEyeDropper.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faPalette__WEBPACK_IMPORTED_MODULE_59__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faPalette */ "./node_modules/@fortawesome/free-solid-svg-icons/faPalette.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faMaximize__WEBPACK_IMPORTED_MODULE_60__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faMaximize */ "./node_modules/@fortawesome/free-solid-svg-icons/faMaximize.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faBoxArchive__WEBPACK_IMPORTED_MODULE_61__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faBoxArchive */ "./node_modules/@fortawesome/free-solid-svg-icons/faBoxArchive.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faServer__WEBPACK_IMPORTED_MODULE_62__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faServer */ "./node_modules/@fortawesome/free-solid-svg-icons/faServer.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faDownload__WEBPACK_IMPORTED_MODULE_63__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faDownload */ "./node_modules/@fortawesome/free-solid-svg-icons/faDownload.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faFileLines__WEBPACK_IMPORTED_MODULE_64__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faFileLines */ "./node_modules/@fortawesome/free-solid-svg-icons/faFileLines.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons_faFilePen__WEBPACK_IMPORTED_MODULE_65__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faFilePen */ "./node_modules/@fortawesome/free-solid-svg-icons/faFilePen.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faFileImage__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faFileImage */ "./node_modules/@fortawesome/free-solid-svg-icons/faFileImage.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faTableCells__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faTableCells */ "./node_modules/@fortawesome/free-solid-svg-icons/faTableCells.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faLayerGroup__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faLayerGroup */ "./node_modules/@fortawesome/free-solid-svg-icons/faLayerGroup.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faFont__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faFont */ "./node_modules/@fortawesome/free-solid-svg-icons/faFont.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faIcons__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faIcons */ "./node_modules/@fortawesome/free-solid-svg-icons/faIcons.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faQrcode__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faQrcode */ "./node_modules/@fortawesome/free-solid-svg-icons/faQrcode.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faShapes__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faShapes */ "./node_modules/@fortawesome/free-solid-svg-icons/faShapes.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faPen__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faPen */ "./node_modules/@fortawesome/free-solid-svg-icons/faPen.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faPenNib__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faPenNib */ "./node_modules/@fortawesome/free-solid-svg-icons/faPenNib.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faPenToSquare__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faPenToSquare */ "./node_modules/@fortawesome/free-solid-svg-icons/faPenToSquare.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faCrop__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faCrop */ "./node_modules/@fortawesome/free-solid-svg-icons/faCrop.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faPlus__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faPlus */ "./node_modules/@fortawesome/free-solid-svg-icons/faPlus.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faSquarePlus__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faSquarePlus */ "./node_modules/@fortawesome/free-solid-svg-icons/faSquarePlus.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faFloppyDisk__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faFloppyDisk */ "./node_modules/@fortawesome/free-solid-svg-icons/faFloppyDisk.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faBars__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faBars */ "./node_modules/@fortawesome/free-solid-svg-icons/faBars.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faGear__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faGear */ "./node_modules/@fortawesome/free-solid-svg-icons/faGear.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faSquare__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faSquare */ "./node_modules/@fortawesome/free-solid-svg-icons/faSquare.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faCircle__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faCircle */ "./node_modules/@fortawesome/free-solid-svg-icons/faCircle.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faStar__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faStar */ "./node_modules/@fortawesome/free-solid-svg-icons/faStar.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faRuler__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faRuler */ "./node_modules/@fortawesome/free-solid-svg-icons/faRuler.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faSliders__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faSliders */ "./node_modules/@fortawesome/free-solid-svg-icons/faSliders.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faPaintbrush__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faPaintbrush */ "./node_modules/@fortawesome/free-solid-svg-icons/faPaintbrush.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faFill__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faFill */ "./node_modules/@fortawesome/free-solid-svg-icons/faFill.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faFilter__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faFilter */ "./node_modules/@fortawesome/free-solid-svg-icons/faFilter.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faWandMagicSparkles__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faWandMagicSparkles */ "./node_modules/@fortawesome/free-solid-svg-icons/faWandMagicSparkles.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faBezierCurve__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faBezierCurve */ "./node_modules/@fortawesome/free-solid-svg-icons/faBezierCurve.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faCircleHalfStroke__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faCircleHalfStroke */ "./node_modules/@fortawesome/free-solid-svg-icons/faCircleHalfStroke.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faBlender__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faBlender */ "./node_modules/@fortawesome/free-solid-svg-icons/faBlender.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faMagnifyingGlass__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faMagnifyingGlass */ "./node_modules/@fortawesome/free-solid-svg-icons/faMagnifyingGlass.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faFontAwesome__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faFontAwesome */ "./node_modules/@fortawesome/free-solid-svg-icons/faFontAwesome.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faUpload__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faUpload */ "./node_modules/@fortawesome/free-solid-svg-icons/faUpload.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faCopy__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faCopy */ "./node_modules/@fortawesome/free-solid-svg-icons/faCopy.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faObjectGroup__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faObjectGroup */ "./node_modules/@fortawesome/free-solid-svg-icons/faObjectGroup.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faObjectUngroup__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faObjectUngroup */ "./node_modules/@fortawesome/free-solid-svg-icons/faObjectUngroup.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faEye__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faEye */ "./node_modules/@fortawesome/free-solid-svg-icons/faEye.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faEyeSlash__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faEyeSlash */ "./node_modules/@fortawesome/free-solid-svg-icons/faEyeSlash.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faLock__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faLock */ "./node_modules/@fortawesome/free-solid-svg-icons/faLock.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faLockOpen__WEBPACK_IMPORTED_MODULE_50__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faLockOpen */ "./node_modules/@fortawesome/free-solid-svg-icons/faLockOpen.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faTimes__WEBPACK_IMPORTED_MODULE_51__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faTimes */ "./node_modules/@fortawesome/free-solid-svg-icons/faTimes.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faLightbulb__WEBPACK_IMPORTED_MODULE_52__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faLightbulb */ "./node_modules/@fortawesome/free-solid-svg-icons/faLightbulb.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faBold__WEBPACK_IMPORTED_MODULE_53__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faBold */ "./node_modules/@fortawesome/free-solid-svg-icons/faBold.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faItalic__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faItalic */ "./node_modules/@fortawesome/free-solid-svg-icons/faItalic.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faUnderline__WEBPACK_IMPORTED_MODULE_55__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faUnderline */ "./node_modules/@fortawesome/free-solid-svg-icons/faUnderline.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faAlignLeft__WEBPACK_IMPORTED_MODULE_56__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faAlignLeft */ "./node_modules/@fortawesome/free-solid-svg-icons/faAlignLeft.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faAlignCenter__WEBPACK_IMPORTED_MODULE_57__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faAlignCenter */ "./node_modules/@fortawesome/free-solid-svg-icons/faAlignCenter.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faAlignRight__WEBPACK_IMPORTED_MODULE_58__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faAlignRight */ "./node_modules/@fortawesome/free-solid-svg-icons/faAlignRight.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faAlignJustify__WEBPACK_IMPORTED_MODULE_59__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faAlignJustify */ "./node_modules/@fortawesome/free-solid-svg-icons/faAlignJustify.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faTrashCan__WEBPACK_IMPORTED_MODULE_60__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faTrashCan */ "./node_modules/@fortawesome/free-solid-svg-icons/faTrashCan.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faSpinner__WEBPACK_IMPORTED_MODULE_61__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faSpinner */ "./node_modules/@fortawesome/free-solid-svg-icons/faSpinner.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faCircleInfo__WEBPACK_IMPORTED_MODULE_62__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faCircleInfo */ "./node_modules/@fortawesome/free-solid-svg-icons/faCircleInfo.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faEyeDropper__WEBPACK_IMPORTED_MODULE_63__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faEyeDropper */ "./node_modules/@fortawesome/free-solid-svg-icons/faEyeDropper.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faPalette__WEBPACK_IMPORTED_MODULE_64__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faPalette */ "./node_modules/@fortawesome/free-solid-svg-icons/faPalette.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faMaximize__WEBPACK_IMPORTED_MODULE_65__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faMaximize */ "./node_modules/@fortawesome/free-solid-svg-icons/faMaximize.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faBoxArchive__WEBPACK_IMPORTED_MODULE_66__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faBoxArchive */ "./node_modules/@fortawesome/free-solid-svg-icons/faBoxArchive.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faServer__WEBPACK_IMPORTED_MODULE_67__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faServer */ "./node_modules/@fortawesome/free-solid-svg-icons/faServer.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faDownload__WEBPACK_IMPORTED_MODULE_68__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faDownload */ "./node_modules/@fortawesome/free-solid-svg-icons/faDownload.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faFileLines__WEBPACK_IMPORTED_MODULE_69__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faFileLines */ "./node_modules/@fortawesome/free-solid-svg-icons/faFileLines.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faFilePen__WEBPACK_IMPORTED_MODULE_70__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faFilePen */ "./node_modules/@fortawesome/free-solid-svg-icons/faFilePen.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons_faFileExport__WEBPACK_IMPORTED_MODULE_71__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons/faFileExport */ "./node_modules/@fortawesome/free-solid-svg-icons/faFileExport.js");
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
 function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
@@ -6344,13 +6595,88 @@ function _extends() { _extends = Object.assign ? Object.assign.bind() : function
 
 
 
-_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_1__.library.add(_fortawesome_free_solid_svg_icons_faRightToBracket__WEBPACK_IMPORTED_MODULE_3__.faRightToBracket, _fortawesome_free_solid_svg_icons_faArrowPointer__WEBPACK_IMPORTED_MODULE_4__.faArrowPointer, _fortawesome_free_solid_svg_icons_faHand__WEBPACK_IMPORTED_MODULE_5__.faHand, _fortawesome_free_solid_svg_icons_faRotateLeft__WEBPACK_IMPORTED_MODULE_6__.faRotateLeft, _fortawesome_free_solid_svg_icons_faRotateRight__WEBPACK_IMPORTED_MODULE_7__.faRotateRight, _fortawesome_free_solid_svg_icons_faAngleLeft__WEBPACK_IMPORTED_MODULE_8__.faAngleLeft, _fortawesome_free_solid_svg_icons_faAngleRight__WEBPACK_IMPORTED_MODULE_9__.faAngleRight, _fortawesome_free_solid_svg_icons_faAngleUp__WEBPACK_IMPORTED_MODULE_10__.faAngleUp, _fortawesome_free_solid_svg_icons_faAngleDown__WEBPACK_IMPORTED_MODULE_11__.faAngleDown, _fortawesome_free_solid_svg_icons_faImage__WEBPACK_IMPORTED_MODULE_12__.faImage, _fortawesome_free_solid_svg_icons_faLayerGroup__WEBPACK_IMPORTED_MODULE_13__.faLayerGroup, _fortawesome_free_solid_svg_icons_faFont__WEBPACK_IMPORTED_MODULE_14__.faFont, _fortawesome_free_solid_svg_icons_faIcons__WEBPACK_IMPORTED_MODULE_15__.faIcons, _fortawesome_free_solid_svg_icons_faQrcode__WEBPACK_IMPORTED_MODULE_16__.faQrcode, _fortawesome_free_solid_svg_icons_faShapes__WEBPACK_IMPORTED_MODULE_17__.faShapes, _fortawesome_free_solid_svg_icons_faPen__WEBPACK_IMPORTED_MODULE_18__.faPen, _fortawesome_free_solid_svg_icons_faPenNib__WEBPACK_IMPORTED_MODULE_19__.faPenNib, _fortawesome_free_solid_svg_icons_faCrop__WEBPACK_IMPORTED_MODULE_20__.faCrop, _fortawesome_free_solid_svg_icons_faPlus__WEBPACK_IMPORTED_MODULE_21__.faPlus, _fortawesome_free_solid_svg_icons_faSquarePlus__WEBPACK_IMPORTED_MODULE_22__.faSquarePlus, _fortawesome_free_solid_svg_icons_faFloppyDisk__WEBPACK_IMPORTED_MODULE_23__.faFloppyDisk, _fortawesome_free_solid_svg_icons_faBars__WEBPACK_IMPORTED_MODULE_24__.faBars, _fortawesome_free_solid_svg_icons_faGear__WEBPACK_IMPORTED_MODULE_25__.faGear, _fortawesome_free_solid_svg_icons_faSquare__WEBPACK_IMPORTED_MODULE_26__.faSquare, _fortawesome_free_solid_svg_icons_faCircle__WEBPACK_IMPORTED_MODULE_27__.faCircle, _fortawesome_free_solid_svg_icons_faStar__WEBPACK_IMPORTED_MODULE_28__.faStar, _fortawesome_free_solid_svg_icons_faRuler__WEBPACK_IMPORTED_MODULE_29__.faRuler, _fortawesome_free_solid_svg_icons_faSliders__WEBPACK_IMPORTED_MODULE_30__.faSliders, _fortawesome_free_solid_svg_icons_faPaintbrush__WEBPACK_IMPORTED_MODULE_31__.faPaintbrush, _fortawesome_free_solid_svg_icons_faFill__WEBPACK_IMPORTED_MODULE_32__.faFill, _fortawesome_free_solid_svg_icons_faBlender__WEBPACK_IMPORTED_MODULE_33__.faBlender, _fortawesome_free_solid_svg_icons_faWandMagicSparkles__WEBPACK_IMPORTED_MODULE_34__.faWandMagicSparkles, _fortawesome_free_solid_svg_icons_faBezierCurve__WEBPACK_IMPORTED_MODULE_35__.faBezierCurve, _fortawesome_free_solid_svg_icons_faCircleHalfStroke__WEBPACK_IMPORTED_MODULE_36__.faCircleHalfStroke, _fortawesome_free_solid_svg_icons_faMagnifyingGlass__WEBPACK_IMPORTED_MODULE_37__.faMagnifyingGlass, _fortawesome_free_solid_svg_icons_faUpload__WEBPACK_IMPORTED_MODULE_38__.faUpload, _fortawesome_free_solid_svg_icons_faCopy__WEBPACK_IMPORTED_MODULE_39__.faCopy, _fortawesome_free_solid_svg_icons_faObjectGroup__WEBPACK_IMPORTED_MODULE_40__.faObjectGroup, _fortawesome_free_solid_svg_icons_faObjectUngroup__WEBPACK_IMPORTED_MODULE_41__.faObjectUngroup, _fortawesome_free_solid_svg_icons_faEye__WEBPACK_IMPORTED_MODULE_42__.faEye, _fortawesome_free_solid_svg_icons_faEyeSlash__WEBPACK_IMPORTED_MODULE_43__.faEyeSlash, _fortawesome_free_solid_svg_icons_faLock__WEBPACK_IMPORTED_MODULE_44__.faLock, _fortawesome_free_solid_svg_icons_faLockOpen__WEBPACK_IMPORTED_MODULE_45__.faLockOpen, _fortawesome_free_solid_svg_icons_faTimes__WEBPACK_IMPORTED_MODULE_46__.faTimes, _fortawesome_free_solid_svg_icons_faLightbulb__WEBPACK_IMPORTED_MODULE_47__.faLightbulb, _fortawesome_free_solid_svg_icons_faBold__WEBPACK_IMPORTED_MODULE_48__.faBold, _fortawesome_free_solid_svg_icons_faItalic__WEBPACK_IMPORTED_MODULE_49__.faItalic, _fortawesome_free_solid_svg_icons_faUnderline__WEBPACK_IMPORTED_MODULE_50__.faUnderline, _fortawesome_free_solid_svg_icons_faAlignLeft__WEBPACK_IMPORTED_MODULE_51__.faAlignLeft, _fortawesome_free_solid_svg_icons_faAlignCenter__WEBPACK_IMPORTED_MODULE_52__.faAlignCenter, _fortawesome_free_solid_svg_icons_faAlignRight__WEBPACK_IMPORTED_MODULE_53__.faAlignRight, _fortawesome_free_solid_svg_icons_faAlignJustify__WEBPACK_IMPORTED_MODULE_54__.faAlignJustify, _fortawesome_free_solid_svg_icons_faTrashCan__WEBPACK_IMPORTED_MODULE_55__.faTrashCan, _fortawesome_free_solid_svg_icons_faSpinner__WEBPACK_IMPORTED_MODULE_56__.faSpinner, _fortawesome_free_solid_svg_icons_faCircleInfo__WEBPACK_IMPORTED_MODULE_57__.faCircleInfo, _fortawesome_free_solid_svg_icons_faEyeDropper__WEBPACK_IMPORTED_MODULE_58__.faEyeDropper, _fortawesome_free_solid_svg_icons_faPalette__WEBPACK_IMPORTED_MODULE_59__.faPalette, _fortawesome_free_solid_svg_icons_faMaximize__WEBPACK_IMPORTED_MODULE_60__.faMaximize, _fortawesome_free_solid_svg_icons_faBoxArchive__WEBPACK_IMPORTED_MODULE_61__.faBoxArchive, _fortawesome_free_solid_svg_icons_faServer__WEBPACK_IMPORTED_MODULE_62__.faServer, _fortawesome_free_solid_svg_icons_faDownload__WEBPACK_IMPORTED_MODULE_63__.faDownload, _fortawesome_free_solid_svg_icons_faFileLines__WEBPACK_IMPORTED_MODULE_64__.faFileLines, _fortawesome_free_solid_svg_icons_faFilePen__WEBPACK_IMPORTED_MODULE_65__.faFilePen);
+
+
+
+
+
+
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_1__.library.add(_fortawesome_free_solid_svg_icons_faRightToBracket__WEBPACK_IMPORTED_MODULE_3__.faRightToBracket, _fortawesome_free_solid_svg_icons_faArrowPointer__WEBPACK_IMPORTED_MODULE_4__.faArrowPointer, _fortawesome_free_solid_svg_icons_faHand__WEBPACK_IMPORTED_MODULE_5__.faHand, _fortawesome_free_solid_svg_icons_faRotateLeft__WEBPACK_IMPORTED_MODULE_6__.faRotateLeft, _fortawesome_free_solid_svg_icons_faRotateRight__WEBPACK_IMPORTED_MODULE_7__.faRotateRight, _fortawesome_free_solid_svg_icons_faAngleLeft__WEBPACK_IMPORTED_MODULE_8__.faAngleLeft, _fortawesome_free_solid_svg_icons_faAngleRight__WEBPACK_IMPORTED_MODULE_9__.faAngleRight, _fortawesome_free_solid_svg_icons_faAngleUp__WEBPACK_IMPORTED_MODULE_10__.faAngleUp, _fortawesome_free_solid_svg_icons_faAngleDown__WEBPACK_IMPORTED_MODULE_11__.faAngleDown, _fortawesome_free_solid_svg_icons_faImage__WEBPACK_IMPORTED_MODULE_12__.faImage, _fortawesome_free_solid_svg_icons_faFileImage__WEBPACK_IMPORTED_MODULE_13__.faFileImage, _fortawesome_free_solid_svg_icons_faTableCells__WEBPACK_IMPORTED_MODULE_14__.faTableCells, _fortawesome_free_solid_svg_icons_faLayerGroup__WEBPACK_IMPORTED_MODULE_15__.faLayerGroup, _fortawesome_free_solid_svg_icons_faFont__WEBPACK_IMPORTED_MODULE_16__.faFont, _fortawesome_free_solid_svg_icons_faIcons__WEBPACK_IMPORTED_MODULE_17__.faIcons, _fortawesome_free_solid_svg_icons_faQrcode__WEBPACK_IMPORTED_MODULE_18__.faQrcode, _fortawesome_free_solid_svg_icons_faShapes__WEBPACK_IMPORTED_MODULE_19__.faShapes, _fortawesome_free_solid_svg_icons_faPen__WEBPACK_IMPORTED_MODULE_20__.faPen, _fortawesome_free_solid_svg_icons_faPenNib__WEBPACK_IMPORTED_MODULE_21__.faPenNib, _fortawesome_free_solid_svg_icons_faPenToSquare__WEBPACK_IMPORTED_MODULE_22__.faPenToSquare, _fortawesome_free_solid_svg_icons_faCrop__WEBPACK_IMPORTED_MODULE_23__.faCrop, _fortawesome_free_solid_svg_icons_faPlus__WEBPACK_IMPORTED_MODULE_24__.faPlus, _fortawesome_free_solid_svg_icons_faSquarePlus__WEBPACK_IMPORTED_MODULE_25__.faSquarePlus, _fortawesome_free_solid_svg_icons_faFloppyDisk__WEBPACK_IMPORTED_MODULE_26__.faFloppyDisk, _fortawesome_free_solid_svg_icons_faBars__WEBPACK_IMPORTED_MODULE_27__.faBars, _fortawesome_free_solid_svg_icons_faGear__WEBPACK_IMPORTED_MODULE_28__.faGear, _fortawesome_free_solid_svg_icons_faSquare__WEBPACK_IMPORTED_MODULE_29__.faSquare, _fortawesome_free_solid_svg_icons_faCircle__WEBPACK_IMPORTED_MODULE_30__.faCircle, _fortawesome_free_solid_svg_icons_faStar__WEBPACK_IMPORTED_MODULE_31__.faStar, _fortawesome_free_solid_svg_icons_faRuler__WEBPACK_IMPORTED_MODULE_32__.faRuler, _fortawesome_free_solid_svg_icons_faSliders__WEBPACK_IMPORTED_MODULE_33__.faSliders, _fortawesome_free_solid_svg_icons_faPaintbrush__WEBPACK_IMPORTED_MODULE_34__.faPaintbrush, _fortawesome_free_solid_svg_icons_faFill__WEBPACK_IMPORTED_MODULE_35__.faFill, _fortawesome_free_solid_svg_icons_faFilter__WEBPACK_IMPORTED_MODULE_36__.faFilter, _fortawesome_free_solid_svg_icons_faBlender__WEBPACK_IMPORTED_MODULE_37__.faBlender, _fortawesome_free_solid_svg_icons_faWandMagicSparkles__WEBPACK_IMPORTED_MODULE_38__.faWandMagicSparkles, _fortawesome_free_solid_svg_icons_faBezierCurve__WEBPACK_IMPORTED_MODULE_39__.faBezierCurve, _fortawesome_free_solid_svg_icons_faCircleHalfStroke__WEBPACK_IMPORTED_MODULE_40__.faCircleHalfStroke, _fortawesome_free_solid_svg_icons_faMagnifyingGlass__WEBPACK_IMPORTED_MODULE_41__.faMagnifyingGlass, _fortawesome_free_solid_svg_icons_faFontAwesome__WEBPACK_IMPORTED_MODULE_42__.faFontAwesome, _fortawesome_free_solid_svg_icons_faUpload__WEBPACK_IMPORTED_MODULE_43__.faUpload, _fortawesome_free_solid_svg_icons_faCopy__WEBPACK_IMPORTED_MODULE_44__.faCopy, _fortawesome_free_solid_svg_icons_faObjectGroup__WEBPACK_IMPORTED_MODULE_45__.faObjectGroup, _fortawesome_free_solid_svg_icons_faObjectUngroup__WEBPACK_IMPORTED_MODULE_46__.faObjectUngroup, _fortawesome_free_solid_svg_icons_faEye__WEBPACK_IMPORTED_MODULE_47__.faEye, _fortawesome_free_solid_svg_icons_faEyeSlash__WEBPACK_IMPORTED_MODULE_48__.faEyeSlash, _fortawesome_free_solid_svg_icons_faLock__WEBPACK_IMPORTED_MODULE_49__.faLock, _fortawesome_free_solid_svg_icons_faLockOpen__WEBPACK_IMPORTED_MODULE_50__.faLockOpen, _fortawesome_free_solid_svg_icons_faTimes__WEBPACK_IMPORTED_MODULE_51__.faTimes, _fortawesome_free_solid_svg_icons_faLightbulb__WEBPACK_IMPORTED_MODULE_52__.faLightbulb, _fortawesome_free_solid_svg_icons_faBold__WEBPACK_IMPORTED_MODULE_53__.faBold, _fortawesome_free_solid_svg_icons_faItalic__WEBPACK_IMPORTED_MODULE_54__.faItalic, _fortawesome_free_solid_svg_icons_faUnderline__WEBPACK_IMPORTED_MODULE_55__.faUnderline, _fortawesome_free_solid_svg_icons_faAlignLeft__WEBPACK_IMPORTED_MODULE_56__.faAlignLeft, _fortawesome_free_solid_svg_icons_faAlignCenter__WEBPACK_IMPORTED_MODULE_57__.faAlignCenter, _fortawesome_free_solid_svg_icons_faAlignRight__WEBPACK_IMPORTED_MODULE_58__.faAlignRight, _fortawesome_free_solid_svg_icons_faAlignJustify__WEBPACK_IMPORTED_MODULE_59__.faAlignJustify, _fortawesome_free_solid_svg_icons_faTrashCan__WEBPACK_IMPORTED_MODULE_60__.faTrashCan, _fortawesome_free_solid_svg_icons_faSpinner__WEBPACK_IMPORTED_MODULE_61__.faSpinner, _fortawesome_free_solid_svg_icons_faCircleInfo__WEBPACK_IMPORTED_MODULE_62__.faCircleInfo, _fortawesome_free_solid_svg_icons_faEyeDropper__WEBPACK_IMPORTED_MODULE_63__.faEyeDropper, _fortawesome_free_solid_svg_icons_faPalette__WEBPACK_IMPORTED_MODULE_64__.faPalette, _fortawesome_free_solid_svg_icons_faMaximize__WEBPACK_IMPORTED_MODULE_65__.faMaximize, _fortawesome_free_solid_svg_icons_faBoxArchive__WEBPACK_IMPORTED_MODULE_66__.faBoxArchive, _fortawesome_free_solid_svg_icons_faServer__WEBPACK_IMPORTED_MODULE_67__.faServer, _fortawesome_free_solid_svg_icons_faDownload__WEBPACK_IMPORTED_MODULE_68__.faDownload, _fortawesome_free_solid_svg_icons_faFileLines__WEBPACK_IMPORTED_MODULE_69__.faFileLines, _fortawesome_free_solid_svg_icons_faFilePen__WEBPACK_IMPORTED_MODULE_70__.faFilePen, _fortawesome_free_solid_svg_icons_faFileExport__WEBPACK_IMPORTED_MODULE_71__.faFileExport);
 var Icon = function Icon(props, ref) {
   return /*#__PURE__*/React.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, _extends({
     ref: ref
   }, props));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (/*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(Icon));
+
+/***/ }),
+
+/***/ "./src/elements/image-resizer.jsx":
+/*!****************************************!*\
+  !*** ./src/elements/image-resizer.jsx ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! wp-i18n */ "wp-i18n");
+/* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(wp_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _input_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./input.jsx */ "./src/elements/input.jsx");
+/* harmony import */ var _input_group_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./input-group.jsx */ "./src/elements/input-group.jsx");
+/* harmony import */ var _range_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./range.jsx */ "./src/elements/range.jsx");
+/* harmony import */ var _help_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./help.jsx */ "./src/elements/help.jsx");
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./utils.js */ "./src/elements/utils.js");
+
+
+
+
+
+
+var ImageResizer = function ImageResizer(_ref) {
+  var label = _ref.label,
+    help = _ref.help,
+    _ref$value = _ref.value,
+    value = _ref$value === void 0 ? 1 : _ref$value,
+    _onChange = _ref.onChange,
+    _ref$originalWidth = _ref.originalWidth,
+    originalWidth = _ref$originalWidth === void 0 ? 1 : _ref$originalWidth,
+    _ref$originalHeight = _ref.originalHeight,
+    originalHeight = _ref$originalHeight === void 0 ? 1 : _ref$originalHeight;
+  return /*#__PURE__*/React.createElement("div", {
+    className: "pixmagix-image-resizer"
+  }, !!label && /*#__PURE__*/React.createElement("div", {
+    className: "pixmagix-label-wrapper"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "pixmagix-label"
+  }, label), !!help && /*#__PURE__*/React.createElement(_help_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], help)), /*#__PURE__*/React.createElement(_range_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Scale', 'pixmagix'),
+    value: value,
+    onChange: _onChange,
+    min: 0.01,
+    max: 4,
+    step: 0.01
+  }), /*#__PURE__*/React.createElement(_input_group_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], null, /*#__PURE__*/React.createElement(_input_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    type: "number",
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Width', 'pixmagix'),
+    value: parseInt(originalWidth * value),
+    onChange: function onChange(value) {
+      var newValue = value / originalWidth;
+      _onChange((0,_utils_js__WEBPACK_IMPORTED_MODULE_5__.toFixed)(newValue));
+    }
+  }), /*#__PURE__*/React.createElement(_input_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    type: "number",
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Height', 'pixmagix'),
+    value: parseInt(originalHeight * value),
+    onChange: function onChange(value) {
+      var newValue = value / originalHeight;
+      _onChange((0,_utils_js__WEBPACK_IMPORTED_MODULE_5__.toFixed)(newValue));
+    }
+  })));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ImageResizer);
 
 /***/ }),
 
@@ -32218,25 +32544,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   Grid: () => (/* reexport safe */ _elements_grid_jsx__WEBPACK_IMPORTED_MODULE_10__.Grid),
 /* harmony export */   GridItem: () => (/* reexport safe */ _elements_grid_jsx__WEBPACK_IMPORTED_MODULE_10__.GridItem),
 /* harmony export */   Icon: () => (/* reexport safe */ _elements_icon_jsx__WEBPACK_IMPORTED_MODULE_11__["default"]),
-/* harmony export */   ImageSelect: () => (/* reexport safe */ _elements_image_select_jsx__WEBPACK_IMPORTED_MODULE_12__["default"]),
-/* harmony export */   InlineControls: () => (/* reexport safe */ _elements_inline_controls_jsx__WEBPACK_IMPORTED_MODULE_13__["default"]),
-/* harmony export */   InlineNotice: () => (/* reexport safe */ _elements_inline_notice_jsx__WEBPACK_IMPORTED_MODULE_14__["default"]),
-/* harmony export */   Input: () => (/* reexport safe */ _elements_input_jsx__WEBPACK_IMPORTED_MODULE_15__["default"]),
-/* harmony export */   InputGroup: () => (/* reexport safe */ _elements_input_group_jsx__WEBPACK_IMPORTED_MODULE_16__["default"]),
-/* harmony export */   LibrarySelect: () => (/* reexport safe */ _elements_library_select_jsx__WEBPACK_IMPORTED_MODULE_17__["default"]),
-/* harmony export */   Loader: () => (/* reexport safe */ _elements_loader_jsx__WEBPACK_IMPORTED_MODULE_18__["default"]),
-/* harmony export */   Modal: () => (/* reexport safe */ _elements_modal_jsx__WEBPACK_IMPORTED_MODULE_19__["default"]),
-/* harmony export */   MulticheckButtons: () => (/* reexport safe */ _elements_multicheck_buttons_jsx__WEBPACK_IMPORTED_MODULE_20__["default"]),
-/* harmony export */   Pagination: () => (/* reexport safe */ _elements_pagination_jsx__WEBPACK_IMPORTED_MODULE_21__["default"]),
-/* harmony export */   RadioButtons: () => (/* reexport safe */ _elements_radio_buttons_jsx__WEBPACK_IMPORTED_MODULE_22__["default"]),
-/* harmony export */   Range: () => (/* reexport safe */ _elements_range_jsx__WEBPACK_IMPORTED_MODULE_23__["default"]),
-/* harmony export */   Repeater: () => (/* reexport safe */ _elements_repeater_jsx__WEBPACK_IMPORTED_MODULE_24__["default"]),
+/* harmony export */   ImageResizer: () => (/* reexport safe */ _elements_image_resizer_jsx__WEBPACK_IMPORTED_MODULE_12__["default"]),
+/* harmony export */   ImageSelect: () => (/* reexport safe */ _elements_image_select_jsx__WEBPACK_IMPORTED_MODULE_13__["default"]),
+/* harmony export */   InlineControls: () => (/* reexport safe */ _elements_inline_controls_jsx__WEBPACK_IMPORTED_MODULE_14__["default"]),
+/* harmony export */   InlineNotice: () => (/* reexport safe */ _elements_inline_notice_jsx__WEBPACK_IMPORTED_MODULE_15__["default"]),
+/* harmony export */   Input: () => (/* reexport safe */ _elements_input_jsx__WEBPACK_IMPORTED_MODULE_16__["default"]),
+/* harmony export */   InputGroup: () => (/* reexport safe */ _elements_input_group_jsx__WEBPACK_IMPORTED_MODULE_17__["default"]),
+/* harmony export */   LibrarySelect: () => (/* reexport safe */ _elements_library_select_jsx__WEBPACK_IMPORTED_MODULE_18__["default"]),
+/* harmony export */   Loader: () => (/* reexport safe */ _elements_loader_jsx__WEBPACK_IMPORTED_MODULE_19__["default"]),
+/* harmony export */   Modal: () => (/* reexport safe */ _elements_modal_jsx__WEBPACK_IMPORTED_MODULE_20__["default"]),
+/* harmony export */   MulticheckButtons: () => (/* reexport safe */ _elements_multicheck_buttons_jsx__WEBPACK_IMPORTED_MODULE_21__["default"]),
+/* harmony export */   Pagination: () => (/* reexport safe */ _elements_pagination_jsx__WEBPACK_IMPORTED_MODULE_22__["default"]),
+/* harmony export */   RadioButtons: () => (/* reexport safe */ _elements_radio_buttons_jsx__WEBPACK_IMPORTED_MODULE_23__["default"]),
+/* harmony export */   Range: () => (/* reexport safe */ _elements_range_jsx__WEBPACK_IMPORTED_MODULE_24__["default"]),
+/* harmony export */   Repeater: () => (/* reexport safe */ _elements_repeater_jsx__WEBPACK_IMPORTED_MODULE_25__["default"]),
 /* harmony export */   Row: () => (/* reexport safe */ _elements_column_jsx__WEBPACK_IMPORTED_MODULE_7__.Row),
-/* harmony export */   Select: () => (/* reexport safe */ _elements_select_jsx__WEBPACK_IMPORTED_MODULE_25__["default"]),
-/* harmony export */   ShadowPicker: () => (/* reexport safe */ _elements_shadow_picker_jsx__WEBPACK_IMPORTED_MODULE_26__["default"]),
-/* harmony export */   StrokeDashArrayControl: () => (/* reexport safe */ _elements_stroke_dasharray_control_jsx__WEBPACK_IMPORTED_MODULE_27__["default"]),
-/* harmony export */   Textarea: () => (/* reexport safe */ _elements_textarea_jsx__WEBPACK_IMPORTED_MODULE_28__["default"]),
-/* harmony export */   Widget: () => (/* reexport safe */ _elements_widget_jsx__WEBPACK_IMPORTED_MODULE_29__["default"])
+/* harmony export */   Select: () => (/* reexport safe */ _elements_select_jsx__WEBPACK_IMPORTED_MODULE_26__["default"]),
+/* harmony export */   ShadowPicker: () => (/* reexport safe */ _elements_shadow_picker_jsx__WEBPACK_IMPORTED_MODULE_27__["default"]),
+/* harmony export */   StrokeDashArrayControl: () => (/* reexport safe */ _elements_stroke_dasharray_control_jsx__WEBPACK_IMPORTED_MODULE_28__["default"]),
+/* harmony export */   Textarea: () => (/* reexport safe */ _elements_textarea_jsx__WEBPACK_IMPORTED_MODULE_29__["default"]),
+/* harmony export */   Widget: () => (/* reexport safe */ _elements_widget_jsx__WEBPACK_IMPORTED_MODULE_30__["default"])
 /* harmony export */ });
 /* harmony import */ var _elements_before_after_slider_jsx__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./elements/before-after-slider.jsx */ "./src/elements/before-after-slider.jsx");
 /* harmony import */ var _elements_button_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./elements/button.jsx */ "./src/elements/button.jsx");
@@ -32250,24 +32577,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _elements_gradient_picker_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./elements/gradient-picker.jsx */ "./src/elements/gradient-picker.jsx");
 /* harmony import */ var _elements_grid_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./elements/grid.jsx */ "./src/elements/grid.jsx");
 /* harmony import */ var _elements_icon_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./elements/icon.jsx */ "./src/elements/icon.jsx");
-/* harmony import */ var _elements_image_select_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./elements/image-select.jsx */ "./src/elements/image-select.jsx");
-/* harmony import */ var _elements_inline_controls_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./elements/inline-controls.jsx */ "./src/elements/inline-controls.jsx");
-/* harmony import */ var _elements_inline_notice_jsx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./elements/inline-notice.jsx */ "./src/elements/inline-notice.jsx");
-/* harmony import */ var _elements_input_jsx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./elements/input.jsx */ "./src/elements/input.jsx");
-/* harmony import */ var _elements_input_group_jsx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./elements/input-group.jsx */ "./src/elements/input-group.jsx");
-/* harmony import */ var _elements_library_select_jsx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./elements/library-select.jsx */ "./src/elements/library-select.jsx");
-/* harmony import */ var _elements_loader_jsx__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./elements/loader.jsx */ "./src/elements/loader.jsx");
-/* harmony import */ var _elements_modal_jsx__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./elements/modal.jsx */ "./src/elements/modal.jsx");
-/* harmony import */ var _elements_multicheck_buttons_jsx__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./elements/multicheck-buttons.jsx */ "./src/elements/multicheck-buttons.jsx");
-/* harmony import */ var _elements_pagination_jsx__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./elements/pagination.jsx */ "./src/elements/pagination.jsx");
-/* harmony import */ var _elements_radio_buttons_jsx__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./elements/radio-buttons.jsx */ "./src/elements/radio-buttons.jsx");
-/* harmony import */ var _elements_range_jsx__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./elements/range.jsx */ "./src/elements/range.jsx");
-/* harmony import */ var _elements_repeater_jsx__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./elements/repeater.jsx */ "./src/elements/repeater.jsx");
-/* harmony import */ var _elements_select_jsx__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./elements/select.jsx */ "./src/elements/select.jsx");
-/* harmony import */ var _elements_shadow_picker_jsx__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./elements/shadow-picker.jsx */ "./src/elements/shadow-picker.jsx");
-/* harmony import */ var _elements_stroke_dasharray_control_jsx__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./elements/stroke-dasharray-control.jsx */ "./src/elements/stroke-dasharray-control.jsx");
-/* harmony import */ var _elements_textarea_jsx__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./elements/textarea.jsx */ "./src/elements/textarea.jsx");
-/* harmony import */ var _elements_widget_jsx__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./elements/widget.jsx */ "./src/elements/widget.jsx");
+/* harmony import */ var _elements_image_resizer_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./elements/image-resizer.jsx */ "./src/elements/image-resizer.jsx");
+/* harmony import */ var _elements_image_select_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./elements/image-select.jsx */ "./src/elements/image-select.jsx");
+/* harmony import */ var _elements_inline_controls_jsx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./elements/inline-controls.jsx */ "./src/elements/inline-controls.jsx");
+/* harmony import */ var _elements_inline_notice_jsx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./elements/inline-notice.jsx */ "./src/elements/inline-notice.jsx");
+/* harmony import */ var _elements_input_jsx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./elements/input.jsx */ "./src/elements/input.jsx");
+/* harmony import */ var _elements_input_group_jsx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./elements/input-group.jsx */ "./src/elements/input-group.jsx");
+/* harmony import */ var _elements_library_select_jsx__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./elements/library-select.jsx */ "./src/elements/library-select.jsx");
+/* harmony import */ var _elements_loader_jsx__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./elements/loader.jsx */ "./src/elements/loader.jsx");
+/* harmony import */ var _elements_modal_jsx__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./elements/modal.jsx */ "./src/elements/modal.jsx");
+/* harmony import */ var _elements_multicheck_buttons_jsx__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./elements/multicheck-buttons.jsx */ "./src/elements/multicheck-buttons.jsx");
+/* harmony import */ var _elements_pagination_jsx__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./elements/pagination.jsx */ "./src/elements/pagination.jsx");
+/* harmony import */ var _elements_radio_buttons_jsx__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./elements/radio-buttons.jsx */ "./src/elements/radio-buttons.jsx");
+/* harmony import */ var _elements_range_jsx__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./elements/range.jsx */ "./src/elements/range.jsx");
+/* harmony import */ var _elements_repeater_jsx__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./elements/repeater.jsx */ "./src/elements/repeater.jsx");
+/* harmony import */ var _elements_select_jsx__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./elements/select.jsx */ "./src/elements/select.jsx");
+/* harmony import */ var _elements_shadow_picker_jsx__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./elements/shadow-picker.jsx */ "./src/elements/shadow-picker.jsx");
+/* harmony import */ var _elements_stroke_dasharray_control_jsx__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./elements/stroke-dasharray-control.jsx */ "./src/elements/stroke-dasharray-control.jsx");
+/* harmony import */ var _elements_textarea_jsx__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./elements/textarea.jsx */ "./src/elements/textarea.jsx");
+/* harmony import */ var _elements_widget_jsx__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./elements/widget.jsx */ "./src/elements/widget.jsx");
+
 
 
 

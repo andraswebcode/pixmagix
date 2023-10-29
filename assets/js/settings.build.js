@@ -137,6 +137,10 @@ var HELP_TEXTS = {
     text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Line height refers to the vertical space between lines of text. It plays a crucial role in determining the overall legibility and readability of a piece of content.', 'pixmagix'),
     link: 'https://pixmagix-photo-editor.com/miscellaneous/understanding-line-height-in-typography/'
   },
+  dpi: {
+    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('DPI is a measure of spatial printing or image resolution. It refers to the number of individual dots that can be placed vertically and horizontally within a one-inch linear space. A higher DPI generally indicates a more detailed and smoother image, while a lower DPI means a less crisp output.', 'pixmagix'),
+    link: 'https://pixmagix-photo-editor.com/graphic-design/dpi-meaning/'
+  },
   pixabayApiKey: {
     text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'pixmagix'),
     link: 'https://pixmagix-photo-editor.com/tutorials/how-to-get-and-connect-pixabay-api-key-to-pixmagix/'
@@ -239,6 +243,66 @@ var ContentApiKeys = function ContentApiKeys(props) {
   }), (0,_utils_hooks_js__WEBPACK_IMPORTED_MODULE_4__.doComponents)('settings.apiKeys', props));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ContentApiKeys);
+
+/***/ }),
+
+/***/ "./src/settings/content-general.jsx":
+/*!******************************************!*\
+  !*** ./src/settings/content-general.jsx ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var elements__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! elements */ "elements");
+/* harmony import */ var elements__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(elements__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! wp-i18n */ "wp-i18n");
+/* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(wp_i18n__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash */ "lodash");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _utils_hooks_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../utils/hooks.js */ "./src/utils/hooks.js");
+
+
+
+
+
+var ContentGeneral = function ContentGeneral(props) {
+  var _find2;
+  var default_free_images = props.default_free_images,
+    onSettingChange = props.onSettingChange;
+  var platforms = [{
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Pixabay', 'pixmagix'),
+    value: 'pixabay'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Pexels', 'pixmagix'),
+    value: 'pexels'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Unsplash', 'pixmagix'),
+    value: 'unsplash'
+  }];
+  var platformLabel = ((_find2 = (0,lodash__WEBPACK_IMPORTED_MODULE_3__.find)(platforms, {
+    value: default_free_images
+  })) === null || _find2 === void 0 ? void 0 : _find2.label) || '';
+  var showWarning = !!(default_free_images && !props["".concat(default_free_images, "_api_key")]);
+  return /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_1__.Select, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Default Free Image Source', 'pixmagix'),
+    options: platforms,
+    value: default_free_images,
+    onChange: function onChange(value) {
+      return onSettingChange('default_free_images', value);
+    }
+  }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_1__.InlineNotice, {
+    type: "warning",
+    message: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_2__.sprintf)((0,wp_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('You set default free image source to %s, but do not set API key. Please go to API Keys tab, and provide a valid %s API key.', 'pixmagix'), platformLabel, platformLabel),
+    show: showWarning
+  }), (0,_utils_hooks_js__WEBPACK_IMPORTED_MODULE_4__.doComponents)('settings.general', props));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ContentGeneral);
 
 /***/ }),
 
@@ -424,11 +488,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var editor_globals__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(editor_globals__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! wp-i18n */ "wp-i18n");
 /* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(wp_i18n__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _content_api_keys_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./content-api-keys.jsx */ "./src/settings/content-api-keys.jsx");
-/* harmony import */ var _content_users_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./content-users.jsx */ "./src/settings/content-users.jsx");
-/* harmony import */ var _content_performance_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./content-performance.jsx */ "./src/settings/content-performance.jsx");
-/* harmony import */ var _utils_utils_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../utils/utils.js */ "./src/utils/utils.js");
-/* harmony import */ var _utils_hooks_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../utils/hooks.js */ "./src/utils/hooks.js");
+/* harmony import */ var _content_general_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./content-general.jsx */ "./src/settings/content-general.jsx");
+/* harmony import */ var _content_api_keys_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./content-api-keys.jsx */ "./src/settings/content-api-keys.jsx");
+/* harmony import */ var _content_users_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./content-users.jsx */ "./src/settings/content-users.jsx");
+/* harmony import */ var _content_performance_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./content-performance.jsx */ "./src/settings/content-performance.jsx");
+/* harmony import */ var _utils_utils_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../utils/utils.js */ "./src/utils/utils.js");
+/* harmony import */ var _utils_hooks_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./../utils/hooks.js */ "./src/utils/hooks.js");
+
 
 
 
@@ -438,18 +504,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Content = function Content(props) {
-  var tabs = (0,_utils_hooks_js__WEBPACK_IMPORTED_MODULE_7__.applyFilters)('settings.tabs', [{
+  var tabs = (0,_utils_hooks_js__WEBPACK_IMPORTED_MODULE_8__.applyFilters)('settings.tabs', [{
+    name: 'general',
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('General Settings', 'pixmagix'),
+    content: /*#__PURE__*/React.createElement(_content_general_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], props)
+  }, {
     name: 'apikeys',
     label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('API Keys', 'pixmagix'),
-    content: /*#__PURE__*/React.createElement(_content_api_keys_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], props)
+    content: /*#__PURE__*/React.createElement(_content_api_keys_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], props)
   }, {
     name: 'users',
     label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Users', 'pixmagix'),
-    content: /*#__PURE__*/React.createElement(_content_users_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], props)
+    content: /*#__PURE__*/React.createElement(_content_users_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], props)
   }, {
     name: 'performance',
     label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Performance', 'pixmagix'),
-    content: /*#__PURE__*/React.createElement(_content_performance_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], props)
+    content: /*#__PURE__*/React.createElement(_content_performance_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], props)
   }], props);
   return /*#__PURE__*/React.createElement("div", {
     className: "pixmagix-content"
@@ -458,7 +528,7 @@ var Content = function Content(props) {
     initShow: props.tab,
     onChange: function onChange(_ref) {
       var name = _ref.name;
-      return (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_6__.addToRouter)({
+      return (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_7__.addToRouter)({
         tab: name
       }, editor_globals__WEBPACK_IMPORTED_MODULE_1__.self_url);
     }
@@ -681,7 +751,12 @@ function addFilter(hookName, namespace, callback, priority) {
  * @since 1.2.0
  */
 
-function doAction() {}
+function doAction(hookName) {
+  for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+    args[_key2 - 1] = arguments[_key2];
+  }
+  return HOOKS.doAction.apply(HOOKS, [hookName].concat(args));
+}
 
 /**
  *
@@ -689,7 +764,9 @@ function doAction() {}
  * @since 1.2.0
  */
 
-function addAction() {}
+function addAction(hookName, namespace, callback, priority) {
+  return HOOKS.addAction(hookName, namespace, callback, priority);
+}
 
 /**
  *

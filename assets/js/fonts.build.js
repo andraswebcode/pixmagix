@@ -137,6 +137,10 @@ var HELP_TEXTS = {
     text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Line height refers to the vertical space between lines of text. It plays a crucial role in determining the overall legibility and readability of a piece of content.', 'pixmagix'),
     link: 'https://pixmagix-photo-editor.com/miscellaneous/understanding-line-height-in-typography/'
   },
+  dpi: {
+    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('DPI is a measure of spatial printing or image resolution. It refers to the number of individual dots that can be placed vertically and horizontally within a one-inch linear space. A higher DPI generally indicates a more detailed and smoother image, while a lower DPI means a less crisp output.', 'pixmagix'),
+    link: 'https://pixmagix-photo-editor.com/graphic-design/dpi-meaning/'
+  },
   pixabayApiKey: {
     text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'pixmagix'),
     link: 'https://pixmagix-photo-editor.com/tutorials/how-to-get-and-connect-pixabay-api-key-to-pixmagix/'
@@ -1160,7 +1164,12 @@ function addFilter(hookName, namespace, callback, priority) {
  * @since 1.2.0
  */
 
-function doAction() {}
+function doAction(hookName) {
+  for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+    args[_key2 - 1] = arguments[_key2];
+  }
+  return HOOKS.doAction.apply(HOOKS, [hookName].concat(args));
+}
 
 /**
  *
@@ -1168,7 +1177,9 @@ function doAction() {}
  * @since 1.2.0
  */
 
-function addAction() {}
+function addAction(hookName, namespace, callback, priority) {
+  return HOOKS.addAction(hookName, namespace, callback, priority);
+}
 
 /**
  *
