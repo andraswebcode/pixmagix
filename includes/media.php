@@ -52,7 +52,7 @@ final class Media {
 		}
 
 		$post_mime_type = $post->post_mime_type;
-		$mime_types = array('image/png', 'image/jpeg');
+		$mime_types = array('image/png', 'image/jpeg', 'image/webp');
 		$correct_mime = in_array($post_mime_type, $mime_types);
 		$can_edit = current_user_can('edit_post', $post->ID);
 

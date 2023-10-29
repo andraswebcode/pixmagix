@@ -9,6 +9,7 @@ use function  AndrasWeb\PixMagix\Editor\enqueue_scripts ;
 use function  AndrasWeb\PixMagix\Editor\initialize ;
 use function  AndrasWeb\PixMagix\Utils\get_asset_url ;
 use function  AndrasWeb\PixMagix\Utils\get_upload_url ;
+use function  AndrasWeb\PixMagix\Utils\get_media_info ;
 use function  AndrasWeb\PixMagix\Utils\get_months_dropdown_items ;
 use function  AndrasWeb\PixMagix\Utils\get_categories_dropdown_items ;
 use function  AndrasWeb\PixMagix\Utils\admin_editor_url ;
@@ -180,16 +181,8 @@ final class Admin
         } elseif ( $hook_suffix === 'pixmagix_page_pixmagix_editor' ) {
             $project_id = ( isset( $_GET['id'] ) ? absint( $_GET['id'] ) : 0 );
             $project = get_project( $project_id );
-            $attachment_id = ( isset( $_GET['image'] ) ? absint( $_GET['image'] ) : 0 );
-            $attachment_src = wp_get_attachment_image_src( $attachment_id, 'full_size' );
-            $revision_url = get_post_meta( $attachment_id, 'pixmagix_revision_url', true );
-            $media = array(
-                'id'       => $attachment_id,
-                'url'      => ( isset( $attachment_src[0] ) ? $attachment_src[0] : '' ),
-                'width'    => ( isset( $attachment_src[1] ) ? $attachment_src[1] : 0 ),
-                'height'   => ( isset( $attachment_src[2] ) ? $attachment_src[2] : 0 ),
-                'revision' => ( !empty($revision_url) ? $revision_url : '' ),
-            );
+            $image = $_GET['image'] ?? 0;
+            $media = get_media_info( $image );
             enqueue_fonts();
             enqueue_styles( array(
                 'handle' => 'pixmagix-editor',
@@ -264,6 +257,7 @@ final class Admin
                 'maxPages' => ( isset( $data['maxPages'] ) ? absint( $data['maxPages'] ) : 1 ),
             ) ) );
         } elseif ( $hook_suffix === 'pixmagix_page_pixmagix_freeimgs' ) {
+            $default_platform = get_setting( 'default_free_images', 'pixabay' );
             $filters = array(
                 'search',
                 'type',
@@ -272,8 +266,8 @@ final class Admin
                 'color'
             );
             $params = array(
-                'service' => ( isset( $_GET['service'] ) ? esc_html( $_GET['service'] ) : 'pixabay' ),
-                'page'    => ( isset( $_GET['p'] ) ? absint( $_GET['p'] ) : 1 ),
+                'platform' => ( isset( $_GET['platform'] ) ? esc_html( $_GET['platform'] ) : $default_platform ),
+                'page'     => ( isset( $_GET['p'] ) ? absint( $_GET['p'] ) : 1 ),
             );
             foreach ( $filters as $key ) {
                 $params[$key] = ( isset( $_GET[$key] ) ? esc_html( $_GET[$key] ) : '' );
@@ -354,7 +348,7 @@ final class Admin
             ) );
             initialize( 'pixmagix-settings', array_merge( get_all_settings(), array(
                 'roles' => get_roles(),
-                'tab'   => ( isset( $_GET['tab'] ) ? esc_html( $_GET['tab'] ) : 'apikeys' ),
+                'tab'   => ( isset( $_GET['tab'] ) ? esc_html( $_GET['tab'] ) : 'general' ),
             ) ) );
         }
     

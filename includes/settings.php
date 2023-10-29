@@ -19,11 +19,12 @@ const  SETTINGS_KEY = 'pixmagix_general_settings' ;
  * @var array
  */
 const  DEFAULT_SETTINGS = array(
-    'pixabay_api_key'  => '',
-    'pexels_api_key'   => '',
-    'unsplash_api_key' => '',
-    'gfonts_api_key'   => '',
-    'web_safe_fonts'   => array(
+    'default_free_images' => 'pixabay',
+    'pixabay_api_key'     => '',
+    'pexels_api_key'      => '',
+    'unsplash_api_key'    => '',
+    'gfonts_api_key'      => '',
+    'web_safe_fonts'      => array(
     array(
     'family'     => 'Arial',
     'collection' => 'websafe',
@@ -53,10 +54,10 @@ const  DEFAULT_SETTINGS = array(
     'collection' => 'websafe',
 )
 ),
-    'google_fonts'     => array(),
-    'thumbnail_width'  => 200,
-    'create_previews'  => true,
-    'preview_width'    => 1280,
+    'google_fonts'        => array(),
+    'thumbnail_width'     => 300,
+    'create_previews'     => true,
+    'preview_width'       => 1280,
 ) ;
 /**
  *
@@ -64,15 +65,16 @@ const  DEFAULT_SETTINGS = array(
  * @var array
  */
 const  SANITIZE_CALLBACKS = array(
-    'pixabay_api_key'  => 'sanitize_text_field',
-    'pexels_api_key'   => 'sanitize_text_field',
-    'unsplash_api_key' => 'sanitize_text_field',
-    'gfonts_api_key'   => 'sanitize_text_field',
-    'web_safe_fonts'   => __NAMESPACE__ . '\\sanitize_fonts',
-    'google_fonts'     => __NAMESPACE__ . '\\sanitize_fonts',
-    'thumbnail_width'  => 'absint',
-    'create_previews'  => 'boolval',
-    'preview_width'    => 'absint',
+    'default_free_images' => 'sanitize_text_field',
+    'pixabay_api_key'     => 'sanitize_text_field',
+    'pexels_api_key'      => 'sanitize_text_field',
+    'unsplash_api_key'    => 'sanitize_text_field',
+    'gfonts_api_key'      => 'sanitize_text_field',
+    'web_safe_fonts'      => __NAMESPACE__ . '\\sanitize_fonts',
+    'google_fonts'        => __NAMESPACE__ . '\\sanitize_fonts',
+    'thumbnail_width'     => 'absint',
+    'create_previews'     => 'boolval',
+    'preview_width'       => 'absint',
 ) ;
 /**
  *

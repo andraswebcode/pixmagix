@@ -623,12 +623,12 @@ final class Rest_Api {
 
 	public function get_free_images($request){
 
-		$service = $request->get_param('service');
+		$platform = $request->get_param('platform');
 
-		if (empty($service)){
+		if (empty($platform)){
 			return new \WP_Error(
 				'missing_parameter',
-				esc_html__('Service is Missing', 'pixmagix'),
+				esc_html__('Platform is Missing', 'pixmagix'),
 				array(
 					'status' => 404
 				)
@@ -642,8 +642,8 @@ final class Rest_Api {
 		$color = $request->get_param('color');
 		$page = $request->get_param('page');
 		$page = !empty($page) ? absint($page) : 1;
-		$key = $service . '_key';
-		$url = $service . '_url';
+		$key = $platform . '_key';
+		$url = $platform . '_url';
 		$api_key = $this->$key;
 
 		if (empty($api_key)){
@@ -663,7 +663,7 @@ final class Rest_Api {
 		$api_url = $this->$url;
 		$remote_args = array();
 
-		if ($service === 'pixabay'){
+		if ($platform === 'pixabay'){
 			$args = array_merge(
 				$args,
 				array_filter(
@@ -677,7 +677,7 @@ final class Rest_Api {
 					)
 				)
 			);
-		} elseif ($service === 'pexels'){
+		} elseif ($platform === 'pexels'){
 			$api_url = $search ? str_replace('/curated', '/search', $api_url) : $api_url;
 			$remote_args['headers'] = 'Authorization: ' . $api_key;
 			$args = array_merge(
@@ -690,7 +690,7 @@ final class Rest_Api {
 					)
 				)
 			);
-		} elseif ($service === 'unsplash'){
+		} elseif ($platform === 'unsplash'){
 			$api_url = $search ? str_replace('/photos', '/search/photos', $api_url) : $api_url;
 			$args = array_merge(
 				$args,
@@ -723,7 +723,7 @@ final class Rest_Api {
 			return new \WP_Error();
 		}
 
-		if ($service === 'pixabay'){
+		if ($platform === 'pixabay'){
 			$items = isset($data['hits']) ? $data['hits'] : array();
 			$total_items = isset($data['totalHits']) ? absint($data['totalHits']) : 12;
 			foreach ($items as $item){
@@ -765,7 +765,7 @@ final class Rest_Api {
 				);
 			}
 			$response['maxPages'] = ceil($total_items / 12);
-		} elseif ($service === 'pexels'){
+		} elseif ($platform === 'pexels'){
 			$items = isset($data['photos']) ? $data['photos'] : array();
 			$total_items = isset($data['total_results']) ? absint($data['total_results']) : 12;
 			foreach ($items as $item){
@@ -847,7 +847,7 @@ final class Rest_Api {
 				);
 			}
 			$response['maxPages'] = ceil($total_items / 12);
-		} elseif ($service === 'unsplash'){
+		} elseif ($platform === 'unsplash'){
 			$items = ($search && isset($data['results'])) ? $data['results'] : $data;
 			$total_pages = isset($data['total_pages']) ? absint($data['total_pages']) : 10;
 			foreach ($items as $item){

@@ -215,7 +215,7 @@ function get_upload_url($folder_name = '', $file_name = ''){
 /**
  * Returns the link to editor page.
  * @since 1.0.0
- * @param int $id
+ * @param int|string $id This can be string if you set $key 'image' and set this image source url.
  * @param string $key The key of query arg: 'id', or 'image'.
  * @return string
  */
@@ -520,6 +520,76 @@ function get_cropped_image_size($width = 0, $height = 0, $cropped_size = 0){
 		'width' => ceil($cropped_width),
 		'height' => ceil($cropped_height)
 	);
+
+}
+
+
+/**
+ * 
+ * @since 1.3.0
+ * @param int|string $image The media id, or any image src. (Even if it is not an attachment media.)
+ * @return array
+ */
+
+function get_media_info($image = 0){
+
+	// defaults
+	$info = array(
+		'url' => '',
+		'width' => 0,
+		'height' => 0
+	);
+
+	if (empty($image)){
+		return $info;
+	}
+
+	if (absint($image) !== 0){ // In case of media id.
+		$attachment_src = wp_get_attachment_image_src($image, 'full_size');
+		$revision_url = get_post_meta($image, 'pixmagix_revision_url', true);
+		$info = array(
+			'id' => absint($image),
+			'url' => esc_url($attachment_src[0] ?? ''),
+			'width' =>  absint($attachment_src[1] ?? 0),
+			'height' => absint($attachment_src[2] ?? 0),
+			'revision' => esc_url($revision_url ?? '')
+		);
+	} else { // In case of image source url.
+		if (!is_same_origin($image)){
+			return $info;
+		}
+		$size = wp_getimagesize($image);
+		$info = array(
+			'url' => esc_url($image),
+			'width' => absint($size[0]),
+			'height' => absint($size[1])
+		);
+	}
+
+	return $info;
+
+}
+
+/**
+ * Check if the image src is from the same origin.
+ * @since 1.3.0
+ * @param string $src
+ * @return boolean
+ */
+
+function is_same_origin($src = ''){
+
+	if (empty($src)){
+		return false;
+	}
+
+	$site_url = get_site_url();
+
+	if (strpos($src, $site_url) !== false){
+		return true;
+	}
+
+	return false;
 
 }
 
