@@ -5,9 +5,9 @@ Advanced photo editor plugin for WordPress media images. Add filters, adjust bri
 
 Unleash the power of creativity with PixMagix. Transform your website into a visual powerhouse that leaves a lasting impression on your visitors.
 
-[Features](https://pixmagix-photo-editor.com/features/) | [Tutorials](https://pixmagix-photo-editor.com/category/tutorials/) | [Documentation](https://pixmagix-photo-editor.com/support/documentation/) | [FAQ](https://pixmagix-photo-editor.com/support/faq/) | [Contact](https://pixmagix-photo-editor.com/support/contact/)
+[Features](https://pixmagixplugin.com/features/) | [Tutorials](https://pixmagixplugin.com/category/tutorials/) | [Documentation](https://docs.pixmagixplugin.com/) | [FAQ](https://pixmagixplugin.com/support/faq/) | [Contact](https://pixmagixplugin.com/support/contact/)
 
-![the editor interface](https://pixmagix-photo-editor.com/wp-content/uploads/2023/07/editor-768x432.jpg)
+![the editor interface](https://pixmagixplugin.com/wp-content/uploads/2023/11/image-editor-1024x584.jpg)
 
 ### Unlock the Power of Visual Storytelling
 
