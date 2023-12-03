@@ -19,7 +19,7 @@ class Meta_Fields extends \WP_REST_Post_Meta_Fields {
 
 	/**
 	 * Constructor.
-	 * For set the default post type: pixmagix.
+	 * For setting the default post type to pixmagix.
 	 * @since 1.1.0
 	 * @access public
 	 * @param string $post_type

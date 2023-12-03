@@ -40,6 +40,15 @@ final class Rest_Api {
 	private $namespace = 'pixmagix/v1';
 
 	/**
+	 * The PixMagix API url.
+	 * @since 1.1.0
+	 * @access private
+	 * @var string
+	 */
+
+	private $pixmagix_url = 'https://api.pixmagixplugin.com/';
+
+	/**
 	 * The Pixabay API url.
 	 * @since 1.1.0
 	 * @access private
@@ -129,10 +138,10 @@ final class Rest_Api {
 	 */
 
 	public function set_api_keys(){
-		$pixabay_key = get_setting('pixabay_api_key');
-		$pexels_key = get_setting('pexels_api_key');
-		$unsplash_key = get_setting('unsplash_api_key');
-		$gfonts_key = get_setting('gfonts_api_key');
+		$pixabay_key = sanitize_text_field(get_setting('pixabay_api_key'));
+		$pexels_key = sanitize_text_field(get_setting('pexels_api_key'));
+		$unsplash_key = sanitize_text_field(get_setting('unsplash_api_key'));
+		$gfonts_key = sanitize_text_field(get_setting('gfonts_api_key'));
 		if (!empty($pixabay_key)){
 			$this->pixabay_key = $pixabay_key;
 		}
@@ -445,30 +454,26 @@ final class Rest_Api {
 
 	public function get_templates($request){
 
-		$page = $request->get_param('page');
-		$page = !empty($page) ? absint($page) : 1;
-		$search = $request->get_param('search');
-		$category = $request->get_param('category');
-		$aspect = $request->get_param('aspect');
-		$has_filters = !empty(array_filter(array($search, $category, $aspect)));
-		$response = array();
-		$items = get_json_data('templates');
+		$args = array();
+		$api_url = $this->pixmagix_url;
+		$api_url = add_query_arg($args, $api_url);
+		$remote_response = wp_remote_get($api_url);
 
-		if ($has_filters){
-			$items = array_filter($items, function($item) use ($search, $category, $aspect){
-				$tt = $item['title'] ?? '';
-				$kw = $item['keywords'] ?? '';
-				$cat = $item['category'] ?? '';
-				$asp = $item['aspect'] ?? '';
-				$s = (empty($search) || stripos($tt . $kw, $search) !== false);
-				$c = (empty($category) || $category === $cat);
-				$a = (empty($aspect) || $aspect === $asp);
-				return ($s && $c && $a);
-			});
+		if (is_wp_error($remote_response)){
+			return $remote_response;
 		}
 
-		$response['maxPages'] = ceil(count($items) / 12);
-		$response['items'] = array_slice($items, $page * 12 - 12, 12);
+		$body = wp_remote_retrieve_body($remote_response);
+		$data = json_decode($body, true);
+
+		if (empty($data)){
+			return new \WP_Error();
+		}
+
+		$response = array(
+			'items' => $data,
+			'maxPages' => 1
+		);
 
 		return new \WP_REST_Response($response);
 
@@ -495,50 +500,25 @@ final class Rest_Api {
 			require_once ABSPATH . '/wp-admin/includes/file.php';
 		}
 
-		$tmpl_id = $request->get_param('id');
-		$project_name = $request->get_param('projectName');
-		$tmpls = get_json_data('templates');
-		$gfonts = get_json_data('gfonts');
-		$selected_template = find_object($tmpls, 'id', $tmpl_id);
-
-		if (empty($tmpl_id)){
-			return new \WP_Error(
-				'missing_parameter',
-				esc_html__('Template ID is Missing', 'pixmagix'),
-				array(
-					'status' => 404
-				)
-			);
-		}
-
-		if (empty($tmpls)){
-			return new \WP_Error();
-		}
-
-		if (empty($selected_template)){
-			return new \WP_Error();
-		}
-
-		$title = $selected_template['title'] ?? '';
-		$description = $selected_template['description'] ?? '';
-		$width = $selected_template['width'] ?? 0;
-		$height = $selected_template['height'] ?? 0;
-		$background = $selected_template['background'] ?? '';
-		$thumbnail = $selected_template['thumbnail'] ?? '';
-		$preview = $selected_template['preview'] ?? '';
-		$layers = $selected_template['layers'] ?? array();
-		$has_image = boolval(find_object($layers, 'type', 'image'));
+		$json = $request->get_json_params();
+		$title = $json['title'] ?? '';
+		$description = $json['description'] ?? '';
+		$width = $json['width'] ?? 0;
+		$height = $json['height'] ?? 0;
+		$thumbnail = $json['thumbnail'] ?? '';
+		$preview = $json['preview'] ?? '';
+		$layers = $json['layers'] ?? array();
 		$body_params = array(
-			'title' => sanitize_text_field(!empty($project_name) ? $project_name : $title),
+			'title' => sanitize_text_field($title),
 			'content' => sanitize_textarea_field($description),
-			'status' => 'publish',
+			'status' => 'private',
 			'meta' => array(
 				'pixmagix_project' => array(
-					'canvasWidth' => $width,
-					'canvasHeight' => $height,
-					'canvasBackground' => $background,
-					'thumbnail' => $thumbnail,
-					'preview' => $preview,
+					'canvasWidth' => absint($width),
+					'canvasHeight' => absint($height),
+					'canvasBackground' => '',
+					'thumbnail' => esc_url_raw($thumbnail),
+					'preview' => esc_url_raw($preview),
 					'layers' => array()
 				)
 			)
@@ -574,7 +554,7 @@ final class Rest_Api {
 		$new_meta = $body_params['meta'];
 
 		// Save, and move remote images to the layers folder.
-		if ($has_image && $post_id){
+		if ($post_id){
 			foreach ($layers as $index => $layer){
 				$type = $layer['type'] ?? '';
 				if ($type === 'image'){
@@ -586,7 +566,6 @@ final class Rest_Api {
 					$extension = get_file_extension($src, 'png');
 					$tmp_name = download_url($src);
 					if (is_wp_error($tmp_name)){
-						@unlink($tmp_name);
 						return $tmp_name;
 					}
 					// Follow the structure of file names inside layers directory.
@@ -635,11 +614,11 @@ final class Rest_Api {
 			);
 		}
 
-		$search = $request->get_param('search');
-		$type = $request->get_param('type');
-		$orientation = $request->get_param('orientation');
-		$category = $request->get_param('category');
-		$color = $request->get_param('color');
+		$search = sanitize_text_field($request->get_param('search'));
+		$type = sanitize_text_field($request->get_param('type'));
+		$orientation = sanitize_text_field($request->get_param('orientation'));
+		$category = sanitize_text_field($request->get_param('category'));
+		$color = sanitize_text_field($request->get_param('color'));
 		$page = $request->get_param('page');
 		$page = !empty($page) ? absint($page) : 1;
 		$key = $platform . '_key';
@@ -964,13 +943,12 @@ final class Rest_Api {
 			require_once ABSPATH . '/wp-admin/includes/image.php';
 		}
 
-		$src = $request->get_param('src');
+		$src = esc_url_raw($request->get_param('src'));
 
 		if (!is_string($src) || empty($src)){
 			return new \WP_Error();
 		}
 
-		$src = esc_url_raw($src);
 		$extension = get_file_extension($src, 'jpg');
 		$filename = $request->get_param('filename');
 		$filename = !empty($filename) ? sanitize_text_field($filename . '.' . $extension) : 'pixmagix.jpg';
@@ -991,10 +969,10 @@ final class Rest_Api {
 			return $id;
 		}
 
-		$title = $request->get_param('title');
-		$description = $request->get_param('description');
-		$caption = $request->get_param('caption');
-		$alt = $request->get_param('alt');
+		$title = sanitize_text_field($request->get_param('title'));
+		$description = sanitize_textarea_field($request->get_param('description'));
+		$caption = sanitize_textarea_field($request->get_param('caption'));
+		$alt = sanitize_text_field($request->get_param('alt'));
 		$id = wp_update_post(
 			array(
 				'ID' => $id,
@@ -1014,7 +992,7 @@ final class Rest_Api {
 
 		return new \WP_REST_Response(
 			array(
-				'mediaId' => $id
+				'mediaId' => absint($id)
 			)
 		);
 

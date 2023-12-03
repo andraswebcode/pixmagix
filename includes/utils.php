@@ -106,7 +106,7 @@ function get_projects($args = array(), $with_total_pages = false, $post_type = '
 function get_project($id = 0, $post_type = 'pixmagix'){
 
 	$default_project = array(
-		'id' => $id,
+		'id' => absint($id),
 		'metadata' => array(),
 		'project' => array()
 	);

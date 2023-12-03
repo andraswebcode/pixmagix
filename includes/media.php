@@ -235,7 +235,7 @@ final class Media {
 		$posts_columns['pixmagix'] = sprintf(
 			'<span class="column-pixmagix__icon" title="%s" style="background-image:url(%s)"></span>',
 			esc_html__('Edited With PixMagix', 'pixmagix'),
-			esc_url($url = get_asset_url('img', 'logo', 'svg', false))
+			esc_url(get_asset_url('img', 'logo', 'svg', false))
 		);
 
 		return $posts_columns;

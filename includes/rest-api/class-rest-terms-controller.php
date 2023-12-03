@@ -19,7 +19,7 @@ class Terms_Controller extends \WP_REST_Terms_Controller {
 
 	/**
 	 * Constructor.
-	 * For set the default taxonomy.
+	 * For setting the default taxonomy.
 	 * @since 1.2.0
 	 * @access public
 	 * @param string $taxonomy

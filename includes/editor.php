@@ -57,7 +57,7 @@ function register_dependencies(){
 
 function enqueue_fonts(){
 
-	$gfonts = get_setting('google_fonts');
+	$gfonts = get_setting('google_fonts', array());
 	$link = 'https://fonts.googleapis.com/css2?';
 
 	if (empty($gfonts)){
@@ -164,13 +164,13 @@ function initialize($handle = '', $params = array()){
 		return;
 	}
 
-	$init_script = "
+	$init_script = '
 		(function(){
 			wp.domReady(function(){
 				pixmagixEditor.initialize(%s);
 			});
 		})();
-	";
+	';
 	$script = sprintf(
 		$init_script,
 		wp_json_encode($params)

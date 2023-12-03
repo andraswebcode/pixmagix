@@ -154,13 +154,13 @@ final class Post_Type {
 		// Create thumbnail image
 		if (strpos($thumbnail, ';base64,') !== false){
 			$filename = 'project-' . $id . '.jpg';
-			$meta['pixmagix_project']['thumbnail'] = create_image_from_base64($thumbnail, 'thumbnails', $filename);
+			$meta['pixmagix_project']['thumbnail'] = esc_url_raw(create_image_from_base64($thumbnail, 'thumbnails', $filename));
 		}
 
 		// Create preview image, if you have allowed it in general settings.
 		if (!empty(get_setting('create_previews')) && strpos($preview, ';base64,') !== false){
 			$filename = 'project-' . $id . '.jpg';
-			$meta['pixmagix_project']['preview'] = create_image_from_base64($preview, 'previews', $filename);
+			$meta['pixmagix_project']['preview'] = esc_url_raw(create_image_from_base64($preview, 'previews', $filename));
 		}
 
 		// Create layer images.
@@ -169,7 +169,7 @@ final class Post_Type {
 				if ($layer['type'] === 'image' && isset($layer['src']) && strpos($layer['src'], ';base64,') !== false){
 					$layer_id = $layer['id'];
 					$filename = 'layer-' . $id . '-' . $layer_id . '.png';
-					$layer['src'] = create_image_from_base64($layer['src'], 'layers', $filename);
+					$layer['src'] = esc_url_raw(create_image_from_base64($layer['src'], 'layers', $filename));
 				}
 				$new_layers[] = $layer;
 			}

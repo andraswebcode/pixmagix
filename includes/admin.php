@@ -137,9 +137,9 @@ final class Admin
         
         if ( $hook_suffix === 'toplevel_page_pixmagix' ) {
             $page = ( isset( $_GET['p'] ) ? absint( $_GET['p'] ) : 1 );
-            $search = ( isset( $_GET['s'] ) ? esc_html( $_GET['s'] ) : '' );
+            $search = ( isset( $_GET['s'] ) ? sanitize_text_field( $_GET['s'] ) : '' );
             $category = ( isset( $_GET['c'] ) ? absint( $_GET['c'] ) : '' );
-            $status = ( isset( $_GET['st'] ) ? esc_attr( $_GET['st'] ) : 'any' );
+            $status = ( isset( $_GET['st'] ) ? sanitize_text_field( $_GET['st'] ) : 'any' );
             $date = ( isset( $_GET['d'] ) ? absint( $_GET['d'] ) : '' );
             $author = ( isset( $_GET['a'] ) ? absint( $_GET['a'] ) : '' );
             $projects = get_projects( array(
@@ -170,10 +170,10 @@ final class Admin
             ) );
             initialize( 'pixmagix-projects', array(
                 'page'     => $page,
-                'maxPages' => $max_pages,
-                'search'   => $search,
+                'maxPages' => absint( $max_pages ),
+                'search'   => esc_html( $search ),
                 'category' => $category,
-                'status'   => $status,
+                'status'   => esc_html( $status ),
                 'date'     => (string) $date,
                 'author'   => $author,
                 'items'    => $items,
@@ -234,7 +234,7 @@ final class Admin
                 'page' => ( isset( $_GET['p'] ) ? absint( $_GET['p'] ) : 1 ),
             );
             foreach ( $filters as $key ) {
-                $params[$key] = ( isset( $_GET[$key] ) ? esc_html( $_GET[$key] ) : '' );
+                $params[$key] = ( isset( $_GET[$key] ) ? sanitize_text_field( $_GET[$key] ) : '' );
             }
             $items_request = new \WP_Rest_Request( 'GET', '/pixmagix/v1/templates' );
             $items_request->set_query_params( $params );
@@ -266,11 +266,11 @@ final class Admin
                 'color'
             );
             $params = array(
-                'platform' => ( isset( $_GET['platform'] ) ? esc_html( $_GET['platform'] ) : $default_platform ),
+                'platform' => ( isset( $_GET['platform'] ) ? sanitize_text_field( $_GET['platform'] ) : sanitize_text_field( $default_platform ) ),
                 'page'     => ( isset( $_GET['p'] ) ? absint( $_GET['p'] ) : 1 ),
             );
             foreach ( $filters as $key ) {
-                $params[$key] = ( isset( $_GET[$key] ) ? esc_html( $_GET[$key] ) : '' );
+                $params[$key] = ( isset( $_GET[$key] ) ? sanitize_text_field( $_GET[$key] ) : '' );
             }
             $items_request = new \WP_Rest_Request( 'GET', '/pixmagix/v1/free_images' );
             $items_request->set_query_params( $params );
@@ -305,11 +305,11 @@ final class Admin
         } elseif ( $hook_suffix === 'pixmagix_page_pixmagix_fonts' ) {
             $filters = array( 'search', 'category', 'language' );
             $params = array(
-                'collection' => ( isset( $_GET['collection'] ) ? esc_html( $_GET['collection'] ) : 'websafe' ),
+                'collection' => ( isset( $_GET['collection'] ) ? sanitize_text_field( $_GET['collection'] ) : 'websafe' ),
                 'page'       => ( isset( $_GET['p'] ) ? absint( $_GET['p'] ) : 1 ),
             );
             foreach ( $filters as $key ) {
-                $params[$key] = ( isset( $_GET[$key] ) ? esc_html( $_GET[$key] ) : '' );
+                $params[$key] = ( isset( $_GET[$key] ) ? sanitize_text_field( $_GET[$key] ) : '' );
             }
             $items_request = new \WP_Rest_Request( 'GET', '/pixmagix/v1/fonts' );
             $items_request->set_query_params( $params );
@@ -348,7 +348,7 @@ final class Admin
             ) );
             initialize( 'pixmagix-settings', array_merge( get_all_settings(), array(
                 'roles' => get_roles(),
-                'tab'   => ( isset( $_GET['tab'] ) ? esc_html( $_GET['tab'] ) : 'general' ),
+                'tab'   => ( isset( $_GET['tab'] ) ? sanitize_text_field( $_GET['tab'] ) : 'general' ),
             ) ) );
         }
     
