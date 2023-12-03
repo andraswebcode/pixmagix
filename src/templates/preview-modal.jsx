@@ -27,13 +27,13 @@ import {
 } from './../utils/utils.js';
 
 const PreviewModal = ({
-	id,
 	title,
 	preview,
 	hasPrev,
 	hasNext,
 	onNavigate,
-	onClose
+	onClose,
+	...item
 }) => {
 
 	const [name, setName] = useState('');
@@ -44,12 +44,13 @@ const PreviewModal = ({
 			path:REST_PATH + 'templates/',
 			method:'POST',
 			data:{
-				id,
-				projectName:name
+				...item,
+				title,
+				preview
 			}
 		}).then(response => {
 			console.log(response);
-			if (edit){
+			if (edit && response.id){
 				window.location.replace(addQueryArgs({
 					id:response.id
 				}, new_url));

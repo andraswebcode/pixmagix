@@ -97,7 +97,7 @@ const Content = ({
 				<Input
 					label={__('Search', 'pixmagix')}
 					value={_filters.search}
-					onChange={value => onFilterChange('search', value)} />
+					onChange={value => onFilterChange('search', value)} />{/*}
 				<Select
 					label={__('Category', 'pixmagix')}
 					value={_filters.category}
@@ -107,7 +107,7 @@ const Content = ({
 					label={__('Aspect Ratio', 'pixmagix')}
 					value={_filters.aspect}
 					options={aspects}
-					onChange={value => onFilterChange('aspect', value)} />
+					onChange={value => onFilterChange('aspect', value)} />{*/}
 			</InlineControls>
 			<Pagination
 				page={_filters.page}
