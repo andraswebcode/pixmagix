@@ -1,54 +1,62 @@
-=== PixMagix ===
+=== PixMagix - Image Editor ===
 Contributors: andrasweb
-Donate link: https://pixmagix-photo-editor.com/
-Tags: image editor, photo editor, photo editing, image filters, graphic design, media images, paint, featured image, featured image generator
+Donate link: https://pixmagixplugin.com/
+Tags: image editor, photo editor, featured image generator, qr code generator, image, editor, photo, featured, generator, edit, filter, resize, qr code, qr, crop, pixabay, pexels, unsplash, free images, royalty free, stock photos, stock images, media, picture, editing
 Requires at least: 6.0.0
-Tested up to: 6.3
-Stable tag: 1.0.0
+Tested up to: 6.4.1
+Stable tag: 1.4.0
 Requires PHP: 7.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Advanced photo editor plugin for media images. Add filters, adjust brightness and contrast, crop and resize images, add text, and much more. Overall, PixMagix is a powerful tool for anyone looking to take their website's visual content to the next level.
+Advanced image editor plugin for media images. Add filters, adjust brightness and contrast, crop and resize images, add text, and much more. Overall, PixMagix is a powerful tool for anyone looking to take their website's visual content to the next level.
 
 == Description ==
 
-Unleash the power of creativity with PixMagix. Transform your website into a visual powerhouse that leaves a lasting impression on your visitors.
+If you've ever struggled with creating and editing images for your WordPress site, PixMagix can make your work significantly easier. Offering a wide range of editing tools right in your dashboard, PixMagix transforms the way you create, providing an easy, more efficient way to get your visuals ready for your website.
 
-[Features](https://pixmagix-photo-editor.com/features/) | [Tutorials](https://pixmagix-photo-editor.com/category/tutorials/) | [Documentation](https://pixmagix-photo-editor.com/support/documentation/) | [FAQ](https://pixmagix-photo-editor.com/support/faq/) | [Contact](https://pixmagix-photo-editor.com/support/contact/)
+[Features](https://pixmagixplugin.com/features/) | [Templates](https://pixmagixplugin.com/templates/) | [Documentation](https://docs.pixmagixplugin.com/) | [Contact](https://pixmagixplugin.com/support/contact/) | [Pro](https://pixmagixplugin.com/pricing/)
 
-= Unlock the Power of Visual Storytelling =
+== Why Choose PixMagix ==
 
-In today’s digital age, visuals play a crucial role in capturing the attention of online audiences. With PixMagix, you have the tools to create compelling visual narratives that leave a lasting impact on your visitors. Whether you’re a blogger, business owner, or creative professional, PixMagix enables you to tell your story through stunning visuals.
+- **Start from Scratch**: PixMagix allows you to create media images from scratch, providing all the tools you'd need within your WordPress interface. Experience the flexibility and freedom of creating right from your dashboard, without the need for any external graphics tool.
+- **Handy Image Updates**: Have the power to edit and replace existing media images directly from this plugin. Perfect for keeping your blog content fresh and engaging, it also allows you to do quick tweaks anytime you need.
+- **One-Click Stock Photos**: Enjoy the ease of importing royalty-free stock photos with a single click. This feature saves you the hassle of looking for high-quality images elsewhere, making your blog content setup quick and easy.
+- **In-Built QR Generator**: Generate QR codes effortlessly right within your web interface using PixMagix. Bridge the gap between the digital and physical world effortlessly, adding a unique, modern touch to your website.
+- **Project Saving**: Got an ongoing design project or an idea you'd want to continue later? Save your design projects for future use. This helps you maintain design consistency across your projects and boosts overall efficiency.
+- **Expansive Template Library**: Benefit from a continuously growing library of pre-designed templates. Whatever your design needs, these templates can give your website a professional look and feel, even if you're short on time or new to design principles.
+- **Multi-format Support**: No matter what the format of your image is, PixMagix has got you covered. It supports the most common image formats such as jpg, webp, png, and svg, ensuring a flexible, hassle-free design process.
+- **SEO Image Optimization**: Improve your website's SEO score with PixMagix. It allows you to optimize the size and quality of your images, making them web-friendly and capable of performing better in search engine rankings.
 
-= Take Your Images to the Next Level =
+== Privacy, and External Services ==
 
-PixMagix provides you with the power to elevate your images beyond the ordinary. With its advanced editing tools and cutting-edge features, you can enhance, customize, and optimize your WordPress media images with ease. From adjusting colors to adding artistic effects, PixMagix opens up a world of possibilities to make your visuals truly captivating.
-
-= Streamline Your Workflow with Ease =
-
-Gone are the days of juggling multiple software and plugins to edit and optimize your images. PixMagix streamlines your workflow by combining all the necessary tools into one convenient package. With its intuitive interface and seamless integration with WordPress, you can save time and effort while maintaining the highest quality visuals for your website.
+Upon initial installation of the plugin, you have the option to share non-sensitive data with Freemius, our chosen framework for collecting information about your WordPress setup. Sharing this data will help us enhance the plugin. However, this step is entirely optional, and the plugin will function properly without opting in. Rest assured, no data will be collected from your visitors.
 
 == FAQ ==
 
-= What is PixMagix? =
-PixMagix is an advanced photo editor plugin for WordPress media images that provides various tools and features to enhance and customize images.
-= How do I install PixMagix on my WordPress website? =
-To install PixMagix, you can go to the WordPress dashboard, navigate to the “Plugins” section, click on “Add New,” search for “PixMagix,” and click on “Install Now.”
-= Can PixMagix be used by beginners without technical knowledge? =
-Yes, PixMagix is user-friendly and can be used by beginners without any technical knowledge. Its intuitive interface makes it easy to create, and edit images.
-= Does PixMagix optimize images for SEO? =
-Yes, PixMagix includes built-in optimization features like image compression and alt text generation to help optimize images for better SEO.
-= Can I undo changes made with PixMagix? =
-Yes, PixMagix provides an undo feature that allows you to revert back to the original version of the image if you’re not satisfied with the changes.
-= What file formats does PixMagix support? =
-PixMagix supports popular image file formats such as JPEG, PNG, and SVG, ensuring compatibility with a wide range of image files.
-= Is PixMagix responsive and mobile-friendly? =
-Yes, PixMagix is designed to be responsive and mobile-friendly, providing a seamless user experience on various devices.
-= Where can I find further support or help with using PixMagix? =
-For further support or help with using PixMagix, you can visit the official website and access documentation, tutorials, and contact the support team if needed.
+= How is the PixMagix plugin supported? =
+
+PixMagix free offers support primarily through the WordPress.org plugin page's support forum.
+
+= Is the PixMagix plugin free to use? =
+
+Yes, PixMagix is free to use with all basic features. This includes access to the advanced image editor, importing free stock photos, saving projects, and free templates. These features will remain free forever.
+
+= What is the difference between free and pro plan? =
+
+The Pro plan offers more advanced features. It includes access to professional templates, AI-powered image design tools, and allows you to edit PSD files. Additionally, it enables you to embed the image editor to a public site, inside blog posts, or pages.
+
+= How regularly is PixMagix updated? =
+
+Rest assured, PixMagix is updated on a regular basis to deliver a smooth user experience, ensure optimal performance, and keep up with the latest web standards and technological advancements.
 
 == Changelog ==
+
+= 1.4.0 =
+
+* Added a lot of new features
+* Security update
+* Bug fixes
 
 = 1.0.0 =
 
@@ -57,5 +65,5 @@ For further support or help with using PixMagix, you can visit the official webs
 == Screenshots ==
 
 1. The editor interface
-2. Manage projects.
+
 

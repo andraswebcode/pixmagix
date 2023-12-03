@@ -1,11 +1,13 @@
 {
   "name": "pixmagix",
-  "version": "1.1.0",
+  "version": "1.0.0",
   "description": "",
   "main": "./src/index.js",
   "scripts": {
     "start": "webpack --config webpack.config.js",
-    "build": "webpack --env production --config webpack.config.js"
+    "build": "webpack --env production --config webpack.config.js",
+    "start-pro": "webpack --config webpack.config.pro.js",
+    "build-pro": "webpack --env production --config webpack.config.pro.js"
   },
   "author": "Andras Tovishati",
   "license": "GPLv2",
@@ -28,7 +30,9 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@reduxjs/toolkit": "^1.9.5",
+    "ag-psd": "^17.0.6",
     "array-move": "^4.0.0",
+    "changedpi": "^1.0.4",
     "classnames": "^2.3.2",
     "fabric": "^5.3.0",
     "fontfaceobserver": "^2.3.0",

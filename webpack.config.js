@@ -32,7 +32,8 @@ module.exports = env => {
 			'elements':'pixmagixElements',
 			'editor-globals':'pixmagixGlobals',
 			'wp-i18n':'wp.i18n',
-			'wp-api-fetch':'wp.apiFetch'
+			'wp-api-fetch':'wp.apiFetch',
+			'wp-hooks':'wp.hooks'
 		},
 		devtool:false,
 		module:{
