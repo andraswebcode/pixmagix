@@ -17,7 +17,8 @@ import {
 	setEditor
 } from './../../redux/actions-editor.js';
 import {
-	PIXMAGIX_WEBSITE
+	PIXMAGIX_WEBSITE,
+	PIXMAGIX_DOCS_WEBSITE
 } from './../../utils/constants.js';
 
 const Help = ({
@@ -53,7 +54,7 @@ const Help = ({
 							</p>
 							<Button
 								active
-								href={PIXMAGIX_WEBSITE + 'support/documentation/'}
+								href={PIXMAGIX_DOCS_WEBSITE}
 								target='_blank' >
 								{__('See Docs', 'pixmagix')}
 							</Button>

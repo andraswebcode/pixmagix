@@ -1,4 +1,6 @@
-export const PIXMAGIX_WEBSITE = 'https://pixmagix-photo-editor.com/';
+export const PIXMAGIX_WEBSITE = 'https://pixmagixplugin.com/';
+
+export const PIXMAGIX_DOCS_WEBSITE = 'https://docs.pixmagixplugin.com/';
 
 export const PROJECTS_REST_PATH = 'wp/v2/pixmagix/';
 

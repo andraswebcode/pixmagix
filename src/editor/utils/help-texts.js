@@ -3,6 +3,7 @@ import {
 } from 'wp-i18n';
 
 const HELP_TEXTS = {
+	/*
 	ecl:{
 		text:__('Error correction level (ECL) refers to the ability of a QR code to withstand damage caused by scratches, stains, or other distortions. When creating a QR code, it is essential to choose an appropriate error correction level to ensure that the code remains scannable even under less-than-ideal conditions.', 'pixmagix'),
 		link:'https://pixmagix-photo-editor.com/miscellaneous/understanding-error-correction-level-in-qr-codes/'
@@ -63,6 +64,7 @@ const HELP_TEXTS = {
 		text:__('', 'pixmagix'),
 		link:''
 	}
+	*/
 };
 
 /**
