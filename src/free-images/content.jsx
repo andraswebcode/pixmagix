@@ -45,6 +45,7 @@ const Content = ({
 	items = [],
 	maxPages,
 	canEdit,
+	sendNotice,
 	...filters
 }) => {
 
@@ -209,7 +210,8 @@ const Content = ({
 					hasPrev={activeItemIndex > 0}
 					hasNext={activeItemIndex < items.length - 1}
 					onNavigate={onNavigate}
-					onClose={() => setActiveItem(null)} />
+					onClose={() => setActiveItem(null)}
+					sendNotice={sendNotice} />
 			)}
 			<Loader show={loading} />
 		</div>

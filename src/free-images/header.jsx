@@ -10,6 +10,6 @@ const Header = () => (
 			</h1>
 		</div>
 	</div>
-)
+);
 
 export default Header;

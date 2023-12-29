@@ -61,7 +61,8 @@
 	&-shadow-picker-wrapper,
 	&-libraryselect-wrapper,
 	&-stroke-dasharray-control,
-	&-repeater-wrapper {
+	&-repeater-wrapper,
+	&-font-picker-wrapper {
 		margin-bottom: $margin;
 		.pixmagix-label {
 			display: block;
@@ -466,6 +467,14 @@
 			}
 		}
 	}
+	&-font-picker {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		.pixmagix-input {
+			flex: 1;
+		}
+	}
 	&-dropdown {
 		&-content {
 			color: $editor-color;
@@ -762,7 +771,7 @@
 					display: block;
 					width: 100%;
 					height: 100%;
-					object-fit: cover;
+					object-fit: contain;
 				}
 				svg {
 					display: block;
@@ -980,6 +989,27 @@
 		p {
 			margin: 0;
 			padding: 0;
+		}
+	}
+	&-fonts {
+		&__preview {
+			.pixmagix-grid__item-figure {
+				padding: $padding-sm;
+			}
+			a {
+				text-decoration: none;
+			}
+			p {
+				margin: 0;
+			}
+		}
+		&__list {
+			.pixmagix-repeater__content {
+				p {
+					margin: 0;
+					font-size: $h1-font-size;
+				}
+			}
 		}
 	}
 }

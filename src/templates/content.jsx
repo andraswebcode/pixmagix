@@ -36,12 +36,13 @@ import {
 } from './../utils/constants.js';
 import {
 	categories,
-	aspects
+	orientations
 } from './lists.js';
 
 const Content = ({
 	items,
 	maxPages,
+	sendNotice,
 	...filters
 }) => {
 
@@ -97,17 +98,17 @@ const Content = ({
 				<Input
 					label={__('Search', 'pixmagix')}
 					value={_filters.search}
-					onChange={value => onFilterChange('search', value)} />{/*}
+					onChange={value => onFilterChange('search', value)} />
 				<Select
 					label={__('Category', 'pixmagix')}
 					value={_filters.category}
 					options={categories}
 					onChange={value => onFilterChange('category', value)} />
 				<Select
-					label={__('Aspect Ratio', 'pixmagix')}
-					value={_filters.aspect}
-					options={aspects}
-					onChange={value => onFilterChange('aspect', value)} />{*/}
+					label={__('Orientation', 'pixmagix')}
+					value={_filters.orientation}
+					options={orientations}
+					onChange={value => onFilterChange('orientation', value)} />
 			</InlineControls>
 			<Pagination
 				page={_filters.page}
@@ -139,7 +140,8 @@ const Content = ({
 					hasPrev={activeItemIndex > 0}
 					hasNext={activeItemIndex < _items.length - 1}
 					onNavigate={onNavigate}
-					onClose={() => setActiveItem(null)} />
+					onClose={() => setActiveItem(null)}
+					sendNotice={sendNotice} />
 			)}
 			<Loader show={loading} />
 		</div>

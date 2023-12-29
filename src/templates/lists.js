@@ -9,35 +9,41 @@ import {
  */
 
 export const categories = [{
-    label:__('All Categories', 'pixmagix'),
-    value:''
+	label:__('All Categories', 'pixmagix'),
+	value:''
 },{
-    label:__('Featured Images', 'pixmagix'),
-    value:'featuredimages'
+	label:__('Featured Image', 'pixmagix'),
+	value:'featuredimage'
 },{
-    label:__('Quotes', 'pixmagix'),
-    value:'quotes'
+	label:__('Pinterest', 'pixmagix'),
+	value:'pinterest'
 },{
-    label:__('Motivational', 'pixmagix'),
-    value:'motivational'
+	label:__('Banner', 'pixmagix'),
+	value:'banner'
 },{
-    label:__('Holydays', 'pixmagix'),
-    value:'holydays'
+	label:__('Quote', 'pixmagix'),
+	value:'quote'
+},{
+	label:__('Background', 'pixmagix'),
+	value:'background'
 }];
 
 /**
  *
- * @since 1.1.0
+ * @since 1.5.0
  * @var {array}
  */
 
-export const aspects = [{
-    label:__('Any Aspect Ratio', 'pixmagix'),
-    value:''
+export const orientations = [{
+	label:__('Any Orientation', 'pixmagix'),
+	value:''
 },{
-    label:__('2:1 - Landscape', 'pixmagix'),
-    value:'2:1'
+	label:__('Landscape', 'pixmagix'),
+	value:'landscape'
 },{
-    label:__('3:2 - Landscape', 'pixmagix'),
-    value:'3:2'
+	label:__('Portrait', 'pixmagix'),
+	value:'portrait'
+},{
+	label:__('Square', 'pixmagix'),
+	value:'square'
 }];

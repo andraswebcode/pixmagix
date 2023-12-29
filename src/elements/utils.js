@@ -67,3 +67,28 @@ export function colorToString(colorObject = {}){
 	return `rgba(${r}, ${g}, ${b}, ${a})`;
 
 }
+
+/**
+ *
+ * @param {string} family
+ * @since 1.5.0
+ */
+
+export function loadGFont(family){
+
+	if (!family){
+		return;
+	}
+
+	const linkId = 'pixmagix_gfont_' + family.replace(/\s+/g, '_').toLowerCase();
+	let linkElement = document.getElementById(linkId);
+
+	if (!linkElement){
+		linkElement = document.createElement('link');
+		linkElement.id = linkId;
+		linkElement.rel = 'stylesheet';
+		linkElement.href = 'https://fonts.googleapis.com/css2?family=' + family.replace(/\s+/g, '+');
+		document.head.appendChild(linkElement);
+	}
+
+}

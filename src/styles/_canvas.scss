@@ -124,6 +124,9 @@
 		left: 0;
 		background: $guide-color;
 		z-index: 15;
+		&-lock {
+			pointer-events: none;
+		}
 		&-vertical {
 			width: $guide-width;
 			height: 9999px;
@@ -155,6 +158,7 @@
 			}
 		}
 		&-label {
+			display: none;
 			position: absolute;
 			font-size: $font-size-sm;
 			line-height: 1.2;
@@ -163,6 +167,9 @@
 			box-shadow: $shadow;
 			pointer-events: none;
 			cursor: default;
+		}
+		&:hover &-label {
+			display: block;
 		}
 	}
 	&__rulermenu {

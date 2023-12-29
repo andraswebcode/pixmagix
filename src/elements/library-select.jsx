@@ -73,6 +73,7 @@ const LibrarySelect = ({
 	label,
 	itemType, // 'svg', or 'image'
 	svgAttrs = {}, // Svg attributes, if item type is svg, eg.: stroke-width, fill, etc.
+	allowSearch = true,
 	multiple,
 	items = [],
 	value,
@@ -107,13 +108,15 @@ const LibrarySelect = ({
 				</div>
 			)}
 			<div className='pixmagix-libraryselect'>
-				<Input
-					placeholder={__('Search...', 'pixmagix')}
-					value={search}
-					onChange={value => {
-						setSearch(value);
-						setPage(1);
-					}} />
+				{allowSearch && (
+					<Input
+						placeholder={__('Search...', 'pixmagix')}
+						value={search}
+						onChange={value => {
+							setSearch(value);
+							setPage(1);
+						}} />
+				)}
 				<ul
 					onScroll={onScroll}
 					className='pixmagix-libraryselect__list' >

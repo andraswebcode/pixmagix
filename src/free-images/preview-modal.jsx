@@ -38,7 +38,8 @@ const PreviewModal = ({
 	hasPrev,
 	hasNext,
 	onNavigate,
-	onClose
+	onClose,
+	sendNotice
 }) => {
 
 	const [size, setSize] = useState('');
@@ -51,7 +52,7 @@ const PreviewModal = ({
 	const onSave = edit => {
 		const data = {
 			src:(size || preview)?.replace(/&#038;/g, '&'),
-			filename:filename || title.replace(/\s/g, '-').replace(/[^A-z\-]/g, ''),
+			filename:(filename || title).replace(/\s/g, '-').replace(/[^A-z\-]/g, '').toLowerCase(),
 			title:_title,
 			alt,
 			caption,
@@ -69,10 +70,18 @@ const PreviewModal = ({
 					image:response.mediaId
 				}, new_url));
 			} else {
+				sendNotice({
+					type:'success',
+					message:__('Image Saved Successfully', 'pixmagix')
+				});
 				setLoading(false);
 			}
-		}).catch(error => {
-			console.error(error);
+		}).catch(({message}) => {
+			sendNotice({
+				type:'error',
+				message
+			});
+			setLoading(false);
 		});
 	};
 

@@ -155,6 +155,14 @@ const Item = ({
 					activeModal:'preview'
 				})
 			},{
+				name:'download',
+				label:__('Download', 'pixmagix'),
+				icon:'download',
+				onClick:() => setEditor({
+					previewId:id,
+					activeModal:'download'
+				})
+			},{
 				name:'duplicate',
 				label:__('Duplicate', 'pixmagix'),
 				icon:'copy',

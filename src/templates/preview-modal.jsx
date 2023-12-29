@@ -33,6 +33,7 @@ const PreviewModal = ({
 	hasNext,
 	onNavigate,
 	onClose,
+	sendNotice,
 	...item
 }) => {
 
@@ -55,10 +56,18 @@ const PreviewModal = ({
 					id:response.id
 				}, new_url));
 			} else {
+				sendNotice({
+					type:'success',
+					message:__('Template Saved Successfully', 'pixmagix')
+				});
 				setLoading(false);
 			}
-		}).catch(error => {
-			console.error(error);
+		}).catch(({message}) => {
+			sendNotice({
+				type:'error',
+				message
+			});
+			setLoading(false);
 		});
 	};
 

@@ -1,8 +1,8 @@
 import {
-    times,
-    random,
-    reduce,
-    omitBy
+	times,
+	random,
+	reduce,
+	omitBy
 } from 'lodash';
 
 /**
@@ -76,35 +76,65 @@ export function addQueryArgs(args = {}, url = ''){
  */
 
 export function addToRouter(args, url){
-    const _args = omitBy(args, (v, k) => (!v || k === 'page'));
-    // We need to replace 'page' param to 'p', because the 'page' name is reserved by wp admin.
-    if (args.page){
-        _args.p = args.page;
-    }
-    window.history?.pushState?.({}, '', addQueryArgs(_args, url));
+	const _args = omitBy(args, (v, k) => (!v || k === 'page'));
+	// We need to replace 'page' param to 'p', because the 'page' name is reserved by wp admin.
+	if (args.page){
+		_args.p = args.page;
+	}
+	window.history?.pushState?.({}, '', addQueryArgs(_args, url));
 }
 
 /**
  *
- * @param {string} family
- * @since 1.1.0
+ * @since 1.5.0
+ * @param {string} href
+ * @param {string} filename
+ * @param {string} extension
+ * @return {HTMLAnchorElement}
  */
 
-export function loadGFont(family){
+export function getDownloadAnchor(href = '', filename = 'pixmagix', extension = ''){
 
-    if (!family){
-        return;
-    }
+	if (!getDownloadAnchor._anchor){
+		getDownloadAnchor._anchor = document.createElement('a');
+	}
 
-    const linkId = 'pixmagix_gfont_' + family.replace(/\s+/g, '_').toLowerCase();
-    let linkElement = document.getElementById(linkId);
+	const download = filename.replace(/\s+/g, '-').toLowerCase() + '.' + extension;
 
-    if (!linkElement){
-        linkElement = document.createElement('link');
-        linkElement.id = linkId;
-        linkElement.rel = 'stylesheet';
-        linkElement.href = 'https://fonts.googleapis.com/css2?family=' + family.replace(/\s+/g, '+');
-        document.head.appendChild(linkElement);
-    }
+	getDownloadAnchor._anchor.href = href;
+	getDownloadAnchor._anchor.download = download;
+
+	return getDownloadAnchor._anchor;
+
+}
+
+/**
+ *
+ * @since 1.5.0
+ * @param {string} accept
+ * @param {string} readAs The function name of how to read the file by reader: 'readAsDataURL', 'readAsText', etc.
+ * @param {function} onChange
+ * @return {HTMLInputElement}
+ */
+
+export function getHiddenFileInput(accept = '', readAs = '', onChange){
+
+	const element = document.createElement('input');
+	const reader = new FileReader();
+
+	element.type = 'file';
+	element.accept = accept;
+	element.style.display = 'none';
+	element.onchange = e => {
+		reader[readAs](e.target.files[0]);
+	};
+
+	reader.onload = e => {
+		onChange(reader.result);
+	};
+
+	document.body.appendChild(element);
+
+	return element;
 
 }
