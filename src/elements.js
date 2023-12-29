@@ -10,6 +10,7 @@ import {
 	Row
 } from './elements/column.jsx';
 import Dropdown from './elements/dropdown.jsx';
+import FontPicker from './elements/font-picker.jsx';
 import GradientPicker from './elements/gradient-picker.jsx';
 import {
 	Grid,
@@ -47,6 +48,7 @@ export {
 	Column,
 	Row,
 	Dropdown,
+	FontPicker,
 	GradientPicker,
 	Grid,
 	GridItem,
