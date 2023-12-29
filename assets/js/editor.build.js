@@ -3254,9 +3254,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! wp-i18n */ "wp-i18n");
 /* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(wp_i18n__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _utils_constants_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../utils/constants.js */ "./src/editor/utils/constants.js");
-/* harmony import */ var _utils_fonts_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../utils/fonts.js */ "./src/editor/utils/fonts.js");
-/* harmony import */ var _class_brush_path_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./class-brush-path.js */ "./src/editor/canvas/class-brush-path.js");
+/* harmony import */ var fontfaceobserver__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! fontfaceobserver */ "./node_modules/fontfaceobserver/fontfaceobserver.standalone.js");
+/* harmony import */ var fontfaceobserver__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(fontfaceobserver__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _utils_constants_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../utils/constants.js */ "./src/editor/utils/constants.js");
+/* harmony import */ var _utils_utils_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../utils/utils.js */ "./src/editor/utils/utils.js");
+/* harmony import */ var _class_brush_path_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./class-brush-path.js */ "./src/editor/canvas/class-brush-path.js");
+
 
 
 
@@ -3277,21 +3280,21 @@ var onMouseDown = fabric__WEBPACK_IMPORTED_MODULE_0__.Canvas.prototype.__onMouse
    * @var {string}
    */
 
-  selectionColor: _utils_constants_js__WEBPACK_IMPORTED_MODULE_3__.SELECTION_COLOR,
+  selectionColor: _utils_constants_js__WEBPACK_IMPORTED_MODULE_4__.SELECTION_COLOR,
   /**
    *
    * @since 1.0.0
    * @var {string}
    */
 
-  selectionBorderColor: _utils_constants_js__WEBPACK_IMPORTED_MODULE_3__.SELECTION_BORDER_COLOR,
+  selectionBorderColor: _utils_constants_js__WEBPACK_IMPORTED_MODULE_4__.SELECTION_BORDER_COLOR,
   /**
    *
    * @since 1.0.0
    * @var {string}
    */
 
-  selectionDashArray: _utils_constants_js__WEBPACK_IMPORTED_MODULE_3__.BORDER_DASH_ARRAY,
+  selectionDashArray: _utils_constants_js__WEBPACK_IMPORTED_MODULE_4__.BORDER_DASH_ARRAY,
   /**
    *
    * @since 1.0.0
@@ -3327,7 +3330,7 @@ var onMouseDown = fabric__WEBPACK_IMPORTED_MODULE_0__.Canvas.prototype.__onMouse
    * @var {number}
    */
 
-  targetFindTolerance: _utils_constants_js__WEBPACK_IMPORTED_MODULE_3__.TARGET_FIND_TOLERANCE,
+  targetFindTolerance: _utils_constants_js__WEBPACK_IMPORTED_MODULE_4__.TARGET_FIND_TOLERANCE,
   /**
    *
    * @since 1.0.0
@@ -3356,16 +3359,6 @@ var onMouseDown = fabric__WEBPACK_IMPORTED_MODULE_0__.Canvas.prototype.__onMouse
    */
 
   uniScaleKey: null,
-  /**
-   * Extends Canvas.prototype.initialize().
-   * @since 1.1.0
-   * @param {HTMLElement|string} el
-   * @param {object} options
-   */
-  initialize: function initialize(el, options) {
-    this.callSuper('initialize', el, options);
-    this._loadFonts();
-  },
   /**
    *
    * @since 1.0.0
@@ -3496,17 +3489,22 @@ var onMouseDown = fabric__WEBPACK_IMPORTED_MODULE_0__.Canvas.prototype.__onMouse
   },
   /**
    *
-   * @since 1.1.0
+   * @since 1.5.0
    */
-  _loadFonts: function _loadFonts() {
+  loadFonts: function loadFonts() {
     var _this3 = this;
-    (0,_utils_fonts_js__WEBPACK_IMPORTED_MODULE_4__.loadFonts)(function () {
+    var texts = this.getObjects('i-text').concat(this.getObjects('text'));
+    var promises = texts.map(function (_ref) {
+      var fontFamily = _ref.fontFamily;
+      (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_5__.loadGFont)(fontFamily);
+      var ffo = new (fontfaceobserver__WEBPACK_IMPORTED_MODULE_3___default())(fontFamily);
+      return ffo.load();
+    });
+    Promise.all(promises).then(function () {
       fabric__WEBPACK_IMPORTED_MODULE_0__.util.clearFabricFontCache();
-      _this3.forEachObject(function (obj) {
-        if (obj.type === 'i-text' || obj.type === 'text') {
-          obj.initDimensions();
-          obj.setCoords();
-        }
+      texts.forEach(function (text) {
+        text.initDimensions();
+        text.setCoords();
       });
       _this3.requestRenderAll();
     });
@@ -3560,7 +3558,7 @@ var onMouseDown = fabric__WEBPACK_IMPORTED_MODULE_0__.Canvas.prototype.__onMouse
    */
   __onMouseDown: function __onMouseDown(e) {
     onMouseDown.call(this, e);
-    if (this.freeDrawingBrush instanceof _class_brush_path_js__WEBPACK_IMPORTED_MODULE_5__["default"] && this.isDrawingMode && e.button === 2) {
+    if (this.freeDrawingBrush instanceof _class_brush_path_js__WEBPACK_IMPORTED_MODULE_6__["default"] && this.isDrawingMode && e.button === 2) {
       this._onMouseDownInDrawingMode(e);
     }
   }
@@ -4496,6 +4494,7 @@ __webpack_require__.r(__webpack_exports__);
 var _util$object = fabric__WEBPACK_IMPORTED_MODULE_0__.util.object,
   extend = _util$object.extend,
   clone = _util$object.clone;
+var _initialize = fabric__WEBPACK_IMPORTED_MODULE_0__.Text.prototype.initialize;
 var _toObject = fabric__WEBPACK_IMPORTED_MODULE_0__.Text.prototype.toObject;
 
 /**
@@ -4898,6 +4897,7 @@ var Canvas = function Canvas(_ref) {
     showRulers = _ref.showRulers,
     _ref$guides = _ref.guides,
     guides = _ref$guides === void 0 ? [] : _ref$guides,
+    lockGuides = _ref.lockGuides,
     canvasWidth = _ref.canvasWidth,
     canvasHeight = _ref.canvasHeight,
     canvasElementWidth = _ref.canvasElementWidth,
@@ -4908,7 +4908,8 @@ var Canvas = function Canvas(_ref) {
     cropScale = _ref.cropScale,
     setEditor = _ref.setEditor,
     createGuide = _ref.createGuide,
-    updateGuide = _ref.updateGuide;
+    updateGuide = _ref.updateGuide,
+    removeGuide = _ref.removeGuide;
   var ref = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
     _useState2 = _slicedToArray(_useState, 2),
@@ -4936,7 +4937,7 @@ var Canvas = function Canvas(_ref) {
     return Math.round(isVertical ? pos.x : pos.y);
   };
   var onMouseDown = function onMouseDown(e) {
-    if (!(ref !== null && ref !== void 0 && ref.current)) {
+    if (!(ref !== null && ref !== void 0 && ref.current) || lockGuides) {
       return;
     }
     var _e$target$dataset = e.target.dataset,
@@ -4959,7 +4960,7 @@ var Canvas = function Canvas(_ref) {
   };
   var onMouseMove = function onMouseMove(e) {
     var _find2;
-    if (!draggedGuideId) {
+    if (!draggedGuideId || lockGuides) {
       return;
     }
     var guideOrientation = (_find2 = (0,lodash__WEBPACK_IMPORTED_MODULE_2__.find)(guides, {
@@ -4969,6 +4970,17 @@ var Canvas = function Canvas(_ref) {
     updateGuide(draggedGuideId, pos);
   };
   var onMouseUp = function onMouseUp(e) {
+    var _find3;
+    if (!draggedGuideId || lockGuides) {
+      return;
+    }
+    var guideOrientation = (_find3 = (0,lodash__WEBPACK_IMPORTED_MODULE_2__.find)(guides, {
+      id: draggedGuideId
+    })) === null || _find3 === void 0 ? void 0 : _find3.orientation;
+    var pos = _getPosition(e, guideOrientation);
+    if (guideOrientation === 'vertical' && !(0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_11__.isBetween)(pos, 0, canvasWidth) || guideOrientation === 'horizontal' && !(0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_11__.isBetween)(pos, 0, canvasHeight)) {
+      removeGuide(draggedGuideId);
+    }
     setDraggedGuideId('');
   };
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -5015,6 +5027,7 @@ var Canvas = function Canvas(_ref) {
     activeTool: state.editor.activeTool,
     showRulers: state.editor.showRulers,
     guides: state.editor.guides,
+    lockGuides: state.editor.lockGuides,
     canvasWidth: state.data.present.canvasWidth,
     canvasHeight: state.data.present.canvasHeight,
     canvasElementWidth: state.editor.canvasElementWidth,
@@ -5027,7 +5040,8 @@ var Canvas = function Canvas(_ref) {
 }, {
   setEditor: _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_13__.setEditor,
   createGuide: _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_13__.createGuide,
-  updateGuide: _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_13__.updateGuide
+  updateGuide: _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_13__.updateGuide,
+  removeGuide: _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_13__.removeGuide
 })(Canvas));
 
 /***/ }),
@@ -5504,7 +5518,8 @@ var FabricCanvas = /*#__PURE__*/function (_Component) {
   _createClass(FabricCanvas, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _document$getElementB;
+      var _this2 = this,
+        _document$getElementB;
       var _this$props = this.props,
         canvasWidth = _this$props.canvasWidth,
         canvasHeight = _this$props.canvasHeight,
@@ -5531,6 +5546,8 @@ var FabricCanvas = /*#__PURE__*/function (_Component) {
         objects: layerIds.map(function (id) {
           return layers[id];
         })
+      }, function () {
+        _this2._fabricCanvas.loadFonts();
       });
       setEditor({
         canvasElementWidth: width,
@@ -5853,22 +5870,20 @@ var FabricCanvas = /*#__PURE__*/function (_Component) {
         height: canvasHeight,
         multiplier: thumbWidth / canvasWidth
       });
-      var newState = {
-        thumbnail: thumbnail
-      };
-      if (editor_globals__WEBPACK_IMPORTED_MODULE_4__.has_previews) {
-        newState.preview = canvas.toDataURL({
-          format: 'jpeg',
-          quality: 0.92,
-          top: 0,
-          left: 0,
-          width: canvasWidth,
-          height: canvasHeight,
-          multiplier: prevsWidth / canvasWidth
-        });
-      }
+      var preview = canvas.toDataURL({
+        format: 'jpeg',
+        quality: 0.92,
+        top: 0,
+        left: 0,
+        width: canvasWidth,
+        height: canvasHeight,
+        multiplier: prevsWidth / canvasWidth
+      });
       canvas.setViewportTransform(vpt);
-      setEditor(newState);
+      setEditor({
+        preview: preview,
+        thumbnail: thumbnail
+      });
       // console.timeEnd('updatePreviewURL');
     }
 
@@ -6210,6 +6225,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 
 
 var Guide = function Guide(_ref) {
+  var _cn;
   var id = _ref.id,
     orientation = _ref.orientation,
     position = _ref.position,
@@ -6219,7 +6235,8 @@ var Guide = function Guide(_ref) {
     canvasElementHeight = _ref.canvasElementHeight,
     canvasPanX = _ref.canvasPanX,
     canvasPanY = _ref.canvasPanY,
-    canvasZoom = _ref.canvasZoom;
+    canvasZoom = _ref.canvasZoom,
+    lockGuides = _ref.lockGuides;
   var style = {};
   var pix = (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_2__.absolutePositionToPixel)(position, {
     x: canvasWidth,
@@ -6237,7 +6254,7 @@ var Guide = function Guide(_ref) {
     style.top = pix.y + _utils_constants_js__WEBPACK_IMPORTED_MODULE_3__.RULER_SIZE;
   }
   return /*#__PURE__*/React.createElement("div", {
-    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()('pixmagix-canvas__guide', _defineProperty({}, "pixmagix-canvas__guide-".concat(orientation), orientation)),
+    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()('pixmagix-canvas__guide', (_cn = {}, _defineProperty(_cn, "pixmagix-canvas__guide-".concat(orientation), orientation), _defineProperty(_cn, 'pixmagix-canvas__guide-lock', lockGuides), _cn)),
     "data-guide-orientation": orientation,
     "data-guide-id": id,
     style: style
@@ -6253,7 +6270,8 @@ var Guide = function Guide(_ref) {
     canvasElementHeight: state.editor.canvasElementHeight,
     canvasPanX: state.editor.canvasPanX,
     canvasPanY: state.editor.canvasPanY,
-    canvasZoom: state.editor.canvasZoom
+    canvasZoom: state.editor.canvasZoom,
+    lockGuides: state.editor.lockGuides
   };
 })(Guide));
 
@@ -6338,7 +6356,8 @@ var RulerMenu = function RulerMenu(props) {
     showRulerCursors: state.editor.showRulerCursors,
     snapObjects: state.editor.snapObjects,
     snapToGrid: state.editor.snapToGrid,
-    guides: state.editor.guides
+    guides: state.editor.guides,
+    lockGuides: state.editor.lockGuides
   };
 }, {
   setEditor: _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_3__.setEditor
@@ -7122,9 +7141,11 @@ var Globals = /*#__PURE__*/function (_Component) {
   var output = {
     layers: state.data.present.layers,
     layerIds: state.data.present.layerIds,
+    canvasWidth: state.data.present.canvasWidth,
+    canvasHeight: state.data.present.canvasHeight,
     canvasBackground: state.data.present.canvasBackground
   };
-  var props = ['projectId', 'projectName', 'projectDescription', 'projectAuthor', 'projectCategory', 'projectStatus', 'thumbnail', 'preview', 'activeTool', 'isDrawingMode', 'showRulers', 'showRulerCursors', 'snapObjects', 'snapToGrid', 'guides', 'mediaId', 'revisionURL', 'fullScreen', 'activeLayers'];
+  var props = ['projectId', 'projectName', 'projectDescription', 'projectAuthor', 'projectCategory', 'projectStatus', 'thumbnail', 'preview', 'activeTool', 'isDrawingMode', 'showRulers', 'showRulerCursors', 'snapObjects', 'snapToGrid', 'guides', 'lockGuides', 'mediaId', 'revisionURL', 'fullScreen', 'activeLayers'];
   props.forEach(function (prop) {
     output[prop] = state.editor[prop];
   });
@@ -7380,6 +7401,258 @@ var Modals = function Modals(_ref) {
     activeModal: state.editor.activeModal
   };
 })(Modals));
+
+/***/ }),
+
+/***/ "./src/editor/components/modals/add-guides.jsx":
+/*!*****************************************************!*\
+  !*** ./src/editor/components/modals/add-guides.jsx ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var elements__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! elements */ "elements");
+/* harmony import */ var elements__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(elements__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! wp-i18n */ "wp-i18n");
+/* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(wp_i18n__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lodash */ "lodash");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../redux/actions-editor.js */ "./src/editor/redux/actions-editor.js");
+/* harmony import */ var _utils_lists_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../../utils/lists.js */ "./src/editor/utils/lists.js");
+/* harmony import */ var _utils_utils_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../../utils/utils.js */ "./src/editor/utils/utils.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+var AddGuides = function AddGuides(_ref) {
+  var _find2;
+  var canvasWidth = _ref.canvasWidth,
+    canvasHeight = _ref.canvasHeight,
+    createGuide = _ref.createGuide,
+    lockGuides = _ref.lockGuides,
+    setEditor = _ref.setEditor;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+      rows: 1,
+      columns: 1,
+      gapX: 0,
+      gapY: 0,
+      marginX: 0,
+      marginY: 0
+    }),
+    _useState2 = _slicedToArray(_useState, 2),
+    values = _useState2[0],
+    setValues = _useState2[1];
+  var rows = values.rows,
+    columns = values.columns,
+    gapX = values.gapX,
+    gapY = values.gapY,
+    marginX = values.marginX,
+    marginY = values.marginY;
+  var onAddGuides = function onAddGuides() {
+    var guides = [];
+    var width = canvasWidth - 2 * marginY;
+    var height = canvasHeight - 2 * marginX;
+    var rowPositions = (0,lodash__WEBPACK_IMPORTED_MODULE_4__.times)(rows - 1, function (i) {
+      return height / rows * (i + 1);
+    });
+    var columnPositions = (0,lodash__WEBPACK_IMPORTED_MODULE_4__.times)(columns - 1, function (i) {
+      return width / columns * (i + 1);
+    });
+    (0,lodash__WEBPACK_IMPORTED_MODULE_4__.each)(rowPositions, function (position) {
+      if (marginX) {
+        guides.push({
+          id: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_7__.createUniqueId)(),
+          position: marginX,
+          orientation: 'horizontal'
+        }, {
+          id: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_7__.createUniqueId)(),
+          position: canvasHeight - marginX,
+          orientation: 'horizontal'
+        });
+      }
+      if (gapX) {
+        guides.push({
+          id: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_7__.createUniqueId)(),
+          position: position - gapX / 2 + marginX,
+          orientation: 'horizontal'
+        }, {
+          id: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_7__.createUniqueId)(),
+          position: position + gapX / 2 + marginX,
+          orientation: 'horizontal'
+        });
+      } else {
+        guides.push({
+          id: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_7__.createUniqueId)(),
+          position: position + marginX,
+          orientation: 'horizontal'
+        });
+      }
+    });
+    (0,lodash__WEBPACK_IMPORTED_MODULE_4__.each)(columnPositions, function (position) {
+      if (marginY) {
+        guides.push({
+          id: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_7__.createUniqueId)(),
+          position: marginY,
+          orientation: 'vertical'
+        }, {
+          id: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_7__.createUniqueId)(),
+          position: canvasWidth - marginY,
+          orientation: 'vertical'
+        });
+      }
+      if (gapY) {
+        guides.push({
+          id: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_7__.createUniqueId)(),
+          position: position - gapY / 2 + marginY,
+          orientation: 'vertical'
+        }, {
+          id: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_7__.createUniqueId)(),
+          position: position + gapY / 2 + marginY,
+          orientation: 'vertical'
+        });
+      } else {
+        guides.push({
+          id: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_7__.createUniqueId)(),
+          position: position + marginY,
+          orientation: 'vertical'
+        });
+      }
+    });
+    (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.batch)(function () {
+      setEditor({
+        activeModal: '',
+        guides: []
+      });
+      createGuide(guides);
+    });
+  };
+  return /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Modal, {
+    title: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Add Guides', 'pixmagix'),
+    small: true,
+    onClose: function onClose() {
+      return setEditor('activeModal', '');
+    },
+    actions: /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Button, {
+      active: true,
+      onClick: onAddGuides
+    }, (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Add Guides', 'pixmagix'))
+  }, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Widget, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.LibrarySelect, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Presets', 'pixmagix'),
+    itemType: "svg",
+    allowSearch: false,
+    items: _utils_lists_js__WEBPACK_IMPORTED_MODULE_6__.guidePresets,
+    value: (_find2 = (0,lodash__WEBPACK_IMPORTED_MODULE_4__.find)(_utils_lists_js__WEBPACK_IMPORTED_MODULE_6__.guidePresets, {
+      values: values
+    })) === null || _find2 === void 0 ? void 0 : _find2.name,
+    onChange: function onChange(_ref2) {
+      var values = _ref2.values;
+      return setValues(values || {});
+    }
+  })), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Widget, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.InputGroup, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Input, {
+    type: "number",
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Rows', 'pixmagix'),
+    min: 1,
+    max: 12,
+    step: 1,
+    value: rows,
+    onChange: function onChange(value) {
+      return setValues(_objectSpread(_objectSpread({}, values), {}, {
+        rows: value
+      }));
+    }
+  }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Input, {
+    type: "number",
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Columns', 'pixmagix'),
+    min: 1,
+    max: 12,
+    step: 1,
+    value: columns,
+    onChange: function onChange(value) {
+      return setValues(_objectSpread(_objectSpread({}, values), {}, {
+        columns: value
+      }));
+    }
+  })), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.InputGroup, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Input, {
+    type: "number",
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Row Gaps', 'pixmagix'),
+    min: 0,
+    value: gapX,
+    onChange: function onChange(value) {
+      return setValues(_objectSpread(_objectSpread({}, values), {}, {
+        gapX: value
+      }));
+    }
+  }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Input, {
+    type: "number",
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Column Gaps', 'pixmagix'),
+    min: 0,
+    value: gapY,
+    onChange: function onChange(value) {
+      return setValues(_objectSpread(_objectSpread({}, values), {}, {
+        gapY: value
+      }));
+    }
+  })), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.InputGroup, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Input, {
+    type: "number",
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Row Margin', 'pixmagix'),
+    min: 0,
+    value: marginX,
+    onChange: function onChange(value) {
+      return setValues(_objectSpread(_objectSpread({}, values), {}, {
+        marginX: value
+      }));
+    }
+  }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Input, {
+    type: "number",
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Column Margin', 'pixmagix'),
+    min: 0,
+    value: marginY,
+    onChange: function onChange(value) {
+      return setValues(_objectSpread(_objectSpread({}, values), {}, {
+        marginY: value
+      }));
+    }
+  })), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Checkbox, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Lock Guides', 'pixmagix'),
+    checked: lockGuides,
+    onChange: function onChange(value) {
+      return setEditor('lockGuides', value);
+    }
+  })));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(function (state) {
+  return {
+    canvasWidth: state.data.present.canvasWidth,
+    canvasHeight: state.data.present.canvasHeight,
+    lockGuides: state.editor.lockGuides
+  };
+}, {
+  createGuide: _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_5__.createGuide,
+  setEditor: _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_5__.setEditor
+})(AddGuides));
 
 /***/ }),
 
@@ -7958,70 +8231,80 @@ var ExportMedia = function ExportMedia(_ref) {
     }, (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Export', 'pixmagix'))
   }, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Row, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Column, null, /*#__PURE__*/React.createElement("figure", null, /*#__PURE__*/React.createElement("img", {
     src: imageDataURL
-  }))), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Column, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Widget, null, /*#__PURE__*/React.createElement("h2", null, (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Image', 'pixmagix')), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Input, {
-    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('File Name', 'pixmagix'),
-    value: filename,
-    onChange: setFilename
-  }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.RadioButtons, {
-    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('File Type', 'pixmagix'),
-    options: [{
-      label: 'PNG',
-      value: 'png'
+  }))), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Column, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Widget, {
+    tabs: [{
+      name: 'image',
+      label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Image', 'pixmagix'),
+      content: /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Input, {
+        label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('File Name', 'pixmagix'),
+        value: filename,
+        onChange: setFilename
+      }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.RadioButtons, {
+        label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('File Type', 'pixmagix'),
+        options: [{
+          label: 'PNG',
+          value: 'png'
+        }, {
+          label: 'JPEG',
+          value: 'jpeg'
+        }, {
+          label: 'WEBP',
+          value: 'webp'
+        }],
+        value: fileFormat,
+        onChange: function onChange(value) {
+          return setEditor('fileFormat', value);
+        }
+      }), fileFormat !== 'png' && /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Range, {
+        label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Quality', 'pixmagix'),
+        help: (0,_utils_help_texts_js__WEBPACK_IMPORTED_MODULE_7__["default"])('jpgQuality'),
+        value: fileQuality,
+        onChange: function onChange(value) {
+          return setEditor('fileQuality', value);
+        },
+        min: 0.01,
+        max: 1,
+        step: 0.01
+      }), fileFormat !== 'webp' && /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Range, {
+        label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('DPI', 'pixmagix'),
+        help: (0,_utils_help_texts_js__WEBPACK_IMPORTED_MODULE_7__["default"])('dpi'),
+        value: fileDPI,
+        onChange: function onChange(value) {
+          return setEditor('fileDPI', value);
+        },
+        min: 60,
+        max: 2400,
+        step: 1
+      }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.ImageResizer, {
+        value: fileScale,
+        originalWidth: canvasWidth,
+        originalHeight: canvasHeight,
+        onChange: function onChange(value) {
+          return setEditor('fileScale', value);
+        }
+      }))
     }, {
-      label: 'JPEG',
-      value: 'jpeg'
-    }, {
-      label: 'WEBP',
-      value: 'webp'
-    }],
-    value: fileFormat,
-    onChange: function onChange(value) {
-      return setEditor('fileFormat', value);
-    }
-  }), fileFormat !== 'png' && /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Range, {
-    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Quality', 'pixmagix'),
-    help: (0,_utils_help_texts_js__WEBPACK_IMPORTED_MODULE_7__["default"])('jpgQuality'),
-    value: fileQuality,
-    onChange: function onChange(value) {
-      return setEditor('fileQuality', value);
-    },
-    min: 0.01,
-    max: 1,
-    step: 0.01
-  }), fileFormat !== 'webp' && /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Range, {
-    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('DPI', 'pixmagix'),
-    help: (0,_utils_help_texts_js__WEBPACK_IMPORTED_MODULE_7__["default"])('dpi'),
-    value: fileDPI,
-    onChange: function onChange(value) {
-      return setEditor('fileDPI', value);
-    },
-    min: 60,
-    max: 2400,
-    step: 1
-  }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.ImageResizer, {
-    value: fileScale,
-    originalWidth: canvasWidth,
-    originalHeight: canvasHeight,
-    onChange: function onChange(value) {
-      return setEditor('fileScale', value);
-    }
-  }), /*#__PURE__*/React.createElement("h2", null, (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Metadata', 'pixmagix')), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Input, {
-    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Title', 'pixmagix'),
-    value: title,
-    onChange: setTitle
-  }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Textarea, {
-    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Alternative Text', 'pixmagix'),
-    value: alt,
-    onChange: setAlt
-  }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Textarea, {
-    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Caption', 'pixmagix'),
-    value: caption,
-    onChange: setCaption
-  }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Textarea, {
-    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Description', 'pixmagix'),
-    value: description,
-    onChange: setDescription
-  })))), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Loader, {
+      name: 'metadata',
+      label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Metadata', 'pixmagix'),
+      content: /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Input, {
+        label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Title', 'pixmagix'),
+        value: title,
+        onChange: setTitle
+      }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Textarea, {
+        label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Alternative Text', 'pixmagix'),
+        value: alt,
+        onChange: setAlt
+      }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Textarea, {
+        label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Caption', 'pixmagix'),
+        value: caption,
+        onChange: setCaption
+      }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Textarea, {
+        label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Description', 'pixmagix'),
+        value: description,
+        onChange: setDescription
+      }))
+    }]
+  }))), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Loader, {
     show: loading
   }));
 };
@@ -8039,6 +8322,343 @@ var ExportMedia = function ExportMedia(_ref) {
   setEditor: _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_5__.setEditor,
   sendNotice: _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_5__.sendNotice
 })(ExportMedia));
+
+/***/ }),
+
+/***/ "./src/editor/components/modals/font-manager.jsx":
+/*!*******************************************************!*\
+  !*** ./src/editor/components/modals/font-manager.jsx ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var elements__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! elements */ "elements");
+/* harmony import */ var elements__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(elements__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! wp-i18n */ "wp-i18n");
+/* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(wp_i18n__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var wp_api_fetch__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! wp-api-fetch */ "wp-api-fetch");
+/* harmony import */ var wp_api_fetch__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(wp_api_fetch__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lodash */ "lodash");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var array_move__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! array-move */ "./node_modules/array-move/index.js");
+/* harmony import */ var _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../../redux/actions-editor.js */ "./src/editor/redux/actions-editor.js");
+/* harmony import */ var _utils_constants_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./../../utils/constants.js */ "./src/editor/utils/constants.js");
+/* harmony import */ var _utils_utils_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./../../utils/utils.js */ "./src/editor/utils/utils.js");
+/* harmony import */ var _utils_lists_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./../../utils/lists.js */ "./src/editor/utils/lists.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+
+
+var FontManager = function FontManager(_ref) {
+  var fontList = _ref.fontList,
+    setEditor = _ref.setEditor;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState2 = _slicedToArray(_useState, 2),
+    items = _useState2[0],
+    setItems = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+    _useState4 = _slicedToArray(_useState3, 2),
+    loading = _useState4[0],
+    setLoading = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+    _useState6 = _slicedToArray(_useState5, 2),
+    page = _useState6[0],
+    setPage = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+    _useState8 = _slicedToArray(_useState7, 2),
+    maxPages = _useState8[0],
+    setMaxPages = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState10 = _slicedToArray(_useState9, 2),
+    websafe = _useState10[0],
+    setWebsafe = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState12 = _slicedToArray(_useState11, 2),
+    search = _useState12[0],
+    setSearch = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState14 = _slicedToArray(_useState13, 2),
+    category = _useState14[0],
+    setCategory = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState16 = _slicedToArray(_useState15, 2),
+    language = _useState16[0],
+    setLanguage = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState18 = _slicedToArray(_useState17, 2),
+    variant = _useState18[0],
+    setVariant = _useState18[1];
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState20 = _slicedToArray(_useState19, 2),
+    preview = _useState20[0],
+    setPreview = _useState20[1];
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(40),
+    _useState22 = _slicedToArray(_useState21, 2),
+    fontSize = _useState22[0],
+    setFontSize = _useState22[1];
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('gfonts'),
+    _useState24 = _slicedToArray(_useState23, 2),
+    activeTab = _useState24[0],
+    setActiveTab = _useState24[1];
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var query = {
+      collection: 'gfonts',
+      page: page,
+      per_page: 12
+    };
+    if (search) {
+      query.search = search;
+    }
+    if (category) {
+      query.category = category;
+    }
+    if (language) {
+      query.language = language;
+    }
+    if (variant) {
+      query.variant = variant;
+    }
+    wp_api_fetch__WEBPACK_IMPORTED_MODULE_4___default()({
+      path: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_9__.addQueryArgs)(query, _utils_constants_js__WEBPACK_IMPORTED_MODULE_8__.REST_PATH + 'fonts')
+    }).then(function (_ref2) {
+      var items = _ref2.items,
+        maxPages = _ref2.maxPages;
+      (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.batch)(function () {
+        setItems(items);
+        setMaxPages(maxPages);
+        setLoading(false);
+      });
+    });
+  }, [search, category, language, variant, page]);
+  return /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Modal, {
+    title: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Font Manager', 'pixmagix'),
+    onClose: function onClose() {
+      return setEditor('activeModal', '');
+    },
+    actions: /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Button, {
+      active: true,
+      onClick: function onClick() {
+        return setEditor('activeModal', '');
+      }
+    }, (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Done', 'pixmagix'))
+  }, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Row, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Column, {
+    width: 9
+  }, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Widget, {
+    tabs: [{
+      name: 'gfonts',
+      label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Google Fonts', 'pixmagix'),
+      content: /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.InlineControls, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Input, {
+        label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Search', 'pixmagix'),
+        value: search,
+        onChange: function onChange(value) {
+          (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.batch)(function () {
+            setSearch(value);
+            setPage(1);
+            setLoading(true);
+          });
+        }
+      }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Select, {
+        label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Category', 'pixmagix'),
+        options: _utils_lists_js__WEBPACK_IMPORTED_MODULE_10__.gFontFilters.categories,
+        value: category,
+        onChange: function onChange(value) {
+          (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.batch)(function () {
+            setCategory(value);
+            setPage(1);
+            setLoading(true);
+          });
+        }
+      }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Select, {
+        label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Language', 'pixmagix'),
+        options: _utils_lists_js__WEBPACK_IMPORTED_MODULE_10__.gFontFilters.languages,
+        value: language,
+        onChange: function onChange(value) {
+          (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.batch)(function () {
+            setLanguage(value);
+            setPage(1);
+            setLoading(true);
+          });
+        }
+      }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Select, {
+        label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Variant', 'pixmagix'),
+        options: _utils_lists_js__WEBPACK_IMPORTED_MODULE_10__.gFontFilters.variants,
+        value: variant,
+        onChange: function onChange(value) {
+          (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.batch)(function () {
+            setVariant(value);
+            setPage(1);
+            setLoading(true);
+          });
+        }
+      }))
+    }, {
+      name: 'websafe',
+      label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Custom Fonts', 'pixmagix'),
+      content: /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.InlineControls, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Input, {
+        label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Font Family Name', 'pixmagix'),
+        placeholder: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('', 'pixmagix'),
+        value: websafe,
+        onChange: setWebsafe
+      }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Button, {
+        active: true,
+        small: true,
+        onClick: function onClick() {
+          var selected = (0,lodash__WEBPACK_IMPORTED_MODULE_5__.find)(fontList, {
+            family: websafe
+          });
+          if (!selected) {
+            var newList = fontList.concat([{
+              family: websafe,
+              collection: 'websafe'
+            }]);
+            setEditor('fontList', newList);
+          }
+        }
+      }, (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Add to List', 'pixmagix')))
+    }],
+    onChange: function onChange(_ref3) {
+      var name = _ref3.name;
+      return setActiveTab(name);
+    }
+  }), activeTab === 'gfonts' && /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Pagination, {
+    page: page,
+    maxPages: maxPages,
+    onChange: function onChange(page) {
+      (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.batch)(function () {
+        setPage(page);
+        setLoading(true);
+      });
+    }
+  }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Grid, {
+    columns: 3
+  }, items !== null && items !== void 0 && items.length ? items.map(function (_ref4) {
+    var family = _ref4.family,
+      collection = _ref4.collection;
+    (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_9__.loadGFont)(family);
+    var selected = (0,lodash__WEBPACK_IMPORTED_MODULE_5__.find)(fontList, {
+      family: family
+    });
+    return /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.GridItem, {
+      key: family,
+      className: "pixmagix-fonts__preview",
+      title: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Add to List', 'pixmagix'),
+      caption: family,
+      selected: selected,
+      onClick: function onClick(e) {
+        e.preventDefault();
+        var newList = selected ? fontList.filter(function (i) {
+          return family !== i.family;
+        }) : fontList.concat([{
+          family: family,
+          collection: 'gfonts'
+        }]);
+        setEditor('fontList', newList);
+      }
+    }, /*#__PURE__*/React.createElement("p", {
+      style: {
+        fontFamily: family,
+        fontSize: fontSize
+      }
+    }, preview || (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('PixMagix', 'pixmagix')));
+  }) : /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.GridItem, {
+    isEmpty: true,
+    caption: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('No Items Found', 'pixmagix')
+  })), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Pagination, {
+    page: page,
+    maxPages: maxPages,
+    onChange: function onChange(page) {
+      (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.batch)(function () {
+        setPage(page);
+        setLoading(true);
+      });
+    }
+  }))), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Column, {
+    width: 3
+  }, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Widget, {
+    tabs: [{
+      name: 'list',
+      label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Font List', 'pixmagix'),
+      content: /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Repeater, {
+        className: "pixmagix-fonts__list",
+        emptyText: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('No Fonts Selected', 'pixmagix'),
+        items: fontList.map(function (_ref5) {
+          var family = _ref5.family;
+          var index = (0,lodash__WEBPACK_IMPORTED_MODULE_5__.findIndex)(fontList, {
+            family: family
+          });
+          return {
+            name: family,
+            label: family,
+            onMove: function onMove(dir) {
+              var newList = (0,array_move__WEBPACK_IMPORTED_MODULE_6__.arrayMoveImmutable)(fontList, index, dir === 'up' ? index - 1 : index + 1);
+              setEditor('fontList', newList);
+            },
+            onRemove: function onRemove() {
+              var newList = fontList.filter(function (i) {
+                return family !== i.family;
+              });
+              setEditor('fontList', newList);
+            },
+            controls: [{
+              name: 'preview',
+              type: 'raw',
+              content: /*#__PURE__*/React.createElement("p", {
+                style: {
+                  fontFamily: family
+                }
+              }, preview || (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('PixMagix', 'pixmagix'))
+            }]
+          };
+        })
+      }))
+    }, {
+      name: 'preview',
+      label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Preview Settings', 'pixmagix'),
+      content: /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Input, {
+        label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Sample Text', 'pixmagix'),
+        placeholder: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('PixMagix', 'pixmagix'),
+        value: preview,
+        onChange: setPreview
+      }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Range, {
+        label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Font Size', 'pixmagix'),
+        value: fontSize,
+        onChange: setFontSize,
+        min: 10,
+        max: 100,
+        step: 1
+      }))
+    }]
+  }))), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Loader, {
+    show: loading
+  }));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(function (state) {
+  return {
+    fontList: state.editor.fontList
+  };
+}, {
+  setEditor: _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_7__.setEditor
+})(FontManager));
 
 /***/ }),
 
@@ -8082,7 +8702,7 @@ var Help = function Help(_ref) {
       label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Documentation', 'pixmagix'),
       content: /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement("p", null, (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Our documentation provides comprehensive information on how to use PixMagix. It covers topics from the basic functionality to advanced techniques. Click the button to access the documentation.', 'pixmagix')), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Button, {
         active: true,
-        href: _utils_constants_js__WEBPACK_IMPORTED_MODULE_5__.PIXMAGIX_WEBSITE + 'support/documentation/',
+        href: _utils_constants_js__WEBPACK_IMPORTED_MODULE_5__.PIXMAGIX_DOCS_WEBSITE,
         target: "_blank"
       }, (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('See Docs', 'pixmagix')))
     }, {
@@ -8531,9 +9151,11 @@ var OpenProject = function OpenProject(_ref) {
     value: category,
     options: categoryList,
     onChange: function onChange(value) {
-      setCategory(value);
-      setPage(1);
-      setLoading(true);
+      (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.batch)(function () {
+        setCategory(value);
+        setPage(1);
+        setLoading(true);
+      });
     }
   }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Select, {
     label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Status', 'pixmagix'),
@@ -8549,27 +9171,33 @@ var OpenProject = function OpenProject(_ref) {
       value: 'private'
     }],
     onChange: function onChange(value) {
-      setStatus(value);
-      setPage(1);
-      setLoading(true);
+      (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.batch)(function () {
+        setStatus(value);
+        setPage(1);
+        setLoading(true);
+      });
     }
   }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Select, {
     label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Date', 'pixmagix'),
     value: date,
     options: editor_globals__WEBPACK_IMPORTED_MODULE_3__.project_dates,
     onChange: function onChange(value) {
-      setDate(value);
-      setPage(1);
-      setLoading(true);
+      (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.batch)(function () {
+        setDate(value);
+        setPage(1);
+        setLoading(true);
+      });
     }
   }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Select, {
     label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Author', 'pixmagix'),
     value: author,
     options: editor_globals__WEBPACK_IMPORTED_MODULE_3__.users,
     onChange: function onChange(value) {
-      setAuthor(value);
-      setPage(1);
-      setLoading(true);
+      (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.batch)(function () {
+        setAuthor(value);
+        setPage(1);
+        setLoading(true);
+      });
     }
   })), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Pagination, {
     page: page,
@@ -9801,9 +10429,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var elements__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(elements__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! wp-i18n */ "wp-i18n");
 /* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(wp_i18n__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _utils_constants_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../utils/constants.js */ "./src/editor/utils/constants.js");
-/* harmony import */ var _utils_utils_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../utils/utils.js */ "./src/editor/utils/utils.js");
-/* harmony import */ var _utils_fonts_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../../utils/fonts.js */ "./src/editor/utils/fonts.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lodash */ "lodash");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _utils_constants_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../utils/constants.js */ "./src/editor/utils/constants.js");
+/* harmony import */ var _utils_utils_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../../utils/utils.js */ "./src/editor/utils/utils.js");
 /* harmony import */ var _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../../redux/actions-editor.js */ "./src/editor/redux/actions-editor.js");
 /* harmony import */ var _redux_actions_data_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./../../redux/actions-data.js */ "./src/editor/redux/actions-data.js");
 /* harmony import */ var _utils_help_texts_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./../../utils/help-texts.js */ "./src/editor/utils/help-texts.js");
@@ -9836,6 +10465,7 @@ var AddText = function AddText(_ref) {
     lineHeight = _ref.lineHeight,
     charSpacing = _ref.charSpacing,
     underline = _ref.underline,
+    fontList = _ref.fontList,
     pencilWidth = _ref.pencilWidth,
     pencilColor = _ref.pencilColor,
     pencilShadow = _ref.pencilShadow,
@@ -9848,9 +10478,16 @@ var AddText = function AddText(_ref) {
       (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.batch)(function () {
         setEditor(editorState, value);
         if (layer && (layer.type === 'i-text' || layer.type === 'text')) {
-          var _setLayerProps;
-          var options = (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_5__.createLayerObject)(_objectSpread(_objectSpread({}, layer), {}, _defineProperty({}, property, value)));
-          setLayerProps(layer.id, (_setLayerProps = {}, _defineProperty(_setLayerProps, property, value), _defineProperty(_setLayerProps, "width", options.width), _defineProperty(_setLayerProps, "height", options.height), _setLayerProps));
+          var _props, _find2;
+          var options = (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_6__.createLayerObject)(_objectSpread(_objectSpread({}, layer), {}, _defineProperty({}, property, value)));
+          var props = (_props = {}, _defineProperty(_props, property, value), _defineProperty(_props, "width", options.width), _defineProperty(_props, "height", options.height), _props);
+          var collection = ((_find2 = (0,lodash__WEBPACK_IMPORTED_MODULE_4__.find)(fontList, {
+            family: value
+          })) === null || _find2 === void 0 ? void 0 : _find2.collection) || 'websafe';
+          if (property === 'fontFamily') {
+            props.fontCollection = collection;
+          }
+          setLayerProps(layer.id, props);
         }
       });
     };
@@ -9879,7 +10516,7 @@ var AddText = function AddText(_ref) {
     onClick: function onClick() {
       var name = newText.substring(0, 20).replace(/\n/g, ' ').trim();
       name = name.length < newText.length ? name + '...' : name;
-      var object = (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_5__.createLayerObject)({
+      var object = (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_6__.createLayerObject)({
         type: 'i-text',
         name: name,
         text: newText,
@@ -9909,8 +10546,8 @@ var AddText = function AddText(_ref) {
         label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Font Size', 'pixmagix'),
         value: fontSize,
         onChange: onChangeWithUpdateSize('fontSize', 'fontSize'),
-        min: _utils_constants_js__WEBPACK_IMPORTED_MODULE_4__.MIN_FONT_SIZE,
-        max: _utils_constants_js__WEBPACK_IMPORTED_MODULE_4__.MAX_FONT_SIZE,
+        min: _utils_constants_js__WEBPACK_IMPORTED_MODULE_5__.MIN_FONT_SIZE,
+        max: _utils_constants_js__WEBPACK_IMPORTED_MODULE_5__.MAX_FONT_SIZE,
         step: 1
       }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Range, {
         label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Line Height', 'pixmagix'),
@@ -9925,14 +10562,17 @@ var AddText = function AddText(_ref) {
         value: charSpacing,
         onChange: onChangeWithUpdateSize('charSpacing', 'charSpacing'),
         min: 0,
-        max: _utils_constants_js__WEBPACK_IMPORTED_MODULE_4__.MAX_FONT_SIZE,
+        max: _utils_constants_js__WEBPACK_IMPORTED_MODULE_5__.MAX_FONT_SIZE,
         step: 1
-      }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Select, {
+      }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.FontPicker, {
         label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Font Family', 'pixmagix'),
         help: (0,_utils_help_texts_js__WEBPACK_IMPORTED_MODULE_9__["default"])('fontFamily'),
-        options: (0,_utils_fonts_js__WEBPACK_IMPORTED_MODULE_6__.getFonts)(),
+        options: fontList,
         value: fontFamily,
-        onChange: onChangeWithUpdateSize('fontFamily', 'fontFamily')
+        onChange: onChangeWithUpdateSize('fontFamily', 'fontFamily'),
+        onAdd: function onAdd() {
+          return setEditor('activeModal', 'font-manager');
+        }
       }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.MulticheckButtons, {
         label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Text Style', 'pixmagix'),
         items: [{
@@ -9988,8 +10628,8 @@ var AddText = function AddText(_ref) {
         help: (0,_utils_help_texts_js__WEBPACK_IMPORTED_MODULE_9__["default"])('strokeWidth'),
         value: pencilWidth,
         onChange: onChange('pencilWidth', 'strokeWidth'),
-        min: _utils_constants_js__WEBPACK_IMPORTED_MODULE_4__.PENCIL_MIN_WIDTH,
-        max: _utils_constants_js__WEBPACK_IMPORTED_MODULE_4__.PENCIL_MAX_WIDTH,
+        min: _utils_constants_js__WEBPACK_IMPORTED_MODULE_5__.PENCIL_MIN_WIDTH,
+        max: _utils_constants_js__WEBPACK_IMPORTED_MODULE_5__.PENCIL_MAX_WIDTH,
         step: 1
       }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.ColorPicker, {
         label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Stroke Color', 'pixmagix'),
@@ -10032,6 +10672,7 @@ var AddText = function AddText(_ref) {
     lineHeight: state.editor.lineHeight,
     charSpacing: state.editor.charSpacing,
     underline: state.editor.underline,
+    fontList: state.editor.fontList,
     pencilWidth: state.editor.pencilWidth,
     pencilColor: state.editor.pencilColor,
     pencilShadow: state.editor.pencilShadow,
@@ -10948,8 +11589,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_utils_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../../utils/utils.js */ "./src/editor/utils/utils.js");
 /* harmony import */ var _utils_lists_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./../../utils/lists.js */ "./src/editor/utils/lists.js");
 /* harmony import */ var _utils_constants_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./../../utils/constants.js */ "./src/editor/utils/constants.js");
-/* harmony import */ var _utils_fonts_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./../../utils/fonts.js */ "./src/editor/utils/fonts.js");
-/* harmony import */ var _redux_actions_data_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./../../redux/actions-data.js */ "./src/editor/redux/actions-data.js");
+/* harmony import */ var _redux_actions_data_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./../../redux/actions-data.js */ "./src/editor/redux/actions-data.js");
+/* harmony import */ var _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./../../redux/actions-editor.js */ "./src/editor/redux/actions-editor.js");
 /* harmony import */ var _utils_help_texts_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./../../utils/help-texts.js */ "./src/editor/utils/help-texts.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
@@ -10981,7 +11622,9 @@ var SettingsLayer = function SettingsLayer(_ref) {
   var _ref$layer = _ref.layer,
     layer = _ref$layer === void 0 ? {} : _ref$layer,
     activeLayers = _ref.activeLayers,
-    setLayerProps = _ref.setLayerProps;
+    fontList = _ref.fontList,
+    setLayerProps = _ref.setLayerProps,
+    setEditor = _ref.setEditor;
   if (!(activeLayers !== null && activeLayers !== void 0 && activeLayers.length)) {
     return null;
   }
@@ -11051,17 +11694,17 @@ var SettingsLayer = function SettingsLayer(_ref) {
       label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Scale X', 'pixmagix'),
       value: scaleX,
       onChange: onTransform('scaleX'),
-      min: 0.1,
+      min: 0.01,
       max: 10,
-      step: 0.1
+      step: 0.01
     }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_4__.Input, {
       type: "number",
       label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Scale Y', 'pixmagix'),
       value: scaleY,
       onChange: onTransform('scaleY'),
-      min: 0.1,
+      min: 0.01,
       max: 10,
-      step: 0.1
+      step: 0.01
     })), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_4__.InputGroup, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_4__.Input, {
       type: "number",
       label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Skew X', 'pixmagix'),
@@ -11212,13 +11855,22 @@ var SettingsLayer = function SettingsLayer(_ref) {
           min: 0,
           max: _utils_constants_js__WEBPACK_IMPORTED_MODULE_9__.MAX_FONT_SIZE,
           step: 1
-        }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_4__.Select, {
+        }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_4__.FontPicker, {
           label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Font Family', 'pixmagix'),
           help: (0,_utils_help_texts_js__WEBPACK_IMPORTED_MODULE_12__["default"])('fontFamily'),
-          options: (0,_utils_fonts_js__WEBPACK_IMPORTED_MODULE_10__.getFonts)(),
+          options: fontList,
           value: fontFamily,
           onChange: function onChange(value) {
-            return setLayerProps(id, 'fontFamily', value);
+            var _find2;
+            return setLayerProps(id, {
+              fontFamily: value,
+              fontCollection: ((_find2 = (0,lodash__WEBPACK_IMPORTED_MODULE_2__.find)(fontList, {
+                family: value
+              })) === null || _find2 === void 0 ? void 0 : _find2.collection) || 'websafe'
+            });
+          },
+          onAdd: function onAdd() {
+            return setEditor('activeModal', 'font-manager');
           }
         }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_4__.MulticheckButtons, {
           label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Text Style', 'pixmagix'),
@@ -11524,10 +12176,12 @@ var SettingsLayer = function SettingsLayer(_ref) {
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(function (state) {
   return {
     layer: state.data.present.layers[state.editor.activeLayers[0]],
-    activeLayers: state.editor.activeLayers
+    activeLayers: state.editor.activeLayers,
+    fontList: state.editor.fontList
   };
 }, {
-  setLayerProps: _redux_actions_data_js__WEBPACK_IMPORTED_MODULE_11__.setLayerProps
+  setLayerProps: _redux_actions_data_js__WEBPACK_IMPORTED_MODULE_10__.setLayerProps,
+  setEditor: _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_11__.setEditor
 })(SettingsLayer));
 
 /***/ }),
@@ -11552,8 +12206,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(wp_i18n__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _redux_actions_data_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../redux/actions-data.js */ "./src/editor/redux/actions-data.js");
 /* harmony import */ var _redux_actions_editor_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../redux/actions-editor.js */ "./src/editor/redux/actions-editor.js");
-/* harmony import */ var _utils_hooks_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../../../utils/hooks.js */ "./src/utils/hooks.js");
-/* harmony import */ var _category_manager_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./category-manager.jsx */ "./src/editor/components/sidebar-right/category-manager.jsx");
+/* harmony import */ var _utils_constants_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../../utils/constants.js */ "./src/editor/utils/constants.js");
+/* harmony import */ var _utils_hooks_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../../../utils/hooks.js */ "./src/utils/hooks.js");
+/* harmony import */ var _category_manager_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./category-manager.jsx */ "./src/editor/components/sidebar-right/category-manager.jsx");
+
 
 
 
@@ -11571,7 +12227,7 @@ var SettingsProject = function SettingsProject(_ref) {
     projectStatus = _ref.projectStatus,
     setData = _ref.setData,
     setEditor = _ref.setEditor;
-  var tabs = (0,_utils_hooks_js__WEBPACK_IMPORTED_MODULE_6__.applyFilters)('editor.settingsProject.tabs', [{
+  var tabs = (0,_utils_hooks_js__WEBPACK_IMPORTED_MODULE_7__.applyFilters)('editor.settingsProject.tabs', [{
     name: 'settings',
     label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Canvas Settings', 'pixmagix'),
     icon: 'gear',
@@ -11582,8 +12238,8 @@ var SettingsProject = function SettingsProject(_ref) {
       onChange: function onChange(value) {
         return setData('canvasWidth', value);
       },
-      min: 100,
-      max: 4000
+      min: _utils_constants_js__WEBPACK_IMPORTED_MODULE_6__.CANVAS_MIN_SIZE,
+      max: _utils_constants_js__WEBPACK_IMPORTED_MODULE_6__.CANVAS_MAX_SIZE
     }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Input, {
       type: "number",
       label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Height', 'pixmagix'),
@@ -11591,8 +12247,8 @@ var SettingsProject = function SettingsProject(_ref) {
       onChange: function onChange(value) {
         return setData('canvasHeight', value);
       },
-      min: 100,
-      max: 4000
+      min: _utils_constants_js__WEBPACK_IMPORTED_MODULE_6__.CANVAS_MIN_SIZE,
+      max: _utils_constants_js__WEBPACK_IMPORTED_MODULE_6__.CANVAS_MAX_SIZE
     })))
   }, {
     name: 'background',
@@ -11639,7 +12295,7 @@ var SettingsProject = function SettingsProject(_ref) {
       onChange: function onChange(value) {
         return setEditor('projectStatus', value);
       }
-    }), /*#__PURE__*/React.createElement(_category_manager_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], null))
+    }), /*#__PURE__*/React.createElement(_category_manager_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], null))
   }]);
   return tabs !== null && tabs !== void 0 && tabs.length ? /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Widget, {
     tabs: tabs
@@ -11956,6 +12612,7 @@ var clearHistory = function clearHistory() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   createGuide: () => (/* binding */ createGuide),
+/* harmony export */   removeGuide: () => (/* binding */ removeGuide),
 /* harmony export */   sendNotice: () => (/* binding */ sendNotice),
 /* harmony export */   setEditor: () => (/* binding */ setEditor),
 /* harmony export */   updateGuide: () => (/* binding */ updateGuide)
@@ -11999,7 +12656,7 @@ var sendNotice = function sendNotice(message, type) {
 /**
  *
  * @since 1.0.0
- * @param {string} id
+ * @param {string|array} id
  * @param {string} orientation
  * @param {number} position
  * @return {object}
@@ -12030,6 +12687,22 @@ var updateGuide = function updateGuide(id, position) {
     payload: {
       id: id,
       position: position
+    }
+  };
+};
+
+/**
+ *
+ * @since 1.5.0
+ * @param {string|array} id
+ * @return {object}
+ */
+
+var removeGuide = function removeGuide(id) {
+  return {
+    type: 'REMOVE_GUIDE',
+    payload: {
+      id: id
     }
   };
 };
@@ -12215,6 +12888,7 @@ var getInitialStateEditor = function getInitialStateEditor(id) {
       y: 0
     },
     guides: [],
+    lockGuides: false,
     snapObjects: false,
     snapToGrid: false,
     gridSize: 10,
@@ -12242,6 +12916,7 @@ var getInitialStateEditor = function getInitialStateEditor(id) {
     lineHeight: 1.16,
     charSpacing: 0,
     underline: false,
+    fontList: _utils_constants_js__WEBPACK_IMPORTED_MODULE_2__.DEFAULT_FONT_LIST,
     // QR Code
     qrCodeText: '',
     qrCodeSize: _utils_constants_js__WEBPACK_IMPORTED_MODULE_2__.QRCODE_DEFAULT_SIZE,
@@ -12431,6 +13106,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "lodash");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _initial_state_editor_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./initial-state-editor.js */ "./src/editor/redux/initial-state-editor.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 
 
 
@@ -12466,7 +13147,10 @@ var getReducerEditor = function getReducerEditor(id, metadata, mediaId, mediaUrl
       if (!state.guides) {
         state.guides = [];
       }
-      if (payload.id) {
+      if ((0,lodash__WEBPACK_IMPORTED_MODULE_0__.isArray)(payload.id)) {
+        var _state$guides;
+        (_state$guides = state.guides).push.apply(_state$guides, _toConsumableArray(payload.id));
+      } else {
         state.guides.push({
           id: payload.id,
           orientation: payload.orientation,
@@ -12484,6 +13168,15 @@ var getReducerEditor = function getReducerEditor(id, metadata, mediaId, mediaUrl
         guide.position = payload.position;
       }
       state.guides = guides;
+    });
+    builder.addCase('REMOVE_GUIDE', function (state, _ref5) {
+      var payload = _ref5.payload;
+      var guides = (0,lodash__WEBPACK_IMPORTED_MODULE_0__.cloneDeep)((0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_3__.current)(state.guides));
+      var ids = (0,lodash__WEBPACK_IMPORTED_MODULE_0__.isArray)(payload.id) ? payload.id : [payload.id];
+      state.guides = (0,lodash__WEBPACK_IMPORTED_MODULE_0__.filter)(state.guides, function (_ref6) {
+        var id = _ref6.id;
+        return !(0,lodash__WEBPACK_IMPORTED_MODULE_0__.includes)(ids, id);
+      });
     });
   });
 };
@@ -12560,12 +13253,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   BORDER_COLOR: () => (/* binding */ BORDER_COLOR),
 /* harmony export */   BORDER_DASH_ARRAY: () => (/* binding */ BORDER_DASH_ARRAY),
 /* harmony export */   BORDER_OPACITY_WHEN_MOVING: () => (/* binding */ BORDER_OPACITY_WHEN_MOVING),
+/* harmony export */   CANVAS_MAX_SIZE: () => (/* binding */ CANVAS_MAX_SIZE),
 /* harmony export */   CANVAS_MAX_ZOOM: () => (/* binding */ CANVAS_MAX_ZOOM),
+/* harmony export */   CANVAS_MIN_SIZE: () => (/* binding */ CANVAS_MIN_SIZE),
 /* harmony export */   CANVAS_MIN_ZOOM: () => (/* binding */ CANVAS_MIN_ZOOM),
 /* harmony export */   CATEGORIES_REST_PATH: () => (/* binding */ CATEGORIES_REST_PATH),
 /* harmony export */   CORNER_SIZE: () => (/* binding */ CORNER_SIZE),
 /* harmony export */   DEFAULT_CANVAS_HEIGHT: () => (/* binding */ DEFAULT_CANVAS_HEIGHT),
 /* harmony export */   DEFAULT_CANVAS_WIDTH: () => (/* binding */ DEFAULT_CANVAS_WIDTH),
+/* harmony export */   DEFAULT_FONT_LIST: () => (/* binding */ DEFAULT_FONT_LIST),
 /* harmony export */   EDITOR_COLOR: () => (/* binding */ EDITOR_COLOR),
 /* harmony export */   FILL_DEFAULT_COLOR: () => (/* binding */ FILL_DEFAULT_COLOR),
 /* harmony export */   IMAGES_REST_PATH: () => (/* binding */ IMAGES_REST_PATH),
@@ -12578,6 +13274,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   PENCIL_DEFAULT_WIDTH: () => (/* binding */ PENCIL_DEFAULT_WIDTH),
 /* harmony export */   PENCIL_MAX_WIDTH: () => (/* binding */ PENCIL_MAX_WIDTH),
 /* harmony export */   PENCIL_MIN_WIDTH: () => (/* binding */ PENCIL_MIN_WIDTH),
+/* harmony export */   PIXMAGIX_DOCS_WEBSITE: () => (/* binding */ PIXMAGIX_DOCS_WEBSITE),
 /* harmony export */   PIXMAGIX_WEBSITE: () => (/* binding */ PIXMAGIX_WEBSITE),
 /* harmony export */   PROJECTS_REST_PATH: () => (/* binding */ PROJECTS_REST_PATH),
 /* harmony export */   QRCODE_DEFAULT_ECL: () => (/* binding */ QRCODE_DEFAULT_ECL),
@@ -12592,13 +13289,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   SELECTION_COLOR: () => (/* binding */ SELECTION_COLOR),
 /* harmony export */   TARGET_FIND_TOLERANCE: () => (/* binding */ TARGET_FIND_TOLERANCE)
 /* harmony export */ });
-var PIXMAGIX_WEBSITE = 'https://pixmagix-photo-editor.com/';
+var PIXMAGIX_WEBSITE = 'https://pixmagixplugin.com/';
+var PIXMAGIX_DOCS_WEBSITE = 'https://docs.pixmagixplugin.com/';
 var PROJECTS_REST_PATH = 'wp/v2/pixmagix/';
 var CATEGORIES_REST_PATH = 'wp/v2/pixmagix_category/';
 var IMAGES_REST_PATH = 'wp/v2/media/';
 var REST_PATH = 'pixmagix/v1/';
 var CANVAS_MIN_ZOOM = 10;
 var CANVAS_MAX_ZOOM = 200;
+var CANVAS_MIN_SIZE = 10;
+var CANVAS_MAX_SIZE = 4000;
 var DEFAULT_CANVAS_WIDTH = 1280;
 var DEFAULT_CANVAS_HEIGHT = 720;
 var SELECTION_COLOR = 'rgba(16, 187, 229, 0.1)';
@@ -12626,64 +13326,28 @@ var TARGET_FIND_TOLERANCE = 10;
 var NOTIFICATION_EXPIRATION_TIME = 4000;
 var MIN_CROP_SCALE = 0.1;
 var MAX_CROP_SCALE = 1.2;
-
-/***/ }),
-
-/***/ "./src/editor/utils/fonts.js":
-/*!***********************************!*\
-  !*** ./src/editor/utils/fonts.js ***!
-  \***********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   getFonts: () => (/* binding */ getFonts),
-/* harmony export */   loadFonts: () => (/* binding */ loadFonts)
-/* harmony export */ });
-/* harmony import */ var editor_globals__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! editor-globals */ "editor-globals");
-/* harmony import */ var editor_globals__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(editor_globals__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var fontfaceobserver__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! fontfaceobserver */ "./node_modules/fontfaceobserver/fontfaceobserver.standalone.js");
-/* harmony import */ var fontfaceobserver__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(fontfaceobserver__WEBPACK_IMPORTED_MODULE_1__);
-
-
-
-/**
- * 
- * @since 1.1.0
- * @param {function} callback
- */
-
-var loadFonts = function loadFonts(callback) {
-  var promises = (editor_globals__WEBPACK_IMPORTED_MODULE_0__.gfonts || []).map(function (_ref) {
-    var family = _ref.family;
-    var ffo = new (fontfaceobserver__WEBPACK_IMPORTED_MODULE_1___default())(family);
-    return ffo.load();
-  });
-  if (!promises.length) {
-    return;
-  }
-  Promise.all(promises).then(function () {
-    return callback === null || callback === void 0 ? void 0 : callback();
-  });
-};
-
-/**
- * 
- * @since 1.1.0
- * @return {array}
- */
-
-var getFonts = function getFonts() {
-  return (editor_globals__WEBPACK_IMPORTED_MODULE_0__.wsfonts || []).concat(editor_globals__WEBPACK_IMPORTED_MODULE_0__.gfonts || []).map(function (_ref2) {
-    var family = _ref2.family;
-    return {
-      label: family,
-      value: family
-    };
-  });
-};
-
+var DEFAULT_FONT_LIST = [{
+  family: 'Arial',
+  collection: 'websafe'
+}, {
+  family: 'Arial Black',
+  collection: 'websafe'
+}, {
+  family: 'Times New Roman',
+  collection: 'websafe'
+}, {
+  family: 'Courier',
+  collection: 'websafe'
+}, {
+  family: 'Verdana',
+  collection: 'websafe'
+}, {
+  family: 'Georgia',
+  collection: 'websafe'
+}, {
+  family: 'Impact',
+  collection: 'websafe'
+}];
 
 /***/ }),
 
@@ -12702,66 +13366,68 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(wp_i18n__WEBPACK_IMPORTED_MODULE_0__);
 
 var HELP_TEXTS = {
-  ecl: {
-    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Error correction level (ECL) refers to the ability of a QR code to withstand damage caused by scratches, stains, or other distortions. When creating a QR code, it is essential to choose an appropriate error correction level to ensure that the code remains scannable even under less-than-ideal conditions.', 'pixmagix'),
-    link: 'https://pixmagix-photo-editor.com/miscellaneous/understanding-error-correction-level-in-qr-codes/'
+  /*
+  ecl:{
+  	text:__('Error correction level (ECL) refers to the ability of a QR code to withstand damage caused by scratches, stains, or other distortions. When creating a QR code, it is essential to choose an appropriate error correction level to ensure that the code remains scannable even under less-than-ideal conditions.', 'pixmagix'),
+  	link:'https://pixmagix-photo-editor.com/miscellaneous/understanding-error-correction-level-in-qr-codes/'
   },
-  blendingMode: {
-    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Blending modes are essentially filters that can be applied to layers in your design project. They let you control how one layer interacts with another, by altering the way the colors blend together.', 'pixmagix'),
-    link: 'https://pixmagix-photo-editor.com/graphic-design/understanding-blending-modes-in-graphic-design/'
+  blendingMode:{
+  	text:__('Blending modes are essentially filters that can be applied to layers in your design project. They let you control how one layer interacts with another, by altering the way the colors blend together.', 'pixmagix'),
+  	link:'https://pixmagix-photo-editor.com/graphic-design/understanding-blending-modes-in-graphic-design/'
   },
-  par: {
-    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('The preserveAspectRatio attribute is used to control how an SVG element is scaled and positioned within its container. It allows you to define the aspect ratio, define alignment, and specify how to handle overflowing content.', 'pixmagix'),
-    link: 'https://pixmagix-photo-editor.com/graphic-design/understanding-the-preserveaspectratio-svg-attribute/'
+  par:{
+  	text:__('The preserveAspectRatio attribute is used to control how an SVG element is scaled and positioned within its container. It allows you to define the aspect ratio, define alignment, and specify how to handle overflowing content.', 'pixmagix'),
+  	link:'https://pixmagix-photo-editor.com/graphic-design/understanding-the-preserveaspectratio-svg-attribute/'
   },
-  strokeWidth: {
-    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Stroke width is the thickness of a line used in creating graphical elements, shapes, or text. It is typically measured in points or pixels and greatly influences the visual perception of design elements.', 'pixmagix'),
-    link: 'https://pixmagix-photo-editor.com/graphic-design/the-importance-of-stroke-width-in-design/'
+  strokeWidth:{
+  	text:__('Stroke width is the thickness of a line used in creating graphical elements, shapes, or text. It is typically measured in points or pixels and greatly influences the visual perception of design elements.', 'pixmagix'),
+  	link:'https://pixmagix-photo-editor.com/graphic-design/the-importance-of-stroke-width-in-design/'
   },
-  sda: {
-    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('The stroke-dasharray is primarily used to create dashed lines, dotted lines, or more complex patterns. It controls the pattern of dashes and gaps used to paint the outline of shapes.', 'pixmagix'),
-    link: 'https://pixmagix-photo-editor.com/graphic-design/understanding-the-stroke-dasharray-a-detailed-overview/'
+  sda:{
+  	text:__('The stroke-dasharray is primarily used to create dashed lines, dotted lines, or more complex patterns. It controls the pattern of dashes and gaps used to paint the outline of shapes.', 'pixmagix'),
+  	link:'https://pixmagix-photo-editor.com/graphic-design/understanding-the-stroke-dasharray-a-detailed-overview/'
   },
-  jpgQuality: {
-    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('JPEG is a widely used image format that utilizes lossy compression. This means that when an image is saved in JPEG format, some of the image data is permanently discarded to reduce file size. The JPEG quality setting determines the degree of compression applied to an image.', 'pixmagix'),
-    link: 'https://pixmagix-photo-editor.com/miscellaneous/the-impact-of-jpeg-quality-on-web-performance/'
+  jpgQuality:{
+  	text:__('JPEG is a widely used image format that utilizes lossy compression. This means that when an image is saved in JPEG format, some of the image data is permanently discarded to reduce file size. The JPEG quality setting determines the degree of compression applied to an image.', 'pixmagix'),
+  	link:'https://pixmagix-photo-editor.com/miscellaneous/the-impact-of-jpeg-quality-on-web-performance/'
   },
-  fontFamily: {
-    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'pixmagix'),
-    link: ''
+  fontFamily:{
+  	text:__('', 'pixmagix'),
+  	link:''
   },
-  lineHeight: {
-    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Line height refers to the vertical space between lines of text. It plays a crucial role in determining the overall legibility and readability of a piece of content.', 'pixmagix'),
-    link: 'https://pixmagix-photo-editor.com/miscellaneous/understanding-line-height-in-typography/'
+  lineHeight:{
+  	text:__('Line height refers to the vertical space between lines of text. It plays a crucial role in determining the overall legibility and readability of a piece of content.', 'pixmagix'),
+  	link:'https://pixmagix-photo-editor.com/miscellaneous/understanding-line-height-in-typography/'
   },
-  dpi: {
-    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('DPI is a measure of spatial printing or image resolution. It refers to the number of individual dots that can be placed vertically and horizontally within a one-inch linear space. A higher DPI generally indicates a more detailed and smoother image, while a lower DPI means a less crisp output.', 'pixmagix'),
-    link: 'https://pixmagix-photo-editor.com/graphic-design/dpi-meaning/'
+  dpi:{
+  	text:__('DPI is a measure of spatial printing or image resolution. It refers to the number of individual dots that can be placed vertically and horizontally within a one-inch linear space. A higher DPI generally indicates a more detailed and smoother image, while a lower DPI means a less crisp output.', 'pixmagix'),
+  	link:'https://pixmagix-photo-editor.com/graphic-design/dpi-meaning/'
   },
-  pixabayApiKey: {
-    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'pixmagix'),
-    link: 'https://pixmagix-photo-editor.com/tutorials/how-to-get-and-connect-pixabay-api-key-to-pixmagix/'
+  pixabayApiKey:{
+  	text:__('', 'pixmagix'),
+  	link:'https://pixmagix-photo-editor.com/tutorials/how-to-get-and-connect-pixabay-api-key-to-pixmagix/'
   },
-  pexelsApiKey: {
-    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'pixmagix'),
-    link: ''
+  pexelsApiKey:{
+  	text:__('', 'pixmagix'),
+  	link:''
   },
-  unsplashApiKey: {
-    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'pixmagix'),
-    link: ''
+  unsplashApiKey:{
+  	text:__('', 'pixmagix'),
+  	link:''
   },
-  gfontsApiKey: {
-    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('By default, you can access the first 200 most popular fonts from Google Fonts. But what if you want more variety? By obtaining a Google Fonts API key, you can gain real-time access to all available font families, enhancing your design choices even further.', 'pixmagix'),
-    link: 'https://pixmagix-photo-editor.com/tutorials/how-to-get-and-connect-google-fonts-api-key-to-pixmagix/'
+  gfontsApiKey:{
+  	text:__('By default, you can access the first 200 most popular fonts from Google Fonts. But what if you want more variety? By obtaining a Google Fonts API key, you can gain real-time access to all available font families, enhancing your design choices even further.', 'pixmagix'),
+  	link:'https://pixmagix-photo-editor.com/tutorials/how-to-get-and-connect-google-fonts-api-key-to-pixmagix/'
   },
-  webSafeFonts: {
-    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'pixmagix'),
-    link: ''
+  webSafeFonts:{
+  	text:__('', 'pixmagix'),
+  	link:''
   },
-  userCaps: {
-    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'pixmagix'),
-    link: ''
+  userCaps:{
+  	text:__('', 'pixmagix'),
+  	link:''
   }
+  */
 };
 
 /**
@@ -13117,6 +13783,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   attachmentSizes: () => (/* binding */ attachmentSizes),
 /* harmony export */   blendingModes: () => (/* binding */ blendingModes),
 /* harmony export */   cropAspectRatios: () => (/* binding */ cropAspectRatios),
+/* harmony export */   gFontFilters: () => (/* binding */ gFontFilters),
+/* harmony export */   guidePresets: () => (/* binding */ guidePresets),
 /* harmony export */   imageFilters: () => (/* binding */ imageFilters),
 /* harmony export */   modals: () => (/* binding */ modals),
 /* harmony export */   preserveAspectRatios: () => (/* binding */ preserveAspectRatios),
@@ -13134,17 +13802,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_sidebar_left_free_hand_draw_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../components/sidebar-left/free-hand-draw.jsx */ "./src/editor/components/sidebar-left/free-hand-draw.jsx");
 /* harmony import */ var _components_sidebar_left_draw_path_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../components/sidebar-left/draw-path.jsx */ "./src/editor/components/sidebar-left/draw-path.jsx");
 /* harmony import */ var _components_sidebar_left_crop_canvas_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./../components/sidebar-left/crop-canvas.jsx */ "./src/editor/components/sidebar-left/crop-canvas.jsx");
-/* harmony import */ var _components_modals_category_manager_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./../components/modals/category-manager.jsx */ "./src/editor/components/modals/category-manager.jsx");
-/* harmony import */ var _components_modals_import_media_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./../components/modals/import-media.jsx */ "./src/editor/components/modals/import-media.jsx");
-/* harmony import */ var _components_modals_open_project_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./../components/modals/open-project.jsx */ "./src/editor/components/modals/open-project.jsx");
-/* harmony import */ var _components_modals_save_as_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./../components/modals/save-as.jsx */ "./src/editor/components/modals/save-as.jsx");
-/* harmony import */ var _components_modals_export_media_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./../components/modals/export-media.jsx */ "./src/editor/components/modals/export-media.jsx");
-/* harmony import */ var _components_modals_replace_media_jsx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./../components/modals/replace-media.jsx */ "./src/editor/components/modals/replace-media.jsx");
-/* harmony import */ var _components_modals_restore_media_jsx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./../components/modals/restore-media.jsx */ "./src/editor/components/modals/restore-media.jsx");
-/* harmony import */ var _components_modals_download_image_jsx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./../components/modals/download-image.jsx */ "./src/editor/components/modals/download-image.jsx");
-/* harmony import */ var _components_modals_download_svg_jsx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./../components/modals/download-svg.jsx */ "./src/editor/components/modals/download-svg.jsx");
-/* harmony import */ var _components_modals_keyboard_shortcuts_jsx__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./../components/modals/keyboard-shortcuts.jsx */ "./src/editor/components/modals/keyboard-shortcuts.jsx");
-/* harmony import */ var _components_modals_help_jsx__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./../components/modals/help.jsx */ "./src/editor/components/modals/help.jsx");
+/* harmony import */ var _components_modals_add_guides_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./../components/modals/add-guides.jsx */ "./src/editor/components/modals/add-guides.jsx");
+/* harmony import */ var _components_modals_font_manager_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./../components/modals/font-manager.jsx */ "./src/editor/components/modals/font-manager.jsx");
+/* harmony import */ var _components_modals_category_manager_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./../components/modals/category-manager.jsx */ "./src/editor/components/modals/category-manager.jsx");
+/* harmony import */ var _components_modals_import_media_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./../components/modals/import-media.jsx */ "./src/editor/components/modals/import-media.jsx");
+/* harmony import */ var _components_modals_open_project_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./../components/modals/open-project.jsx */ "./src/editor/components/modals/open-project.jsx");
+/* harmony import */ var _components_modals_save_as_jsx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./../components/modals/save-as.jsx */ "./src/editor/components/modals/save-as.jsx");
+/* harmony import */ var _components_modals_export_media_jsx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./../components/modals/export-media.jsx */ "./src/editor/components/modals/export-media.jsx");
+/* harmony import */ var _components_modals_replace_media_jsx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./../components/modals/replace-media.jsx */ "./src/editor/components/modals/replace-media.jsx");
+/* harmony import */ var _components_modals_restore_media_jsx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./../components/modals/restore-media.jsx */ "./src/editor/components/modals/restore-media.jsx");
+/* harmony import */ var _components_modals_download_image_jsx__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./../components/modals/download-image.jsx */ "./src/editor/components/modals/download-image.jsx");
+/* harmony import */ var _components_modals_download_svg_jsx__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./../components/modals/download-svg.jsx */ "./src/editor/components/modals/download-svg.jsx");
+/* harmony import */ var _components_modals_keyboard_shortcuts_jsx__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./../components/modals/keyboard-shortcuts.jsx */ "./src/editor/components/modals/keyboard-shortcuts.jsx");
+/* harmony import */ var _components_modals_help_jsx__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./../components/modals/help.jsx */ "./src/editor/components/modals/help.jsx");
 
 
 // Toolbar components.
@@ -13159,6 +13829,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // Modals.
+
+
 
 
 
@@ -13407,6 +14079,92 @@ var cropAspectRatios = [{
 }, {
   label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('2:3 - Portrait', 'pixmagix'),
   value: '2:3'
+}];
+
+/**
+ *
+ * @since 1.5.0
+ * @var {array}
+ */
+
+var guidePresets = [{
+  name: '2-cols',
+  label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('2 Columns', 'pixmagix'),
+  type: 'path',
+  path: '',
+  values: {
+    rows: 1,
+    columns: 2,
+    gapX: 0,
+    gapY: 18,
+    marginX: 0,
+    marginY: 28
+  }
+}, {
+  name: '3-cols',
+  label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('3 Columns', 'pixmagix'),
+  type: 'path',
+  path: '',
+  values: {
+    rows: 1,
+    columns: 3,
+    gapX: 0,
+    gapY: 18,
+    marginX: 0,
+    marginY: 28
+  }
+}, {
+  name: '4-cols',
+  label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('4 Columns', 'pixmagix'),
+  type: 'path',
+  path: '',
+  values: {
+    rows: 1,
+    columns: 4,
+    gapX: 0,
+    gapY: 18,
+    marginX: 0,
+    marginY: 28
+  }
+}, {
+  name: '2x2',
+  label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('2x2', 'pixmagix'),
+  type: 'path',
+  path: '',
+  values: {
+    rows: 2,
+    columns: 2,
+    gapX: 18,
+    gapY: 18,
+    marginX: 28,
+    marginY: 28
+  }
+}, {
+  name: '3x3',
+  label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('3x3', 'pixmagix'),
+  type: 'path',
+  path: '',
+  values: {
+    rows: 3,
+    columns: 3,
+    gapX: 18,
+    gapY: 18,
+    marginX: 28,
+    marginY: 28
+  }
+}, {
+  name: '4x4',
+  label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('4x4', 'pixmagix'),
+  type: 'path',
+  path: '',
+  values: {
+    rows: 4,
+    columns: 4,
+    gapX: 18,
+    gapY: 18,
+    marginX: 28,
+    marginY: 28
+  }
 }];
 
 /**
@@ -13695,22 +14453,177 @@ var imageFilters = [{
 
 /**
  *
+ * @since 1.5.0
+ * @var {object}
+ */
+
+var gFontFilters = {
+  categories: [{
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('All Categories', 'pixmagix'),
+    value: ''
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Serif', 'pixmagix'),
+    value: 'serif'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Sans Serif', 'pixmagix'),
+    value: 'sans-serif'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Display', 'pixmagix'),
+    value: 'display'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Handwriting', 'pixmagix'),
+    value: 'handwriting'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Monospace', 'pixmagix'),
+    value: 'monospace'
+  }],
+  languages: [{
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('All Languages', 'pixmagix'),
+    value: ''
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Arabic', 'pixmagix'),
+    value: 'arabic'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Bengali', 'pixmagix'),
+    value: 'bengali'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Chinese (Hong Kong)', 'pixmagix'),
+    value: 'chinese-hongkong'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Chinese (Simplified)', 'pixmagix'),
+    value: 'chinese-simplified'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Chinese (Traditional)', 'pixmagix'),
+    value: 'chinese-traditional'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Cyrillic', 'pixmagix'),
+    value: 'cyrillic'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Cyrillic Extended', 'pixmagix'),
+    value: 'cyrillic-ext'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Devanagari', 'pixmagix'),
+    value: 'devanagari'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Greek', 'pixmagix'),
+    value: 'greek'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Greek Extended', 'pixmagix'),
+    value: 'greek-ext'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Gujarati', 'pixmagix'),
+    value: 'gujarati'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Gurmukhi', 'pixmagix'),
+    value: 'gurmukhi'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Hebrew', 'pixmagix'),
+    value: 'hebrew'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Japanese', 'pixmagix'),
+    value: 'japanese'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Khmer', 'pixmagix'),
+    value: 'khmer'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Korean', 'pixmagix'),
+    value: 'korean'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Latin', 'pixmagix'),
+    value: 'latin'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Latin Extended', 'pixmagix'),
+    value: 'latin-ext'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Malayalam', 'pixmagix'),
+    value: 'malayalam'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Myanmar', 'pixmagix'),
+    value: 'myanmar'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Oriya', 'pixmagix'),
+    value: 'oriya'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Sinhala', 'pixmagix'),
+    value: 'sinhala'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Tamil', 'pixmagix'),
+    value: 'tamil'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Telugu', 'pixmagix'),
+    value: 'telugu'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Thai', 'pixmagix'),
+    value: 'thai'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Tibetian', 'pixmagix'),
+    value: 'tibetian'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Vietnamese', 'pixmagix'),
+    value: 'vietnamese'
+  }],
+  variants: [{
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('All Variants', 'pixmagix'),
+    value: ''
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Thin 100', 'pixmagix'),
+    value: '100'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Thin 100 Italic', 'pixmagix'),
+    value: '100italic'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Light 300', 'pixmagix'),
+    value: '300'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Light 300 Italic', 'pixmagix'),
+    value: '300italic'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Regular 400', 'pixmagix'),
+    value: 'regular'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Regular 400 Italic', 'pixmagix'),
+    value: 'italic'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Medium 500', 'pixmagix'),
+    value: '500'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Medium 500 Italic', 'pixmagix'),
+    value: '500italic'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Bold 700', 'pixmagix'),
+    value: '700'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Bold 700 Italic', 'pixmagix'),
+    value: '700italic'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Black 900', 'pixmagix'),
+    value: '900'
+  }, {
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Black 900 Italic', 'pixmagix'),
+    value: '900italic'
+  }]
+};
+
+/**
+ *
  * @since 1.0.0
  * @var {object}
  */
 
 var modals = {
-  'category-manager': _components_modals_category_manager_jsx__WEBPACK_IMPORTED_MODULE_9__["default"],
-  'import-media': _components_modals_import_media_jsx__WEBPACK_IMPORTED_MODULE_10__["default"],
-  'open-project': _components_modals_open_project_jsx__WEBPACK_IMPORTED_MODULE_11__["default"],
-  'save-as': _components_modals_save_as_jsx__WEBPACK_IMPORTED_MODULE_12__["default"],
-  'export-media': _components_modals_export_media_jsx__WEBPACK_IMPORTED_MODULE_13__["default"],
-  'replace-media': _components_modals_replace_media_jsx__WEBPACK_IMPORTED_MODULE_14__["default"],
-  'restore-media': _components_modals_restore_media_jsx__WEBPACK_IMPORTED_MODULE_15__["default"],
-  'download-image': _components_modals_download_image_jsx__WEBPACK_IMPORTED_MODULE_16__["default"],
-  'download-svg': _components_modals_download_svg_jsx__WEBPACK_IMPORTED_MODULE_17__["default"],
-  'keyboard-shortcuts': _components_modals_keyboard_shortcuts_jsx__WEBPACK_IMPORTED_MODULE_18__["default"],
-  'help': _components_modals_help_jsx__WEBPACK_IMPORTED_MODULE_19__["default"]
+  'add-guides': _components_modals_add_guides_jsx__WEBPACK_IMPORTED_MODULE_9__["default"],
+  'font-manager': _components_modals_font_manager_jsx__WEBPACK_IMPORTED_MODULE_10__["default"],
+  'category-manager': _components_modals_category_manager_jsx__WEBPACK_IMPORTED_MODULE_11__["default"],
+  'import-media': _components_modals_import_media_jsx__WEBPACK_IMPORTED_MODULE_12__["default"],
+  'open-project': _components_modals_open_project_jsx__WEBPACK_IMPORTED_MODULE_13__["default"],
+  'save-as': _components_modals_save_as_jsx__WEBPACK_IMPORTED_MODULE_14__["default"],
+  'export-media': _components_modals_export_media_jsx__WEBPACK_IMPORTED_MODULE_15__["default"],
+  'replace-media': _components_modals_replace_media_jsx__WEBPACK_IMPORTED_MODULE_16__["default"],
+  'restore-media': _components_modals_restore_media_jsx__WEBPACK_IMPORTED_MODULE_17__["default"],
+  'download-image': _components_modals_download_image_jsx__WEBPACK_IMPORTED_MODULE_18__["default"],
+  'download-svg': _components_modals_download_svg_jsx__WEBPACK_IMPORTED_MODULE_19__["default"],
+  'keyboard-shortcuts': _components_modals_keyboard_shortcuts_jsx__WEBPACK_IMPORTED_MODULE_20__["default"],
+  'help': _components_modals_help_jsx__WEBPACK_IMPORTED_MODULE_21__["default"]
 };
 
 /**
@@ -13732,7 +14645,7 @@ var attachmentSizes = {
  * @var {array}
  */
 
-var propsToSaveLocalStorage = ['fullScreen', 'fileFormat', 'fileQuality', 'fileDPI', 'fileScale', 'preserveAspectRatio', 'snapToGrid', 'snapObjects', 'gridSize', 'showRulers', 'showRulerCursors', 'cropAspectRatio', 'pencilType', 'pencilWidth', 'pencilDecimate', 'pencilDensity', 'pencilDotWidth', 'pencilDotWidthVariance', 'pencilRandomOpacity', 'pencilColor', 'pencilShadow', 'fillColor', 'drawnShape', 'pathType', 'newText', 'fontFamily', 'fontSize', 'fontStyle', 'fontWeight', 'textAlign', 'lineHeight', 'charSpacing', 'underline', 'qrCodeText', 'qrCodeSize', 'qrCodePadding', 'qrCodeECL'];
+var propsToSaveLocalStorage = ['fullScreen', 'fileFormat', 'fileQuality', 'fileDPI', 'fileScale', 'preserveAspectRatio', 'snapToGrid', 'snapObjects', 'gridSize', 'showRulers', 'showRulerCursors', 'cropAspectRatio', 'pencilType', 'pencilWidth', 'pencilDecimate', 'pencilDensity', 'pencilDotWidth', 'pencilDotWidthVariance', 'pencilRandomOpacity', 'pencilColor', 'pencilShadow', 'fillColor', 'drawnShape', 'pathType', 'newText', 'fontFamily', 'fontSize', 'fontStyle', 'fontWeight', 'textAlign', 'lineHeight', 'charSpacing', 'underline', 'fontList', 'qrCodeText', 'qrCodeSize', 'qrCodePadding', 'qrCodeECL'];
 
 /***/ }),
 
@@ -14021,8 +14934,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (_ref) {
   var showRulers = _ref.showRulers,
     showRulerCursors = _ref.showRulerCursors,
-    snapObjects = _ref.snapObjects,
-    snapToGrid = _ref.snapToGrid,
+    lockGuides = _ref.lockGuides,
     guides = _ref.guides,
     setEditor = _ref.setEditor;
   return [{
@@ -14041,10 +14953,31 @@ __webpack_require__.r(__webpack_exports__);
       return !showRulers;
     }
   }, {
+    name: 'add-guides',
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Add Guides', 'pixmagix'),
+    onClick: function onClick() {
+      return setEditor('activeModal', 'add-guides');
+    },
+    disabled: function disabled() {
+      return !showRulers;
+    }
+  }, {
+    name: 'lock-guides',
+    label: lockGuides ? (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Unlock Guides', 'pixmagix') : (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Lock Guides', 'pixmagix'),
+    onClick: function onClick() {
+      return setEditor('lockGuides', !lockGuides);
+    },
+    disabled: function disabled() {
+      return !showRulers;
+    }
+  }, {
     name: 'clear-guides',
     label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Clear Guides', 'pixmagix'),
     onClick: function onClick() {
-      return setEditor('guides', []);
+      return setEditor({
+        guides: [],
+        lockGuides: false
+      });
     },
     disabled: function disabled() {
       return !(guides !== null && guides !== void 0 && guides.length);
@@ -14292,6 +15225,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   isBetween: () => (/* binding */ isBetween),
 /* harmony export */   isSVGElement: () => (/* binding */ isSVGElement),
 /* harmony export */   joinPath: () => (/* binding */ joinPath),
+/* harmony export */   loadGFont: () => (/* binding */ loadGFont),
 /* harmony export */   loadSVGFromString: () => (/* binding */ loadSVGFromString),
 /* harmony export */   pixelToAbsolutePosition: () => (/* binding */ pixelToAbsolutePosition),
 /* harmony export */   qrDecompose: () => (/* binding */ qrDecompose),
@@ -14741,6 +15675,27 @@ function colorToString(color) {
 }
 
 /**
+ *
+ * @param {string} family
+ * @since 1.5.0
+ */
+
+function loadGFont(family) {
+  if (!family) {
+    return;
+  }
+  var linkId = 'pixmagix_gfont_' + family.replace(/\s+/g, '_').toLowerCase();
+  var linkElement = document.getElementById(linkId);
+  if (!linkElement) {
+    linkElement = document.createElement('link');
+    linkElement.id = linkId;
+    linkElement.rel = 'stylesheet';
+    linkElement.href = 'https://fonts.googleapis.com/css2?family=' + family.replace(/\s+/g, '+');
+    document.head.appendChild(linkElement);
+  }
+}
+
+/**
  * Also export utils from Fabric.js.
  * @since 1.3.0
  */
@@ -15164,7 +16119,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   PROJECTS_REST_PATH: () => (/* binding */ PROJECTS_REST_PATH),
 /* harmony export */   REST_PATH: () => (/* binding */ REST_PATH)
 /* harmony export */ });
-var PIXMAGIX_WEBSITE = 'https://pixmagix-photo-editor.com/';
+var PIXMAGIX_WEBSITE = 'https://pixmagixplugin.com/';
 var PROJECTS_REST_PATH = 'wp/v2/pixmagix/';
 var CATEGORIES_REST_PATH = 'wp/v2/pixmagix_category/';
 var IMAGES_REST_PATH = 'wp/v2/media/';

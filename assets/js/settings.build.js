@@ -105,66 +105,68 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var wp_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(wp_i18n__WEBPACK_IMPORTED_MODULE_0__);
 
 var HELP_TEXTS = {
-  ecl: {
-    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Error correction level (ECL) refers to the ability of a QR code to withstand damage caused by scratches, stains, or other distortions. When creating a QR code, it is essential to choose an appropriate error correction level to ensure that the code remains scannable even under less-than-ideal conditions.', 'pixmagix'),
-    link: 'https://pixmagix-photo-editor.com/miscellaneous/understanding-error-correction-level-in-qr-codes/'
+  /*
+  ecl:{
+  	text:__('Error correction level (ECL) refers to the ability of a QR code to withstand damage caused by scratches, stains, or other distortions. When creating a QR code, it is essential to choose an appropriate error correction level to ensure that the code remains scannable even under less-than-ideal conditions.', 'pixmagix'),
+  	link:'https://pixmagix-photo-editor.com/miscellaneous/understanding-error-correction-level-in-qr-codes/'
   },
-  blendingMode: {
-    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Blending modes are essentially filters that can be applied to layers in your design project. They let you control how one layer interacts with another, by altering the way the colors blend together.', 'pixmagix'),
-    link: 'https://pixmagix-photo-editor.com/graphic-design/understanding-blending-modes-in-graphic-design/'
+  blendingMode:{
+  	text:__('Blending modes are essentially filters that can be applied to layers in your design project. They let you control how one layer interacts with another, by altering the way the colors blend together.', 'pixmagix'),
+  	link:'https://pixmagix-photo-editor.com/graphic-design/understanding-blending-modes-in-graphic-design/'
   },
-  par: {
-    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('The preserveAspectRatio attribute is used to control how an SVG element is scaled and positioned within its container. It allows you to define the aspect ratio, define alignment, and specify how to handle overflowing content.', 'pixmagix'),
-    link: 'https://pixmagix-photo-editor.com/graphic-design/understanding-the-preserveaspectratio-svg-attribute/'
+  par:{
+  	text:__('The preserveAspectRatio attribute is used to control how an SVG element is scaled and positioned within its container. It allows you to define the aspect ratio, define alignment, and specify how to handle overflowing content.', 'pixmagix'),
+  	link:'https://pixmagix-photo-editor.com/graphic-design/understanding-the-preserveaspectratio-svg-attribute/'
   },
-  strokeWidth: {
-    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Stroke width is the thickness of a line used in creating graphical elements, shapes, or text. It is typically measured in points or pixels and greatly influences the visual perception of design elements.', 'pixmagix'),
-    link: 'https://pixmagix-photo-editor.com/graphic-design/the-importance-of-stroke-width-in-design/'
+  strokeWidth:{
+  	text:__('Stroke width is the thickness of a line used in creating graphical elements, shapes, or text. It is typically measured in points or pixels and greatly influences the visual perception of design elements.', 'pixmagix'),
+  	link:'https://pixmagix-photo-editor.com/graphic-design/the-importance-of-stroke-width-in-design/'
   },
-  sda: {
-    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('The stroke-dasharray is primarily used to create dashed lines, dotted lines, or more complex patterns. It controls the pattern of dashes and gaps used to paint the outline of shapes.', 'pixmagix'),
-    link: 'https://pixmagix-photo-editor.com/graphic-design/understanding-the-stroke-dasharray-a-detailed-overview/'
+  sda:{
+  	text:__('The stroke-dasharray is primarily used to create dashed lines, dotted lines, or more complex patterns. It controls the pattern of dashes and gaps used to paint the outline of shapes.', 'pixmagix'),
+  	link:'https://pixmagix-photo-editor.com/graphic-design/understanding-the-stroke-dasharray-a-detailed-overview/'
   },
-  jpgQuality: {
-    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('JPEG is a widely used image format that utilizes lossy compression. This means that when an image is saved in JPEG format, some of the image data is permanently discarded to reduce file size. The JPEG quality setting determines the degree of compression applied to an image.', 'pixmagix'),
-    link: 'https://pixmagix-photo-editor.com/miscellaneous/the-impact-of-jpeg-quality-on-web-performance/'
+  jpgQuality:{
+  	text:__('JPEG is a widely used image format that utilizes lossy compression. This means that when an image is saved in JPEG format, some of the image data is permanently discarded to reduce file size. The JPEG quality setting determines the degree of compression applied to an image.', 'pixmagix'),
+  	link:'https://pixmagix-photo-editor.com/miscellaneous/the-impact-of-jpeg-quality-on-web-performance/'
   },
-  fontFamily: {
-    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'pixmagix'),
-    link: ''
+  fontFamily:{
+  	text:__('', 'pixmagix'),
+  	link:''
   },
-  lineHeight: {
-    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Line height refers to the vertical space between lines of text. It plays a crucial role in determining the overall legibility and readability of a piece of content.', 'pixmagix'),
-    link: 'https://pixmagix-photo-editor.com/miscellaneous/understanding-line-height-in-typography/'
+  lineHeight:{
+  	text:__('Line height refers to the vertical space between lines of text. It plays a crucial role in determining the overall legibility and readability of a piece of content.', 'pixmagix'),
+  	link:'https://pixmagix-photo-editor.com/miscellaneous/understanding-line-height-in-typography/'
   },
-  dpi: {
-    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('DPI is a measure of spatial printing or image resolution. It refers to the number of individual dots that can be placed vertically and horizontally within a one-inch linear space. A higher DPI generally indicates a more detailed and smoother image, while a lower DPI means a less crisp output.', 'pixmagix'),
-    link: 'https://pixmagix-photo-editor.com/graphic-design/dpi-meaning/'
+  dpi:{
+  	text:__('DPI is a measure of spatial printing or image resolution. It refers to the number of individual dots that can be placed vertically and horizontally within a one-inch linear space. A higher DPI generally indicates a more detailed and smoother image, while a lower DPI means a less crisp output.', 'pixmagix'),
+  	link:'https://pixmagix-photo-editor.com/graphic-design/dpi-meaning/'
   },
-  pixabayApiKey: {
-    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'pixmagix'),
-    link: 'https://pixmagix-photo-editor.com/tutorials/how-to-get-and-connect-pixabay-api-key-to-pixmagix/'
+  pixabayApiKey:{
+  	text:__('', 'pixmagix'),
+  	link:'https://pixmagix-photo-editor.com/tutorials/how-to-get-and-connect-pixabay-api-key-to-pixmagix/'
   },
-  pexelsApiKey: {
-    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'pixmagix'),
-    link: ''
+  pexelsApiKey:{
+  	text:__('', 'pixmagix'),
+  	link:''
   },
-  unsplashApiKey: {
-    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'pixmagix'),
-    link: ''
+  unsplashApiKey:{
+  	text:__('', 'pixmagix'),
+  	link:''
   },
-  gfontsApiKey: {
-    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('By default, you can access the first 200 most popular fonts from Google Fonts. But what if you want more variety? By obtaining a Google Fonts API key, you can gain real-time access to all available font families, enhancing your design choices even further.', 'pixmagix'),
-    link: 'https://pixmagix-photo-editor.com/tutorials/how-to-get-and-connect-google-fonts-api-key-to-pixmagix/'
+  gfontsApiKey:{
+  	text:__('By default, you can access the first 200 most popular fonts from Google Fonts. But what if you want more variety? By obtaining a Google Fonts API key, you can gain real-time access to all available font families, enhancing your design choices even further.', 'pixmagix'),
+  	link:'https://pixmagix-photo-editor.com/tutorials/how-to-get-and-connect-google-fonts-api-key-to-pixmagix/'
   },
-  webSafeFonts: {
-    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'pixmagix'),
-    link: ''
+  webSafeFonts:{
+  	text:__('', 'pixmagix'),
+  	link:''
   },
-  userCaps: {
-    text: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'pixmagix'),
-    link: ''
+  userCaps:{
+  	text:__('', 'pixmagix'),
+  	link:''
   }
+  */
 };
 
 /**
@@ -328,7 +330,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var ContentPerformance = function ContentPerformance(_ref) {
   var thumbnail_width = _ref.thumbnail_width,
-    create_previews = _ref.create_previews,
     preview_width = _ref.preview_width,
     onSettingChange = _ref.onSettingChange;
   return /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_1__.Input, {
@@ -341,13 +342,7 @@ var ContentPerformance = function ContentPerformance(_ref) {
     min: 100,
     max: 800,
     step: 1
-  }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_1__.Checkbox, {
-    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Create Preview Images', 'pixmagix'),
-    checked: create_previews,
-    onChange: function onChange(value) {
-      return onSettingChange('create_previews', value);
-    }
-  }), create_previews && /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_1__.Input, {
+  }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_1__.Input, {
     type: "number",
     label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Previews Width', 'pixmagix'),
     value: preview_width,
@@ -681,7 +676,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   PROJECTS_REST_PATH: () => (/* binding */ PROJECTS_REST_PATH),
 /* harmony export */   REST_PATH: () => (/* binding */ REST_PATH)
 /* harmony export */ });
-var PIXMAGIX_WEBSITE = 'https://pixmagix-photo-editor.com/';
+var PIXMAGIX_WEBSITE = 'https://pixmagixplugin.com/';
 var PROJECTS_REST_PATH = 'wp/v2/pixmagix/';
 var CATEGORIES_REST_PATH = 'wp/v2/pixmagix_category/';
 var IMAGES_REST_PATH = 'wp/v2/media/';
@@ -851,7 +846,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   addToRouter: () => (/* binding */ addToRouter),
 /* harmony export */   clamp: () => (/* binding */ clamp),
 /* harmony export */   createUniqueId: () => (/* binding */ createUniqueId),
-/* harmony export */   loadGFont: () => (/* binding */ loadGFont),
+/* harmony export */   getDownloadAnchor: () => (/* binding */ getDownloadAnchor),
+/* harmony export */   getHiddenFileInput: () => (/* binding */ getHiddenFileInput),
 /* harmony export */   toFixed: () => (/* binding */ toFixed)
 /* harmony export */ });
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "lodash");
@@ -947,23 +943,52 @@ function addToRouter(args, url) {
 
 /**
  *
- * @param {string} family
- * @since 1.1.0
+ * @since 1.5.0
+ * @param {string} href
+ * @param {string} filename
+ * @param {string} extension
+ * @return {HTMLAnchorElement}
  */
 
-function loadGFont(family) {
-  if (!family) {
-    return;
+function getDownloadAnchor() {
+  var href = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+  var filename = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'pixmagix';
+  var extension = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
+  if (!getDownloadAnchor._anchor) {
+    getDownloadAnchor._anchor = document.createElement('a');
   }
-  var linkId = 'pixmagix_gfont_' + family.replace(/\s+/g, '_').toLowerCase();
-  var linkElement = document.getElementById(linkId);
-  if (!linkElement) {
-    linkElement = document.createElement('link');
-    linkElement.id = linkId;
-    linkElement.rel = 'stylesheet';
-    linkElement.href = 'https://fonts.googleapis.com/css2?family=' + family.replace(/\s+/g, '+');
-    document.head.appendChild(linkElement);
-  }
+  var download = filename.replace(/\s+/g, '-').toLowerCase() + '.' + extension;
+  getDownloadAnchor._anchor.href = href;
+  getDownloadAnchor._anchor.download = download;
+  return getDownloadAnchor._anchor;
+}
+
+/**
+ *
+ * @since 1.5.0
+ * @param {string} accept
+ * @param {string} readAs The function name of how to read the file by reader: 'readAsDataURL', 'readAsText', etc.
+ * @param {function} onChange
+ * @return {HTMLInputElement}
+ */
+
+function getHiddenFileInput() {
+  var accept = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+  var readAs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+  var onChange = arguments.length > 2 ? arguments[2] : undefined;
+  var element = document.createElement('input');
+  var reader = new FileReader();
+  element.type = 'file';
+  element.accept = accept;
+  element.style.display = 'none';
+  element.onchange = function (e) {
+    reader[readAs](e.target.files[0]);
+  };
+  reader.onload = function (e) {
+    onChange(reader.result);
+  };
+  document.body.appendChild(element);
+  return element;
 }
 
 /***/ }),

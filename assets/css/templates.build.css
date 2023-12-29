@@ -105,10 +105,10 @@
   justify-content: space-between;
   align-items: center;
 }
-.pixmagix-input-wrapper, .pixmagix-range-wrapper, .pixmagix-checkbox-wrapper, .pixmagix-radio-buttons-wrapper, .pixmagix-multicheck-buttons-wrapper, .pixmagix-color-picker-wrapper, .pixmagix-color-palette-wrapper, .pixmagix-shadow-picker-wrapper, .pixmagix-libraryselect-wrapper, .pixmagix-stroke-dasharray-control, .pixmagix-repeater-wrapper {
+.pixmagix-input-wrapper, .pixmagix-range-wrapper, .pixmagix-checkbox-wrapper, .pixmagix-radio-buttons-wrapper, .pixmagix-multicheck-buttons-wrapper, .pixmagix-color-picker-wrapper, .pixmagix-color-palette-wrapper, .pixmagix-shadow-picker-wrapper, .pixmagix-libraryselect-wrapper, .pixmagix-stroke-dasharray-control, .pixmagix-repeater-wrapper, .pixmagix-font-picker-wrapper {
   margin-bottom: 8px;
 }
-.pixmagix-input-wrapper .pixmagix-label, .pixmagix-range-wrapper .pixmagix-label, .pixmagix-checkbox-wrapper .pixmagix-label, .pixmagix-radio-buttons-wrapper .pixmagix-label, .pixmagix-multicheck-buttons-wrapper .pixmagix-label, .pixmagix-color-picker-wrapper .pixmagix-label, .pixmagix-color-palette-wrapper .pixmagix-label, .pixmagix-shadow-picker-wrapper .pixmagix-label, .pixmagix-libraryselect-wrapper .pixmagix-label, .pixmagix-stroke-dasharray-control .pixmagix-label, .pixmagix-repeater-wrapper .pixmagix-label {
+.pixmagix-input-wrapper .pixmagix-label, .pixmagix-range-wrapper .pixmagix-label, .pixmagix-checkbox-wrapper .pixmagix-label, .pixmagix-radio-buttons-wrapper .pixmagix-label, .pixmagix-multicheck-buttons-wrapper .pixmagix-label, .pixmagix-color-picker-wrapper .pixmagix-label, .pixmagix-color-palette-wrapper .pixmagix-label, .pixmagix-shadow-picker-wrapper .pixmagix-label, .pixmagix-libraryselect-wrapper .pixmagix-label, .pixmagix-stroke-dasharray-control .pixmagix-label, .pixmagix-repeater-wrapper .pixmagix-label, .pixmagix-font-picker-wrapper .pixmagix-label {
   display: block;
   margin-bottom: 4px;
 }
@@ -484,6 +484,14 @@
   width: 100%;
   height: 100%;
 }
+.pixmagix-font-picker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pixmagix-font-picker .pixmagix-input {
+  flex: 1;
+}
 .pixmagix-dropdown-content {
   color: #ffffff;
   background-color: #1F262A;
@@ -826,7 +834,7 @@
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 .pixmagix-grid__item-figure svg {
   display: block;
@@ -1034,6 +1042,19 @@
 .pixmagix-inlinenotice p {
   margin: 0;
   padding: 0;
+}
+.pixmagix-fonts__preview .pixmagix-grid__item-figure {
+  padding: 8px;
+}
+.pixmagix-fonts__preview a {
+  text-decoration: none;
+}
+.pixmagix-fonts__preview p {
+  margin: 0;
+}
+.pixmagix-fonts__list .pixmagix-repeater__content p {
+  margin: 0;
+  font-size: 1.5em;
 }
 
 .pixmagix {
