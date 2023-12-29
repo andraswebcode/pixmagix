@@ -158,7 +158,7 @@ final class Post_Type {
 		}
 
 		// Create preview image, if you have allowed it in general settings.
-		if (!empty(get_setting('create_previews')) && strpos($preview, ';base64,') !== false){
+		if (strpos($preview, ';base64,') !== false){
 			$filename = 'project-' . $id . '.jpg';
 			$meta['pixmagix_project']['preview'] = esc_url_raw(create_image_from_base64($preview, 'previews', $filename));
 		}

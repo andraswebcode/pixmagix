@@ -3,7 +3,6 @@
 namespace AndrasWeb\PixMagix;
 
 use function  AndrasWeb\PixMagix\Editor\register_dependencies ;
-use function  AndrasWeb\PixMagix\Editor\enqueue_fonts ;
 use function  AndrasWeb\PixMagix\Editor\enqueue_styles ;
 use function  AndrasWeb\PixMagix\Editor\enqueue_scripts ;
 use function  AndrasWeb\PixMagix\Editor\initialize ;
@@ -109,14 +108,6 @@ final class Admin
         );
         add_submenu_page(
             'pixmagix',
-            esc_html__( 'Fonts - PixMagix', 'pixmagix' ),
-            esc_html__( 'Fonts', 'pixmagix' ),
-            'manage_options',
-            'pixmagix_fonts',
-            __NAMESPACE__ . '\\Editor\\render'
-        );
-        add_submenu_page(
-            'pixmagix',
             esc_html__( 'Settings - PixMagix', 'pixmagix' ),
             esc_html__( 'Settings', 'pixmagix' ),
             'manage_options',
@@ -183,7 +174,6 @@ final class Admin
             $project = get_project( $project_id );
             $image = $_GET['image'] ?? 0;
             $media = get_media_info( $image );
-            enqueue_fonts();
             enqueue_styles( array(
                 'handle' => 'pixmagix-editor',
                 'src'    => get_asset_url( 'css', 'editor.build', 'css' ),
@@ -215,13 +205,10 @@ final class Admin
                 'previews_folder'    => esc_url( get_upload_url( 'previews' ) ),
                 'thumbnail_width'    => absint( get_setting( 'thumbnail_width', 200 ) ),
                 'preview_width'      => absint( get_setting( 'preview_width', 1280 ) ),
-                'has_previews'       => boolval( get_setting( 'create_previews', true ) ),
                 'project_dates'      => get_months_dropdown_items(),
                 'project_categories' => get_categories_dropdown_items(),
                 'users'              => get_users_dropdown_items(),
                 'media_dates'        => get_months_dropdown_items( 'attachment' ),
-                'gfonts'             => get_setting( 'google_fonts', array() ),
-                'wsfonts'            => get_setting( 'web_safe_fonts', array() ),
                 'fa_icons'           => get_json_data( 'fa-icons' ),
             ),
             ) );
@@ -229,7 +216,7 @@ final class Admin
                 'media' => $media,
             ) ) );
         } elseif ( $hook_suffix === 'pixmagix_page_pixmagix_tmpls' ) {
-            $filters = array( 'search', 'category', 'aspect' );
+            $filters = array( 'search', 'category', 'orientation' );
             $params = array(
                 'page' => ( isset( $_GET['p'] ) ? absint( $_GET['p'] ) : 1 ),
             );
@@ -302,37 +289,6 @@ final class Admin
                 'items'          => ( isset( $data['items'] ) ? $data['items'] : array() ),
                 'maxPages'       => ( isset( $data['maxPages'] ) ? absint( $data['maxPages'] ) : 1 ),
             ) ) );
-        } elseif ( $hook_suffix === 'pixmagix_page_pixmagix_fonts' ) {
-            $filters = array( 'search', 'category', 'language' );
-            $params = array(
-                'collection' => ( isset( $_GET['collection'] ) ? sanitize_text_field( $_GET['collection'] ) : 'websafe' ),
-                'page'       => ( isset( $_GET['p'] ) ? absint( $_GET['p'] ) : 1 ),
-            );
-            foreach ( $filters as $key ) {
-                $params[$key] = ( isset( $_GET[$key] ) ? sanitize_text_field( $_GET[$key] ) : '' );
-            }
-            $items_request = new \WP_Rest_Request( 'GET', '/pixmagix/v1/fonts' );
-            $items_request->set_query_params( $params );
-            $items_response = rest_get_server()->dispatch( $items_request );
-            $data = $items_response->get_data();
-            enqueue_styles( array(
-                'handle' => 'pixmagix-fonts',
-                'src'    => get_asset_url( 'css', 'fonts.build', 'css' ),
-            ) );
-            enqueue_scripts( array(
-                'handle' => 'pixmagix-fonts',
-                'src'    => get_asset_url( 'js', 'fonts.build', 'js' ),
-                'l10n'   => array(
-                'self_url' => esc_url( admin_page_url( 'fonts' ) ),
-            ),
-            ) );
-            initialize( 'pixmagix-fonts', array_merge( $params, array(
-                'hasGFontsKey' => has_setting( 'gfonts_api_key' ),
-                'gFonts'       => get_setting( 'google_fonts', array() ),
-                'wsFonts'      => get_setting( 'web_safe_fonts', array() ),
-                'items'        => ( isset( $data['items'] ) ? $data['items'] : array() ),
-                'maxPages'     => ( isset( $data['maxPages'] ) ? absint( $data['maxPages'] ) : 1 ),
-            ) ) );
         } elseif ( $hook_suffix === 'pixmagix_page_pixmagix_settings' ) {
             $l10n = array(
                 'self_url' => esc_url( admin_page_url( 'settings' ) ),
@@ -372,7 +328,6 @@ final class Admin
             'pixmagix_page_pixmagix_editor',
             'pixmagix_page_pixmagix_tmpls',
             'pixmagix_page_pixmagix_freeimgs',
-            'pixmagix_page_pixmagix_fonts',
             'pixmagix_page_pixmagix_settings'
         );
         if ( in_array( $screen->id, $screen_ids ) ) {

@@ -48,40 +48,6 @@ function register_dependencies(){
 
 }
 
-
-
-/**
- *
- * @since 1.1.0
- */
-
-function enqueue_fonts(){
-
-	$gfonts = get_setting('google_fonts', array());
-	$link = 'https://fonts.googleapis.com/css2?';
-
-	if (empty($gfonts)){
-		return;
-	}
-
-	foreach ($gfonts as $font){
-		$family = $font['family'] ?? '';
-		if (!empty($family)){
-			$link .= 'family=' . $family . '&';
-		}
-	}
-
-	$link .= 'display=swap';
-
-	wp_enqueue_style(
-		'pixmagix-gfonts',
-		esc_url($link),
-		array(),
-		null
-	);
-
-}
-
 /**
  * Enqueue styles for a specific page.
  * @since 1.1.0

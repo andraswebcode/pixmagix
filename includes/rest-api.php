@@ -13,7 +13,6 @@ use function AndrasWeb\PixMagix\Utils\find_object;
 use function AndrasWeb\PixMagix\Utils\get_file_extension;
 use function AndrasWeb\PixMagix\Settings\get_setting;
 use function AndrasWeb\PixMagix\Settings\update_settings;
-use function AndrasWeb\PixMagix\Settings\add_font;
 use function AndrasWeb\PixMagix\Users\Utils\update_roles;
 
 // Exit, if accessed directly.
@@ -41,12 +40,12 @@ final class Rest_Api {
 
 	/**
 	 * The PixMagix API url.
-	 * @since 1.1.0
+	 * @since 1.4.0
 	 * @access private
 	 * @var string
 	 */
 
-	private $pixmagix_url = 'https://api.pixmagixplugin.com/';
+	private $pixmagix_url = 'https://api.pixmagix.net/templates/';
 
 	/**
 	 * The Pixabay API url.
@@ -454,7 +453,12 @@ final class Rest_Api {
 
 	public function get_templates($request){
 
-		$args = array();
+		$search = sanitize_text_field($request->get_param('search'));
+		$orientation = sanitize_text_field($request->get_param('orientation'));
+		$category = sanitize_text_field($request->get_param('category'));
+		$page = $request->get_param('page');
+		$page = !empty($page) ? absint($page) : 1;
+		$args = compact('search', 'orientation', 'category', 'page');
 		$api_url = $this->pixmagix_url;
 		$api_url = add_query_arg($args, $api_url);
 		$remote_response = wp_remote_get($api_url);
@@ -470,9 +474,11 @@ final class Rest_Api {
 			return new \WP_Error();
 		}
 
+		$items = isset($data['items']) ? $data['items'] : array();
+		$max_pages = isset($data['totalPages']) ? absint($data['totalPages']) : 1;
 		$response = array(
-			'items' => $data,
-			'maxPages' => 1
+			'items' => $items,
+			'maxPages' => $max_pages
 		);
 
 		return new \WP_REST_Response($response);
@@ -505,6 +511,7 @@ final class Rest_Api {
 		$description = $json['description'] ?? '';
 		$width = $json['width'] ?? 0;
 		$height = $json['height'] ?? 0;
+		$background = $json['background'] ?? '';
 		$thumbnail = $json['thumbnail'] ?? '';
 		$preview = $json['preview'] ?? '';
 		$layers = $json['layers'] ?? array();
@@ -516,7 +523,7 @@ final class Rest_Api {
 				'pixmagix_project' => array(
 					'canvasWidth' => absint($width),
 					'canvasHeight' => absint($height),
-					'canvasBackground' => '',
+					'canvasBackground' => is_array($background) ? $background : sanitize_hex_color($background),
 					'thumbnail' => esc_url_raw($thumbnail),
 					'preview' => esc_url_raw($preview),
 					'layers' => array()
@@ -532,10 +539,6 @@ final class Rest_Api {
 					// to avoid cross-origin errors on html5 canvas.
 					// We will create new src for it below.
 					$layer['src'] = '';
-				} elseif ($type === 'i-text'){
-					$family = $layer['fontFamily'] ?? '';
-					$collection = $layer['fontCollection'] ?? '';
-					add_font($family, $collection);
 				}
 				$body_params['meta']['pixmagix_project']['layers'][] = $layer;
 			}
@@ -640,7 +643,9 @@ final class Rest_Api {
 			'per_page' => 12
 		);
 		$api_url = $this->$url;
-		$remote_args = array();
+		$remote_args = array(
+			'timeout' => 20
+		);
 
 		if ($platform === 'pixabay'){
 			$args = array_merge(
@@ -1008,60 +1013,46 @@ final class Rest_Api {
 
 	public function get_fonts($request){
 
-		$collection = $request->get_param('collection');
-
-		if (empty($collection)){
-			return new \WP_Error(
-				'missing_parameter',
-				esc_html__('Collection is Missing', 'pixmagix'),
-				array(
-					'status' => 404
-				)
-			);
-		}
-
 		$page = $request->get_param('page');
 		$page = !empty($page) ? absint($page) : 1;
 		$search = $request->get_param('search');
 		$category = $request->get_param('category');
 		$language = $request->get_param('language');
-		$has_filters = !empty(array_filter(array($search, $category, $language)));
+		$variant = $request->get_param('variant');
+		$has_filters = !empty(array_filter(array($search, $category, $language, $variant)));
 		$response = array(
 			'items' => array(),
 			'maxPages' => 1
 		);
 		$items = array();
 
-		if ($collection === 'websafe'){
-			$items = get_setting('web_safe_fonts', array());
-		} elseif ($collection === 'gfonts'){
-			if (empty($this->gfonts_key)){
-				$items = get_json_data('gfonts');
-			} else {
-				$args = array(
-					'key' => $this->gfonts_key,
-					'sort' => 'popularity'
-				);
-				$api_url = add_query_arg($args, $this->gfonts_url);
-				$remote_response = wp_remote_get($api_url);
-				if (is_wp_error($remote_response)){
-					return $remote_response;
-				}
-				$body = wp_remote_retrieve_body($remote_response);
-				$data = json_decode($body, true);
-				if (!empty($data) && isset($data['items'])){
-					$items = $data['items'];
-				}
+		if (empty($this->gfonts_key)){
+			$items = get_json_data('gfonts');
+		} else {
+			$args = array(
+				'key' => $this->gfonts_key,
+				'sort' => 'popularity'
+			);
+			$api_url = add_query_arg($args, $this->gfonts_url);
+			$remote_response = wp_remote_get($api_url);
+			if (is_wp_error($remote_response)){
+				return $remote_response;
 			}
-			if ($has_filters){
-				$items = array_filter($items, function($item) use ($search, $category, $language){
-					$fam = $item['family'] ?? '';
-					$cat = $item['category'] ?? '';
-					$s = (empty($search) || stripos($fam, $search) !== false);
-					$c = (empty($category) || $category === $cat);
-					return ($s && $c);
-				});
+			$body = wp_remote_retrieve_body($remote_response);
+			$data = json_decode($body, true);
+			if (!empty($data) && isset($data['items'])){
+				$items = $data['items'];
 			}
+		}
+		if ($has_filters){
+			$items = array_filter($items, function($item) use ($search, $category, $language, $variant){
+				$fam = $item['family'] ?? '';
+				$cat = $item['category'] ?? '';
+				$s = (empty($search) || stripos($fam, $search) !== false);
+				$c = (empty($category) || $category === $cat);
+				// Filter by language, and variants is coming soon...
+				return ($s && $c);
+			});
 		}
 
 		$response['maxPages'] = ceil(count($items) / 12);

@@ -24,39 +24,7 @@ const  DEFAULT_SETTINGS = array(
     'pexels_api_key'      => '',
     'unsplash_api_key'    => '',
     'gfonts_api_key'      => '',
-    'web_safe_fonts'      => array(
-    array(
-    'family'     => 'Arial',
-    'collection' => 'websafe',
-),
-    array(
-    'family'     => 'Arial Black',
-    'collection' => 'websafe',
-),
-    array(
-    'family'     => 'Times New Roman',
-    'collection' => 'websafe',
-),
-    array(
-    'family'     => 'Courier',
-    'collection' => 'websafe',
-),
-    array(
-    'family'     => 'Verdana',
-    'collection' => 'websafe',
-),
-    array(
-    'family'     => 'Georgia',
-    'collection' => 'websafe',
-),
-    array(
-    'family'     => 'Impact',
-    'collection' => 'websafe',
-)
-),
-    'google_fonts'        => array(),
     'thumbnail_width'     => 300,
-    'create_previews'     => true,
     'preview_width'       => 1280,
 ) ;
 /**
@@ -70,10 +38,7 @@ const  SANITIZE_CALLBACKS = array(
     'pexels_api_key'      => 'sanitize_text_field',
     'unsplash_api_key'    => 'sanitize_text_field',
     'gfonts_api_key'      => 'sanitize_text_field',
-    'web_safe_fonts'      => __NAMESPACE__ . '\\sanitize_fonts',
-    'google_fonts'        => __NAMESPACE__ . '\\sanitize_fonts',
     'thumbnail_width'     => 'absint',
-    'create_previews'     => 'boolval',
     'preview_width'       => 'absint',
 ) ;
 /**
@@ -155,67 +120,4 @@ function update_settings( $key = '', $value = '' )
     $new_settings = wp_parse_args( $key, $old_settings );
     $new_settings = sanitize_settings( $new_settings );
     return update_option( SETTINGS_KEY, $new_settings );
-}
-
-/**
- *
- * @since 1.1.0
- * @param array $fonts
- * @return array
- */
-function sanitize_fonts( $fonts = array() )
-{
-    $sanitized = array();
-    foreach ( $fonts as $font ) {
-        $family = sanitize_text_field( $font['family'] ?? '' );
-        $collection = sanitize_text_field( $font['collection'] ?? '' );
-        $category = sanitize_text_field( $font['category'] ?? '' );
-        $subsets = array_map( 'sanitize_text_field', $font['subsets'] ?? array() );
-        $variants = array_map( 'sanitize_text_field', $font['variants'] ?? array() );
-        $sanitized[] = array_filter( compact(
-            'family',
-            'collection',
-            'category',
-            'subsets',
-            'variants'
-        ) );
-    }
-    return $sanitized;
-}
-
-/**
- * Save settings by updating a specific font collection with a new item.
- * @since 1.1.0
- * @param string|array $font
- * @param string $collection
- * @return boolean
- */
-function add_font( $font = '', $collection = '' )
-{
-    if ( empty($font) || empty($collection) ) {
-        return false;
-    }
-    $collection_keys = array(
-        'websafe' => 'web_safe_fonts',
-        'gfonts'  => 'google_fonts',
-    );
-    $setting_key = $collection_keys[$collection];
-    $saved_fonts = get_setting( $setting_key, array() );
-    $family = ( is_array( $font ) && isset( $font['family'] ) ? $font['family'] : $font );
-    $has_font = boolval( $family && find_object( $saved_fonts, 'family', $family ) );
-    if ( $has_font ) {
-        return false;
-    }
-    
-    if ( is_string( $font ) ) {
-        $new_item = array(
-            'family'     => $font,
-            'collection' => $collection,
-        );
-    } else {
-        $new_item = $font;
-    }
-    
-    $new_fonts = array_merge( $saved_fonts, array( $new_item ) );
-    return update_settings( $setting_key, $new_fonts );
 }
