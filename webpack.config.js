@@ -16,7 +16,6 @@ module.exports = env => {
 			'projects':'./src/projects.js',
 			'templates':'./src/templates.js',
 			'free-images':'./src/free-images.js',
-			'fonts':'./src/fonts.js',
 			'settings':'./src/settings.js'
 		},
 		output:{
@@ -86,7 +85,6 @@ module.exports = env => {
 			'projects':'./src/projects.scss',
 			'templates':'./src/templates.scss',
 			'free-images':'./src/free-images.scss',
-			'fonts':'./src/fonts.scss',
 			'settings':'./src/settings.scss'
 		},
 		output:{

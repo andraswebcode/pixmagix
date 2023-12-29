@@ -1,19 +1,19 @@
-=== PixMagix - Image Editor ===
-Contributors: andrasweb
+=== PixMagix - WordPress Image Editor ===
+Contributors: andrasweb, freemius
 Donate link: https://pixmagixplugin.com/
-Tags: image editor, photo editor, featured image generator, qr code generator, image, editor, photo, featured, generator, edit, filter, resize, qr code, qr, crop, pixabay, pexels, unsplash, free images, royalty free, stock photos, stock images, media, picture, editing
+Tags: image editor, photo editor, featured image generator, qr code generator, image, editor, photo, featured, generator, edit, filter, resize, qr code, qr, crop, pixabay, pexels, unsplash, free images, royalty free, stock photos, stock images, media, picture, editing, design, graphic design, graphic
 Requires at least: 6.0.0
-Tested up to: 6.4.1
-Stable tag: 1.4.0
+Tested up to: 6.4.2
+Stable tag: 1.5.0
 Requires PHP: 7.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Advanced image editor plugin for media images. Add filters, adjust brightness and contrast, crop and resize images, add text, and much more. Overall, PixMagix is a powerful tool for anyone looking to take their website's visual content to the next level.
+Advanced image editor plugin for WordPress media images. Add filters, adjust brightness and contrast, crop and resize images, add text, and much more. Overall, PixMagix is a powerful tool for anyone looking to take their website's visual content to the next level.
 
 == Description ==
 
-If you've ever struggled with creating and editing images for your WordPress site, PixMagix can make your work significantly easier. Offering a wide range of editing tools right in your dashboard, PixMagix transforms the way you create, providing an easy, more efficient way to get your visuals ready for your website.
+If you've ever struggled with creating and editing images for your WordPress site, PixMagix - WordPress image editor can make your work significantly easier. Offering a wide range of editing tools right in your dashboard, PixMagix transforms the way you create, providing an easy, more efficient way to get your visuals ready for your website.
 
 [Features](https://pixmagixplugin.com/features/) | [Templates](https://pixmagixplugin.com/templates/) | [Documentation](https://docs.pixmagixplugin.com/) | [Contact](https://pixmagixplugin.com/support/contact/) | [Pro](https://pixmagixplugin.com/pricing/)
 
@@ -52,11 +52,19 @@ Rest assured, PixMagix is updated on a regular basis to deliver a smooth user ex
 
 == Changelog ==
 
+= 1.5.0 =
+
+* Added new feature: download/upload projects as zip files.
+* Improved template libray.
+* Improved ruler guides in the editor.
+* Improved font family picker.
+* Fixed a lot of bugs, and security issues.
+
 = 1.4.0 =
 
-* Added a lot of new features
-* Security update
-* Bug fixes
+* Added a lot of new features.
+* Security update.
+* Bug fixes.
 
 = 1.0.0 =
 
@@ -65,5 +73,7 @@ Rest assured, PixMagix is updated on a regular basis to deliver a smooth user ex
 == Screenshots ==
 
 1. The editor interface
-
-
+2. Export image to media library
+3. Replace media image, with edited
+4. Import free stock photos
+5. Get started with templates
