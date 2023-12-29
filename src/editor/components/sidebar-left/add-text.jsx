@@ -10,7 +10,7 @@ import {
 	Textarea,
 	Button,
 	Range,
-	Select,
+	FontPicker,
 	MulticheckButtons,
 	RadioButtons,
 	ColorPicker,
@@ -19,6 +19,9 @@ import {
 import {
 	__
 } from 'wp-i18n';
+import {
+	find as _find
+} from 'lodash';
 
 import {
 	PENCIL_MIN_WIDTH,
@@ -29,9 +32,6 @@ import {
 import {
 	createLayerObject
 } from './../../utils/utils.js';
-import {
-	getFonts
-} from './../../utils/fonts.js';
 import {
 	setEditor
 } from './../../redux/actions-editor.js';
@@ -54,6 +54,7 @@ const AddText = ({
 	lineHeight,
 	charSpacing,
 	underline,
+	fontList,
 	pencilWidth,
 	pencilColor,
 	pencilShadow,
@@ -71,11 +72,16 @@ const AddText = ({
 					...layer,
 					[property]:value
 				});
-				setLayerProps(layer.id, {
+				const props = {
 					[property]:value,
 					width:options.width,
 					height:options.height
-				});
+				};
+				const collection = _find(fontList, {family:value})?.collection || 'websafe';
+				if (property === 'fontFamily'){
+					props.fontCollection = collection;
+				}
+				setLayerProps(layer.id, props);
 			}
 		});
 	};
@@ -155,12 +161,13 @@ const AddText = ({
 								min={0}
 								max={MAX_FONT_SIZE}
 								step={1} />
-							<Select
+							<FontPicker
 								label={__('Font Family', 'pixmagix')}
 								help={getHelpText('fontFamily')}
-								options={getFonts()}
+								options={fontList}
 								value={fontFamily}
-								onChange={onChangeWithUpdateSize('fontFamily', 'fontFamily')} />
+								onChange={onChangeWithUpdateSize('fontFamily', 'fontFamily')}
+								onAdd={() => setEditor('activeModal', 'font-manager')} />
 							<MulticheckButtons
 								label={__('Text Style', 'pixmagix')}
 								items={[{
@@ -275,6 +282,7 @@ export default connect(state => {
 		lineHeight:state.editor.lineHeight,
 		charSpacing:state.editor.charSpacing,
 		underline:state.editor.underline,
+		fontList:state.editor.fontList,
 		pencilWidth:state.editor.pencilWidth,
 		pencilColor:state.editor.pencilColor,
 		pencilShadow:state.editor.pencilShadow,

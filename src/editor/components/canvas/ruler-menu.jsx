@@ -35,7 +35,8 @@ export default connect(state => ({
 	showRulerCursors:state.editor.showRulerCursors,
 	snapObjects:state.editor.snapObjects,
 	snapToGrid:state.editor.snapToGrid,
-	guides:state.editor.guides
+	guides:state.editor.guides,
+	lockGuides:state.editor.lockGuides
 }),{
 	setEditor
 })(RulerMenu);

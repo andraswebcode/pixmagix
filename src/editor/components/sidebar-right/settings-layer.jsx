@@ -18,6 +18,7 @@ import {
 	InputGroup,
 	Range,
 	Select,
+	FontPicker,
 	Textarea,
 	ColorPicker,
 	ColorStyleControl,
@@ -51,11 +52,11 @@ import {
 	MAX_FONT_SIZE
 } from './../../utils/constants.js';
 import {
-	getFonts
-} from './../../utils/fonts.js';
-import {
 	setLayerProps
 } from './../../redux/actions-data.js';
+import {
+	setEditor
+} from './../../redux/actions-editor.js';
 import getHelpText from './../../utils/help-texts.js';
 
 const _imageFilters = imageFilters.map(item => ({
@@ -67,7 +68,9 @@ const _imageFilters = imageFilters.map(item => ({
 const SettingsLayer = ({
 	layer = {},
 	activeLayers,
-	setLayerProps
+	fontList,
+	setLayerProps,
+	setEditor
 }) => {
 
 	if (!activeLayers?.length){
@@ -151,17 +154,17 @@ const SettingsLayer = ({
 						label={__('Scale X', 'pixmagix')}
 						value={scaleX}
 						onChange={onTransform('scaleX')}
-						min={0.1}
+						min={0.01}
 						max={10}
-						step={0.1} />
+						step={0.01} />
 					<Input
 						type='number'
 						label={__('Scale Y', 'pixmagix')}
 						value={scaleY}
 						onChange={onTransform('scaleY')}
-						min={0.1}
+						min={0.01}
 						max={10}
-						step={0.1} />
+						step={0.01} />
 				</InputGroup>
 				<InputGroup>
 					<Input
@@ -313,12 +316,16 @@ const SettingsLayer = ({
 						min={0}
 						max={MAX_FONT_SIZE}
 						step={1} />
-					<Select
+					<FontPicker
 						label={__('Font Family', 'pixmagix')}
 						help={getHelpText('fontFamily')}
-						options={getFonts()}
+						options={fontList}
 						value={fontFamily}
-						onChange={value => setLayerProps(id, 'fontFamily', value)} />
+						onChange={value => setLayerProps(id, {
+							fontFamily:value,
+							fontCollection:_find(fontList, {family:value})?.collection || 'websafe'
+						})}
+						onAdd={() => setEditor('activeModal', 'font-manager')} />
 					<MulticheckButtons
 						label={__('Text Style', 'pixmagix')}
 						items={[{
@@ -608,7 +615,9 @@ const SettingsLayer = ({
 
 export default connect(state => ({
 	layer:state.data.present.layers[state.editor.activeLayers[0]],
-	activeLayers:state.editor.activeLayers
+	activeLayers:state.editor.activeLayers,
+	fontList:state.editor.fontList
 }),{
-	setLayerProps
+	setLayerProps,
+	setEditor
 })(SettingsLayer);

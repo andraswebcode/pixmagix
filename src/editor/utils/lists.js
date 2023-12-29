@@ -15,6 +15,8 @@ import CropCanvas from './../components/sidebar-left/crop-canvas.jsx';
 
 // Modals.
 
+import AddGuides from './../components/modals/add-guides.jsx';
+import FontManager from './../components/modals/font-manager.jsx';
 import CategoryManager from './../components/modals/category-manager.jsx';
 import ImportMedia from './../components/modals/import-media.jsx';
 import OpenProject from './../components/modals/open-project.jsx';
@@ -282,6 +284,92 @@ export const cropAspectRatios = [{
 },{
 	label:__('2:3 - Portrait', 'pixmagix'),
 	value:'2:3'
+}];
+
+/**
+ *
+ * @since 1.5.0
+ * @var {array}
+ */
+
+export const guidePresets = [{
+	name:'2-cols',
+	label:__('2 Columns', 'pixmagix'),
+	type:'path',
+	path:'',
+	values:{
+		rows:1,
+		columns:2,
+		gapX:0,
+		gapY:18,
+		marginX:0,
+		marginY:28
+	}
+},{
+	name:'3-cols',
+	label:__('3 Columns', 'pixmagix'),
+	type:'path',
+	path:'',
+	values:{
+		rows:1,
+		columns:3,
+		gapX:0,
+		gapY:18,
+		marginX:0,
+		marginY:28
+	}
+},{
+	name:'4-cols',
+	label:__('4 Columns', 'pixmagix'),
+	type:'path',
+	path:'',
+	values:{
+		rows:1,
+		columns:4,
+		gapX:0,
+		gapY:18,
+		marginX:0,
+		marginY:28
+	}
+},{
+	name:'2x2',
+	label:__('2x2', 'pixmagix'),
+	type:'path',
+	path:'',
+	values:{
+		rows:2,
+		columns:2,
+		gapX:18,
+		gapY:18,
+		marginX:28,
+		marginY:28
+	}
+},{
+	name:'3x3',
+	label:__('3x3', 'pixmagix'),
+	type:'path',
+	path:'',
+	values:{
+		rows:3,
+		columns:3,
+		gapX:18,
+		gapY:18,
+		marginX:28,
+		marginY:28
+	}
+},{
+	name:'4x4',
+	label:__('4x4', 'pixmagix'),
+	type:'path',
+	path:'',
+	values:{
+		rows:4,
+		columns:4,
+		gapX:18,
+		gapY:18,
+		marginX:28,
+		marginY:28
+	}
 }];
 
 /**
@@ -570,11 +658,166 @@ export const imageFilters = [{
 
 /**
  *
+ * @since 1.5.0
+ * @var {object}
+ */
+
+export const gFontFilters = {
+	categories:[{
+		label:__('All Categories', 'pixmagix'),
+		value:''
+	},{
+		label:__('Serif', 'pixmagix'),
+		value:'serif'
+	},{
+		label:__('Sans Serif', 'pixmagix'),
+		value:'sans-serif'
+	},{
+		label:__('Display', 'pixmagix'),
+		value:'display'
+	},{
+		label:__('Handwriting', 'pixmagix'),
+		value:'handwriting'
+	},{
+		label:__('Monospace', 'pixmagix'),
+		value:'monospace'
+	}],
+	languages:[{
+		label:__('All Languages', 'pixmagix'),
+		value:''
+	},{
+		label:__('Arabic', 'pixmagix'),
+		value:'arabic'
+	},{
+		label:__('Bengali', 'pixmagix'),
+		value:'bengali'
+	},{
+		label:__('Chinese (Hong Kong)', 'pixmagix'),
+		value:'chinese-hongkong'
+	},{
+		label:__('Chinese (Simplified)', 'pixmagix'),
+		value:'chinese-simplified'
+	},{
+		label:__('Chinese (Traditional)', 'pixmagix'),
+		value:'chinese-traditional'
+	},{
+		label:__('Cyrillic', 'pixmagix'),
+		value:'cyrillic'
+	},{
+		label:__('Cyrillic Extended', 'pixmagix'),
+		value:'cyrillic-ext'
+	},{
+		label:__('Devanagari', 'pixmagix'),
+		value:'devanagari'
+	},{
+		label:__('Greek', 'pixmagix'),
+		value:'greek'
+	},{
+		label:__('Greek Extended', 'pixmagix'),
+		value:'greek-ext'
+	},{
+		label:__('Gujarati', 'pixmagix'),
+		value:'gujarati'
+	},{
+		label:__('Gurmukhi', 'pixmagix'),
+		value:'gurmukhi'
+	},{
+		label:__('Hebrew', 'pixmagix'),
+		value:'hebrew'
+	},{
+		label:__('Japanese', 'pixmagix'),
+		value:'japanese'
+	},{
+		label:__('Khmer', 'pixmagix'),
+		value:'khmer'
+	},{
+		label:__('Korean', 'pixmagix'),
+		value:'korean'
+	},{
+		label:__('Latin', 'pixmagix'),
+		value:'latin'
+	},{
+		label:__('Latin Extended', 'pixmagix'),
+		value:'latin-ext'
+	},{
+		label:__('Malayalam', 'pixmagix'),
+		value:'malayalam'
+	},{
+		label:__('Myanmar', 'pixmagix'),
+		value:'myanmar'
+	},{
+		label:__('Oriya', 'pixmagix'),
+		value:'oriya'
+	},{
+		label:__('Sinhala', 'pixmagix'),
+		value:'sinhala'
+	},{
+		label:__('Tamil', 'pixmagix'),
+		value:'tamil'
+	},{
+		label:__('Telugu', 'pixmagix'),
+		value:'telugu'
+	},{
+		label:__('Thai', 'pixmagix'),
+		value:'thai'
+	},{
+		label:__('Tibetian', 'pixmagix'),
+		value:'tibetian'
+	},{
+		label:__('Vietnamese', 'pixmagix'),
+		value:'vietnamese'
+	}],
+	variants:[{
+		label:__('All Variants', 'pixmagix'),
+		value:''
+	},{
+		label:__('Thin 100', 'pixmagix'),
+		value:'100'
+	},{
+		label:__('Thin 100 Italic', 'pixmagix'),
+		value:'100italic'
+	},{
+		label:__('Light 300', 'pixmagix'),
+		value:'300'
+	},{
+		label:__('Light 300 Italic', 'pixmagix'),
+		value:'300italic'
+	},{
+		label:__('Regular 400', 'pixmagix'),
+		value:'regular'
+	},{
+		label:__('Regular 400 Italic', 'pixmagix'),
+		value:'italic'
+	},{
+		label:__('Medium 500', 'pixmagix'),
+		value:'500'
+	},{
+		label:__('Medium 500 Italic', 'pixmagix'),
+		value:'500italic'
+	},{
+		label:__('Bold 700', 'pixmagix'),
+		value:'700'
+	},{
+		label:__('Bold 700 Italic', 'pixmagix'),
+		value:'700italic'
+	},{
+		label:__('Black 900', 'pixmagix'),
+		value:'900'
+	},{
+		label:__('Black 900 Italic', 'pixmagix'),
+		value:'900italic'
+	}]
+};
+
+/**
+ *
  * @since 1.0.0
  * @var {object}
  */
 
 export const modals = {
+	'add-guides':AddGuides,
+	'font-manager':FontManager,
 	'category-manager':CategoryManager,
 	'import-media':ImportMedia,
 	'open-project':OpenProject,
@@ -641,6 +884,7 @@ export const propsToSaveLocalStorage = [
 	'lineHeight',
 	'charSpacing',
 	'underline',
+	'fontList',
 	'qrCodeText',
 	'qrCodeSize',
 	'qrCodePadding',

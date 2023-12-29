@@ -11,8 +11,7 @@ import {
 export default ({
 	showRulers,
 	showRulerCursors,
-	snapObjects,
-	snapToGrid,
+	lockGuides,
 	guides,
 	setEditor
 }) => [{
@@ -25,9 +24,22 @@ export default ({
 	onClick:() => setEditor('showRulerCursors', !showRulerCursors),
 	disabled:() => !showRulers
 },{
+	name:'add-guides',
+	label:__('Add Guides', 'pixmagix'),
+	onClick:() => setEditor('activeModal', 'add-guides'),
+	disabled:() => !showRulers
+},{
+	name:'lock-guides',
+	label:lockGuides ? __('Unlock Guides', 'pixmagix') : __('Lock Guides', 'pixmagix'),
+	onClick:() => setEditor('lockGuides', !lockGuides),
+	disabled:() => !showRulers
+},{
 	name:'clear-guides',
 	label:__('Clear Guides', 'pixmagix'),
-	onClick:() => setEditor('guides', []),
+	onClick:() => setEditor({
+		guides:[],
+		lockGuides:false
+	}),
 	disabled:() => !guides?.length
 }/*,{
 	name:'snap-objects',

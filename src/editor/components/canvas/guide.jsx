@@ -20,7 +20,8 @@ const Guide = ({
 	canvasElementHeight,
 	canvasPanX,
 	canvasPanY,
-	canvasZoom
+	canvasZoom,
+	lockGuides
 }) => {
 
 	const style = {};
@@ -44,7 +45,8 @@ const Guide = ({
 	return (
 		<div
 			className={cn('pixmagix-canvas__guide', {
-				[`pixmagix-canvas__guide-${orientation}`]:orientation
+				[`pixmagix-canvas__guide-${orientation}`]:orientation,
+				'pixmagix-canvas__guide-lock':lockGuides
 			})}
 			data-guide-orientation={orientation}
 			data-guide-id={id}
@@ -64,5 +66,6 @@ export default connect(state => ({
 	canvasElementHeight:state.editor.canvasElementHeight,
 	canvasPanX:state.editor.canvasPanX,
 	canvasPanY:state.editor.canvasPanY,
-	canvasZoom:state.editor.canvasZoom
+	canvasZoom:state.editor.canvasZoom,
+	lockGuides:state.editor.lockGuides
 }))(Guide);

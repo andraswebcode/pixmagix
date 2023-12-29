@@ -126,16 +126,18 @@ const OpenProject = ({
 							setSearch(value);
 							setPage(1);
 							setLoading(true);
-						})
+						});
 					}} />
 				<Select
 					label={__('Category', 'pixmagix')}
 					value={category}
 					options={categoryList}
 					onChange={value => {
-						setCategory(value);
-						setPage(1);
-						setLoading(true);
+						batch(() => {
+							setCategory(value);
+							setPage(1);
+							setLoading(true);
+						});
 					}} />
 				<Select
 					label={__('Status', 'pixmagix')}
@@ -151,27 +153,33 @@ const OpenProject = ({
 						value:'private'
 					}]}
 					onChange={value => {
-						setStatus(value);
-						setPage(1);
-						setLoading(true);
+						batch(() => {
+							setStatus(value);
+							setPage(1);
+							setLoading(true);
+						});
 					}} />
 				<Select
 					label={__('Date', 'pixmagix')}
 					value={date}
 					options={project_dates}
 					onChange={value => {
-						setDate(value);
-						setPage(1);
-						setLoading(true);
+						batch(() => {
+							setDate(value);
+							setPage(1);
+							setLoading(true);
+						});
 					}} />
 				<Select
 					label={__('Author', 'pixmagix')}
 					value={author}
 					options={users}
 					onChange={value => {
-						setAuthor(value);
-						setPage(1);
-						setLoading(true);
+						batch(() => {
+							setAuthor(value);
+							setPage(1);
+							setLoading(true);
+						});
 					}} />
 			</InlineControls>
 			<Pagination

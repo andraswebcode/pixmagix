@@ -12,6 +12,7 @@ const {
 	extend,
 	clone
 } = util.object;
+const _initialize = Text.prototype.initialize;
 const _toObject = Text.prototype.toObject;
 
 /**

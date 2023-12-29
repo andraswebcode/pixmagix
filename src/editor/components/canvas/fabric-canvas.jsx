@@ -20,8 +20,7 @@ import {
 } from 'lodash';
 import {
 	thumbnail_width,
-	preview_width,
-	has_previews
+	preview_width
 } from 'editor-globals';
 
 import Canvas from './../../canvas/class-canvas.js';
@@ -111,6 +110,8 @@ class FabricCanvas extends Component {
 				originY:'top'
 			}),
 			objects:layerIds.map(id => layers[id])
+		}, () => {
+			this._fabricCanvas.loadFonts();
 		});
 
 		setEditor({
@@ -485,22 +486,20 @@ class FabricCanvas extends Component {
 			height:canvasHeight,
 			multiplier:thumbWidth / canvasWidth
 		});
-		const newState = {
-			thumbnail
-		};
-		if (has_previews){
-			newState.preview = canvas.toDataURL({
-				format:'jpeg',
-				quality:0.92,
-				top:0,
-				left:0,
-				width:canvasWidth,
-				height:canvasHeight,
-				multiplier:prevsWidth / canvasWidth
-			});
-		}
+		const preview = canvas.toDataURL({
+			format:'jpeg',
+			quality:0.92,
+			top:0,
+			left:0,
+			width:canvasWidth,
+			height:canvasHeight,
+			multiplier:prevsWidth / canvasWidth
+		});
 		canvas.setViewportTransform(vpt);
-		setEditor(newState);
+		setEditor({
+			preview,
+			thumbnail
+		});
 		// console.timeEnd('updatePreviewURL');
 	}
 

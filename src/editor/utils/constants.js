@@ -14,6 +14,10 @@ export const CANVAS_MIN_ZOOM = 10;
 
 export const CANVAS_MAX_ZOOM = 200;
 
+export const CANVAS_MIN_SIZE = 10;
+
+export const CANVAS_MAX_SIZE = 4000;
+
 export const DEFAULT_CANVAS_WIDTH = 1280;
 
 export const DEFAULT_CANVAS_HEIGHT = 720;
@@ -67,3 +71,26 @@ export const NOTIFICATION_EXPIRATION_TIME = 4000;
 export const MIN_CROP_SCALE = 0.1;
 
 export const MAX_CROP_SCALE = 1.2;
+
+export const DEFAULT_FONT_LIST = [{
+	family:'Arial',
+	collection:'websafe'
+},{
+	family:'Arial Black',
+	collection:'websafe'
+},{
+	family:'Times New Roman',
+	collection:'websafe'
+},{
+	family:'Courier',
+	collection:'websafe'
+},{
+	family:'Verdana',
+	collection:'websafe'
+},{
+	family:'Georgia',
+	collection:'websafe'
+},{
+	family:'Impact',
+	collection:'websafe'
+}];

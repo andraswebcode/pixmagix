@@ -33,7 +33,7 @@ export const sendNotice = (message, type) => ({
 /**
  *
  * @since 1.0.0
- * @param {string} id
+ * @param {string|array} id
  * @param {string} orientation
  * @param {number} position
  * @return {object}
@@ -61,5 +61,19 @@ export const updateGuide = (id, position) => ({
 	payload:{
 		id,
 		position
+	}
+});
+
+/**
+ *
+ * @since 1.5.0
+ * @param {string|array} id
+ * @return {object}
+ */
+
+export const removeGuide = id => ({
+	type:'REMOVE_GUIDE',
+	payload:{
+		id
 	}
 });

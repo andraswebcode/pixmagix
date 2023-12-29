@@ -351,6 +351,8 @@ export default connect(state => {
 	const output = {
 		layers:state.data.present.layers,
 		layerIds:state.data.present.layerIds,
+		canvasWidth:state.data.present.canvasWidth,
+		canvasHeight:state.data.present.canvasHeight,
 		canvasBackground:state.data.present.canvasBackground
 	};
 	const props = [
@@ -369,6 +371,7 @@ export default connect(state => {
 		'snapObjects',
 		'snapToGrid',
 		'guides',
+		'lockGuides',
 		'mediaId',
 		'revisionURL',
 		'fullScreen',

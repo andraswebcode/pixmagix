@@ -23,6 +23,7 @@ import Footer from './footer.jsx';
 import {
 	clamp,
 	toFixed,
+	isBetween,
 	createUniqueId,
 	pixelToAbsolutePosition
 } from './../utils/utils.js'
@@ -34,7 +35,8 @@ import {
 import {
 	setEditor,
 	createGuide,
-	updateGuide
+	updateGuide,
+	removeGuide
 } from './../redux/actions-editor.js';
 
 const Canvas = ({
@@ -42,6 +44,7 @@ const Canvas = ({
 	activeTool,
 	showRulers,
 	guides = [],
+	lockGuides,
 	canvasWidth,
 	canvasHeight,
 	canvasElementWidth,
@@ -52,7 +55,8 @@ const Canvas = ({
 	cropScale,
 	setEditor,
 	createGuide,
-	updateGuide
+	updateGuide,
+	removeGuide
 }) => {
 
 	const ref = useRef(null);
@@ -80,7 +84,7 @@ const Canvas = ({
 		return Math.round(isVertical ? pos.x : pos.y);
 	};
 	const onMouseDown = e => {
-		if (!ref?.current){
+		if (!ref?.current || lockGuides){
 			return;
 		}
 		const {
@@ -104,7 +108,7 @@ const Canvas = ({
 		}
 	};
 	const onMouseMove = e => {
-		if (!draggedGuideId){
+		if (!draggedGuideId || lockGuides){
 			return;
 		}
 		const guideOrientation = _find(guides, {
@@ -114,6 +118,19 @@ const Canvas = ({
 		updateGuide(draggedGuideId, pos);
 	};
 	const onMouseUp = e => {
+		if (!draggedGuideId || lockGuides){
+			return;
+		}
+		const guideOrientation = _find(guides, {
+			id:draggedGuideId
+		})?.orientation;
+		const pos = _getPosition(e, guideOrientation);
+		if (
+			(guideOrientation === 'vertical' && !isBetween(pos, 0, canvasWidth)) ||
+			(guideOrientation === 'horizontal' && !isBetween(pos, 0, canvasHeight))
+		){
+			removeGuide(draggedGuideId);
+		}
 		setDraggedGuideId('');
 	};
 
@@ -174,6 +191,7 @@ export default connect(state => ({
 	activeTool:state.editor.activeTool,
 	showRulers:state.editor.showRulers,
 	guides:state.editor.guides,
+	lockGuides:state.editor.lockGuides,
 	canvasWidth:state.data.present.canvasWidth,
 	canvasHeight:state.data.present.canvasHeight,
 	canvasElementWidth:state.editor.canvasElementWidth,
@@ -185,5 +203,6 @@ export default connect(state => ({
 }),{
 	setEditor,
 	createGuide,
-	updateGuide
+	updateGuide,
+	removeGuide
 })(Canvas);

@@ -24,6 +24,10 @@ import {
 	setEditor
 } from './../../redux/actions-editor.js';
 import {
+	CANVAS_MIN_SIZE,
+	CANVAS_MAX_SIZE
+} from './../../utils/constants.js';
+import {
 	applyFilters
 } from './../../../utils/hooks.js';
 import CategoryManager from './category-manager.jsx';
@@ -51,15 +55,15 @@ const SettingsProject = ({
 						label={__('Width', 'pixmagix')}
 						value={canvasWidth}
 						onChange={value => setData('canvasWidth', value)}
-						min={100}
-						max={4000} />
+						min={CANVAS_MIN_SIZE}
+						max={CANVAS_MAX_SIZE} />
 					<Input
 						type='number'
 						label={__('Height', 'pixmagix')}
 						value={canvasHeight}
 						onChange={value => setData('canvasHeight', value)}
-						min={100}
-						max={4000} />
+						min={CANVAS_MIN_SIZE}
+						max={CANVAS_MAX_SIZE} />
 				</InputGroup>
 			</Fragment>
 		)

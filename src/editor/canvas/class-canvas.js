@@ -10,6 +10,7 @@ import {
 import {
 	__
 } from 'wp-i18n';
+import FontFaceObserver from 'fontfaceobserver';
 
 import {
 	SELECTION_COLOR,
@@ -18,8 +19,8 @@ import {
 	TARGET_FIND_TOLERANCE
 } from './../utils/constants.js';
 import {
-	loadFonts
-} from './../utils/fonts.js';
+	loadGFont
+} from './../utils/utils.js';
 import PathBrush from './class-brush-path.js';
 
 const onMouseDown = Canvas.prototype.__onMouseDown;
@@ -127,18 +128,6 @@ export default util.createClass(Canvas, {
 	 */
 
 	uniScaleKey:null,
-
-	/**
-	 * Extends Canvas.prototype.initialize().
-	 * @since 1.1.0
-	 * @param {HTMLElement|string} el
-	 * @param {object} options
-	 */
-
-	initialize(el, options){
-		this.callSuper('initialize', el, options);
-		this._loadFonts();
-	},
 
 	/**
 	 *
@@ -311,17 +300,21 @@ export default util.createClass(Canvas, {
 
 	/**
 	 *
-	 * @since 1.1.0
+	 * @since 1.5.0
 	 */
 
-	_loadFonts(){
-		loadFonts(() => {
+	loadFonts(){
+		const texts = this.getObjects('i-text').concat(this.getObjects('text'));
+		const promises = texts.map(({fontFamily}) => {
+			loadGFont(fontFamily);
+			const ffo = new FontFaceObserver(fontFamily);
+			return ffo.load();
+		});
+		Promise.all(promises).then(() => {
 			util.clearFabricFontCache();
-			this.forEachObject(obj => {
-				if (obj.type === 'i-text' || obj.type === 'text'){
-					obj.initDimensions();
-					obj.setCoords();
-				}
+			texts.forEach(text => {
+				text.initDimensions();
+				text.setCoords();
 			});
 			this.requestRenderAll();
 		});

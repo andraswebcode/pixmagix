@@ -5,8 +5,11 @@ import {
 import {
 	each,
 	isObject,
+	isArray,
 	cloneDeep,
-	find as _find
+	find as _find,
+	filter,
+	includes
 } from 'lodash';
 
 import getInitialStateEditor from './initial-state-editor.js';
@@ -38,7 +41,9 @@ const getReducerEditor = (id, metadata, mediaId, mediaUrl, revisionUrl) => creat
 		if (!state.guides){
 			state.guides = [];
 		}
-		if (payload.id){
+		if (isArray(payload.id)){
+			state.guides.push(...payload.id);
+		} else {
 			state.guides.push({
 				id:payload.id,
 				orientation:payload.orientation,
@@ -55,6 +60,11 @@ const getReducerEditor = (id, metadata, mediaId, mediaUrl, revisionUrl) => creat
 			guide.position = payload.position;
 		}
 		state.guides = guides;
+	});
+	builder.addCase('REMOVE_GUIDE', (state, {payload}) => {
+		const guides = cloneDeep(current(state.guides));
+		const ids = isArray(payload.id) ? payload.id : [payload.id];
+		state.guides = filter(state.guides, ({id}) => !includes(ids, id));
 	});
 });
 

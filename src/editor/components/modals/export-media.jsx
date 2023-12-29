@@ -1,5 +1,6 @@
 import {
-	useState
+	useState,
+	Fragment
 } from 'react';
 import {
 	batch,
@@ -112,73 +113,81 @@ const ExportMedia = ({
 					</figure>
 				</Column>
 				<Column>
-					<Widget>
-						<h2>
-							{__('Image', 'pixmagix')}
-						</h2>
-						<Input
-							label={__('File Name', 'pixmagix')}
-							value={filename}
-							onChange={setFilename} />
-						<RadioButtons
-							label={__('File Type', 'pixmagix')}
-							options={[{
-								label:'PNG',
-								value:'png'
-							},{
-								label:'JPEG',
-								value:'jpeg'
-							},{
-								label:'WEBP',
-								value:'webp'
-							}]}
-							value={fileFormat}
-							onChange={value => setEditor('fileFormat', value)} />
-						{(fileFormat !== 'png') && (
-							<Range
-								label={__('Quality', 'pixmagix')}
-								help={getHelpText('jpgQuality')}
-								value={fileQuality}
-								onChange={value => setEditor('fileQuality', value)}
-								min={0.01}
-								max={1}
-								step={0.01} />
-						)}
-						{(fileFormat !== 'webp') && (
-							<Range
-								label={__('DPI', 'pixmagix')}
-								help={getHelpText('dpi')}
-								value={fileDPI}
-								onChange={value => setEditor('fileDPI', value)}
-								min={60}
-								max={2400}
-								step={1} />
-						)}
-						<ImageResizer
-							value={fileScale}
-							originalWidth={canvasWidth}
-							originalHeight={canvasHeight}
-							onChange={value => setEditor('fileScale', value)} />
-						<h2>
-							{__('Metadata', 'pixmagix')}
-						</h2>
-						<Input
-							label={__('Title', 'pixmagix')}
-							value={title}
-							onChange={setTitle} />
-						<Textarea
-							label={__('Alternative Text', 'pixmagix')}
-							value={alt}
-							onChange={setAlt} />
-						<Textarea
-							label={__('Caption', 'pixmagix')}
-							value={caption}
-							onChange={setCaption} />
-						<Textarea
-							label={__('Description', 'pixmagix')}
-							value={description}
-							onChange={setDescription} />
-					</Widget>
+					<Widget
+						tabs={[{
+							name:'image',
+							label:__('Image', 'pixmagix'),
+							content:(
+								<Fragment>
+									<Input
+										label={__('File Name', 'pixmagix')}
+										value={filename}
+										onChange={setFilename} />
+									<RadioButtons
+										label={__('File Type', 'pixmagix')}
+										options={[{
+											label:'PNG',
+											value:'png'
+										},{
+											label:'JPEG',
+											value:'jpeg'
+										},{
+											label:'WEBP',
+											value:'webp'
+										}]}
+										value={fileFormat}
+										onChange={value => setEditor('fileFormat', value)} />
+									{(fileFormat !== 'png') && (
+										<Range
+											label={__('Quality', 'pixmagix')}
+											help={getHelpText('jpgQuality')}
+											value={fileQuality}
+											onChange={value => setEditor('fileQuality', value)}
+											min={0.01}
+											max={1}
+											step={0.01} />
+									)}
+									{(fileFormat !== 'webp') && (
+										<Range
+											label={__('DPI', 'pixmagix')}
+											help={getHelpText('dpi')}
+											value={fileDPI}
+											onChange={value => setEditor('fileDPI', value)}
+											min={60}
+											max={2400}
+											step={1} />
+									)}
+									<ImageResizer
+										value={fileScale}
+										originalWidth={canvasWidth}
+										originalHeight={canvasHeight}
+										onChange={value => setEditor('fileScale', value)} />
+								</Fragment>
+							)
+						},{
+							name:'metadata',
+							label:__('Metadata', 'pixmagix'),
+							content:(
+								<Fragment>
+									<Input
+										label={__('Title', 'pixmagix')}
+										value={title}
+										onChange={setTitle} />
+									<Textarea
+										label={__('Alternative Text', 'pixmagix')}
+										value={alt}
+										onChange={setAlt} />
+									<Textarea
+										label={__('Caption', 'pixmagix')}
+										value={caption}
+										onChange={setCaption} />
+									<Textarea
+										label={__('Description', 'pixmagix')}
+										value={description}
+										onChange={setDescription} />
+								</Fragment>
+							)
+						}]} />
 				</Column>
 			</Row>
 			<Loader show={loading} />

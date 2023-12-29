@@ -13,7 +13,8 @@ import {
 	FILL_DEFAULT_COLOR,
 	QRCODE_DEFAULT_SIZE,
 	QRCODE_DEFAULT_PADDING,
-	QRCODE_DEFAULT_ECL
+	QRCODE_DEFAULT_ECL,
+	DEFAULT_FONT_LIST
 } from './../utils/constants.js';
 
 /**
@@ -95,6 +96,7 @@ const getInitialStateEditor = (id, metadata = {}, mediaId, mediaUrl = '', revisi
 			y:0
 		},
 		guides:[],
+		lockGuides:false,
 		snapObjects:false,
 		snapToGrid:false,
 		gridSize:10,
@@ -122,6 +124,7 @@ const getInitialStateEditor = (id, metadata = {}, mediaId, mediaUrl = '', revisi
 		lineHeight:1.16,
 		charSpacing:0,
 		underline:false,
+		fontList:DEFAULT_FONT_LIST,
 		// QR Code
 		qrCodeText:'',
 		qrCodeSize:QRCODE_DEFAULT_SIZE,
