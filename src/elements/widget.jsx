@@ -16,7 +16,7 @@ const Widget = ({
 	onChange
 }) => {
 
-	const [show, setShow] = useState(initShow || tabs?.[0].name);
+	const [show, setShow] = useState(initShow || tabs?.[0]?.name);
 	const index = findIndex(tabs, {
 		name:show
 	});
