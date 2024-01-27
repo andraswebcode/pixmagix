@@ -157,7 +157,7 @@ final class Post_Type {
 			$meta['pixmagix_project']['thumbnail'] = esc_url_raw(create_image_from_base64($thumbnail, 'thumbnails', $filename));
 		}
 
-		// Create preview image, if you have allowed it in general settings.
+		// Create preview image.
 		if (strpos($preview, ';base64,') !== false){
 			$filename = 'project-' . $id . '.jpg';
 			$meta['pixmagix_project']['preview'] = esc_url_raw(create_image_from_base64($preview, 'previews', $filename));

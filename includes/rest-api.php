@@ -571,7 +571,7 @@ final class Rest_Api {
 					if (is_wp_error($tmp_name)){
 						return $tmp_name;
 					}
-					// Follow the structure of file names inside layers directory.
+					// Follow the pattern of file names inside layers directory.
 					// @see Post_Type::create_images()
 					$filename = 'layer-' . $post_id . '-' . $layer_id . '.' . $extension;
 					$new_src = move_image_on_server($tmp_name, 'layers', $filename);

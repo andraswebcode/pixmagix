@@ -2,6 +2,8 @@
 
 namespace AndrasWeb\PixMagix\Utils;
 
+use function AndrasWeb\PixMagix\Settings\get_setting;
+
 // Exit, if accessed directly.
 
 if (!defined('ABSPATH')){
@@ -648,6 +650,27 @@ function create_unique_id($prefix = 'pixmagix'){
 	}
 
 	return $prefix . '-' . $id;
+
+}
+
+/**
+ * 
+ * @since 1.6.0
+ * @return array
+ */
+
+function get_authenticated_free_image_platforms(){
+
+	$platforms = array(
+		'pixabay',
+		'pexels',
+		'unsplash'
+	);
+	$platforms = array_filter($platforms, function($platform){
+		return get_setting($platform . '_api_key');
+	});
+
+	return array_values($platforms);
 
 }
 

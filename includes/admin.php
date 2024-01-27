@@ -16,6 +16,7 @@ use function  AndrasWeb\PixMagix\Utils\admin_page_url ;
 use function  AndrasWeb\PixMagix\Utils\get_json_data ;
 use function  AndrasWeb\PixMagix\Utils\get_projects ;
 use function  AndrasWeb\PixMagix\Utils\get_project ;
+use function  AndrasWeb\PixMagix\Utils\get_authenticated_free_image_platforms ;
 use function  AndrasWeb\PixMagix\Users\Utils\get_roles ;
 use function  AndrasWeb\PixMagix\Users\Utils\get_users_dropdown_items ;
 use function  AndrasWeb\PixMagix\Settings\has_setting ;
@@ -193,23 +194,24 @@ final class Admin
                 'pixmagix-elements'
             ),
                 'l10n'   => array(
-                'new_url'            => esc_url( admin_editor_url() ),
-                'projects_url'       => esc_url( admin_page_url() ),
-                'images_folder'      => esc_url( get_asset_url(
+                'new_url'              => esc_url( admin_editor_url() ),
+                'projects_url'         => esc_url( admin_page_url() ),
+                'images_folder'        => esc_url( get_asset_url(
                 'img',
                 '',
                 '',
                 false
             ) ),
-                'thumbnails_folder'  => esc_url( get_upload_url( 'thumbnails' ) ),
-                'previews_folder'    => esc_url( get_upload_url( 'previews' ) ),
-                'thumbnail_width'    => absint( get_setting( 'thumbnail_width', 200 ) ),
-                'preview_width'      => absint( get_setting( 'preview_width', 1280 ) ),
-                'project_dates'      => get_months_dropdown_items(),
-                'project_categories' => get_categories_dropdown_items(),
-                'users'              => get_users_dropdown_items(),
-                'media_dates'        => get_months_dropdown_items( 'attachment' ),
-                'fa_icons'           => get_json_data( 'fa-icons' ),
+                'thumbnails_folder'    => esc_url( get_upload_url( 'thumbnails' ) ),
+                'previews_folder'      => esc_url( get_upload_url( 'previews' ) ),
+                'thumbnail_width'      => absint( get_setting( 'thumbnail_width', 200 ) ),
+                'preview_width'        => absint( get_setting( 'preview_width', 1280 ) ),
+                'project_dates'        => get_months_dropdown_items(),
+                'project_categories'   => get_categories_dropdown_items(),
+                'users'                => get_users_dropdown_items(),
+                'media_dates'          => get_months_dropdown_items( 'attachment' ),
+                'fa_icons'             => get_json_data( 'fa-icons' ),
+                'free_image_platforms' => get_authenticated_free_image_platforms(),
             ),
             ) );
             initialize( 'pixmagix-editor', array_merge( $project, array(
