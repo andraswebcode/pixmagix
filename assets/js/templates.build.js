@@ -327,6 +327,9 @@ var categories = [{
   label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Quote', 'pixmagix'),
   value: 'quote'
 }, {
+  label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Infographic', 'pixmagix'),
+  value: 'infographic'
+}, {
   label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Background', 'pixmagix'),
   value: 'background'
 }];

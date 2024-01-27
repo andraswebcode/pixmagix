@@ -6135,6 +6135,38 @@ var Column = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(Colu
 
 /***/ }),
 
+/***/ "./src/elements/control-wrapper.jsx":
+/*!******************************************!*\
+  !*** ./src/elements/control-wrapper.jsx ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _help_jsx__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./help.jsx */ "./src/elements/help.jsx");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (_ref) {
+  var id = _ref.id,
+    label = _ref.label,
+    help = _ref.help,
+    children = _ref.children;
+  return /*#__PURE__*/React.createElement("div", {
+    className: "pixmagix-control-wrapper"
+  }, !!label && /*#__PURE__*/React.createElement("div", {
+    className: "pixmagix-label-wrapper"
+  }, /*#__PURE__*/React.createElement("label", {
+    htmlFor: id,
+    className: "pixmagix-label"
+  }, label), !!help && /*#__PURE__*/React.createElement(_help_jsx__WEBPACK_IMPORTED_MODULE_0__["default"], help)), /*#__PURE__*/React.createElement("div", {
+    className: "pixmagix-control"
+  }, children));
+});
+
+/***/ }),
+
 /***/ "./src/elements/dropdown.jsx":
 /*!***********************************!*\
   !*** ./src/elements/dropdown.jsx ***!
@@ -8271,13 +8303,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var Widget = function Widget(_ref) {
-  var _tabs$index;
+  var _tabs$, _tabs$index;
   var label = _ref.label,
     tabs = _ref.tabs,
     children = _ref.children,
     initShow = _ref.initShow,
     onChange = _ref.onChange;
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(initShow || (tabs === null || tabs === void 0 ? void 0 : tabs[0].name)),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(initShow || (tabs === null || tabs === void 0 ? void 0 : (_tabs$ = tabs[0]) === null || _tabs$ === void 0 ? void 0 : _tabs$.name)),
     _useState2 = _slicedToArray(_useState, 2),
     show = _useState2[0],
     setShow = _useState2[1];
@@ -32692,32 +32724,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   ColorPicker: () => (/* reexport safe */ _elements_color_picker_jsx__WEBPACK_IMPORTED_MODULE_5__["default"]),
 /* harmony export */   ColorStyleControl: () => (/* reexport safe */ _elements_color_style_control_jsx__WEBPACK_IMPORTED_MODULE_6__["default"]),
 /* harmony export */   Column: () => (/* reexport safe */ _elements_column_jsx__WEBPACK_IMPORTED_MODULE_7__.Column),
-/* harmony export */   Dropdown: () => (/* reexport safe */ _elements_dropdown_jsx__WEBPACK_IMPORTED_MODULE_8__["default"]),
-/* harmony export */   FontPicker: () => (/* reexport safe */ _elements_font_picker_jsx__WEBPACK_IMPORTED_MODULE_9__["default"]),
-/* harmony export */   GradientPicker: () => (/* reexport safe */ _elements_gradient_picker_jsx__WEBPACK_IMPORTED_MODULE_10__["default"]),
-/* harmony export */   Grid: () => (/* reexport safe */ _elements_grid_jsx__WEBPACK_IMPORTED_MODULE_11__.Grid),
-/* harmony export */   GridItem: () => (/* reexport safe */ _elements_grid_jsx__WEBPACK_IMPORTED_MODULE_11__.GridItem),
-/* harmony export */   Icon: () => (/* reexport safe */ _elements_icon_jsx__WEBPACK_IMPORTED_MODULE_12__["default"]),
-/* harmony export */   ImageResizer: () => (/* reexport safe */ _elements_image_resizer_jsx__WEBPACK_IMPORTED_MODULE_13__["default"]),
-/* harmony export */   ImageSelect: () => (/* reexport safe */ _elements_image_select_jsx__WEBPACK_IMPORTED_MODULE_14__["default"]),
-/* harmony export */   InlineControls: () => (/* reexport safe */ _elements_inline_controls_jsx__WEBPACK_IMPORTED_MODULE_15__["default"]),
-/* harmony export */   InlineNotice: () => (/* reexport safe */ _elements_inline_notice_jsx__WEBPACK_IMPORTED_MODULE_16__["default"]),
-/* harmony export */   Input: () => (/* reexport safe */ _elements_input_jsx__WEBPACK_IMPORTED_MODULE_17__["default"]),
-/* harmony export */   InputGroup: () => (/* reexport safe */ _elements_input_group_jsx__WEBPACK_IMPORTED_MODULE_18__["default"]),
-/* harmony export */   LibrarySelect: () => (/* reexport safe */ _elements_library_select_jsx__WEBPACK_IMPORTED_MODULE_19__["default"]),
-/* harmony export */   Loader: () => (/* reexport safe */ _elements_loader_jsx__WEBPACK_IMPORTED_MODULE_20__["default"]),
-/* harmony export */   Modal: () => (/* reexport safe */ _elements_modal_jsx__WEBPACK_IMPORTED_MODULE_21__["default"]),
-/* harmony export */   MulticheckButtons: () => (/* reexport safe */ _elements_multicheck_buttons_jsx__WEBPACK_IMPORTED_MODULE_22__["default"]),
-/* harmony export */   Pagination: () => (/* reexport safe */ _elements_pagination_jsx__WEBPACK_IMPORTED_MODULE_23__["default"]),
-/* harmony export */   RadioButtons: () => (/* reexport safe */ _elements_radio_buttons_jsx__WEBPACK_IMPORTED_MODULE_24__["default"]),
-/* harmony export */   Range: () => (/* reexport safe */ _elements_range_jsx__WEBPACK_IMPORTED_MODULE_25__["default"]),
-/* harmony export */   Repeater: () => (/* reexport safe */ _elements_repeater_jsx__WEBPACK_IMPORTED_MODULE_26__["default"]),
+/* harmony export */   ControlWrapper: () => (/* reexport safe */ _elements_control_wrapper_jsx__WEBPACK_IMPORTED_MODULE_8__["default"]),
+/* harmony export */   Dropdown: () => (/* reexport safe */ _elements_dropdown_jsx__WEBPACK_IMPORTED_MODULE_9__["default"]),
+/* harmony export */   FontPicker: () => (/* reexport safe */ _elements_font_picker_jsx__WEBPACK_IMPORTED_MODULE_10__["default"]),
+/* harmony export */   GradientPicker: () => (/* reexport safe */ _elements_gradient_picker_jsx__WEBPACK_IMPORTED_MODULE_11__["default"]),
+/* harmony export */   Grid: () => (/* reexport safe */ _elements_grid_jsx__WEBPACK_IMPORTED_MODULE_12__.Grid),
+/* harmony export */   GridItem: () => (/* reexport safe */ _elements_grid_jsx__WEBPACK_IMPORTED_MODULE_12__.GridItem),
+/* harmony export */   Icon: () => (/* reexport safe */ _elements_icon_jsx__WEBPACK_IMPORTED_MODULE_13__["default"]),
+/* harmony export */   ImageResizer: () => (/* reexport safe */ _elements_image_resizer_jsx__WEBPACK_IMPORTED_MODULE_14__["default"]),
+/* harmony export */   ImageSelect: () => (/* reexport safe */ _elements_image_select_jsx__WEBPACK_IMPORTED_MODULE_15__["default"]),
+/* harmony export */   InlineControls: () => (/* reexport safe */ _elements_inline_controls_jsx__WEBPACK_IMPORTED_MODULE_16__["default"]),
+/* harmony export */   InlineNotice: () => (/* reexport safe */ _elements_inline_notice_jsx__WEBPACK_IMPORTED_MODULE_17__["default"]),
+/* harmony export */   Input: () => (/* reexport safe */ _elements_input_jsx__WEBPACK_IMPORTED_MODULE_18__["default"]),
+/* harmony export */   InputGroup: () => (/* reexport safe */ _elements_input_group_jsx__WEBPACK_IMPORTED_MODULE_19__["default"]),
+/* harmony export */   LibrarySelect: () => (/* reexport safe */ _elements_library_select_jsx__WEBPACK_IMPORTED_MODULE_20__["default"]),
+/* harmony export */   Loader: () => (/* reexport safe */ _elements_loader_jsx__WEBPACK_IMPORTED_MODULE_21__["default"]),
+/* harmony export */   Modal: () => (/* reexport safe */ _elements_modal_jsx__WEBPACK_IMPORTED_MODULE_22__["default"]),
+/* harmony export */   MulticheckButtons: () => (/* reexport safe */ _elements_multicheck_buttons_jsx__WEBPACK_IMPORTED_MODULE_23__["default"]),
+/* harmony export */   Pagination: () => (/* reexport safe */ _elements_pagination_jsx__WEBPACK_IMPORTED_MODULE_24__["default"]),
+/* harmony export */   RadioButtons: () => (/* reexport safe */ _elements_radio_buttons_jsx__WEBPACK_IMPORTED_MODULE_25__["default"]),
+/* harmony export */   Range: () => (/* reexport safe */ _elements_range_jsx__WEBPACK_IMPORTED_MODULE_26__["default"]),
+/* harmony export */   Repeater: () => (/* reexport safe */ _elements_repeater_jsx__WEBPACK_IMPORTED_MODULE_27__["default"]),
 /* harmony export */   Row: () => (/* reexport safe */ _elements_column_jsx__WEBPACK_IMPORTED_MODULE_7__.Row),
-/* harmony export */   Select: () => (/* reexport safe */ _elements_select_jsx__WEBPACK_IMPORTED_MODULE_27__["default"]),
-/* harmony export */   ShadowPicker: () => (/* reexport safe */ _elements_shadow_picker_jsx__WEBPACK_IMPORTED_MODULE_28__["default"]),
-/* harmony export */   StrokeDashArrayControl: () => (/* reexport safe */ _elements_stroke_dasharray_control_jsx__WEBPACK_IMPORTED_MODULE_29__["default"]),
-/* harmony export */   Textarea: () => (/* reexport safe */ _elements_textarea_jsx__WEBPACK_IMPORTED_MODULE_30__["default"]),
-/* harmony export */   Widget: () => (/* reexport safe */ _elements_widget_jsx__WEBPACK_IMPORTED_MODULE_31__["default"])
+/* harmony export */   Select: () => (/* reexport safe */ _elements_select_jsx__WEBPACK_IMPORTED_MODULE_28__["default"]),
+/* harmony export */   ShadowPicker: () => (/* reexport safe */ _elements_shadow_picker_jsx__WEBPACK_IMPORTED_MODULE_29__["default"]),
+/* harmony export */   StrokeDashArrayControl: () => (/* reexport safe */ _elements_stroke_dasharray_control_jsx__WEBPACK_IMPORTED_MODULE_30__["default"]),
+/* harmony export */   Textarea: () => (/* reexport safe */ _elements_textarea_jsx__WEBPACK_IMPORTED_MODULE_31__["default"]),
+/* harmony export */   Widget: () => (/* reexport safe */ _elements_widget_jsx__WEBPACK_IMPORTED_MODULE_32__["default"])
 /* harmony export */ });
 /* harmony import */ var _elements_before_after_slider_jsx__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./elements/before-after-slider.jsx */ "./src/elements/before-after-slider.jsx");
 /* harmony import */ var _elements_button_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./elements/button.jsx */ "./src/elements/button.jsx");
@@ -32727,30 +32760,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _elements_color_picker_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./elements/color-picker.jsx */ "./src/elements/color-picker.jsx");
 /* harmony import */ var _elements_color_style_control_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./elements/color-style-control.jsx */ "./src/elements/color-style-control.jsx");
 /* harmony import */ var _elements_column_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./elements/column.jsx */ "./src/elements/column.jsx");
-/* harmony import */ var _elements_dropdown_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./elements/dropdown.jsx */ "./src/elements/dropdown.jsx");
-/* harmony import */ var _elements_font_picker_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./elements/font-picker.jsx */ "./src/elements/font-picker.jsx");
-/* harmony import */ var _elements_gradient_picker_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./elements/gradient-picker.jsx */ "./src/elements/gradient-picker.jsx");
-/* harmony import */ var _elements_grid_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./elements/grid.jsx */ "./src/elements/grid.jsx");
-/* harmony import */ var _elements_icon_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./elements/icon.jsx */ "./src/elements/icon.jsx");
-/* harmony import */ var _elements_image_resizer_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./elements/image-resizer.jsx */ "./src/elements/image-resizer.jsx");
-/* harmony import */ var _elements_image_select_jsx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./elements/image-select.jsx */ "./src/elements/image-select.jsx");
-/* harmony import */ var _elements_inline_controls_jsx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./elements/inline-controls.jsx */ "./src/elements/inline-controls.jsx");
-/* harmony import */ var _elements_inline_notice_jsx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./elements/inline-notice.jsx */ "./src/elements/inline-notice.jsx");
-/* harmony import */ var _elements_input_jsx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./elements/input.jsx */ "./src/elements/input.jsx");
-/* harmony import */ var _elements_input_group_jsx__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./elements/input-group.jsx */ "./src/elements/input-group.jsx");
-/* harmony import */ var _elements_library_select_jsx__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./elements/library-select.jsx */ "./src/elements/library-select.jsx");
-/* harmony import */ var _elements_loader_jsx__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./elements/loader.jsx */ "./src/elements/loader.jsx");
-/* harmony import */ var _elements_modal_jsx__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./elements/modal.jsx */ "./src/elements/modal.jsx");
-/* harmony import */ var _elements_multicheck_buttons_jsx__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./elements/multicheck-buttons.jsx */ "./src/elements/multicheck-buttons.jsx");
-/* harmony import */ var _elements_pagination_jsx__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./elements/pagination.jsx */ "./src/elements/pagination.jsx");
-/* harmony import */ var _elements_radio_buttons_jsx__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./elements/radio-buttons.jsx */ "./src/elements/radio-buttons.jsx");
-/* harmony import */ var _elements_range_jsx__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./elements/range.jsx */ "./src/elements/range.jsx");
-/* harmony import */ var _elements_repeater_jsx__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./elements/repeater.jsx */ "./src/elements/repeater.jsx");
-/* harmony import */ var _elements_select_jsx__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./elements/select.jsx */ "./src/elements/select.jsx");
-/* harmony import */ var _elements_shadow_picker_jsx__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./elements/shadow-picker.jsx */ "./src/elements/shadow-picker.jsx");
-/* harmony import */ var _elements_stroke_dasharray_control_jsx__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./elements/stroke-dasharray-control.jsx */ "./src/elements/stroke-dasharray-control.jsx");
-/* harmony import */ var _elements_textarea_jsx__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./elements/textarea.jsx */ "./src/elements/textarea.jsx");
-/* harmony import */ var _elements_widget_jsx__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./elements/widget.jsx */ "./src/elements/widget.jsx");
+/* harmony import */ var _elements_control_wrapper_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./elements/control-wrapper.jsx */ "./src/elements/control-wrapper.jsx");
+/* harmony import */ var _elements_dropdown_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./elements/dropdown.jsx */ "./src/elements/dropdown.jsx");
+/* harmony import */ var _elements_font_picker_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./elements/font-picker.jsx */ "./src/elements/font-picker.jsx");
+/* harmony import */ var _elements_gradient_picker_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./elements/gradient-picker.jsx */ "./src/elements/gradient-picker.jsx");
+/* harmony import */ var _elements_grid_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./elements/grid.jsx */ "./src/elements/grid.jsx");
+/* harmony import */ var _elements_icon_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./elements/icon.jsx */ "./src/elements/icon.jsx");
+/* harmony import */ var _elements_image_resizer_jsx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./elements/image-resizer.jsx */ "./src/elements/image-resizer.jsx");
+/* harmony import */ var _elements_image_select_jsx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./elements/image-select.jsx */ "./src/elements/image-select.jsx");
+/* harmony import */ var _elements_inline_controls_jsx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./elements/inline-controls.jsx */ "./src/elements/inline-controls.jsx");
+/* harmony import */ var _elements_inline_notice_jsx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./elements/inline-notice.jsx */ "./src/elements/inline-notice.jsx");
+/* harmony import */ var _elements_input_jsx__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./elements/input.jsx */ "./src/elements/input.jsx");
+/* harmony import */ var _elements_input_group_jsx__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./elements/input-group.jsx */ "./src/elements/input-group.jsx");
+/* harmony import */ var _elements_library_select_jsx__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./elements/library-select.jsx */ "./src/elements/library-select.jsx");
+/* harmony import */ var _elements_loader_jsx__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./elements/loader.jsx */ "./src/elements/loader.jsx");
+/* harmony import */ var _elements_modal_jsx__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./elements/modal.jsx */ "./src/elements/modal.jsx");
+/* harmony import */ var _elements_multicheck_buttons_jsx__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./elements/multicheck-buttons.jsx */ "./src/elements/multicheck-buttons.jsx");
+/* harmony import */ var _elements_pagination_jsx__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./elements/pagination.jsx */ "./src/elements/pagination.jsx");
+/* harmony import */ var _elements_radio_buttons_jsx__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./elements/radio-buttons.jsx */ "./src/elements/radio-buttons.jsx");
+/* harmony import */ var _elements_range_jsx__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./elements/range.jsx */ "./src/elements/range.jsx");
+/* harmony import */ var _elements_repeater_jsx__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./elements/repeater.jsx */ "./src/elements/repeater.jsx");
+/* harmony import */ var _elements_select_jsx__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./elements/select.jsx */ "./src/elements/select.jsx");
+/* harmony import */ var _elements_shadow_picker_jsx__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./elements/shadow-picker.jsx */ "./src/elements/shadow-picker.jsx");
+/* harmony import */ var _elements_stroke_dasharray_control_jsx__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./elements/stroke-dasharray-control.jsx */ "./src/elements/stroke-dasharray-control.jsx");
+/* harmony import */ var _elements_textarea_jsx__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./elements/textarea.jsx */ "./src/elements/textarea.jsx");
+/* harmony import */ var _elements_widget_jsx__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./elements/widget.jsx */ "./src/elements/widget.jsx");
+
 
 
 
