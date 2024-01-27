@@ -28,10 +28,14 @@ import './editor/canvas/extend-gradient.js';
 import './editor/canvas/extend-shadow.js';
 import './editor/canvas/extend-object.js';
 import './editor/canvas/extend-image.js';
+import './editor/canvas/extend-active-selection.js';
 import './editor/canvas/extend-group.js';
 import './editor/canvas/extend-text.js';
 import './editor/canvas/extend-path.js';
 import './editor/canvas/extend-polyline.js';
+import './editor/canvas/extend-rect.js';
+import './editor/canvas/extend-circle.js';
+import './editor/canvas/extend-ellipse.js';
 
 apiFetch.use(createPaginatingMiddleware);
 

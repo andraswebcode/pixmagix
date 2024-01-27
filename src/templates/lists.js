@@ -24,6 +24,9 @@ export const categories = [{
 	label:__('Quote', 'pixmagix'),
 	value:'quote'
 },{
+	label:__('Infographic', 'pixmagix'),
+	value:'infographic'
+},{
 	label:__('Background', 'pixmagix'),
 	value:'background'
 }];

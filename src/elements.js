@@ -9,6 +9,7 @@ import {
 	Column,
 	Row
 } from './elements/column.jsx';
+import ControlWrapper from './elements/control-wrapper.jsx';
 import Dropdown from './elements/dropdown.jsx';
 import FontPicker from './elements/font-picker.jsx';
 import GradientPicker from './elements/gradient-picker.jsx';
@@ -47,6 +48,7 @@ export {
 	ColorStyleControl,
 	Column,
 	Row,
+	ControlWrapper,
 	Dropdown,
 	FontPicker,
 	GradientPicker,
