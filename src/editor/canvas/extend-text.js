@@ -1,18 +1,25 @@
 import {
 	Text,
 	IText,
+	Textbox,
 	util,
 	parseAttributes
 } from 'fabric';
 import {
-	map
+	map,
+	max
 } from 'lodash';
+import {
+	faTextWidth
+} from '@fortawesome/free-solid-svg-icons/faTextWidth';
+
+
+import TextWrapControl from './class-control-text-wrap.js';
 
 const {
 	extend,
 	clone
 } = util.object;
-const _initialize = Text.prototype.initialize;
 const _toObject = Text.prototype.toObject;
 
 /**
@@ -29,6 +36,41 @@ extend(Text.prototype, {
 	 */
 
 	fontCollection:'websafe',
+
+	/**
+	 *
+	 * @since 1.6.0
+	 * @var {boolean}
+	 */
+
+	hasModifyControls:true,
+
+	/**
+	 *
+	 * @since 1.6.0
+	 */
+
+	modifyIcon:faTextWidth,
+
+	/**
+	 *
+	 * @since 1.6.0
+	 */
+
+	createModifyControls(){
+
+		this.modifyControls = {
+			ml:new TextWrapControl({
+				x:-0.5,
+				y:0
+			}),
+			mr:new TextWrapControl({
+				x:0.5,
+				y:0
+			})
+		};
+
+	},
 
 	/**
 	 *
@@ -142,5 +184,37 @@ extend(Text, {
 		callback(text);
 
 	}
+
+});
+
+/**
+ * 
+ * @since 1.6.0
+ */
+
+extend(IText.prototype, {
+
+	/**
+	 * Add methods from Textbox.
+	 * @since 1.6.0
+	 */
+
+	_wrapText:Textbox.prototype._wrapText,
+	_wrapLine:Textbox.prototype._wrapLine,
+	_measureWord:Textbox.prototype._measureWord,
+
+	/**
+	 *
+	 * @since 1.6.0
+	 */
+
+	_wordJoiners:/[ \t\r]/,
+
+	/**
+	 *
+	 * @since 1.6.0
+	 */
+
+	dynamicMinWidth:2
 
 });

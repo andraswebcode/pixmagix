@@ -305,11 +305,17 @@ export default util.createClass(Canvas, {
 
 	loadFonts(){
 		const texts = this.getObjects('i-text').concat(this.getObjects('text'));
-		const promises = texts.map(({fontFamily}) => {
+		const promises = texts.map(({
+			fontFamily,
+			fontCollection
+		}) => {
+			if (fontCollection !== 'gfonts'){
+				return;
+			}
 			loadGFont(fontFamily);
 			const ffo = new FontFaceObserver(fontFamily);
-			return ffo.load();
-		});
+			return ffo.load(null, 8000);
+		}).filter(promise => !!promise);
 		Promise.all(promises).then(() => {
 			util.clearFabricFontCache();
 			texts.forEach(text => {

@@ -3,6 +3,9 @@ import {
 	Gradient,
 	util
 } from 'fabric';
+import {
+	isUndefined
+} from 'lodash';
 
 import {
 	BORDER_COLOR,
@@ -11,11 +14,13 @@ import {
 	CORNER_SIZE
 } from './../utils/constants.js';
 import {
-	createUniqueId
+	createUniqueId,
+	createLayerObject
 } from './../utils/utils.js';
 import {
 	shapeTypes
 } from './../utils/lists.js';
+import ControlSwitchControl from './class-control-switch.js';
 
 const _toObject = FabricObject.prototype.toObject;
 const __set = FabricObject.prototype._set;
@@ -102,6 +107,42 @@ util.object.extend(FabricObject.prototype, {
 	cornerColor:BORDER_COLOR,
 
 	/**
+	 * For separating the default transform controls (created by fabric.js developers),
+	 * from our modify controls, so that we can easily switch between these.
+	 * @since 1.6.0
+	 */
+
+	transformControls:FabricObject.prototype.controls,
+
+	/**
+	 * Hold the modify controls. (E.g.: path controls, image crop controls, etc.)
+	 * @since 1.6.0
+	 */
+
+	modifyControls:{},
+
+	/**
+	 * Holds the control switch control class.
+	 * @since 1.6.0
+	 */
+
+	controlSwitchControl:null,
+
+	/**
+	 *
+	 * @since 1.6.0
+	 */
+
+	hasModifyControls:false,
+
+	/**
+	 *
+	 * @since 1.6.0
+	 */
+
+	modifyControlsIsActive:false,
+
+	/**
 	 * Constructor.
 	 * @since 1.0.0
 	 * @param {object} options
@@ -120,6 +161,47 @@ util.object.extend(FabricObject.prototype, {
 		if (!this.selectable){
 			this.hoverCursor = 'default';
 		}
+		this.controlSwitchControl = new ControlSwitchControl({
+			icon:this.modifyIcon
+		});
+		this.createModifyControls();
+		this.switchControls();
+	},
+
+	/**
+	 *
+	 * @since 1.6.0
+	 */
+
+	createModifyControls(){},
+
+	/**
+	 *
+	 * @since 1.6.0
+	 * @param {boolean|undefined} transformControls
+	 */
+
+	switchControls(transformControls){
+
+		if (!this.hasModifyControls){
+			return;
+		}
+
+		const isModify = !isUndefined(transformControls) ? !transformControls : this.modifyControlsIsActive;
+
+		this.controls = {
+			...(isModify ? this.modifyControls : this.transformControls),
+			csc:this.controlSwitchControl
+		};
+
+		this.modifyControlsIsActive = transformControls || !this.modifyControlsIsActive;
+		this.objectCaching = this.modifyControlsIsActive;
+		this.hasBorders = this.modifyControlsIsActive;
+		this.lockMovementX = !this.modifyControlsIsActive;
+		this.lockMovementY = !this.modifyControlsIsActive;
+		this.hoverCursor = !this.modifyControlsIsActive ? 'default' : null;
+		this.canvas?.requestRenderAll();
+
 	},
 
 	/**
@@ -175,6 +257,8 @@ util.object.extend(FabricObject.prototype, {
 			if (value.type === 'linear' || value.type === 'radial'){
 				this[key] = new Gradient(value);
 			}
+		} else if (key === 'clipPath'){
+			this.clipPath = value ? createLayerObject(value, true) : null;
 		}
 		return this;
 	}
