@@ -11,6 +11,7 @@ import {
 export default ({
 	showRulers,
 	showRulerCursors,
+	snapObjects,
 	lockGuides,
 	guides,
 	setEditor
@@ -23,7 +24,11 @@ export default ({
 	label:showRulerCursors ? __('Hide Cursors', 'pixmagix') : __('Show Cursors', 'pixmagix'),
 	onClick:() => setEditor('showRulerCursors', !showRulerCursors),
 	disabled:() => !showRulers
-},{
+}/*,{
+	name:'snap-objects',
+	label:snapObjects ? __('Turn Off Objects Snapping', 'pixmagix') : __('Snap Objects', 'pixmagix'),
+	onClick:() => setEditor('snapObjects', !snapObjects)
+}*/,{
 	name:'add-guides',
 	label:__('Add Guides', 'pixmagix'),
 	onClick:() => setEditor('activeModal', 'add-guides'),
@@ -41,12 +46,4 @@ export default ({
 		lockGuides:false
 	}),
 	disabled:() => !guides?.length
-}/*,{
-	name:'snap-objects',
-	label:snapObjects ? __('Turn Off Objects Snapping', 'pixmagix') : __('Snap Objects', 'pixmagix'),
-	onClick:() => setEditor('snapObjects', !snapObjects)
-},{
-	name:'snap-grid',
-	label:snapToGrid ? __('Turn Off Snap to Grid', 'pixmagix') : __('Snap to Grid', 'pixmagix'),
-	onClick:() => setEditor('snapToGrid', !snapToGrid)
-}*/];
+}];

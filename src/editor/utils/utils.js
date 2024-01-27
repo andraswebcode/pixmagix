@@ -16,6 +16,7 @@ import {
 	Polygon,
 	Polyline,
 	Group,
+	Point,
 	util,
 	loadSVGFromString as loadSVG
 } from 'fabric';
@@ -213,7 +214,8 @@ export function isSVGElement(type){
 		'polygon',
 		'polyline',
 		'text',
-		'i-text'
+		'i-text',
+		'textbox'
 	];
 
 	return includes(svgElements, type);
@@ -241,10 +243,14 @@ export function createLayerObject(options = {}, fabricObject = false, callback){
 		// Get src from xlink:href if we load image from SVG.
 		object.setSrc(options.src || options['xlink:href'], () => {
 			callback && callback(object);
+		},{
+			crossOrigin:'anonymus', // To be able to load external images.
+			convertToDataURL:options.convertToDataURL
 		});
 		break;
 		case 'text':
 		case 'i-text':
+		case 'textbox':
 		object = new IText(options.text, options);
 		callback && callback(object);
 		break;
@@ -467,6 +473,31 @@ export function colorToString(color){
 	return _color.getHEX();
 }
 
+/**
+ *
+ * @since 1.6.0
+ * @param {string} points
+ * @return {array}
+ */
+
+export function parsePoints(points = ''){
+
+	if (!points){
+		return [];
+	}
+
+	const nArray = points.split(' ').map(p => parseFloat(p) || 0);
+	const length = nArray.length - 1;
+	const output = [];
+	let i;
+
+	for (i = 0; i <= length; i += 2){
+		output.push(new Point(nArray[i], nArray[i + 1]));
+	}
+
+	return output;
+
+}
 
 /**
  *

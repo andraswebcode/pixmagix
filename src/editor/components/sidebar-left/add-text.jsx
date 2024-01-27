@@ -108,6 +108,7 @@ const AddText = ({
 					onClick={() => {
 						let name = newText.substring(0, 20).replace(/\n/g, ' ').trim();
 							name = (name.length < newText.length) ? name + '...' : name;
+						const fontCollection = _find(fontList, {family:fontFamily})?.collection || 'websafe';
 						const object = createLayerObject({
 							type:'i-text',
 							name,
@@ -115,6 +116,7 @@ const AddText = ({
 							left:canvasWidth / 2,
 							top:canvasHeight / 2,
 							fontFamily,
+							fontCollection,
 							fontSize,
 							fontStyle,
 							fontWeight,

@@ -33,6 +33,9 @@ import {
 import {
 	createUniqueId
 } from './../../utils/utils.js';
+import {
+	EDITOR_COLOR
+} from './../../utils/constants.js';
 
 const AddGuides = ({
 	canvasWidth,
@@ -154,6 +157,11 @@ const AddGuides = ({
 				<LibrarySelect
 					label={__('Presets', 'pixmagix')}
 					itemType='svg'
+					svgAttrs={{
+						fill:'none',
+						stroke:EDITOR_COLOR,
+						strokeWidth:4
+					}}
 					allowSearch={false}
 					items={guidePresets}
 					value={_find(guidePresets, {values})?.name}

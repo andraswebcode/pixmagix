@@ -71,7 +71,7 @@ class FabricCanvas extends Component {
 		this._createSVGString = debounce(this._createSVGString.bind(this), 40);
 		this._pickCursorPosition = throttle(this._pickCursorPosition.bind(this), 40);
 		this._onPathCreated = this._onPathCreated.bind(this);
-		this._onObjectSelection = this._onObjectSelection.bind(this);
+		this._onObjectSelection = debounce(this._onObjectSelection.bind(this), 40);
 		this._onObjectModified = this._onObjectModified.bind(this);
 		this._onObjectMoving = this._onObjectMoving.bind(this);
 		this._onTextChanged = debounce(this._onTextChanged.bind(this), 400);
@@ -176,7 +176,6 @@ class FabricCanvas extends Component {
 			isSidebarLeftOpened,
 			isSidebarRightOpened,
 			showRulers,
-			snapToGrid,
 			gridSize,
 			isDrawingMode,
 			pathType,
@@ -196,7 +195,7 @@ class FabricCanvas extends Component {
 			svgHeight,
 			setEditor
 		} = nextProps;
-		const canvas = this._fabricCanvas;
+		const canvas = this._fabricCanvas;// console.log(nextProps)
 
 		// Update project dimensions.
 		if (canvasWidth !== this.props.canvasWidth || canvasHeight !== this.props.canvasHeight){
@@ -255,8 +254,7 @@ class FabricCanvas extends Component {
 					color:pencilColor,
 					width:pencilWidth,
 					shadow:pencilShadow,
-					fill:fillColor,
-					gridSize:snapToGrid ? gridSize : 1
+					fill:fillColor
 				});
 			} else if (activeTool === 'draw-path'){
 				const options = {
@@ -307,7 +305,9 @@ class FabricCanvas extends Component {
 					canvas.remove(object);
 				}
 			});
-			// canvas.discardActiveObject();
+			if (removedLayers.length){
+				canvas.discardActiveObject();
+			}
 		} else { // Just sort layers.
 			if (!isEqual(layerIds, this.props.layerIds)){
 				canvas.sortObjectsByIds(layerIds);
@@ -615,12 +615,16 @@ class FabricCanvas extends Component {
 	 * @param {object} options
 	 */
 
-	_onObjectSelection(){
+	_onObjectSelection({deselected}){
 
 		const {
 			setEditor
 		} = this.props;
 		const activeLayers = this._fabricCanvas.getActiveObjects().map(obj => obj.id);
+
+		if (deselected?.length){
+			deselected[0].switchControls(true);
+		}
 
 		setEditor('activeLayers', activeLayers);
 
@@ -636,8 +640,10 @@ class FabricCanvas extends Component {
 	_onObjectModified({target, action}){
 
 		const {
+			activeLayers,
 			setLayerProps
 		} = this.props;
+		const canvas = this._fabricCanvas;
 
 		if (target?.type === 'activeSelection'){
 			const layersProps = reduce(target._objects, (memo, object) => {
@@ -652,40 +658,78 @@ class FabricCanvas extends Component {
 					translateY
 				} = qrDecompose(matrix);
 				memo[object.id] = {
-					left:toFixed(translateX),
-					top:toFixed(translateY),
-					scaleX:toFixed(scaleX),
-					scaleY:toFixed(scaleY),
-					skewX:toFixed(skewX),
-					skewY:toFixed(skewY),
-					angle:toFixed(angle)
+					left:toFixed(translateX, 0),
+					top:toFixed(translateY, 0),
+					scaleX:toFixed(scaleX, 2),
+					scaleY:toFixed(scaleY, 2),
+					skewX:toFixed(skewX, 0),
+					skewY:toFixed(skewY, 0),
+					angle:toFixed(angle, 0)
 				};
 				return memo;
 			}, {});
+			canvas.discardActiveObject();
 			setLayerProps(layersProps);
+			setTimeout(() => canvas.setActiveObjectsByIds(activeLayers), 40);
 			return;
 		}
 
+		if (action === 'modifyPath' || action === 'modifyPolyline'){
+			target.updateBoundingBox?.();
+		}
+
 		const {
+			id,
+			type,
 			left,
 			top,
 			scaleX,
 			scaleY,
 			skewX,
 			skewY,
-			angle
+			angle,
+			width,
+			height,
+			cropX,
+			cropY,
+			rx,
+			ry,
+			radius,
+			text,
+			path,
+			points,
+			clipPath
 		} = target;
 		const newProps = {
-			left:toFixed(left),
-			top:toFixed(top),
-			scaleX:toFixed(scaleX),
-			scaleY:toFixed(scaleY),
-			skewX:toFixed(skewX),
-			skewY:toFixed(skewY),
-			angle:toFixed(angle)
+			left:toFixed(left, 0),
+			top:toFixed(top, 0),
+			scaleX:toFixed(scaleX, 2),
+			scaleY:toFixed(scaleY, 2),
+			skewX:toFixed(skewX, 0),
+			skewY:toFixed(skewY, 0),
+			angle:toFixed(angle, 0),
+			width:toFixed(width, 0),
+			height:toFixed(height, 0)
 		};
 
-		setLayerProps(target.id, newProps);
+		if (type === 'path'){
+			newProps.path = path;
+		} else if (type === 'polyline' || type === 'polygon'){
+			newProps.points = points;
+		} else if (type === 'image'){
+			newProps.cropX = cropX;
+			newProps.cropY = cropY;
+			newProps.clipPath = clipPath || null;
+		} else if (type === 'i-text' || type === 'text'){
+			newProps.text = text;
+		} else if (type === 'ellipse'){
+			newProps.rx = rx;
+			newProps.ry = ry;
+		} else if (type === 'circle'){
+			newProps.radius = radius;
+		}
+
+		setLayerProps(id, newProps);
 
 	}
 
@@ -700,6 +744,7 @@ class FabricCanvas extends Component {
 
 		const {
 			guides = [],
+			snapObjects,
 			canvasZoom
 		} = this.props;
 
@@ -707,7 +752,7 @@ class FabricCanvas extends Component {
 			return;
 		}
 
-		const distance = TARGET_FIND_TOLERANCE / canvasZoom;
+		const distance = TARGET_FIND_TOLERANCE / 2;
 		const {
 			width,
 			height
@@ -815,7 +860,6 @@ export default connect(state => ({
 	showRulers:state.editor.showRulers,
 	showRulerCursors:state.editor.showRulerCursors,
 	gridSize:state.editor.gridSize,
-	snapToGrid:state.editor.snapToGrid,
 	snapObjects:state.editor.snapObjects,
 	isDrawingMode:state.editor.isDrawingMode,
 	pathType:state.editor.pathType,

@@ -38,13 +38,23 @@ const getInitialStateEditor = (id, metadata = {}, mediaId, mediaUrl = '', revisi
 		status = 'publish'
 	} = metadata;
 	const data = window.localStorage.getItem('pixmagixEditor');
+	const projectData = window.localStorage.getItem('pixmagixProjects');
 	let stateFromLocalStorage = {};
+	let projects = {};
 
 	try {
 		stateFromLocalStorage = JSON.parse(data);
 	} catch (e){
 		// Doing nothing...
 	}
+
+	try {
+		projects = JSON.parse(projectData);
+	} catch (e){
+		// Doing nothing...
+	}
+
+	const projectStateFromLocalStorage = projects?.[id] || {};
 
 	return {
 		// Project
@@ -98,8 +108,6 @@ const getInitialStateEditor = (id, metadata = {}, mediaId, mediaUrl = '', revisi
 		guides:[],
 		lockGuides:false,
 		snapObjects:false,
-		snapToGrid:false,
-		gridSize:10,
 		// Pencil
 		isDrawingMode:false,
 		pencilType:'pencil',
@@ -136,7 +144,8 @@ const getInitialStateEditor = (id, metadata = {}, mediaId, mediaUrl = '', revisi
 		cropPanX:0,
 		cropPanY:0,
 		// Load from localStorage
-		...stateFromLocalStorage
+		...stateFromLocalStorage,
+		...projectStateFromLocalStorage
 	};
 
 };

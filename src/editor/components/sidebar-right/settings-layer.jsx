@@ -37,7 +37,8 @@ import {
 } from 'wp-i18n';
 
 import {
-	isSVGElement
+	isSVGElement,
+	createLayerObject
 } from './../../utils/utils.js';
 import {
 	imageFilters,
@@ -49,7 +50,8 @@ import {
 	QRCODE_MIN_SIZE,
 	QRCODE_MAX_SIZE,
 	MIN_FONT_SIZE,
-	MAX_FONT_SIZE
+	MAX_FONT_SIZE,
+	EDITOR_COLOR
 } from './../../utils/constants.js';
 import {
 	setLayerProps
@@ -58,6 +60,7 @@ import {
 	setEditor
 } from './../../redux/actions-editor.js';
 import getHelpText from './../../utils/help-texts.js';
+import shapes from './../../utils/shapes.js';
 
 const _imageFilters = imageFilters.map(item => ({
 	name:item.name,
@@ -89,6 +92,8 @@ const SettingsLayer = ({
 		angle,
 		width,
 		height,
+		originalWidth,
+		originalHeight,
 		radius,
 		rx,
 		stroke,
@@ -101,6 +106,7 @@ const SettingsLayer = ({
 		globalCompositeOperation,
 		// Image
 		filters,
+		clipPath,
 		// Text
 		text,
 		fontSize,
@@ -449,6 +455,94 @@ const SettingsLayer = ({
 		break;
 		case 'image':
 		tabs.push({
+			name:'image',
+			label:__('Image', 'pixmagix'),
+			icon:'image',
+			content:(
+				<Fragment>
+					<InputGroup>
+						<Input
+							type='number'
+							label={__('Width', 'pixmagix')}
+							value={width}
+							onChange={value => {
+								const newProps = {
+									width:value,
+									cropX:(originalWidth - value) / 2
+								};
+								if (clipPath){
+									const newClipPath = {
+										...clipPath,
+										scaleX:value / 100
+									};
+									newProps.clipPath = newClipPath;
+								}console.log(newProps)
+								setLayerProps(id, newProps);
+							}}
+							min={1}
+							max={originalWidth}
+							step={1} />
+						<Input
+							type='number'
+							label={__('Height', 'pixmagix')}
+							value={height}
+							onChange={value => {
+								const newProps = {
+									height:value,
+									cropY:(originalHeight - value) / 2
+								};
+								if (clipPath){
+									const newClipPath = {
+										...clipPath,
+										scaleY:value / 100
+									};
+									newProps.clipPath = newClipPath;
+								}console.log(newProps)
+								setLayerProps(id, newProps);
+							}}
+							min={1}
+							max={originalHeight}
+							step={1} />
+					</InputGroup>
+					<LibrarySelect
+						label={__('Clip Path', 'pixmagix')}
+						itemType='svg'
+						svgAttrs={{
+							fill:'none',
+							stroke:EDITOR_COLOR,
+							strokeWidth:8
+						}}
+						items={shapes}
+						value={clipPath?.name || 'square'}
+						onChange={({
+							name,
+							type,
+							path
+						}) => {
+							if (!type || type === 'square'){
+								return setLayerProps(id, 'clipPath', null);
+							}
+							const obj = {
+								type,
+								name,
+								left:0,
+								top:0,
+								scaleX:width / 100,
+								scaleY:height / 100
+							};
+							if (type === 'circle'){
+								obj.radius = 50;
+							} else if (type === 'polygon'){
+								obj.points = path;
+							} else {
+								obj.path = path;
+							}
+							const cp = createLayerObject(obj);
+							setLayerProps(id, 'clipPath', cp);
+						}} />
+				</Fragment>
+			)
+		},{
 			name:'filters',
 			label:__('Filters', 'pixmagix'),
 			icon:'filter',

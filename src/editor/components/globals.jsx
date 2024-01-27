@@ -17,7 +17,8 @@ import {
 	addQueryArgs
 } from './../utils/utils.js';
 import {
-	propsToSaveLocalStorage
+	propsToSaveLocalStorage,
+	projectPropsToSaveLocalStorage
 } from './../utils/lists.js';
 import {
 	setEditor,
@@ -111,12 +112,30 @@ class Globals extends Component {
 
 	_onBeforeUnload(e){
 
+		const {
+			projectId
+		} = this.props;
+
 		if (window.localStorage){
+			// Save general state.
 			const editor = {};
 			propsToSaveLocalStorage.forEach(prop => {
 				editor[prop] = this.props[prop];
 			});
 			window.localStorage.setItem('pixmagixEditor', JSON.stringify(editor));
+			// Save state related to a specific project.
+			let projects = {};
+			try {
+				projects = JSON.parse(window.localStorage.getItem('pixmagixProjects'));
+			} catch (e){
+				// Do nothing...
+			}
+			const project = {};
+			projectPropsToSaveLocalStorage.forEach(prop => {
+				project[prop] = this.props[prop];
+			});
+			projects[projectId] = project;
+			window.localStorage.setItem('pixmagixProjects', JSON.stringify(projects));
 		}
 
 	}

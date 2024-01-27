@@ -19,6 +19,7 @@ import AddGuides from './../components/modals/add-guides.jsx';
 import FontManager from './../components/modals/font-manager.jsx';
 import CategoryManager from './../components/modals/category-manager.jsx';
 import ImportMedia from './../components/modals/import-media.jsx';
+import FreeImages from './../components/modals/free-images.jsx';
 import OpenProject from './../components/modals/open-project.jsx';
 import SaveAs from './../components/modals/save-as.jsx';
 import ExportMedia from './../components/modals/export-media.jsx';
@@ -296,12 +297,12 @@ export const guidePresets = [{
 	name:'2-cols',
 	label:__('2 Columns', 'pixmagix'),
 	type:'path',
-	path:'',
+	path:'M5 5L50 5L50 95L5 95Z M50 5L95 5L95 95L50 95Z',
 	values:{
 		rows:1,
 		columns:2,
 		gapX:0,
-		gapY:18,
+		gapY:0,
 		marginX:0,
 		marginY:28
 	}
@@ -309,12 +310,12 @@ export const guidePresets = [{
 	name:'3-cols',
 	label:__('3 Columns', 'pixmagix'),
 	type:'path',
-	path:'',
+	path:'M5 5L35 5L35 95L5 95Z M35 5L65 5L65 95L35 95Z M65 5L95 5L95 95L65 95Z',
 	values:{
 		rows:1,
 		columns:3,
 		gapX:0,
-		gapY:18,
+		gapY:0,
 		marginX:0,
 		marginY:28
 	}
@@ -322,25 +323,64 @@ export const guidePresets = [{
 	name:'4-cols',
 	label:__('4 Columns', 'pixmagix'),
 	type:'path',
-	path:'',
+	path:'M5 5L27.5 5L27.5 95L5 95Z M27.5 5L50 5L50 95L27.5 95Z M50 5L72.5 5L72.5 95L50 95Z M72.5 5L95 5L95 95L72.5 95Z',
 	values:{
 		rows:1,
 		columns:4,
 		gapX:0,
-		gapY:18,
+		gapY:0,
 		marginX:0,
 		marginY:28
+	}
+},{
+	name:'2-rows',
+	label:__('2 Rows', 'pixmagix'),
+	type:'path',
+	path:'M5 5L95 5L95 50L5 50Z M5 50L95 50L95 95L5 95Z',
+	values:{
+		rows:2,
+		columns:1,
+		gapX:0,
+		gapY:0,
+		marginX:28,
+		marginY:0
+	}
+},{
+	name:'3-rows',
+	label:__('3 Rows', 'pixmagix'),
+	type:'path',
+	path:'M5 5L95 5L95 35L5 35Z M5 35L95 35L95 65L5 65Z M5 65L95 65L95 95L5 95Z',
+	values:{
+		rows:3,
+		columns:1,
+		gapX:0,
+		gapY:0,
+		marginX:28,
+		marginY:0
+	}
+},{
+	name:'4-rows',
+	label:__('4 Rows', 'pixmagix'),
+	type:'path',
+	path:'M5 5L95 5L95 27.5L5 27.5Z M5 27.5L95 27.5L95 50L5 50Z M5 50L95 50L95 72.5L5 72.5Z M5 72.5L95 72.5L95 95L5 95Z',
+	values:{
+		rows:4,
+		columns:1,
+		gapX:0,
+		gapY:0,
+		marginX:28,
+		marginY:0
 	}
 },{
 	name:'2x2',
 	label:__('2x2', 'pixmagix'),
 	type:'path',
-	path:'',
+	path:'M5 5L50 5L50 50L5 50Z M50 5L95 5L95 50L50 50Z M5 50L50 50L50 95L5 95Z M50 50L95 50L95 95L50 95Z',
 	values:{
 		rows:2,
 		columns:2,
-		gapX:18,
-		gapY:18,
+		gapX:0,
+		gapY:0,
 		marginX:28,
 		marginY:28
 	}
@@ -348,12 +388,12 @@ export const guidePresets = [{
 	name:'3x3',
 	label:__('3x3', 'pixmagix'),
 	type:'path',
-	path:'',
+	path:'M5 5L35 5L35 35L5 35Z M35 5L65 5L65 35L35 35Z M65 5L95 5L95 35L65 35Z M5 35L35 35L35 65L5 65Z M35 35L65 35L65 65L35 65Z M65 35L95 35L95 65L65 65Z M5 65L35 65L35 95L5 95Z M35 65L65 65L65 95L35 95Z M65 65L95 65L95 95L65 95Z',
 	values:{
 		rows:3,
 		columns:3,
-		gapX:18,
-		gapY:18,
+		gapX:0,
+		gapY:0,
 		marginX:28,
 		marginY:28
 	}
@@ -361,12 +401,12 @@ export const guidePresets = [{
 	name:'4x4',
 	label:__('4x4', 'pixmagix'),
 	type:'path',
-	path:'',
+	path:'M5 5L27.5 5L27.5 27.5L5 27.5Z M27.5 5L50 5L50 27.5L27.5 27.5Z M50 5L72.5 5L72.5 27.5L50 27.5Z M72.5 5L95 5L95 27.5L72.5 27.5Z M5 27.5L27.5 27.5L27.5 50L5 50Z M27.5 27.5L50 27.5L50 50L27.5 50Z M50 27.5L72.5 27.5L72.5 50L50 50Z M72.5 27.5L95 27.5L95 50L72.5 50Z M5 50L27.5 50L27.5 72.5L5 72.5Z M27.5 50L50 50L50 72.5L27.5 72.5Z M50 50L72.5 50L72.5 72.5L50 72.5Z M72.5 50L95 50L95 72.5L72.5 72.5Z M5 72.5L27.5 72.5L27.5 95L5 95Z M27.5 72.5L50 72.5L50 95L27.5 95Z M50 72.5L72.5 72.5L72.5 95L50 95Z M72.5 72.5L95 72.5L95 95L72.5 95Z',
 	values:{
 		rows:4,
 		columns:4,
-		gapX:18,
-		gapY:18,
+		gapX:0,
+		gapY:0,
 		marginX:28,
 		marginY:28
 	}
@@ -820,6 +860,7 @@ export const modals = {
 	'font-manager':FontManager,
 	'category-manager':CategoryManager,
 	'import-media':ImportMedia,
+	'free-images':FreeImages,
 	'open-project':OpenProject,
 	'save-as':SaveAs,
 	'export-media':ExportMedia,
@@ -857,9 +898,7 @@ export const propsToSaveLocalStorage = [
 	'fileDPI',
 	'fileScale',
 	'preserveAspectRatio',
-	'snapToGrid',
 	'snapObjects',
-	'gridSize',
 	'showRulers',
 	'showRulerCursors',
 	'cropAspectRatio',
@@ -889,4 +928,15 @@ export const propsToSaveLocalStorage = [
 	'qrCodeSize',
 	'qrCodePadding',
 	'qrCodeECL'
+];
+
+/**
+ *
+ * @since 1.6.0
+ * @var {array}
+ */
+
+export const projectPropsToSaveLocalStorage = [
+	'guides',
+	'lockGuides'
 ];

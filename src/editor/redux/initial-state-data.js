@@ -43,6 +43,16 @@ const getInitialStateData = ({
 	const layerIds = layers.map(layer => layer.id);
 	const layersById = layers.reduce((memo, layer) => {
 		memo[layer.id] = layer;
+		// @since 1.6.0
+		// For backward compability.
+		if (layer.type === 'image'){
+			if (!layer.originalWidth){
+				memo[layer.id].originalWidth = layer.width;
+			}
+			if (!layer.originalHeight){
+				memo[layer.id].originalHeight = layer.height;
+			}
+		}
 		return memo;
 	}, {});
 

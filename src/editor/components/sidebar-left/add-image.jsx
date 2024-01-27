@@ -14,6 +14,9 @@ import {
 	Select
 } from 'elements';
 import {
+	free_image_platforms
+} from 'editor-globals';
+import {
 	__
 } from 'wp-i18n';
 import {
@@ -53,15 +56,17 @@ const AddImage = props => {
 	const {
 		source_url,
 		media_details,
+		sizes = [],
 		resizeImage,
 		selectedSize,
 		// activeTabName = 'add-image',
 		activeActionName
 	} = selectedMedia || {};
-	const onSelect = () => {
+	const onSelect = (src, convertToDataURL) => {
 		const layer = createLayerObject({
 			type:'image',
-			src:selectedSize ? media_details.sizes[selectedSize].source_url : source_url
+			src,
+			convertToDataURL
 		}, false, object => {
 			batch(() => {
 				if (resizeImage){
@@ -70,16 +75,22 @@ const AddImage = props => {
 						canvasHeight:object.height
 					}, {
 						...layer,
+						src:object.src,
 						width:object.width,
 						height:object.height,
+						originalWidth:object.width,
+						originalHeight:object.height,
 						left:object.width / 2,
 						top:object.height / 2
 					});
 				} else {
 					addLayer({
 						...layer,
+						src:object.src,
 						width:object.width,
 						height:object.height,
+						originalWidth:object.width,
+						originalHeight:object.height,
 						left:canvasWidth / 2,
 						top:canvasHeight / 2
 					});
@@ -122,7 +133,41 @@ const AddImage = props => {
 						</Fragment>
 					)}
 					onReplace={() => setEditor('activeModal', 'import-media')}
-					onSelect={onSelect} />
+					onSelect={() => onSelect(selectedSize ? media_details.sizes[selectedSize].source_url : source_url)} />
+			</Widget>
+		)
+	},{
+		name:'free-images',
+		label:__('Import Free Image', 'pixmagix'),
+		tab:(free_image_platforms?.length) ? 'add-image' : '',
+		onClick:() => setEditor('activeModal', 'free-images'),
+		settings:(
+			<Widget>
+				<ImageSelect
+					src={sizes[2]?.value?.replace(/&#038;/g, '&')}
+					controls={(
+						<Fragment>
+							<Checkbox
+								label={__('Resize Canvas to Image Size', 'pixmagix')}
+								checked={resizeImage}
+								onChange={value => setEditor('selectedMedia', {
+									...selectedMedia,
+									resizeImage:value
+								})} />
+							{!isEmpty(sizes) && (
+								<Select
+									label={__('Image Size', 'pixmagix')}
+									value={selectedSize}
+									options={sizes}
+									onChange={value => setEditor('selectedMedia', {
+										...selectedMedia,
+										selectedSize:value
+									})} />
+							)}
+						</Fragment>
+					)}
+					onReplace={() => setEditor('activeModal', 'free-images')}
+					onSelect={() => onSelect(selectedSize || sizes[0]?.value, true)} />
 			</Widget>
 		)
 	},{
@@ -155,7 +200,7 @@ const AddImage = props => {
 							source_url:src
 						});
 					}).click()}
-					onSelect={onSelect} />
+					onSelect={() => onSelect(source_url)} />
 			</Widget>
 		)
 	}], props);
