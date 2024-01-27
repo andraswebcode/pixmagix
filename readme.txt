@@ -4,7 +4,7 @@ Donate link: https://pixmagixplugin.com/
 Tags: image editor, photo editor, featured image generator, qr code generator, image, editor, photo, featured, generator, edit, filter, resize, qr code, qr, crop, pixabay, pexels, unsplash, free images, royalty free, stock photos, stock images, media, picture, editing, design, graphic design, graphic
 Requires at least: 6.0.0
 Tested up to: 6.4.2
-Stable tag: 1.5.0
+Stable tag: 1.6.0
 Requires PHP: 7.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -51,6 +51,13 @@ The Pro plan offers more advanced features. It includes access to professional t
 Rest assured, PixMagix is updated on a regular basis to deliver a smooth user experience, ensure optimal performance, and keep up with the latest web standards and technological advancements.
 
 == Changelog ==
+
+= 1.6.0 =
+
+* Added new features: added special inline controls for the shapes, eg.: path modify control for path, and polygon elements, image crop control for the image elements, etc.
+* Added new feature: Clip paths for image layers.
+* Free images now can be imported right from the editor to speed up your workflow.
+* Fixed a lot of bugs in the editor.
 
 = 1.5.0 =
 
