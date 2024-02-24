@@ -1,0 +1,3 @@
+export {
+	changeDpiDataUrl
+} from 'changedpi';
