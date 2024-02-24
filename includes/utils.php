@@ -3,6 +3,8 @@
 namespace AndrasWeb\PixMagix\Utils;
 
 use function AndrasWeb\PixMagix\Settings\get_setting;
+use function AndrasWeb\PixMagix\Rest\Permissions\access_list;
+use function AndrasWeb\PixMagix\Rest\Permissions\generate_image;
 
 // Exit, if accessed directly.
 
@@ -425,6 +427,23 @@ function create_image_from_base64($base64 = '', $folder_name = '', $file_name = 
 }
 
 /**
+ * Check whether the src string is a base64 image data, or not.
+ * @since 1.7.0
+ * @param string $src
+ * @return bool
+ */
+
+function is_base64($src = ''){
+
+	if (empty($src)){
+		return false;
+	}
+
+	return (strpos($src, ';base64,') !== false);
+
+}
+
+/**
  * Copies an image, and upload it to a new destination folder on the same server.
  * @since 1.2.0
  * @param string $from
@@ -661,6 +680,10 @@ function create_unique_id($prefix = 'pixmagix'){
 
 function get_authenticated_free_image_platforms(){
 
+	if (!access_list()){
+		return array();
+	}
+
 	$platforms = array(
 		'pixabay',
 		'pexels',
@@ -671,6 +694,75 @@ function get_authenticated_free_image_platforms(){
 	});
 
 	return array_values($platforms);
+
+}
+
+/**
+ * 
+ * @since 1.7.0
+ * @return array
+ */
+
+function get_authenticated_ai_platforms(){
+
+	if (!generate_image()){
+		return array();
+	}
+
+	$platforms = array(
+		'openai',
+		'stabilityai',
+		'clipdrop'
+	);
+	$platforms = array_filter($platforms, function($platform){
+		return get_setting($platform . '_api_key');
+	});
+
+	return array_values($platforms);
+
+}
+
+/**
+ * 
+ * @since 1.7.0
+ * @param string $boundary
+ * @param array $file_fields
+ * @param array $post_fields
+ * @return string
+ */
+
+function array_to_form_data($boundary = '', $fields = array()){
+
+	if (empty($boundary)){
+		return '';
+	}
+
+	$body = '';
+	$filesystem = get_filesystem();
+
+	foreach ($fields as $field){
+		$is_file = $field['is_file'] ?? false;
+		$name = $field['name'] ?? '';
+		$value = $field['value'] ?? '';
+		$src = $field['src'] ?? '';
+		$type = $field['type'] ?? 'image/png';
+		$body .= '--' . $boundary . "\r\n";
+		$body .= 'Content-Disposition: form-data; name="';
+		if ($is_file){
+			$body .= $name . '"; filename="' . basename($src) . '"' . "\r\n";
+			$body .= 'Content-Type: ' . $type;
+			$body .= "\r\n\r\n";
+			$body .= $filesystem->get_contents($src);
+			$body .= "\r\n";
+		} else {
+			$body .= $name . '"';
+			$body .= "\r\n\r\n" . $value . "\r\n";
+		}
+	}
+
+	$body .= '--' . $boundary . '--';
+
+	return $body;
 
 }
 

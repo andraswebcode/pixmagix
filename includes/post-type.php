@@ -6,6 +6,7 @@ use function AndrasWeb\PixMagix\Utils\get_json_data;
 use function AndrasWeb\PixMagix\Utils\get_upload_dir;
 use function AndrasWeb\PixMagix\Utils\get_file_extension;
 use function AndrasWeb\PixMagix\Utils\create_image_from_base64;
+use function AndrasWeb\PixMagix\Utils\is_base64;
 use function AndrasWeb\PixMagix\Settings\get_setting;
 
 // Exit, if accessed directly.
@@ -37,6 +38,7 @@ final class Post_Type {
 		add_action('rest_delete_pixmagix', array($this, 'delete_images'), 99, 2);
 		add_filter('rest_attachment_query', __NAMESPACE__ . '\\Rest\Utils\add_date_arg', 99, 2);
 		add_filter('rest_pixmagix_query', __NAMESPACE__ . '\\Rest\Utils\add_date_arg', 99, 2);
+		add_filter('rest_pixmagix_ai_arch_query', __NAMESPACE__ . '\\Rest\Utils\add_date_arg', 99, 2);
 	}
 
 	/**
@@ -101,6 +103,37 @@ final class Post_Type {
 				'show_in_rest' => true
 			)
 		);
+		// Register post type, and meta for archive of ai generated images.
+		register_post_type(
+			'pixmagix_ai_arch',
+			array(
+				'label' => esc_html__('PixMagix AI Archives', 'pixmagix'),
+				'public' => false,
+				'show_in_rest' => true,
+				'supports' => array(
+					'title',
+					'custom-fields',
+					'author'
+				),
+				'rewrite' => false,
+				'query_var' => false,
+				'can_export' => false,
+				'rest_controller_class' => __NAMESPACE__ . '\\Rest\\AI_Arch_Controller',
+				'capability_type' => 'pixmagix',
+				'map_meta_cap' => false
+			)
+		);
+		register_post_meta(
+			'pixmagix_ai_arch',
+			'pixmagix_ai_arch_project',
+			array(
+				'type' => 'object',
+				'single' => true,
+				'show_in_rest' => array(
+					'schema' => $this->get_ai_arch_schema()
+				)
+			)
+		);
 	}
 
 	/**
@@ -152,13 +185,13 @@ final class Post_Type {
 		}
 
 		// Create thumbnail image
-		if (strpos($thumbnail, ';base64,') !== false){
+		if (is_base64($thumbnail)){
 			$filename = 'project-' . $id . '.jpg';
 			$meta['pixmagix_project']['thumbnail'] = esc_url_raw(create_image_from_base64($thumbnail, 'thumbnails', $filename));
 		}
 
 		// Create preview image.
-		if (strpos($preview, ';base64,') !== false){
+		if (is_base64($preview)){
 			$filename = 'project-' . $id . '.jpg';
 			$meta['pixmagix_project']['preview'] = esc_url_raw(create_image_from_base64($preview, 'previews', $filename));
 		}
@@ -166,7 +199,7 @@ final class Post_Type {
 		// Create layer images.
 		if (!empty($layers)){
 			foreach ($layers as $layer){
-				if ($layer['type'] === 'image' && isset($layer['src']) && strpos($layer['src'], ';base64,') !== false){
+				if ($layer['type'] === 'image' && isset($layer['src']) && is_base64($layer['src'])){
 					$layer_id = $layer['id'];
 					$filename = 'layer-' . $id . '-' . $layer_id . '.png';
 					$layer['src'] = esc_url_raw(create_image_from_base64($layer['src'], 'layers', $filename));
@@ -271,6 +304,71 @@ final class Post_Type {
 			}
 		}
 
+	}
+
+	/**
+	 * 
+	 * @since 1.2.0
+	 * @access private
+	 * @return array
+	 */
+
+	private function get_ai_arch_schema(){
+		return array(
+			'type' => 'object',
+			'properties' => array(
+				'generator' => array(
+					'type' => 'string',
+					'enum' => array('openai', 'stabilityai')
+				),
+				'style' => array(
+					'type' => 'string'
+				),
+				'model' => array(
+					'type' => 'string'
+				),
+				'size' => array(
+					'type' => 'string'
+				),
+				'quality' => array(
+					'type' => 'string'
+				),
+				'samplesCount' => array(
+					'type' => 'number'
+				),
+				'prompts' => array(
+					'type' => 'array',
+					'items' => array(
+						'type' => 'object',
+						'properties' => array(
+							'id' => array(
+								'type' => 'string'
+							),
+							'text' => array(
+								'type' => 'string'
+							),
+							'weight' => array(
+								'type' => 'number'
+							)
+						)
+					)
+				),
+				'samples' => array(
+					'type' => 'array',
+					'items' => array(
+						'type' => 'object',
+						'properties' => array(
+							'id' => array(
+								'type' => 'string'
+							),
+							'src' => array(
+								'type' => 'string'
+							)
+						)
+					)
+				)
+			)
+		);
 	}
 
 }

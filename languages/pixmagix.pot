@@ -2,34 +2,26 @@
 # This file is distributed under the GPLv2.
 msgid ""
 msgstr ""
-"Project-Id-Version: PixMagix 1.6.0\n"
+"Project-Id-Version: PixMagix 1.7.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/pixmagix\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-01-27T13:18:32+01:00\n"
+"POT-Creation-Date: 2024-02-24T11:27:02+01:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.8.1\n"
 "X-Domain: pixmagix\n"
 
 #. Plugin Name of the plugin
-#: includes/admin.php:64
-#: includes/post-type.php:52
-#: assets/js/editor.build.js:8944
-#: assets/js/editor.build.js:10224
-#: assets/js/editor.build.js:10271
-#: assets/js/editor.build.js:10281
+#: includes/admin.php:66
+#: includes/post-type.php:54
+#: assets/js/editor.build.js:11396
+#: assets/js/editor.build.js:13647
+#: assets/js/editor.build.js:13694
+#: assets/js/editor.build.js:13704
 #: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:316
-#: assets/js/fonts.build.js:343
-#: assets/js/fonts.build.js:377
-#: assets/js/fonts.build.js:477
-#: assets/js/fonts.build.js:488
-#: assets/js/fonts.build.min.js:2
-#: assets/pro/js/frontend-editor.build.js:113
-#: assets/pro/js/frontend-editor.build.min.js:1
 msgid "PixMagix"
 msgstr ""
 
@@ -49,41 +41,41 @@ msgstr ""
 msgid "https://andrasweb.com/"
 msgstr ""
 
-#: includes/admin.php:63
+#: includes/admin.php:65
 msgid "Projects - PixMagix"
 msgstr ""
 
-#: includes/admin.php:72
+#: includes/admin.php:74
 msgid "Editor - PixMagix"
 msgstr ""
 
-#: includes/admin.php:73
+#: includes/admin.php:75
 #: assets/js/projects.build.js:2879
 #: assets/js/projects.build.min.js:2
 msgid "Add New"
 msgstr ""
 
-#: includes/admin.php:80
+#: includes/admin.php:82
 msgid "Templates - PixMagix"
 msgstr ""
 
-#: includes/admin.php:81
+#: includes/admin.php:83
 msgid "Templates"
 msgstr ""
 
-#: includes/admin.php:88
+#: includes/admin.php:90
 msgid "Free Images - PixMagix"
 msgstr ""
 
-#: includes/admin.php:89
+#: includes/admin.php:91
 msgid "Free Images"
 msgstr ""
 
-#: includes/admin.php:97
+#: includes/admin.php:98
 msgid "Image Generator - PixMagix"
 msgstr ""
 
-#: includes/admin.php:98
+#: includes/admin.php:99
 msgid "Image Generator"
 msgstr ""
 
@@ -92,17 +84,20 @@ msgid "Settings - PixMagix"
 msgstr ""
 
 #: includes/admin.php:107
-#: assets/js/editor.build.js:12204
-#: assets/js/editor.build.js:13012
+#: assets/js/editor.build.js:15756
+#: assets/js/editor.build.js:16574
 #: assets/js/editor.build.min.js:2
-#: assets/pro/js/image-generator.build.js:3367
-#: assets/pro/js/image-generator.build.js:3512
-#: assets/pro/js/image-generator.build.min.js:2
+#: assets/js/image-generator.build.js:3600
+#: assets/js/image-generator.build.js:3747
+#: assets/js/image-generator.build.min.js:2
 msgid "Settings"
 msgstr ""
 
+#: includes/admin.php:114
+msgid "Support"
+msgstr ""
+
 #: includes/editor.php:21
-#: includes/pro/frontend/tmpl-editor.php:33
 msgid "The editor requires JavaScript. Please enable JavaScript in your browser settings."
 msgstr ""
 
@@ -122,173 +117,26 @@ msgid "Not Edited"
 msgstr ""
 
 #: includes/media.php:269
-#: assets/js/editor.build.js:11352
+#: assets/js/editor.build.js:14879
 #: assets/js/editor.build.min.js:2
 msgid "Restore Original Media Image"
 msgstr ""
 
-#: includes/pro/elementor/class-widget-editor.php:42
-msgid "PixMagix Editor"
-msgstr ""
-
-#: includes/pro/elementor/class-widget-gallery.php:42
-msgid "PixMagix Gallery"
-msgstr ""
-
-#: includes/pro/elementor/class-widget-gallery.php:57
-msgid "Content"
-msgstr ""
-
-#: includes/pro/elementor/class-widget-gallery.php:65
-#: assets/js/editor.build.js:9932
-#: assets/js/editor.build.js:11211
-#: assets/js/editor.build.js:11366
-#: assets/js/editor.build.js:14247
-#: assets/js/editor.build.min.js:2
-#: assets/js/free-images.build.js:1169
-#: assets/js/free-images.build.min.js:2
-#: assets/js/projects.build.js:3573
-#: assets/js/projects.build.min.js:2
-#: assets/pro/js/image-generator.build.js:2887
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Title"
-msgstr ""
-
-#: includes/pro/frontend/gallery.php:192
-#: assets/js/editor.build.js:11060
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:340
-#: assets/js/fonts.build.js:485
-#: assets/js/fonts.build.min.js:2
-#: assets/pro/js/gutenberg.build.js:803
-#: assets/pro/js/gutenberg.build.min.js:2
-msgid "Preview"
-msgstr ""
-
-#: includes/pro/frontend/gallery.php:195
-#: includes/pro/frontend/gallery.php:372
-msgid "Edit"
-msgstr ""
-
-#: includes/pro/frontend/gallery.php:268
-msgid "Search For Templates"
-msgstr ""
-
-#: includes/pro/frontend/gallery.php:271
-#: assets/js/editor.build.js:10113
-#: assets/js/editor.build.js:10698
-#: assets/js/editor.build.js:10970
-#: assets/js/editor.build.js:17821
-#: assets/js/editor.build.js:17892
-#: assets/js/editor.build.js:17978
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:731
-#: assets/js/fonts.build.min.js:2
-#: assets/js/free-images.build.js:473
-#: assets/js/free-images.build.js:544
-#: assets/js/free-images.build.js:630
-#: assets/js/free-images.build.min.js:2
-#: assets/js/projects.build.js:2514
-#: assets/js/projects.build.min.js:2
-#: assets/js/templates.build.js:207
-#: assets/js/templates.build.min.js:2
-#: assets/pro/js/image-generator.build.js:2549
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Search"
-msgstr ""
-
-#: includes/pro/post-type.php:41
+#: includes/post-type.php:110
 msgid "PixMagix AI Archives"
 msgstr ""
 
-#: includes/pro/rest-api.php:170
-msgid "Generator is Missing"
-msgstr ""
-
-#: includes/pro/rest-api.php:184
-#: includes/pro/rest-api.php:345
-#: includes/rest-api.php:634
-msgid "API Key is Not Set"
-msgstr ""
-
-#: includes/pro/rest-api.php:201
-msgid "Prompts cannot be empty."
-msgstr ""
-
-#: includes/pro/rest-api.php:355
-msgctxt "The number of prompts to generate."
-msgid "You will be provided with a blog content. Your task is to read it carefully to understand its essence. Imagine %s picture of it, then write 3-4 descriptive sentences about the picture. Write your sentences in json format, with a single key \"text\"."
-msgid_plural "You will be provided with a blog content. Your task is to read it carefully to understand its essence. Imagine %s different pictures of it, then write 3-4 descriptive sentences about each picture. Write your sentences in json array of objects, with keys \"text\"."
-msgstr[0] ""
-msgstr[1] ""
-
-#: includes/pro/rest-api.php:464
-#: includes/rest-api.php:261
-#: includes/rest-api.php:378
-#: includes/rest-api.php:501
-#: includes/rest-api.php:939
-msgid "Not Allowed to Upload Images."
-msgstr ""
-
-#: includes/pro/rest-api.php:536
-msgid "Editor"
-msgstr ""
-
-#: includes/pro/rest-api/class-rest-ai-arch-controller.php:83
-#: assets/pro/js/image-generator.build.js:4207
-#: assets/pro/js/image-generator.build.min.js:2
-#: assets/pro/js/settings.build.js:256
-#: assets/pro/js/settings.build.min.js:1
+#: includes/rest-api/class-rest-ai-arch-controller.php:83
+#: assets/js/editor.build.js:12083
+#: assets/js/editor.build.min.js:2
 msgid "Stable Diffusion"
 msgstr ""
 
-#: includes/pro/rest-api/class-rest-ai-arch-controller.php:87
+#: includes/rest-api/class-rest-ai-arch-controller.php:87
 msgid "%s - %d Sample - Created With %s"
 msgid_plural "%s - %d Samples - Created With %s"
 msgstr[0] ""
 msgstr[1] ""
-
-#: includes/rest-api.php:281
-msgid "Image Data is Missing"
-msgstr ""
-
-#: includes/rest-api.php:328
-msgid "Revision Folder Cannot be Created"
-msgstr ""
-
-#: includes/rest-api.php:334
-msgid "Revision Cannot be Created"
-msgstr ""
-
-#: includes/rest-api.php:388
-msgid "ID is Missing."
-msgstr ""
-
-#: includes/rest-api.php:410
-msgid "Revision File is Missing"
-msgstr ""
-
-#: includes/rest-api.php:613
-msgid "Platform is Missing"
-msgstr ""
-
-#: includes/rest-api.php:726
-#: includes/rest-api.php:778
-#: includes/rest-api.php:861
-msgid "Large - %dx%d"
-msgstr ""
-
-#: includes/rest-api.php:734
-#: includes/rest-api.php:796
-#: includes/rest-api.php:880
-msgid "Medium - %dx%d"
-msgstr ""
-
-#: includes/rest-api.php:742
-#: includes/rest-api.php:814
-#: includes/rest-api.php:899
-msgid "Thumbnail - %dx%d"
-msgstr ""
 
 #: includes/rest-api/class-rest-post-controller.php:250
 #: assets/js/free-images.build.js:1126
@@ -308,20 +156,87 @@ msgstr ""
 msgid "%s - Count: %d - ID: #%d"
 msgstr ""
 
+#: includes/rest-api/rest-callback-export-ai-image.php:19
+#: includes/rest-api/rest-callback-export-image.php:28
+#: includes/rest-api/rest-callback-restore-image.php:27
+#: includes/rest-api/rest-callback-save-free-image.php:25
+#: includes/rest-api/rest-callback-save-template.php:28
+msgid "Not Allowed to Upload Images."
+msgstr ""
+
+#: includes/rest-api/rest-callback-export-image.php:48
+msgid "Image Data is Missing"
+msgstr ""
+
+#: includes/rest-api/rest-callback-export-image.php:95
+msgid "Revision Folder Cannot be Created"
+msgstr ""
+
+#: includes/rest-api/rest-callback-export-image.php:101
+msgid "Revision Cannot be Created"
+msgstr ""
+
+#: includes/rest-api/rest-callback-generate-image.php:24
+msgid "Generator is Missing"
+msgstr ""
+
+#: includes/rest-api/rest-callback-generate-image.php:43
+#: includes/rest-api/rest-callback-get-free-images.php:47
+#: includes/rest-api/rest-callback-modify-image.php:32
+msgid "API Key is Not Set"
+msgstr ""
+
+#: includes/rest-api/rest-callback-generate-image.php:60
+msgid "Prompts cannot be empty."
+msgstr ""
+
+#: includes/rest-api/rest-callback-get-elements.php:25
+msgid "Collection is Missing"
+msgstr ""
+
+#: includes/rest-api/rest-callback-get-free-images.php:28
+msgid "Platform is Missing"
+msgstr ""
+
+#: includes/rest-api/rest-callback-get-free-images.php:144
+#: includes/rest-api/rest-callback-get-free-images.php:196
+#: includes/rest-api/rest-callback-get-free-images.php:279
+msgid "Large - %dx%d"
+msgstr ""
+
+#: includes/rest-api/rest-callback-get-free-images.php:152
+#: includes/rest-api/rest-callback-get-free-images.php:214
+#: includes/rest-api/rest-callback-get-free-images.php:298
+msgid "Medium - %dx%d"
+msgstr ""
+
+#: includes/rest-api/rest-callback-get-free-images.php:160
+#: includes/rest-api/rest-callback-get-free-images.php:232
+#: includes/rest-api/rest-callback-get-free-images.php:317
+msgid "Thumbnail - %dx%d"
+msgstr ""
+
+#: includes/rest-api/rest-callback-restore-image.php:37
+msgid "ID is Missing."
+msgstr ""
+
+#: includes/rest-api/rest-callback-restore-image.php:59
+msgid "Revision File is Missing"
+msgstr ""
+
 #: includes/utils-users.php:212
 msgid "All Users"
 msgstr ""
 
-#: includes/utils.php:338
+#: includes/utils.php:340
 msgid "All Dates"
 msgstr ""
 
-#: includes/utils.php:367
-#: assets/js/editor.build.js:16493
-#: assets/js/editor.build.js:18147
+#: includes/utils.php:369
+#: assets/js/editor.build.js:21317
+#: assets/js/editor.build.js:21470
+#: assets/js/editor.build.js:23062
 #: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:875
-#: assets/js/fonts.build.min.js:2
 #: assets/js/free-images.build.js:824
 #: assets/js/free-images.build.min.js:2
 #: assets/js/templates.build.js:315
@@ -329,72 +244,70 @@ msgstr ""
 msgid "All Categories"
 msgstr ""
 
-#: pixmagix.php:105
+#: pixmagix.php:64
 msgid "PixMagix requires PHP version %s+, plugin is currently NOT RUNNING."
 msgstr ""
 
-#: pixmagix.php:127
+#: pixmagix.php:86
 msgid "PixMagix requires WordPress version %s+, plugin is currently NOT RUNNING."
 msgstr ""
 
-#: assets/js/editor.build.js:3625
+#: assets/js/editor.build.js:5880
 #: assets/js/editor.build.min.js:2
 msgid "Created With PixMagix"
 msgstr ""
 
-#: assets/js/editor.build.js:7965
+#: assets/js/editor.build.js:10414
 #: assets/js/editor.build.min.js:2
 msgid "Ruler"
 msgstr ""
 
-#: assets/js/editor.build.js:8257
-#: assets/js/editor.build.js:11821
-#: assets/js/editor.build.js:12521
-#: assets/js/editor.build.js:12771
-#: assets/js/editor.build.js:12879
-#: assets/js/editor.build.js:13004
-#: assets/js/editor.build.js:14072
+#: assets/js/editor.build.js:10706
+#: assets/js/editor.build.js:15269
+#: assets/js/editor.build.js:16071
+#: assets/js/editor.build.js:16325
+#: assets/js/editor.build.js:16437
+#: assets/js/editor.build.js:16566
+#: assets/js/editor.build.js:18078
 #: assets/js/editor.build.min.js:2
 msgid "Stroke Color"
 msgstr ""
 
-#: assets/js/editor.build.js:8264
-#: assets/js/editor.build.js:11830
-#: assets/js/editor.build.js:12530
-#: assets/js/editor.build.js:12890
-#: assets/js/editor.build.js:14102
+#: assets/js/editor.build.js:10713
+#: assets/js/editor.build.js:15280
+#: assets/js/editor.build.js:16080
+#: assets/js/editor.build.js:16448
+#: assets/js/editor.build.js:17378
 #: assets/js/editor.build.min.js:2
 msgid "Fill Color"
 msgstr ""
 
-#: assets/js/editor.build.js:8317
+#: assets/js/editor.build.js:10766
 #: assets/js/editor.build.min.js:2
 msgid "Select Mode"
 msgstr ""
 
-#: assets/js/editor.build.js:8321
+#: assets/js/editor.build.js:10770
 #: assets/js/editor.build.min.js:2
 msgid "Hand Mode"
 msgstr ""
 
-#: assets/js/editor.build.js:8339
+#: assets/js/editor.build.js:10788
 #: assets/js/editor.build.min.js:2
 msgid "Fit Canvas to Screen"
 msgstr ""
 
-#: assets/js/editor.build.js:8865
-#: assets/js/editor.build.js:11209
+#: assets/js/editor.build.js:11317
+#: assets/js/editor.build.js:14736
 #: assets/js/editor.build.min.js:2
-#: assets/pro/js/frontend-editor.build.js:67
-#: assets/pro/js/frontend-editor.build.min.js:1
-#: assets/pro/js/image-generator.build.js:2119
-#: assets/pro/js/image-generator.build.min.js:2
+#: assets/js/image-generator.build.js:2348
+#: assets/js/image-generator.build.min.js:2
 msgid "New"
 msgstr ""
 
-#: assets/js/editor.build.js:8869
-#: assets/js/editor.build.js:9472
-#: assets/js/editor.build.js:11497
+#: assets/js/editor.build.js:11321
+#: assets/js/editor.build.js:12649
+#: assets/js/editor.build.js:15024
 #: assets/js/editor.build.min.js:2
 #: assets/js/free-images.build.js:1140
 #: assets/js/free-images.build.min.js:2
@@ -404,129 +317,298 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: assets/js/editor.build.js:8879
+#: assets/js/editor.build.js:11331
 #: assets/js/editor.build.min.js:2
-#: assets/pro/js/frontend-editor.build.js:76
-#: assets/pro/js/frontend-editor.build.min.js:1
 msgid "Options"
 msgstr ""
 
-#: assets/js/editor.build.js:8941
+#: assets/js/editor.build.js:11393
 #: assets/js/editor.build.min.js:2
 msgid "Back to Dashboard"
 msgstr ""
 
-#: assets/js/editor.build.js:8983
-#: assets/js/editor.build.js:15462
+#: assets/js/editor.build.js:11435
+#: assets/js/editor.build.js:19926
 #: assets/js/editor.build.min.js:2
 msgid "Undo"
 msgstr ""
 
-#: assets/js/editor.build.js:8990
-#: assets/js/editor.build.js:15465
+#: assets/js/editor.build.js:11442
+#: assets/js/editor.build.js:19929
 #: assets/js/editor.build.min.js:2
 msgid "Redo"
 msgstr ""
 
-#: assets/js/editor.build.js:9190
-#: assets/js/editor.build.js:9198
-#: assets/js/editor.build.js:17002
+#: assets/js/editor.build.js:11642
+#: assets/js/editor.build.js:11650
+#: assets/js/editor.build.js:21886
 #: assets/js/editor.build.min.js:2
 msgid "Add Guides"
 msgstr ""
 
-#: assets/js/editor.build.js:9200
+#: assets/js/editor.build.js:11652
 #: assets/js/editor.build.min.js:2
 msgid "Presets"
 msgstr ""
 
-#: assets/js/editor.build.js:9218
+#: assets/js/editor.build.js:11670
 #: assets/js/editor.build.min.js:2
 msgid "Rows"
 msgstr ""
 
-#: assets/js/editor.build.js:9230
+#: assets/js/editor.build.js:11682
 #: assets/js/editor.build.min.js:2
 msgid "Columns"
 msgstr ""
 
-#: assets/js/editor.build.js:9242
+#: assets/js/editor.build.js:11694
 #: assets/js/editor.build.min.js:2
 msgid "Row Gaps"
 msgstr ""
 
-#: assets/js/editor.build.js:9252
+#: assets/js/editor.build.js:11704
 #: assets/js/editor.build.min.js:2
 msgid "Column Gaps"
 msgstr ""
 
-#: assets/js/editor.build.js:9262
+#: assets/js/editor.build.js:11714
 #: assets/js/editor.build.min.js:2
 msgid "Row Margin"
 msgstr ""
 
-#: assets/js/editor.build.js:9272
+#: assets/js/editor.build.js:11724
 #: assets/js/editor.build.min.js:2
 msgid "Column Margin"
 msgstr ""
 
-#: assets/js/editor.build.js:9281
-#: assets/js/editor.build.js:17011
+#: assets/js/editor.build.js:11733
+#: assets/js/editor.build.js:21895
 #: assets/js/editor.build.min.js:2
 msgid "Lock Guides"
 msgstr ""
 
-#: assets/js/editor.build.js:9356
+#: assets/js/editor.build.js:11831
+#: assets/js/editor.build.js:23403
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:2690
+#: assets/js/image-generator.build.min.js:2
+msgid "Do you really want to permanently delete this archive with its all ai generated images?"
+msgstr ""
+
+#: assets/js/editor.build.js:11914
+#: assets/js/editor.build.js:13007
+#: assets/js/editor.build.js:13023
+#: assets/js/editor.build.js:13536
+#: assets/js/editor.build.js:14220
+#: assets/js/editor.build.js:14497
+#: assets/js/editor.build.js:22736
+#: assets/js/editor.build.js:22807
+#: assets/js/editor.build.js:22893
+#: assets/js/editor.build.js:23491
+#: assets/js/editor.build.min.js:2
+#: assets/js/free-images.build.js:473
+#: assets/js/free-images.build.js:544
+#: assets/js/free-images.build.js:630
+#: assets/js/free-images.build.min.js:2
+#: assets/js/image-generator.build.js:2778
+#: assets/js/image-generator.build.min.js:2
+#: assets/js/projects.build.js:2514
+#: assets/js/projects.build.min.js:2
+#: assets/js/templates.build.js:207
+#: assets/js/templates.build.min.js:2
+msgid "Search"
+msgstr ""
+
+#: assets/js/editor.build.js:11924
+#: assets/js/editor.build.js:14230
+#: assets/js/editor.build.js:14538
+#: assets/js/editor.build.js:23501
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:2788
+#: assets/js/image-generator.build.min.js:2
+#: assets/js/projects.build.js:2555
+#: assets/js/projects.build.min.js:2
+msgid "Date"
+msgstr ""
+
+#: assets/js/editor.build.js:11935
+#: assets/js/editor.build.js:14549
+#: assets/js/editor.build.js:23512
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:2799
+#: assets/js/image-generator.build.min.js:2
+#: assets/js/projects.build.js:2566
+#: assets/js/projects.build.min.js:2
+msgid "Author"
+msgstr ""
+
+#: assets/js/editor.build.js:11956
+#: assets/js/editor.build.js:13133
+#: assets/js/editor.build.js:13650
+#: assets/js/editor.build.js:13868
+#: assets/js/editor.build.js:14251
+#: assets/js/editor.build.js:14570
+#: assets/js/editor.build.js:23533
+#: assets/js/editor.build.min.js:2
+#: assets/js/free-images.build.js:400
+#: assets/js/free-images.build.min.js:2
+#: assets/js/image-generator.build.js:2820
+#: assets/js/image-generator.build.min.js:2
+#: assets/js/projects.build.js:3105
+#: assets/js/projects.build.min.js:2
+#: assets/js/templates.build.js:244
+#: assets/js/templates.build.min.js:2
+msgid "No Items Found"
+msgstr ""
+
+#: assets/js/editor.build.js:11968
+#: assets/js/editor.build.js:23545
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:2832
+#: assets/js/image-generator.build.min.js:2
+msgid "Delete Archive"
+msgstr ""
+
+#: assets/js/editor.build.js:12079
+#: assets/js/editor.build.min.js:2
+msgid "DALL-E"
+msgstr ""
+
+#: assets/js/editor.build.js:12201
+#: assets/js/editor.build.min.js:2
+msgid "Import This Image"
+msgstr ""
+
+#: assets/js/editor.build.js:12203
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:2484
+#: assets/js/image-generator.build.min.js:2
+msgid "No Image"
+msgstr ""
+
+#: assets/js/editor.build.js:12292
+#: assets/js/editor.build.js:12413
+#: assets/js/editor.build.js:17089
+#: assets/js/editor.build.js:17145
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:3334
+#: assets/js/image-generator.build.min.js:2
+msgid "Prompt"
+msgstr ""
+
+#: assets/js/editor.build.js:12298
+#: assets/js/editor.build.js:12426
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:3602
+#: assets/js/image-generator.build.js:3756
+#: assets/js/image-generator.build.min.js:2
+msgid "Model"
+msgstr ""
+
+#: assets/js/editor.build.js:12313
+#: assets/js/editor.build.js:12433
+#: assets/js/editor.build.js:15759
+#: assets/js/editor.build.js:17940
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:3616
+#: assets/js/image-generator.build.js:3763
+#: assets/js/image-generator.build.min.js:2
+msgid "Size"
+msgstr ""
+
+#: assets/js/editor.build.js:12320
+#: assets/js/editor.build.js:12458
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:3623
+#: assets/js/image-generator.build.js:3788
+#: assets/js/image-generator.build.min.js:2
+msgid "Samples"
+msgstr ""
+
+#: assets/js/editor.build.js:12329
+#: assets/js/editor.build.js:12419
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:3632
+#: assets/js/image-generator.build.js:3749
+#: assets/js/image-generator.build.min.js:2
+msgid "Style"
+msgstr ""
+
+#: assets/js/editor.build.js:12336
+#: assets/js/editor.build.js:12767
+#: assets/js/editor.build.js:13324
+#: assets/js/editor.build.js:17120
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:3639
+#: assets/js/image-generator.build.min.js:2
+msgid "Quality"
+msgstr ""
+
+#: assets/js/editor.build.js:12440
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:3770
+#: assets/js/image-generator.build.min.js:2
+msgid "CFG Scale"
+msgstr ""
+
+#: assets/js/editor.build.js:12449
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:3779
+#: assets/js/image-generator.build.min.js:2
+msgid "Steps"
+msgstr ""
+
+#: assets/js/editor.build.js:12533
 #: assets/js/editor.build.min.js:2
 #: assets/js/projects.build.js:3178
 #: assets/js/projects.build.min.js:2
 msgid "Please enter a name, before you save!"
 msgstr ""
 
-#: assets/js/editor.build.js:9377
+#: assets/js/editor.build.js:12554
 #: assets/js/editor.build.min.js:2
 #: assets/js/projects.build.js:3199
 #: assets/js/projects.build.min.js:2
 msgid "Category Saved Successfully"
 msgstr ""
 
-#: assets/js/editor.build.js:9394
+#: assets/js/editor.build.js:12571
 #: assets/js/editor.build.min.js:2
 #: assets/js/projects.build.js:3216
 #: assets/js/projects.build.min.js:2
 msgid "Do you really want to permanently delete this category?"
 msgstr ""
 
-#: assets/js/editor.build.js:9412
+#: assets/js/editor.build.js:12589
 #: assets/js/editor.build.min.js:2
 #: assets/js/projects.build.js:3234
 #: assets/js/projects.build.min.js:2
 msgid "Category Deleted Successfully"
 msgstr ""
 
-#: assets/js/editor.build.js:9440
+#: assets/js/editor.build.js:12617
 #: assets/js/editor.build.min.js:2
 #: assets/js/projects.build.js:3262
 #: assets/js/projects.build.min.js:2
 msgid "Categories"
 msgstr ""
 
-#: assets/js/editor.build.js:9459
+#: assets/js/editor.build.js:12636
 #: assets/js/editor.build.min.js:2
 #: assets/js/projects.build.js:3281
 #: assets/js/projects.build.min.js:2
 msgid "Name"
 msgstr ""
 
-#: assets/js/editor.build.js:9486
+#: assets/js/editor.build.js:12663
 #: assets/js/editor.build.min.js:2
 #: assets/js/projects.build.js:3308
 #: assets/js/projects.build.min.js:2
 msgid "New Category"
 msgstr ""
 
-#: assets/js/editor.build.js:9490
-#: assets/js/editor.build.js:13244
+#: assets/js/editor.build.js:12667
+#: assets/js/editor.build.js:16804
 #: assets/js/editor.build.min.js:2
 #: assets/js/projects.build.js:2383
 #: assets/js/projects.build.js:3312
@@ -534,195 +616,109 @@ msgstr ""
 msgid "Add New Category"
 msgstr ""
 
-#: assets/js/editor.build.js:9559
+#: assets/js/editor.build.js:12736
+#: assets/js/editor.build.js:23631
 #: assets/js/editor.build.min.js:2
-#: assets/pro/js/image-generator.build.js:2276
-#: assets/pro/js/image-generator.build.js:2685
-#: assets/pro/js/image-generator.build.min.js:2
+#: assets/js/image-generator.build.js:2505
+#: assets/js/image-generator.build.js:2918
+#: assets/js/image-generator.build.min.js:2
 msgid "Download Image"
 msgstr ""
 
-#: assets/js/editor.build.js:9566
-#: assets/js/editor.build.js:9697
+#: assets/js/editor.build.js:12743
+#: assets/js/editor.build.js:12874
+#: assets/js/editor.build.js:23641
 #: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:2928
+#: assets/js/image-generator.build.min.js:2
 #: assets/js/projects.build.js:3042
 #: assets/js/projects.build.js:3397
 #: assets/js/projects.build.min.js:2
-#: assets/pro/js/editor.build.js:10139
-#: assets/pro/js/editor.build.min.js:1
-#: assets/pro/js/image-generator.build.js:2695
-#: assets/pro/js/image-generator.build.min.js:2
 msgid "Download"
 msgstr ""
 
-#: assets/js/editor.build.js:9570
-#: assets/js/editor.build.js:9703
-#: assets/js/editor.build.js:9881
+#: assets/js/editor.build.js:12747
+#: assets/js/editor.build.js:12880
+#: assets/js/editor.build.js:13304
+#: assets/js/editor.build.js:23669
+#: assets/js/editor.build.js:23829
 #: assets/js/editor.build.min.js:2
 #: assets/js/free-images.build.js:1159
 #: assets/js/free-images.build.min.js:2
-#: assets/pro/js/editor.build.js:10145
-#: assets/pro/js/editor.build.min.js:1
-#: assets/pro/js/image-generator.build.js:2723
-#: assets/pro/js/image-generator.build.js:2883
-#: assets/pro/js/image-generator.build.min.js:2
+#: assets/js/image-generator.build.js:2956
+#: assets/js/image-generator.build.js:3116
+#: assets/js/image-generator.build.min.js:2
 msgid "File Name"
 msgstr ""
 
-#: assets/js/editor.build.js:9574
-#: assets/js/editor.build.js:9885
+#: assets/js/editor.build.js:12751
+#: assets/js/editor.build.js:13308
 #: assets/js/editor.build.min.js:2
 msgid "File Type"
 msgstr ""
 
-#: assets/js/editor.build.js:9590
-#: assets/js/editor.build.js:9901
-#: assets/js/editor.build.min.js:2
-#: assets/pro/js/image-generator.build.js:3406
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Quality"
-msgstr ""
-
-#: assets/js/editor.build.js:9600
-#: assets/js/editor.build.js:9911
+#: assets/js/editor.build.js:12777
+#: assets/js/editor.build.js:13334
 #: assets/js/editor.build.min.js:2
 msgid "DPI"
 msgstr ""
 
-#: assets/js/editor.build.js:9690
+#: assets/js/editor.build.js:12867
 #: assets/js/editor.build.min.js:2
 msgid "Download SVG"
 msgstr ""
 
-#: assets/js/editor.build.js:9708
-#: assets/js/editor.build.js:12637
-#: assets/js/editor.build.js:13635
-#: assets/js/editor.build.js:13682
-#: assets/js/editor.build.js:13904
-#: assets/js/editor.build.js:14209
+#: assets/js/editor.build.js:12885
+#: assets/js/editor.build.js:16187
+#: assets/js/editor.build.js:17293
+#: assets/js/editor.build.js:17315
+#: assets/js/editor.build.js:17724
+#: assets/js/editor.build.js:18340
 #: assets/js/editor.build.min.js:2
-#: assets/js/elements.build.js:6802
+#: assets/js/elements.build.js:6815
 #: assets/js/elements.build.min.js:2
 msgid "Width"
 msgstr ""
 
-#: assets/js/editor.build.js:9718
-#: assets/js/editor.build.js:12642
-#: assets/js/editor.build.js:13642
-#: assets/js/editor.build.js:13692
-#: assets/js/editor.build.js:13925
-#: assets/js/editor.build.js:14218
+#: assets/js/editor.build.js:12895
+#: assets/js/editor.build.js:16192
+#: assets/js/editor.build.js:17303
+#: assets/js/editor.build.js:17322
+#: assets/js/editor.build.js:17744
+#: assets/js/editor.build.js:18349
 #: assets/js/editor.build.min.js:2
-#: assets/js/elements.build.js:6810
+#: assets/js/elements.build.js:6823
 #: assets/js/elements.build.min.js:2
 msgid "Height"
 msgstr ""
 
-#: assets/js/editor.build.js:9727
+#: assets/js/editor.build.js:12904
 #: assets/js/editor.build.min.js:2
 msgid "Preserve Aspect Ratio"
 msgstr ""
 
-#: assets/js/editor.build.js:9730
-#: assets/js/editor.build.js:15951
+#: assets/js/editor.build.js:12907
+#: assets/js/editor.build.js:20775
 #: assets/js/editor.build.min.js:2
 msgid "Default"
 msgstr ""
 
-#: assets/js/editor.build.js:9855
+#: assets/js/editor.build.js:13005
 #: assets/js/editor.build.min.js:2
-#: assets/pro/js/image-generator.build.js:2833
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Image Exported Successfully"
+msgid "Icons"
 msgstr ""
 
-#: assets/js/editor.build.js:9866
+#: assets/js/editor.build.js:13021
 #: assets/js/editor.build.min.js:2
-#: assets/pro/js/image-generator.build.js:2265
-#: assets/pro/js/image-generator.build.js:2845
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Export Image to Media Library"
+msgid "Shapes"
 msgstr ""
 
-#: assets/js/editor.build.js:9873
+#: assets/js/editor.build.js:13035
+#: assets/js/editor.build.js:13546
+#: assets/js/editor.build.js:14507
+#: assets/js/editor.build.js:16792
+#: assets/js/editor.build.js:22827
 #: assets/js/editor.build.min.js:2
-#: assets/pro/js/image-generator.build.js:2855
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Export"
-msgstr ""
-
-#: assets/js/editor.build.js:9879
-#: assets/js/editor.build.js:13900
-#: assets/js/editor.build.js:15931
-#: assets/js/editor.build.min.js:2
-msgid "Image"
-msgstr ""
-
-#: assets/js/editor.build.js:9930
-#: assets/js/editor.build.min.js:2
-msgid "Metadata"
-msgstr ""
-
-#: assets/js/editor.build.js:9936
-#: assets/js/editor.build.js:11215
-#: assets/js/editor.build.js:11370
-#: assets/js/editor.build.min.js:2
-#: assets/js/free-images.build.js:1173
-#: assets/js/free-images.build.min.js:2
-#: assets/pro/js/image-generator.build.js:2891
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Alternative Text"
-msgstr ""
-
-#: assets/js/editor.build.js:9940
-#: assets/js/editor.build.js:11219
-#: assets/js/editor.build.js:11374
-#: assets/js/editor.build.min.js:2
-#: assets/js/free-images.build.js:1177
-#: assets/js/free-images.build.min.js:2
-#: assets/pro/js/image-generator.build.js:2895
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Caption"
-msgstr ""
-
-#: assets/js/editor.build.js:9944
-#: assets/js/editor.build.js:11223
-#: assets/js/editor.build.js:11378
-#: assets/js/editor.build.js:14253
-#: assets/js/editor.build.min.js:2
-#: assets/js/free-images.build.js:1181
-#: assets/js/free-images.build.min.js:2
-#: assets/js/projects.build.js:3579
-#: assets/js/projects.build.min.js:2
-#: assets/pro/js/image-generator.build.js:2899
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Description"
-msgstr ""
-
-#: assets/js/editor.build.js:10096
-#: assets/js/editor.build.min.js:2
-msgid "Font Manager"
-msgstr ""
-
-#: assets/js/editor.build.js:10105
-#: assets/js/editor.build.min.js:2
-msgid "Done"
-msgstr ""
-
-#: assets/js/editor.build.js:10111
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:642
-#: assets/js/fonts.build.min.js:2
-msgid "Google Fonts"
-msgstr ""
-
-#: assets/js/editor.build.js:10123
-#: assets/js/editor.build.js:10980
-#: assets/js/editor.build.js:13232
-#: assets/js/editor.build.js:17912
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:737
-#: assets/js/fonts.build.min.js:2
 #: assets/js/free-images.build.js:564
 #: assets/js/free-images.build.min.js:2
 #: assets/js/projects.build.js:2372
@@ -733,2187 +729,10 @@ msgstr ""
 msgid "Category"
 msgstr ""
 
-#: assets/js/editor.build.js:10134
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:744
-#: assets/js/fonts.build.min.js:2
-msgid "Language"
-msgstr ""
-
-#: assets/js/editor.build.js:10145
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:751
-#: assets/js/fonts.build.min.js:2
-msgid "Variant"
-msgstr ""
-
-#: assets/js/editor.build.js:10158
-#: assets/js/editor.build.min.js:2
-#: assets/pro/js/fonts.build.js:27
-msgid "Custom Fonts"
-msgstr ""
-
-#: assets/js/editor.build.js:10160
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:803
-#: assets/js/fonts.build.min.js:2
-msgid "Font Family Name"
-msgstr ""
-
-#: assets/js/editor.build.js:10179
-#: assets/js/editor.build.js:10206
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:302
-#: assets/js/fonts.build.min.js:2
-msgid "Add to List"
-msgstr ""
-
-#: assets/js/editor.build.js:10227
-#: assets/js/editor.build.js:10462
-#: assets/js/editor.build.js:10729
-#: assets/js/editor.build.js:11043
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:319
-#: assets/js/fonts.build.min.js:2
-#: assets/js/free-images.build.js:400
-#: assets/js/free-images.build.min.js:2
-#: assets/js/projects.build.js:3105
-#: assets/js/projects.build.min.js:2
-#: assets/js/templates.build.js:244
-#: assets/js/templates.build.min.js:2
-#: assets/pro/js/image-generator.build.js:2587
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "No Items Found"
-msgstr ""
-
-#: assets/js/editor.build.js:10242
-#: assets/js/editor.build.min.js:2
-msgid "Font List"
-msgstr ""
-
-#: assets/js/editor.build.js:10245
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:357
-#: assets/js/fonts.build.js:457
-#: assets/js/fonts.build.min.js:2
-msgid "No Fonts Selected"
-msgstr ""
-
-#: assets/js/editor.build.js:10278
-#: assets/js/editor.build.min.js:2
-msgid "Preview Settings"
-msgstr ""
-
-#: assets/js/editor.build.js:10280
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:342
-#: assets/js/fonts.build.js:487
-#: assets/js/fonts.build.min.js:2
-msgid "Sample Text"
-msgstr ""
-
-#: assets/js/editor.build.js:10285
-#: assets/js/editor.build.js:12432
-#: assets/js/editor.build.js:13722
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:347
-#: assets/js/fonts.build.min.js:2
-msgid "Font Size"
-msgstr ""
-
-#: assets/js/editor.build.js:10398
-#: assets/js/editor.build.min.js:2
-#: assets/js/free-images.build.js:340
-#: assets/js/free-images.build.min.js:2
-#: assets/js/settings.build.js:281
-#: assets/js/settings.build.min.js:2
-msgid "Pixabay"
-msgstr ""
-
-#: assets/js/editor.build.js:10405
-#: assets/js/editor.build.min.js:2
-#: assets/js/free-images.build.js:351
-#: assets/js/free-images.build.min.js:2
-#: assets/js/settings.build.js:284
-#: assets/js/settings.build.min.js:2
-msgid "Pexels"
-msgstr ""
-
-#: assets/js/editor.build.js:10412
-#: assets/js/editor.build.min.js:2
-#: assets/js/free-images.build.js:362
-#: assets/js/free-images.build.min.js:2
-#: assets/js/settings.build.js:287
-#: assets/js/settings.build.min.js:2
-msgid "Unsplash"
-msgstr ""
-
-#: assets/js/editor.build.js:10433
-#: assets/js/editor.build.min.js:2
-msgid "Import Royalty Free Image"
-msgstr ""
-
-#: assets/js/editor.build.js:10447
-#: assets/js/editor.build.js:10696
-#: assets/js/editor.build.min.js:2
-#: assets/js/elements.build.js:6876
-#: assets/js/elements.build.min.js:2
-msgid "Import"
-msgstr ""
-
-#: assets/js/editor.build.js:10524
-#: assets/js/editor.build.min.js:2
-msgid "Welcome to PixMagix Help Center!"
-msgstr ""
-
-#: assets/js/editor.build.js:10529
-#: assets/js/editor.build.min.js:2
-msgid "We're here to provide you with the assistance you need to create stunning graphics."
-msgstr ""
-
-#: assets/js/editor.build.js:10529
-#: assets/js/editor.build.min.js:2
-msgid "How can we help you?"
-msgstr ""
-
-#: assets/js/editor.build.js:10529
-#: assets/js/editor.build.min.js:2
-msgid "We offer the following resources at your disposal to help you get the most out of PixMagix:"
-msgstr ""
-
-#: assets/js/editor.build.js:10532
-#: assets/js/editor.build.min.js:2
-msgid "Documentation"
-msgstr ""
-
-#: assets/js/editor.build.js:10533
-#: assets/js/editor.build.min.js:2
-msgid "Our documentation provides comprehensive information on how to use PixMagix. It covers topics from the basic functionality to advanced techniques. Click the button to access the documentation."
-msgstr ""
-
-#: assets/js/editor.build.js:10537
-#: assets/js/editor.build.min.js:2
-msgid "See Docs"
-msgstr ""
-
-#: assets/js/editor.build.js:10540
-#: assets/js/editor.build.min.js:2
-msgid "FAQ"
-msgstr ""
-
-#: assets/js/editor.build.js:10541
-#: assets/js/editor.build.min.js:2
-msgid "Find quick answers to common questions about using our plugin. From beginners to experts, our FAQ section is a valuable resource to troubleshoot issues and maximize plugin functionality. Explore the comprehensive list of frequently asked questions for a convenient and time-saving solution."
-msgstr ""
-
-#: assets/js/editor.build.js:10545
-#: assets/js/editor.build.min.js:2
-msgid "Visit FAQ"
-msgstr ""
-
-#: assets/js/editor.build.js:10548
-#: assets/js/editor.build.min.js:2
-msgid "Features"
-msgstr ""
-
-#: assets/js/editor.build.js:10549
-#: assets/js/editor.build.min.js:2
-msgid "See the full range of tools and features available in PixMagix. Browse through the feature list to discover new and exciting ways to create beautiful graphics. Click the button to see the full list."
-msgstr ""
-
-#: assets/js/editor.build.js:10553
-#: assets/js/editor.build.min.js:2
-msgid "Explore Features"
-msgstr ""
-
-#: assets/js/editor.build.js:10556
-#: assets/js/editor.build.min.js:2
-msgid "Blog"
-msgstr ""
-
-#: assets/js/editor.build.js:10557
-#: assets/js/editor.build.min.js:2
-msgid "Stay updated with step-by-step guides, tips, and news in the world of PixMagix on our regularly updated blog. Learn new skills, get inspiration, and stay at the forefront of design trends with our informative and engaging blog posts. Check it out today!"
-msgstr ""
-
-#: assets/js/editor.build.js:10561
-#: assets/js/editor.build.min.js:2
-msgid "Check Blog"
-msgstr ""
-
-#: assets/js/editor.build.js:10564
-#: assets/js/editor.build.min.js:2
-msgid "Contact"
-msgstr ""
-
-#: assets/js/editor.build.js:10565
-#: assets/js/editor.build.min.js:2
-msgid "If you have any queries or issues, don't hesitate to contact our support team. Our team is available to assist you 24/7. Click the button to access the support page."
-msgstr ""
-
-#: assets/js/editor.build.js:10569
-#: assets/js/editor.build.min.js:2
-msgid "Contact us"
-msgstr ""
-
-#: assets/js/editor.build.js:10571
-#: assets/js/editor.build.min.js:2
-msgid "We hope these resources are useful in your creative journey with PixMagix. Happy designing!"
-msgstr ""
-
-#: assets/js/editor.build.js:10682
-#: assets/js/editor.build.min.js:2
-msgid "Import Image From Media Library"
-msgstr ""
-
-#: assets/js/editor.build.js:10708
-#: assets/js/editor.build.js:11011
-#: assets/js/editor.build.min.js:2
-#: assets/js/projects.build.js:2555
-#: assets/js/projects.build.min.js:2
-#: assets/pro/js/image-generator.build.js:2559
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Date"
-msgstr ""
-
-#: assets/js/editor.build.js:10739
-#: assets/js/editor.build.min.js:2
-msgid "Select Image"
-msgstr ""
-
-#: assets/js/editor.build.js:10802
-#: assets/js/editor.build.js:16938
-#: assets/js/editor.build.min.js:2
-msgid "Keyboard Shortcuts"
-msgstr ""
-
-#: assets/js/editor.build.js:10965
-#: assets/js/editor.build.js:15511
-#: assets/js/editor.build.min.js:2
-msgid "Open Project"
-msgstr ""
-
-#: assets/js/editor.build.js:10991
-#: assets/js/editor.build.js:14259
-#: assets/js/editor.build.min.js:2
-#: assets/js/projects.build.js:2535
-#: assets/js/projects.build.js:3585
-#: assets/js/projects.build.min.js:2
-msgid "Status"
-msgstr ""
-
-#: assets/js/editor.build.js:10994
-#: assets/js/editor.build.min.js:2
-#: assets/js/projects.build.js:2538
-#: assets/js/projects.build.min.js:2
-msgid "All"
-msgstr ""
-
-#: assets/js/editor.build.js:10997
-#: assets/js/editor.build.js:14262
-#: assets/js/editor.build.min.js:2
-#: assets/js/projects.build.js:2541
-#: assets/js/projects.build.js:3587
-#: assets/js/projects.build.min.js:2
-msgid "Publish"
-msgstr ""
-
-#: assets/js/editor.build.js:11000
-#: assets/js/editor.build.js:14265
-#: assets/js/editor.build.min.js:2
-#: assets/js/projects.build.js:2544
-#: assets/js/projects.build.js:3590
-#: assets/js/projects.build.min.js:2
-msgid "Private"
-msgstr ""
-
-#: assets/js/editor.build.js:11022
-#: assets/js/editor.build.min.js:2
-#: assets/js/projects.build.js:2566
-#: assets/js/projects.build.min.js:2
-#: assets/pro/js/image-generator.build.js:2568
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Author"
-msgstr ""
-
-#: assets/js/editor.build.js:11170
-#: assets/js/editor.build.min.js:2
-msgid "Media Image Replaced Successfully"
-msgstr ""
-
-#: assets/js/editor.build.js:11197
-#: assets/js/editor.build.min.js:2
-msgid "Replace Media Image"
-msgstr ""
-
-#: assets/js/editor.build.js:11204
-#: assets/js/editor.build.min.js:2
-#: assets/js/elements.build.js:6855
-#: assets/js/elements.build.js:6864
-#: assets/js/elements.build.min.js:2
-msgid "Replace"
-msgstr ""
-
-#: assets/js/editor.build.js:11208
-#: assets/js/editor.build.js:11364
-#: assets/js/editor.build.js:16045
-#: assets/js/editor.build.min.js:2
-msgid "Original"
-msgstr ""
-
-#: assets/js/editor.build.js:11325
-#: assets/js/editor.build.min.js:2
-msgid "The Original Media Image Restored Successfully"
-msgstr ""
-
-#: assets/js/editor.build.js:11359
-#: assets/js/editor.build.min.js:2
-msgid "Restore"
-msgstr ""
-
-#: assets/js/editor.build.js:11363
-#: assets/js/editor.build.min.js:2
-msgid "Edited"
-msgstr ""
-
-#: assets/js/editor.build.js:11452
-#: assets/js/editor.build.js:15514
-#: assets/js/editor.build.min.js:2
-msgid "Save Project as"
-msgstr ""
-
-#: assets/js/editor.build.js:11461
-#: assets/js/editor.build.js:17082
-#: assets/js/editor.build.min.js:2
-msgid "Please create something, before you save!"
-msgstr ""
-
-#: assets/js/editor.build.js:11486
-#: assets/js/editor.build.js:17116
-#: assets/js/editor.build.min.js:2
-#: assets/js/projects.build.js:3524
-#: assets/js/projects.build.min.js:2
-msgid "Project Saved Successfully"
-msgstr ""
-
-#: assets/js/editor.build.js:11492
-#: assets/js/editor.build.min.js:2
-msgid "Save Failed"
-msgstr ""
-
-#: assets/js/editor.build.js:11499
-#: assets/js/editor.build.min.js:2
-#: assets/js/projects.build.js:3399
-#: assets/js/projects.build.min.js:2
-#: assets/js/templates.build.js:482
-#: assets/js/templates.build.min.js:2
-msgid "Project Name"
-msgstr ""
-
-#: assets/js/editor.build.js:11725
-#: assets/js/editor.build.min.js:2
-msgid "Font Awesome Icons"
-msgstr ""
-
-#: assets/js/editor.build.js:11753
-#: assets/js/editor.build.min.js:2
-msgid "Upload Custom SVG"
-msgstr ""
-
-#: assets/js/editor.build.js:11761
-#: assets/js/editor.build.js:12038
-#: assets/js/editor.build.min.js:2
-msgid "Upload From Computer"
-msgstr ""
-
-#: assets/js/editor.build.js:11770
-#: assets/js/editor.build.min.js:2
-msgid "Selected SVG"
-msgstr ""
-
-#: assets/js/editor.build.js:11775
-#: assets/js/editor.build.min.js:2
-msgid "Import SVG as One Layer"
-msgstr ""
-
-#: assets/js/editor.build.js:11779
-#: assets/js/editor.build.min.js:2
-msgid "Resize Canvas to SVG Size"
-msgstr ""
-
-#: assets/js/editor.build.js:11804
-#: assets/js/editor.build.min.js:2
-msgid "SVG Parsing Failed"
-msgstr ""
-
-#: assets/js/editor.build.js:11810
-#: assets/js/editor.build.js:12510
-#: assets/js/editor.build.js:12758
-#: assets/js/editor.build.js:12866
-#: assets/js/editor.build.js:12991
-#: assets/js/editor.build.js:14059
-#: assets/js/editor.build.min.js:2
-msgid "Stroke"
-msgstr ""
-
-#: assets/js/editor.build.js:11813
-#: assets/js/editor.build.js:12513
-#: assets/js/editor.build.js:12761
-#: assets/js/editor.build.js:12869
-#: assets/js/editor.build.js:12994
-#: assets/js/editor.build.js:14062
-#: assets/js/editor.build.min.js:2
-msgid "Stroke Width"
-msgstr ""
-
-#: assets/js/editor.build.js:11827
-#: assets/js/editor.build.js:12527
-#: assets/js/editor.build.js:12887
-#: assets/js/editor.build.js:14097
-#: assets/js/editor.build.min.js:2
-msgid "Fill"
-msgstr ""
-
-#: assets/js/editor.build.js:11836
-#: assets/js/editor.build.js:12263
-#: assets/js/editor.build.js:12536
-#: assets/js/editor.build.js:12779
-#: assets/js/editor.build.js:12898
-#: assets/js/editor.build.js:13059
-#: assets/js/editor.build.js:14114
-#: assets/js/editor.build.min.js:2
-msgid "Shadow"
-msgstr ""
-
-#: assets/js/editor.build.js:11964
-#: assets/js/editor.build.min.js:2
-msgid "Import From Media"
-msgstr ""
-
-#: assets/js/editor.build.js:11972
-#: assets/js/editor.build.js:12011
-#: assets/js/editor.build.js:12051
-#: assets/js/editor.build.min.js:2
-#: assets/pro/js/editor.build.js:10252
-#: assets/pro/js/editor.build.min.js:1
-msgid "Resize Canvas to Image Size"
-msgstr ""
-
-#: assets/js/editor.build.js:11980
-#: assets/js/editor.build.js:12019
-#: assets/js/editor.build.min.js:2
-#: assets/js/free-images.build.js:1164
-#: assets/js/free-images.build.min.js:2
-#: assets/pro/js/gutenberg.build.js:378
-#: assets/pro/js/gutenberg.build.min.js:2
-msgid "Image Size"
-msgstr ""
-
-#: assets/js/editor.build.js:12003
-#: assets/js/editor.build.min.js:2
-msgid "Import Free Image"
-msgstr ""
-
-#: assets/js/editor.build.js:12089
-#: assets/js/editor.build.js:15472
-#: assets/js/editor.build.js:15847
-#: assets/js/editor.build.min.js:2
-msgid "Add Image"
-msgstr ""
-
-#: assets/js/editor.build.js:12176
-#: assets/js/editor.build.js:15481
-#: assets/js/editor.build.js:15862
-#: assets/js/editor.build.min.js:2
-msgid "Add QR Code"
-msgstr ""
-
-#: assets/js/editor.build.js:12178
-#: assets/js/editor.build.js:12389
-#: assets/js/editor.build.js:13825
-#: assets/js/editor.build.min.js:2
-msgid "Write Text Here..."
-msgstr ""
-
-#: assets/js/editor.build.js:12201
-#: assets/js/editor.build.min.js:2
-msgid "Generate QR Code"
-msgstr ""
-
-#: assets/js/editor.build.js:12207
-#: assets/js/editor.build.js:13831
-#: assets/js/editor.build.min.js:2
-#: assets/pro/js/image-generator.build.js:3383
-#: assets/pro/js/image-generator.build.js:3528
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Size"
-msgstr ""
-
-#: assets/js/editor.build.js:12214
-#: assets/js/editor.build.js:13840
-#: assets/js/editor.build.min.js:2
-msgid "Padding"
-msgstr ""
-
-#: assets/js/editor.build.js:12221
-#: assets/js/editor.build.js:13849
-#: assets/js/editor.build.min.js:2
-msgid "Error Correction Level"
-msgstr ""
-
-#: assets/js/editor.build.js:12241
-#: assets/js/editor.build.js:12246
-#: assets/js/editor.build.js:13871
-#: assets/js/editor.build.js:13876
-#: assets/js/editor.build.js:16023
-#: assets/js/editor.build.js:16264
-#: assets/js/editor.build.js:16455
-#: assets/js/editor.build.js:17834
-#: assets/js/editor.build.js:17919
-#: assets/js/editor.build.js:17991
-#: assets/js/editor.build.min.js:2
-#: assets/js/elements.build.js:6051
-#: assets/js/elements.build.js:8003
-#: assets/js/elements.build.min.js:2
-#: assets/js/free-images.build.js:486
-#: assets/js/free-images.build.js:571
-#: assets/js/free-images.build.js:643
-#: assets/js/free-images.build.min.js:2
-msgid "Color"
-msgstr ""
-
-#: assets/js/editor.build.js:12252
-#: assets/js/editor.build.js:12257
-#: assets/js/editor.build.js:13884
-#: assets/js/editor.build.js:13889
-#: assets/js/editor.build.min.js:2
-#: assets/js/templates.build.js:333
-#: assets/js/templates.build.min.js:2
-msgid "Background"
-msgstr ""
-
-#: assets/js/editor.build.js:12387
-#: assets/js/editor.build.js:12426
-#: assets/js/editor.build.js:15475
-#: assets/js/editor.build.js:15852
-#: assets/js/editor.build.min.js:2
-msgid "Add Text"
-msgstr ""
-
-#: assets/js/editor.build.js:12429
-#: assets/js/editor.build.js:13713
-#: assets/js/editor.build.min.js:2
-msgid "Font"
-msgstr ""
-
-#: assets/js/editor.build.js:12439
-#: assets/js/editor.build.js:13731
-#: assets/js/editor.build.min.js:2
-msgid "Line Height"
-msgstr ""
-
-#: assets/js/editor.build.js:12447
-#: assets/js/editor.build.js:13741
-#: assets/js/editor.build.min.js:2
-msgid "Character Spacing"
-msgstr ""
-
-#: assets/js/editor.build.js:12454
-#: assets/js/editor.build.js:13750
-#: assets/js/editor.build.min.js:2
-msgid "Font Family"
-msgstr ""
-
-#: assets/js/editor.build.js:12463
-#: assets/js/editor.build.js:13767
-#: assets/js/editor.build.min.js:2
-msgid "Text Style"
-msgstr ""
-
-#: assets/js/editor.build.js:12465
-#: assets/js/editor.build.js:13769
-#: assets/js/editor.build.min.js:2
-msgid "Bold"
-msgstr ""
-
-#: assets/js/editor.build.js:12473
-#: assets/js/editor.build.js:13777
-#: assets/js/editor.build.min.js:2
-msgid "Italic"
-msgstr ""
-
-#: assets/js/editor.build.js:12481
-#: assets/js/editor.build.js:13785
-#: assets/js/editor.build.min.js:2
-msgid "Underline"
-msgstr ""
-
-#: assets/js/editor.build.js:12487
-#: assets/js/editor.build.js:13793
-#: assets/js/editor.build.min.js:2
-msgid "Text Align"
-msgstr ""
-
-#: assets/js/editor.build.js:12489
-#: assets/js/editor.build.js:13795
-#: assets/js/editor.build.min.js:2
-msgid "Left"
-msgstr ""
-
-#: assets/js/editor.build.js:12493
-#: assets/js/editor.build.js:13799
-#: assets/js/editor.build.min.js:2
-msgid "Center"
-msgstr ""
-
-#: assets/js/editor.build.js:12497
-#: assets/js/editor.build.js:13803
-#: assets/js/editor.build.min.js:2
-msgid "Right"
-msgstr ""
-
-#: assets/js/editor.build.js:12501
-#: assets/js/editor.build.js:13807
-#: assets/js/editor.build.min.js:2
-msgid "Justify"
-msgstr ""
-
-#: assets/js/editor.build.js:12618
-#: assets/js/editor.build.js:15493
-#: assets/js/editor.build.js:15882
-#: assets/js/editor.build.min.js:2
-msgid "Crop Canvas"
-msgstr ""
-
-#: assets/js/editor.build.js:12620
-#: assets/js/editor.build.min.js:2
-msgid "Aspect Ratio"
-msgstr ""
-
-#: assets/js/editor.build.js:12627
-#: assets/js/editor.build.min.js:2
-#: assets/js/elements.build.js:6794
-#: assets/js/elements.build.min.js:2
-msgid "Scale"
-msgstr ""
-
-#: assets/js/editor.build.js:12647
-#: assets/js/editor.build.min.js:2
-msgid "Pan X"
-msgstr ""
-
-#: assets/js/editor.build.js:12654
-#: assets/js/editor.build.min.js:2
-msgid "Pan Y"
-msgstr ""
-
-#: assets/js/editor.build.js:12672
-#: assets/js/editor.build.min.js:2
-msgid "Crop"
-msgstr ""
-
-#: assets/js/editor.build.js:12726
-#: assets/js/editor.build.js:15490
-#: assets/js/editor.build.js:15877
-#: assets/js/editor.build.min.js:2
-msgid "Draw Path"
-msgstr ""
-
-#: assets/js/editor.build.js:12728
-#: assets/js/editor.build.min.js:2
-msgid "Path Type"
-msgstr ""
-
-#: assets/js/editor.build.js:12731
-#: assets/js/editor.build.min.js:2
-msgid "Cubic Bezier"
-msgstr ""
-
-#: assets/js/editor.build.js:12734
-#: assets/js/editor.build.min.js:2
-msgid "Quadratic Bezier"
-msgstr ""
-
-#: assets/js/editor.build.js:12737
-#: assets/js/editor.build.js:15915
-#: assets/js/editor.build.min.js:2
-msgid "Polyline"
-msgstr ""
-
-#: assets/js/editor.build.js:12740
-#: assets/js/editor.build.js:15919
-#: assets/js/editor.build.min.js:2
-msgid "Polygon"
-msgstr ""
-
-#: assets/js/editor.build.js:12755
-#: assets/js/editor.build.js:12863
-#: assets/js/editor.build.js:12988
-#: assets/js/editor.build.min.js:2
-msgid "Stop Drawing"
-msgstr ""
-
-#: assets/js/editor.build.js:12755
-#: assets/js/editor.build.js:12863
-#: assets/js/editor.build.js:12988
-#: assets/js/editor.build.min.js:2
-msgid "Start Drawing"
-msgstr ""
-
-#: assets/js/editor.build.js:12843
-#: assets/js/editor.build.min.js:2
-msgid "Select Shape"
-msgstr ""
-
-#: assets/js/editor.build.js:12965
-#: assets/js/editor.build.js:15872
-#: assets/js/editor.build.min.js:2
-msgid "Free Hand Draw"
-msgstr ""
-
-#: assets/js/editor.build.js:12967
-#: assets/js/editor.build.min.js:2
-msgid "Pencil Type"
-msgstr ""
-
-#: assets/js/editor.build.js:12969
-#: assets/js/editor.build.min.js:2
-msgid "Pencil"
-msgstr ""
-
-#: assets/js/editor.build.js:12972
-#: assets/js/editor.build.js:15899
-#: assets/js/editor.build.js:17152
-#: assets/js/editor.build.min.js:2
-msgid "Circle"
-msgstr ""
-
-#: assets/js/editor.build.js:12975
-#: assets/js/editor.build.min.js:2
-msgid "Spray"
-msgstr ""
-
-#: assets/js/editor.build.js:13191
-#: assets/js/editor.build.min.js:2
-#: assets/js/projects.build.js:2331
-#: assets/js/projects.build.min.js:2
-msgid "Enter a Category Name"
-msgstr ""
-
-#: assets/js/editor.build.js:13211
-#: assets/js/editor.build.min.js:2
-#: assets/js/projects.build.js:2351
-#: assets/js/projects.build.min.js:2
-msgid "Category Created Successfully"
-msgstr ""
-
-#: assets/js/editor.build.js:13219
-#: assets/js/editor.build.min.js:2
-#: assets/js/projects.build.js:2359
-#: assets/js/projects.build.min.js:2
-msgid "New Category Name"
-msgstr ""
-
-#: assets/js/editor.build.js:13226
-#: assets/js/editor.build.min.js:2
-#: assets/js/projects.build.js:2366
-#: assets/js/projects.build.min.js:2
-#: assets/pro/js/gutenberg.build.js:652
-#: assets/pro/js/gutenberg.build.min.js:2
-#: assets/pro/js/settings.build.js:140
-#: assets/pro/js/settings.build.min.js:1
-msgid "Create"
-msgstr ""
-
-#: assets/js/editor.build.js:13231
-#: assets/js/editor.build.min.js:2
-#: assets/js/projects.build.js:2371
-#: assets/js/projects.build.min.js:2
-msgid "Cancel"
-msgstr ""
-
-#: assets/js/editor.build.js:13250
-#: assets/js/editor.build.min.js:2
-#: assets/js/projects.build.js:2388
-#: assets/js/projects.build.min.js:2
-msgid "Manage Categories"
-msgstr ""
-
-#: assets/js/editor.build.js:13366
-#: assets/js/editor.build.min.js:2
-msgid "Select Layer"
-msgstr ""
-
-#: assets/js/editor.build.js:13388
-#: assets/js/editor.build.min.js:2
-msgid "Layer Name..."
-msgstr ""
-
-#: assets/js/editor.build.js:13434
-#: assets/js/editor.build.min.js:2
-msgid "Layers"
-msgstr ""
-
-#: assets/js/editor.build.js:13567
-#: assets/js/editor.build.min.js:2
-msgid "Transform"
-msgstr ""
-
-#: assets/js/editor.build.js:13571
-#: assets/js/editor.build.min.js:2
-msgid "Translate X"
-msgstr ""
-
-#: assets/js/editor.build.js:13578
-#: assets/js/editor.build.min.js:2
-msgid "Translate Y"
-msgstr ""
-
-#: assets/js/editor.build.js:13585
-#: assets/js/editor.build.min.js:2
-msgid "Scale X"
-msgstr ""
-
-#: assets/js/editor.build.js:13593
-#: assets/js/editor.build.min.js:2
-msgid "Scale Y"
-msgstr ""
-
-#: assets/js/editor.build.js:13601
-#: assets/js/editor.build.min.js:2
-msgid "Skew X"
-msgstr ""
-
-#: assets/js/editor.build.js:13608
-#: assets/js/editor.build.min.js:2
-msgid "Skew Y"
-msgstr ""
-
-#: assets/js/editor.build.js:13615
-#: assets/js/editor.build.min.js:2
-msgid "Angle"
-msgstr ""
-
-#: assets/js/editor.build.js:13631
-#: assets/js/editor.build.js:13663
-#: assets/js/editor.build.js:13678
-#: assets/js/editor.build.min.js:2
-msgid "Dimensions"
-msgstr ""
-
-#: assets/js/editor.build.js:13649
-#: assets/js/editor.build.min.js:2
-msgid "Corner Radius"
-msgstr ""
-
-#: assets/js/editor.build.js:13667
-#: assets/js/editor.build.min.js:2
-msgid "Radius"
-msgstr ""
-
-#: assets/js/editor.build.js:13716
-#: assets/js/editor.build.js:13824
-#: assets/js/editor.build.js:14899
-#: assets/js/editor.build.js:15923
-#: assets/js/editor.build.js:15927
-#: assets/js/editor.build.min.js:2
-#: assets/pro/js/image-generator.build.js:3103
-#: assets/pro/js/image-generator.build.js:3161
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Text"
-msgstr ""
-
-#: assets/js/editor.build.js:13821
-#: assets/js/editor.build.min.js:2
-msgid "QR Code Settings"
-msgstr ""
-
-#: assets/js/editor.build.js:13945
-msgid "Clip Path"
-msgstr ""
-
-#: assets/js/editor.build.js:13982
-#: assets/js/editor.build.js:14014
-#: assets/js/editor.build.min.js:2
-msgid "Filters"
-msgstr ""
-
-#: assets/js/editor.build.js:13985
-#: assets/js/editor.build.min.js:2
-msgid "Add Filters"
-msgstr ""
-
-#: assets/js/editor.build.js:14078
-#: assets/js/editor.build.min.js:2
-msgid "Stroke Dash Array"
-msgstr ""
-
-#: assets/js/editor.build.js:14085
-#: assets/js/editor.build.min.js:2
-msgid "Stroke Dash Offset"
-msgstr ""
-
-#: assets/js/editor.build.js:14101
-#: assets/js/editor.build.min.js:2
-msgid "Fill Style"
-msgstr ""
-
-#: assets/js/editor.build.js:14103
-#: assets/js/editor.build.min.js:2
-msgid "Fill Gradient"
-msgstr ""
-
-#: assets/js/editor.build.js:14124
-#: assets/js/editor.build.min.js:2
-msgid "Blending"
-msgstr ""
-
-#: assets/js/editor.build.js:14127
-#: assets/js/editor.build.min.js:2
-msgid "Opacity"
-msgstr ""
-
-#: assets/js/editor.build.js:14136
-#: assets/js/editor.build.min.js:2
-msgid "Blending Mode"
-msgstr ""
-
-#: assets/js/editor.build.js:14205
-#: assets/js/editor.build.min.js:2
-msgid "Canvas Settings"
-msgstr ""
-
-#: assets/js/editor.build.js:14228
-#: assets/js/editor.build.min.js:2
-msgid "Canvas Background"
-msgstr ""
-
-#: assets/js/editor.build.js:14232
-#: assets/js/editor.build.min.js:2
-msgid "Background Style"
-msgstr ""
-
-#: assets/js/editor.build.js:14233
-#: assets/js/editor.build.min.js:2
-msgid "Background Color"
-msgstr ""
-
-#: assets/js/editor.build.js:14234
-#: assets/js/editor.build.min.js:2
-msgid "Background Gradient"
-msgstr ""
-
-#: assets/js/editor.build.js:14244
-#: assets/js/editor.build.min.js:2
-msgid "Project Metadata"
-msgstr ""
-
-#: assets/js/editor.build.js:15452
-#: assets/js/editor.build.min.js:2
-msgid "Globals"
-msgstr ""
-
-#: assets/js/editor.build.js:15456
-#: assets/js/editor.build.min.js:2
-msgid "Open New Project"
-msgstr ""
-
-#: assets/js/editor.build.js:15459
-#: assets/js/editor.build.min.js:2
-msgid "Save Project"
-msgstr ""
-
-#: assets/js/editor.build.js:15468
-#: assets/js/editor.build.min.js:2
-msgid "Toolbar"
-msgstr ""
-
-#: assets/js/editor.build.js:15478
-#: assets/js/editor.build.min.js:2
-msgid "Add Icon"
-msgstr ""
-
-#: assets/js/editor.build.js:15484
-#: assets/js/editor.build.js:15867
-#: assets/js/editor.build.min.js:2
-msgid "Draw Shape"
-msgstr ""
-
-#: assets/js/editor.build.js:15487
-#: assets/js/editor.build.min.js:2
-msgid "Free-Hand Draw"
-msgstr ""
-
-#: assets/js/editor.build.js:15496
-#: assets/js/editor.build.min.js:2
-msgid "Ruler Menu"
-msgstr ""
-
-#: assets/js/editor.build.js:15499
-#: assets/js/editor.build.min.js:2
-msgid "Toggle Rulers"
-msgstr ""
-
-#: assets/js/editor.build.js:15502
-#: assets/js/editor.build.min.js:2
-msgid "Toggle Cursors"
-msgstr ""
-
-#: assets/js/editor.build.js:15505
-#: assets/js/editor.build.js:17020
-#: assets/js/editor.build.min.js:2
-msgid "Clear Guides"
-msgstr ""
-
-#: assets/js/editor.build.js:15508
-#: assets/js/editor.build.min.js:2
-msgid "Options Menu"
-msgstr ""
-
-#: assets/js/editor.build.js:15517
-#: assets/js/editor.build.min.js:2
-msgid "Export Image to Media"
-msgstr ""
-
-#: assets/js/editor.build.js:15520
-#: assets/js/editor.build.js:16910
-#: assets/js/editor.build.min.js:2
-msgid "Download as Image"
-msgstr ""
-
-#: assets/js/editor.build.js:15523
-#: assets/js/editor.build.js:16919
-#: assets/js/editor.build.min.js:2
-msgid "Download as SVG"
-msgstr ""
-
-#: assets/js/editor.build.js:15526
-#: assets/js/editor.build.min.js:2
-msgid "Toggle Fullscreen Mode"
-msgstr ""
-
-#: assets/js/editor.build.js:15529
-#: assets/js/editor.build.min.js:2
-msgid "Open This Modal"
-msgstr ""
-
-#: assets/js/editor.build.js:15532
-#: assets/js/editor.build.min.js:2
-msgid "Open Help Modal"
-msgstr ""
-
-#: assets/js/editor.build.js:15535
-#: assets/js/editor.build.min.js:2
-msgid "Layer Actions"
-msgstr ""
-
-#: assets/js/editor.build.js:15538
-#: assets/js/editor.build.min.js:2
-msgid "Move Layer up in Stack"
-msgstr ""
-
-#: assets/js/editor.build.js:15541
-#: assets/js/editor.build.min.js:2
-msgid "Move Layer Down in Stack"
-msgstr ""
-
-#: assets/js/editor.build.js:15544
-#: assets/js/editor.build.min.js:2
-msgid "Lock/Unlock Layer"
-msgstr ""
-
-#: assets/js/editor.build.js:15547
-#: assets/js/editor.build.min.js:2
-msgid "Toggle Layer is Visible"
-msgstr ""
-
-#: assets/js/editor.build.js:15550
-#: assets/js/editor.build.min.js:2
-msgid "Duplicate Layer"
-msgstr ""
-
-#: assets/js/editor.build.js:15553
-#: assets/js/editor.build.min.js:2
-msgid "Group/Ungroup Layers"
-msgstr ""
-
-#: assets/js/editor.build.js:15556
-#: assets/js/editor.build.js:15750
-#: assets/js/editor.build.min.js:2
-msgid "Remove Layer"
-msgid_plural "Remove Layers"
-msgstr[0] ""
-msgstr[1] ""
-
-#: assets/js/editor.build.js:15559
-#: assets/js/editor.build.min.js:2
-msgid "Selection"
-msgstr ""
-
-#: assets/js/editor.build.js:15562
-#: assets/js/editor.build.min.js:2
-msgid "Multiselection"
-msgstr ""
-
-#: assets/js/editor.build.js:15565
-#: assets/js/editor.build.min.js:2
-msgid "Clear Selection"
-msgstr ""
-
-#: assets/js/editor.build.js:15568
-#: assets/js/editor.build.min.js:2
-msgid "Drawing"
-msgstr ""
-
-#: assets/js/editor.build.js:15571
-#: assets/js/editor.build.min.js:2
-msgid "Start/Stop Drawing"
-msgstr ""
-
-#: assets/js/editor.build.js:15574
-#: assets/js/editor.build.min.js:2
-msgid "Draw a Straight Line (Only When Using Pencil Brush)"
-msgstr ""
-
-#: assets/js/editor.build.js:15577
-#: assets/js/editor.build.min.js:2
-msgid "Kepp Aspect Ratio While Drawing Shape"
-msgstr ""
-
-#: assets/js/editor.build.js:15632
-#: assets/js/editor.build.min.js:2
-msgid "Move Layer up"
-msgstr ""
-
-#: assets/js/editor.build.js:15648
-#: assets/js/editor.build.min.js:2
-msgid "Move Layer Down"
-msgstr ""
-
-#: assets/js/editor.build.js:15664
-#: assets/js/editor.build.min.js:2
-msgid "Unlock Layer"
-msgid_plural "Unlock Layers"
-msgstr[0] ""
-msgstr[1] ""
-
-#: assets/js/editor.build.js:15664
-#: assets/js/editor.build.min.js:2
-msgid "Lock Layer"
-msgid_plural "Lock Layers"
-msgstr[0] ""
-msgstr[1] ""
-
-#: assets/js/editor.build.js:15679
-#: assets/js/editor.build.min.js:2
-msgid "Set Layer to Hidden"
-msgid_plural "Set Layers to Hidden"
-msgstr[0] ""
-msgstr[1] ""
-
-#: assets/js/editor.build.js:15679
-#: assets/js/editor.build.min.js:2
-msgid "Set Layer to Visible"
-msgid_plural "Set Layers to Visible"
-msgstr[0] ""
-msgstr[1] ""
-
-#: assets/js/editor.build.js:15694
-#: assets/js/editor.build.min.js:2
-msgid "Dubplicate Layer"
-msgid_plural "Dubplicate Layers"
-msgstr[0] ""
-msgstr[1] ""
-
-#: assets/js/editor.build.js:15709
-#: assets/js/editor.build.min.js:2
-msgid "Ungroup Layers"
-msgstr ""
-
-#: assets/js/editor.build.js:15709
-#: assets/js/editor.build.min.js:2
-msgid "Group Layers"
-msgstr ""
-
-#: assets/js/editor.build.js:15857
-#: assets/js/editor.build.min.js:2
-msgid "Add Element"
-msgstr ""
-
-#: assets/js/editor.build.js:15895
-#: assets/js/editor.build.min.js:2
-msgid "Rectangle"
-msgstr ""
-
-#: assets/js/editor.build.js:15903
-#: assets/js/editor.build.min.js:2
-msgid "Ellipse"
-msgstr ""
-
-#: assets/js/editor.build.js:15907
-#: assets/js/editor.build.min.js:2
-msgid "Line"
-msgstr ""
-
-#: assets/js/editor.build.js:15911
-#: assets/js/editor.build.min.js:2
-msgid "Path"
-msgstr ""
-
-#: assets/js/editor.build.js:15935
-#: assets/js/editor.build.min.js:2
-msgid "QR Code"
-msgstr ""
-
-#: assets/js/editor.build.js:15939
-#: assets/js/editor.build.min.js:2
-msgid "Group"
-msgstr ""
-
-#: assets/js/editor.build.js:15954
-#: assets/js/editor.build.min.js:2
-msgid "Source In"
-msgstr ""
-
-#: assets/js/editor.build.js:15957
-#: assets/js/editor.build.min.js:2
-msgid "Source Out"
-msgstr ""
-
-#: assets/js/editor.build.js:15960
-#: assets/js/editor.build.min.js:2
-msgid "Source Atop"
-msgstr ""
-
-#: assets/js/editor.build.js:15963
-#: assets/js/editor.build.min.js:2
-msgid "Destination Over"
-msgstr ""
-
-#: assets/js/editor.build.js:15966
-#: assets/js/editor.build.min.js:2
-msgid "Destination In"
-msgstr ""
-
-#: assets/js/editor.build.js:15969
-#: assets/js/editor.build.min.js:2
-msgid "Destination Out"
-msgstr ""
-
-#: assets/js/editor.build.js:15972
-#: assets/js/editor.build.min.js:2
-msgid "Destination Atop"
-msgstr ""
-
-#: assets/js/editor.build.js:15975
-#: assets/js/editor.build.min.js:2
-msgid "Lighter"
-msgstr ""
-
-#: assets/js/editor.build.js:15978
-#: assets/js/editor.build.min.js:2
-msgid "Copy"
-msgstr ""
-
-#: assets/js/editor.build.js:15981
-#: assets/js/editor.build.min.js:2
-msgid "XOR"
-msgstr ""
-
-#: assets/js/editor.build.js:15984
-#: assets/js/editor.build.js:16432
-#: assets/js/editor.build.min.js:2
-msgid "Multiply"
-msgstr ""
-
-#: assets/js/editor.build.js:15987
-#: assets/js/editor.build.js:16435
-#: assets/js/editor.build.min.js:2
-msgid "Screen"
-msgstr ""
-
-#: assets/js/editor.build.js:15990
-#: assets/js/editor.build.js:16444
-#: assets/js/editor.build.min.js:2
-msgid "Overlay"
-msgstr ""
-
-#: assets/js/editor.build.js:15993
-#: assets/js/editor.build.js:16441
-#: assets/js/editor.build.min.js:2
-msgid "Darken"
-msgstr ""
-
-#: assets/js/editor.build.js:15996
-#: assets/js/editor.build.js:16438
-#: assets/js/editor.build.min.js:2
-msgid "Lighten"
-msgstr ""
-
-#: assets/js/editor.build.js:15999
-#: assets/js/editor.build.min.js:2
-msgid "Color Dodge"
-msgstr ""
-
-#: assets/js/editor.build.js:16002
-#: assets/js/editor.build.min.js:2
-msgid "Color Burn"
-msgstr ""
-
-#: assets/js/editor.build.js:16005
-#: assets/js/editor.build.min.js:2
-msgid "Hard Light"
-msgstr ""
-
-#: assets/js/editor.build.js:16008
-#: assets/js/editor.build.min.js:2
-msgid "Soft Light"
-msgstr ""
-
-#: assets/js/editor.build.js:16011
-#: assets/js/editor.build.min.js:2
-msgid "Difference"
-msgstr ""
-
-#: assets/js/editor.build.js:16014
-#: assets/js/editor.build.js:16447
-#: assets/js/editor.build.min.js:2
-msgid "Exclusion"
-msgstr ""
-
-#: assets/js/editor.build.js:16017
-#: assets/js/editor.build.min.js:2
-msgid "Hue"
-msgstr ""
-
-#: assets/js/editor.build.js:16020
-#: assets/js/editor.build.js:16330
-#: assets/js/editor.build.js:16334
-#: assets/js/editor.build.min.js:2
-msgid "Saturation"
-msgstr ""
-
-#: assets/js/editor.build.js:16026
-#: assets/js/editor.build.js:16223
-#: assets/js/editor.build.min.js:2
-msgid "Luminosity"
-msgstr ""
-
-#: assets/js/editor.build.js:16048
-#: assets/js/editor.build.js:17148
-#: assets/js/editor.build.js:18035
-#: assets/js/editor.build.min.js:2
-#: assets/js/free-images.build.js:712
-#: assets/js/free-images.build.min.js:2
-#: assets/js/templates.build.js:353
-#: assets/js/templates.build.min.js:2
-msgid "Square"
-msgstr ""
-
-#: assets/js/editor.build.js:16051
-#: assets/js/editor.build.min.js:2
-msgid "16:10 - Landscape"
-msgstr ""
-
-#: assets/js/editor.build.js:16054
-#: assets/js/editor.build.min.js:2
-msgid "16:9 - Landscape"
-msgstr ""
-
-#: assets/js/editor.build.js:16057
-#: assets/js/editor.build.min.js:2
-msgid "4:3 - Landscape"
-msgstr ""
-
-#: assets/js/editor.build.js:16060
-#: assets/js/editor.build.min.js:2
-msgid "3:2 - Landscape"
-msgstr ""
-
-#: assets/js/editor.build.js:16063
-#: assets/js/editor.build.min.js:2
-msgid "10:16 - Portrait"
-msgstr ""
-
-#: assets/js/editor.build.js:16066
-#: assets/js/editor.build.min.js:2
-msgid "9:16 - Portrait"
-msgstr ""
-
-#: assets/js/editor.build.js:16069
-#: assets/js/editor.build.min.js:2
-msgid "3:4 - Portrait"
-msgstr ""
-
-#: assets/js/editor.build.js:16072
-#: assets/js/editor.build.min.js:2
-msgid "2:3 - Portrait"
-msgstr ""
-
-#: assets/js/editor.build.js:16084
-#: assets/js/editor.build.min.js:2
-msgid "2 Columns"
-msgstr ""
-
-#: assets/js/editor.build.js:16097
-#: assets/js/editor.build.min.js:2
-msgid "3 Columns"
-msgstr ""
-
-#: assets/js/editor.build.js:16110
-#: assets/js/editor.build.min.js:2
-msgid "4 Columns"
-msgstr ""
-
-#: assets/js/editor.build.js:16123
-msgid "2 Rows"
-msgstr ""
-
-#: assets/js/editor.build.js:16136
-msgid "3 Rows"
-msgstr ""
-
-#: assets/js/editor.build.js:16149
-msgid "4 Rows"
-msgstr ""
-
-#: assets/js/editor.build.js:16162
-#: assets/js/editor.build.min.js:2
-msgid "2x2"
-msgstr ""
-
-#: assets/js/editor.build.js:16175
-#: assets/js/editor.build.min.js:2
-msgid "3x3"
-msgstr ""
-
-#: assets/js/editor.build.js:16188
-#: assets/js/editor.build.min.js:2
-msgid "4x4"
-msgstr ""
-
-#: assets/js/editor.build.js:16209
-#: assets/js/editor.build.min.js:2
-msgid "Grayscale"
-msgstr ""
-
-#: assets/js/editor.build.js:16213
-#: assets/js/editor.build.js:16419
-#: assets/js/editor.build.min.js:2
-msgid "Mode"
-msgstr ""
-
-#: assets/js/editor.build.js:16217
-#: assets/js/editor.build.min.js:2
-msgid "Average"
-msgstr ""
-
-#: assets/js/editor.build.js:16220
-#: assets/js/editor.build.min.js:2
-msgid "Lightness"
-msgstr ""
-
-#: assets/js/editor.build.js:16228
-#: assets/js/editor.build.min.js:2
-msgid "Invert"
-msgstr ""
-
-#: assets/js/editor.build.js:16232
-#: assets/js/editor.build.min.js:2
-msgid "Sepia"
-msgstr ""
-
-#: assets/js/editor.build.js:16236
-#: assets/js/editor.build.min.js:2
-msgid "Black/White"
-msgstr ""
-
-#: assets/js/editor.build.js:16240
-#: assets/js/editor.build.min.js:2
-msgid "Brownie"
-msgstr ""
-
-#: assets/js/editor.build.js:16244
-#: assets/js/editor.build.min.js:2
-msgid "Vintage"
-msgstr ""
-
-#: assets/js/editor.build.js:16248
-#: assets/js/editor.build.min.js:2
-msgid "Kodachrome"
-msgstr ""
-
-#: assets/js/editor.build.js:16252
-#: assets/js/editor.build.min.js:2
-msgid "Technicolor"
-msgstr ""
-
-#: assets/js/editor.build.js:16256
-#: assets/js/editor.build.min.js:2
-msgid "Polaroid"
-msgstr ""
-
-#: assets/js/editor.build.js:16260
-#: assets/js/editor.build.min.js:2
-msgid "Remove Color"
-msgstr ""
-
-#: assets/js/editor.build.js:16270
-#: assets/js/editor.build.min.js:2
-msgid "Distance"
-msgstr ""
-
-#: assets/js/editor.build.js:16278
-#: assets/js/editor.build.js:16282
-#: assets/js/editor.build.min.js:2
-msgid "Brightness"
-msgstr ""
-
-#: assets/js/editor.build.js:16290
-#: assets/js/editor.build.min.js:2
-msgid "Gamma"
-msgstr ""
-
-#: assets/js/editor.build.js:16294
-#: assets/js/editor.build.js:18046
-#: assets/js/editor.build.js:18218
-#: assets/js/editor.build.js:18312
-#: assets/js/editor.build.min.js:2
-#: assets/js/elements.build.js:5714
-#: assets/js/elements.build.min.js:2
-#: assets/js/free-images.build.js:723
-#: assets/js/free-images.build.js:895
-#: assets/js/free-images.build.js:989
-#: assets/js/free-images.build.min.js:2
-msgid "Red"
-msgstr ""
-
-#: assets/js/editor.build.js:16302
-#: assets/js/editor.build.js:18055
-#: assets/js/editor.build.js:18227
-#: assets/js/editor.build.js:18321
-#: assets/js/editor.build.min.js:2
-#: assets/js/elements.build.js:5717
-#: assets/js/elements.build.min.js:2
-#: assets/js/free-images.build.js:732
-#: assets/js/free-images.build.js:904
-#: assets/js/free-images.build.js:998
-#: assets/js/free-images.build.min.js:2
-msgid "Green"
-msgstr ""
-
-#: assets/js/editor.build.js:16310
-#: assets/js/editor.build.js:18061
-#: assets/js/editor.build.js:18233
-#: assets/js/editor.build.min.js:2
-#: assets/js/elements.build.js:5723
-#: assets/js/elements.build.min.js:2
-#: assets/js/free-images.build.js:738
-#: assets/js/free-images.build.js:910
-#: assets/js/free-images.build.min.js:2
-msgid "Blue"
-msgstr ""
-
-#: assets/js/editor.build.js:16318
-#: assets/js/editor.build.js:16322
-#: assets/js/editor.build.min.js:2
-msgid "Contrast"
-msgstr ""
-
-#: assets/js/editor.build.js:16342
-#: assets/js/editor.build.js:16346
-#: assets/js/editor.build.min.js:2
-msgid "Vibrance"
-msgstr ""
-
-#: assets/js/editor.build.js:16354
-#: assets/js/editor.build.min.js:2
-msgid "Hue Rotation"
-msgstr ""
-
-#: assets/js/editor.build.js:16358
-#: assets/js/editor.build.min.js:2
-msgid "Rotation"
-msgstr ""
-
-#: assets/js/editor.build.js:16366
-#: assets/js/editor.build.js:16370
-#: assets/js/editor.build.min.js:2
-msgid "Noise"
-msgstr ""
-
-#: assets/js/editor.build.js:16378
-#: assets/js/editor.build.min.js:2
-msgid "Pixelate"
-msgstr ""
-
-#: assets/js/editor.build.js:16382
-#: assets/js/editor.build.min.js:2
-msgid "Block Size"
-msgstr ""
-
-#: assets/js/editor.build.js:16390
-#: assets/js/editor.build.js:16394
-#: assets/js/editor.build.min.js:2
-#: assets/js/elements.build.js:7990
-#: assets/js/elements.build.min.js:2
-msgid "Blur"
-msgstr ""
-
-#: assets/js/editor.build.js:16402
-#: assets/js/editor.build.min.js:2
-msgid "Sharpen"
-msgstr ""
-
-#: assets/js/editor.build.js:16406
-#: assets/js/editor.build.min.js:2
-msgid "Emboss"
-msgstr ""
-
-#: assets/js/editor.build.js:16410
-#: assets/js/editor.build.min.js:2
-msgid "Opaque"
-msgstr ""
-
-#: assets/js/editor.build.js:16415
-#: assets/js/editor.build.min.js:2
-msgid "Blend Color"
-msgstr ""
-
-#: assets/js/editor.build.js:16423
-#: assets/js/editor.build.min.js:2
-msgid "Add"
-msgstr ""
-
-#: assets/js/editor.build.js:16426
-#: assets/js/editor.build.min.js:2
-msgid "Diff"
-msgstr ""
-
-#: assets/js/editor.build.js:16429
-#: assets/js/editor.build.min.js:2
-msgid "Subtract"
-msgstr ""
-
-#: assets/js/editor.build.js:16450
-#: assets/js/editor.build.min.js:2
-msgid "Tint"
-msgstr ""
-
-#: assets/js/editor.build.js:16461
-#: assets/js/editor.build.min.js:2
-msgid "Alpha"
-msgstr ""
-
-#: assets/js/editor.build.js:16469
-#: assets/js/editor.build.min.js:2
-msgid "Duotone"
-msgstr ""
-
-#: assets/js/editor.build.js:16473
-#: assets/js/editor.build.min.js:2
-msgid "Color Dark"
-msgstr ""
-
-#: assets/js/editor.build.js:16479
-#: assets/js/editor.build.min.js:2
-msgid "Color Light"
-msgstr ""
-
-#: assets/js/editor.build.js:16496
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:878
-#: assets/js/fonts.build.min.js:2
-msgid "Serif"
-msgstr ""
-
-#: assets/js/editor.build.js:16499
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:881
-#: assets/js/fonts.build.min.js:2
-msgid "Sans Serif"
-msgstr ""
-
-#: assets/js/editor.build.js:16502
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:884
-#: assets/js/fonts.build.min.js:2
-msgid "Display"
-msgstr ""
-
-#: assets/js/editor.build.js:16505
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:887
-#: assets/js/fonts.build.min.js:2
-msgid "Handwriting"
-msgstr ""
-
-#: assets/js/editor.build.js:16508
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:890
-#: assets/js/fonts.build.min.js:2
-msgid "Monospace"
-msgstr ""
-
-#: assets/js/editor.build.js:16512
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:901
-#: assets/js/fonts.build.min.js:2
-msgid "All Languages"
-msgstr ""
-
-#: assets/js/editor.build.js:16515
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:904
-#: assets/js/fonts.build.min.js:2
-msgid "Arabic"
-msgstr ""
-
-#: assets/js/editor.build.js:16518
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:907
-#: assets/js/fonts.build.min.js:2
-msgid "Bengali"
-msgstr ""
-
-#: assets/js/editor.build.js:16521
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:910
-#: assets/js/fonts.build.min.js:2
-msgid "Chinese (Hong Kong)"
-msgstr ""
-
-#: assets/js/editor.build.js:16524
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:913
-#: assets/js/fonts.build.min.js:2
-msgid "Chinese (Simplified)"
-msgstr ""
-
-#: assets/js/editor.build.js:16527
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:916
-#: assets/js/fonts.build.min.js:2
-msgid "Chinese (Traditional)"
-msgstr ""
-
-#: assets/js/editor.build.js:16530
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:919
-#: assets/js/fonts.build.min.js:2
-msgid "Cyrillic"
-msgstr ""
-
-#: assets/js/editor.build.js:16533
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:922
-#: assets/js/fonts.build.min.js:2
-msgid "Cyrillic Extended"
-msgstr ""
-
-#: assets/js/editor.build.js:16536
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:925
-#: assets/js/fonts.build.min.js:2
-msgid "Devanagari"
-msgstr ""
-
-#: assets/js/editor.build.js:16539
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:928
-#: assets/js/fonts.build.min.js:2
-msgid "Greek"
-msgstr ""
-
-#: assets/js/editor.build.js:16542
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:931
-#: assets/js/fonts.build.min.js:2
-msgid "Greek Extended"
-msgstr ""
-
-#: assets/js/editor.build.js:16545
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:934
-#: assets/js/fonts.build.min.js:2
-msgid "Gujarati"
-msgstr ""
-
-#: assets/js/editor.build.js:16548
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:937
-#: assets/js/fonts.build.min.js:2
-msgid "Gurmukhi"
-msgstr ""
-
-#: assets/js/editor.build.js:16551
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:940
-#: assets/js/fonts.build.min.js:2
-msgid "Hebrew"
-msgstr ""
-
-#: assets/js/editor.build.js:16554
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:943
-#: assets/js/fonts.build.min.js:2
-msgid "Japanese"
-msgstr ""
-
-#: assets/js/editor.build.js:16557
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:946
-#: assets/js/fonts.build.min.js:2
-msgid "Khmer"
-msgstr ""
-
-#: assets/js/editor.build.js:16560
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:949
-#: assets/js/fonts.build.min.js:2
-msgid "Korean"
-msgstr ""
-
-#: assets/js/editor.build.js:16563
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:952
-#: assets/js/fonts.build.min.js:2
-msgid "Latin"
-msgstr ""
-
-#: assets/js/editor.build.js:16566
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:955
-#: assets/js/fonts.build.min.js:2
-msgid "Latin Extended"
-msgstr ""
-
-#: assets/js/editor.build.js:16569
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:958
-#: assets/js/fonts.build.min.js:2
-msgid "Malayalam"
-msgstr ""
-
-#: assets/js/editor.build.js:16572
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:961
-#: assets/js/fonts.build.min.js:2
-msgid "Myanmar"
-msgstr ""
-
-#: assets/js/editor.build.js:16575
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:964
-#: assets/js/fonts.build.min.js:2
-msgid "Oriya"
-msgstr ""
-
-#: assets/js/editor.build.js:16578
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:967
-#: assets/js/fonts.build.min.js:2
-msgid "Sinhala"
-msgstr ""
-
-#: assets/js/editor.build.js:16581
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:970
-#: assets/js/fonts.build.min.js:2
-msgid "Tamil"
-msgstr ""
-
-#: assets/js/editor.build.js:16584
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:973
-#: assets/js/fonts.build.min.js:2
-msgid "Telugu"
-msgstr ""
-
-#: assets/js/editor.build.js:16587
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:976
-#: assets/js/fonts.build.min.js:2
-msgid "Thai"
-msgstr ""
-
-#: assets/js/editor.build.js:16590
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:979
-#: assets/js/fonts.build.min.js:2
-msgid "Tibetian"
-msgstr ""
-
-#: assets/js/editor.build.js:16593
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:982
-#: assets/js/fonts.build.min.js:2
-msgid "Vietnamese"
-msgstr ""
-
-#: assets/js/editor.build.js:16597
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:993
-#: assets/js/fonts.build.min.js:2
-msgid "All Variants"
-msgstr ""
-
-#: assets/js/editor.build.js:16600
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:996
-#: assets/js/fonts.build.min.js:2
-msgid "Thin 100"
-msgstr ""
-
-#: assets/js/editor.build.js:16603
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:999
-#: assets/js/fonts.build.min.js:2
-msgid "Thin 100 Italic"
-msgstr ""
-
-#: assets/js/editor.build.js:16606
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:1002
-#: assets/js/fonts.build.min.js:2
-msgid "Light 300"
-msgstr ""
-
-#: assets/js/editor.build.js:16609
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:1005
-#: assets/js/fonts.build.min.js:2
-msgid "Light 300 Italic"
-msgstr ""
-
-#: assets/js/editor.build.js:16612
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:1008
-#: assets/js/fonts.build.min.js:2
-msgid "Regular 400"
-msgstr ""
-
-#: assets/js/editor.build.js:16615
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:1011
-#: assets/js/fonts.build.min.js:2
-msgid "Regular 400 Italic"
-msgstr ""
-
-#: assets/js/editor.build.js:16618
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:1014
-#: assets/js/fonts.build.min.js:2
-msgid "Medium 500"
-msgstr ""
-
-#: assets/js/editor.build.js:16621
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:1017
-#: assets/js/fonts.build.min.js:2
-msgid "Medium 500 Italic"
-msgstr ""
-
-#: assets/js/editor.build.js:16624
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:1020
-#: assets/js/fonts.build.min.js:2
-msgid "Bold 700"
-msgstr ""
-
-#: assets/js/editor.build.js:16627
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:1023
-#: assets/js/fonts.build.min.js:2
-msgid "Bold 700 Italic"
-msgstr ""
-
-#: assets/js/editor.build.js:16630
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:1026
-#: assets/js/fonts.build.min.js:2
-msgid "Black 900"
-msgstr ""
-
-#: assets/js/editor.build.js:16633
-#: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:1029
-#: assets/js/fonts.build.min.js:2
-msgid "Black 900 Italic"
-msgstr ""
-
-#: assets/js/editor.build.js:16668
-#: assets/js/editor.build.min.js:2
-msgid "Thumbnail"
-msgstr ""
-
-#: assets/js/editor.build.js:16669
-#: assets/js/editor.build.min.js:2
-msgid "Medium"
-msgstr ""
-
-#: assets/js/editor.build.js:16670
-#: assets/js/editor.build.min.js:2
-msgid "Medium Large"
-msgstr ""
-
-#: assets/js/editor.build.js:16671
-#: assets/js/editor.build.min.js:2
-msgid "Full"
-msgstr ""
-
-#: assets/js/editor.build.js:16864
-#: assets/js/editor.build.min.js:2
-msgid "Open"
-msgstr ""
-
-#: assets/js/editor.build.js:16870
-#: assets/js/editor.build.min.js:2
-msgid "Save as"
-msgstr ""
-
-#: assets/js/editor.build.js:16881
-#: assets/js/editor.build.min.js:2
-msgid "Export to Media"
-msgstr ""
-
-#: assets/js/editor.build.js:16890
-#: assets/js/editor.build.min.js:2
-msgid "Replace Media"
-msgstr ""
-
-#: assets/js/editor.build.js:16899
-#: assets/js/editor.build.min.js:2
-msgid "Restore Media"
-msgstr ""
-
-#: assets/js/editor.build.js:16930
-#: assets/js/editor.build.min.js:2
-msgid "Fullscreen Mode"
-msgstr ""
-
-#: assets/js/editor.build.js:16944
-#: assets/js/editor.build.min.js:2
-#: assets/pro/js/frontend-editor.build.js:314
-#: assets/pro/js/frontend-editor.build.min.js:1
-msgid "Help"
-msgstr ""
-
-#: assets/js/editor.build.js:16983
-#: assets/js/editor.build.min.js:2
-msgid "Hide Rulers"
-msgstr ""
-
-#: assets/js/editor.build.js:16983
-#: assets/js/editor.build.min.js:2
-msgid "Show Rulers"
-msgstr ""
-
-#: assets/js/editor.build.js:16989
-#: assets/js/editor.build.min.js:2
-msgid "Hide Cursors"
-msgstr ""
-
-#: assets/js/editor.build.js:16989
-#: assets/js/editor.build.min.js:2
-msgid "Show Cursors"
-msgstr ""
-
-#: assets/js/editor.build.js:17011
-#: assets/js/editor.build.min.js:2
-msgid "Unlock Guides"
-msgstr ""
-
-#: assets/js/editor.build.js:17156
-#: assets/js/editor.build.min.js:2
-msgid "Triangle"
-msgstr ""
-
-#: assets/js/editor.build.js:17161
-#: assets/js/editor.build.min.js:2
-msgid "Diamond"
-msgstr ""
-
-#: assets/js/editor.build.js:17166
-#: assets/js/editor.build.min.js:2
-msgid "Pentagon"
-msgstr ""
-
-#: assets/js/editor.build.js:17171
-#: assets/js/editor.build.min.js:2
-msgid "Hexagon"
-msgstr ""
-
-#: assets/js/editor.build.js:17176
-#: assets/js/editor.build.min.js:2
-msgid "Left Point"
-msgstr ""
-
-#: assets/js/editor.build.js:17181
-#: assets/js/editor.build.min.js:2
-msgid "Right Point"
-msgstr ""
-
-#: assets/js/editor.build.js:17186
-#: assets/js/editor.build.min.js:2
-msgid "Left Chevron"
-msgstr ""
-
-#: assets/js/editor.build.js:17191
-#: assets/js/editor.build.min.js:2
-msgid "Right Chevron"
-msgstr ""
-
-#: assets/js/editor.build.js:17196
-#: assets/js/editor.build.min.js:2
-msgid "Trapezoid"
-msgstr ""
-
-#: assets/js/editor.build.js:17201
-#: assets/js/editor.build.min.js:2
-msgid "Parallelogram"
-msgstr ""
-
-#: assets/js/editor.build.js:17206
-#: assets/js/editor.build.min.js:2
-msgid "Rabbet"
-msgstr ""
-
-#: assets/js/editor.build.js:17211
-#: assets/js/editor.build.min.js:2
-msgid "Star"
-msgstr ""
-
-#: assets/js/editor.build.js:17216
-#: assets/js/editor.build.min.js:2
-msgid "Heart"
-msgstr ""
-
-#: assets/js/editor.build.js:17221
-#: assets/js/editor.build.min.js:2
-msgid "Blob"
-msgstr ""
-
-#: assets/js/editor.build.js:17226
-#: assets/js/editor.build.min.js:2
-msgid "Flower"
-msgstr ""
-
-#: assets/js/editor.build.js:17231
-#: assets/js/editor.build.min.js:2
-msgid "Sketch"
-msgstr ""
-
-#: assets/js/editor.build.js:17816
-#: assets/js/editor.build.min.js:2
-#: assets/js/free-images.build.js:468
-#: assets/js/free-images.build.min.js:2
-msgid "Powered by Pexels"
-msgstr ""
-
-#: assets/js/editor.build.js:17827
-#: assets/js/editor.build.js:17905
-#: assets/js/editor.build.js:17984
+#: assets/js/editor.build.js:13048
+#: assets/js/editor.build.js:22742
+#: assets/js/editor.build.js:22820
+#: assets/js/editor.build.js:22899
 #: assets/js/editor.build.min.js:2
 #: assets/js/free-images.build.js:479
 #: assets/js/free-images.build.js:557
@@ -2924,30 +743,10 @@ msgstr ""
 msgid "Orientation"
 msgstr ""
 
-#: assets/js/editor.build.js:17887
-#: assets/js/editor.build.min.js:2
-#: assets/js/free-images.build.js:539
-#: assets/js/free-images.build.min.js:2
-msgid "Powered by Pixabay"
-msgstr ""
-
-#: assets/js/editor.build.js:17898
-#: assets/js/editor.build.min.js:2
-#: assets/js/free-images.build.js:550
-#: assets/js/free-images.build.min.js:2
-msgid "Type"
-msgstr ""
-
-#: assets/js/editor.build.js:17973
-#: assets/js/editor.build.min.js:2
-#: assets/js/free-images.build.js:625
-#: assets/js/free-images.build.min.js:2
-msgid "Powered by Unsplash"
-msgstr ""
-
-#: assets/js/editor.build.js:18026
-#: assets/js/editor.build.js:18130
-#: assets/js/editor.build.js:18280
+#: assets/js/editor.build.js:13051
+#: assets/js/editor.build.js:22941
+#: assets/js/editor.build.js:23045
+#: assets/js/editor.build.js:23195
 #: assets/js/editor.build.min.js:2
 #: assets/js/free-images.build.js:703
 #: assets/js/free-images.build.js:807
@@ -2958,8 +757,9 @@ msgstr ""
 msgid "Any Orientation"
 msgstr ""
 
-#: assets/js/editor.build.js:18029
-#: assets/js/editor.build.js:18283
+#: assets/js/editor.build.js:13054
+#: assets/js/editor.build.js:22944
+#: assets/js/editor.build.js:23198
 #: assets/js/editor.build.min.js:2
 #: assets/js/free-images.build.js:706
 #: assets/js/free-images.build.js:960
@@ -2969,8 +769,9 @@ msgstr ""
 msgid "Landscape"
 msgstr ""
 
-#: assets/js/editor.build.js:18032
-#: assets/js/editor.build.js:18286
+#: assets/js/editor.build.js:13057
+#: assets/js/editor.build.js:22947
+#: assets/js/editor.build.js:23201
 #: assets/js/editor.build.min.js:2
 #: assets/js/free-images.build.js:709
 #: assets/js/free-images.build.js:963
@@ -2980,11 +781,2362 @@ msgstr ""
 msgid "Portrait"
 msgstr ""
 
-#: assets/js/editor.build.js:18049
-#: assets/js/editor.build.js:18221
-#: assets/js/editor.build.js:18309
+#: assets/js/editor.build.js:13060
+#: assets/js/editor.build.js:20872
+#: assets/js/editor.build.js:22032
+#: assets/js/editor.build.js:22950
 #: assets/js/editor.build.min.js:2
-#: assets/js/elements.build.js:5729
+#: assets/js/free-images.build.js:712
+#: assets/js/free-images.build.min.js:2
+#: assets/js/templates.build.js:353
+#: assets/js/templates.build.min.js:2
+msgid "Square"
+msgstr ""
+
+#: assets/js/editor.build.js:13103
+#: assets/js/editor.build.min.js:2
+msgid "Import Element"
+msgstr ""
+
+#: assets/js/editor.build.js:13142
+#: assets/js/editor.build.js:14261
+#: assets/js/editor.build.min.js:2
+msgid "Select Image"
+msgstr ""
+
+#: assets/js/editor.build.js:13278
+#: assets/js/editor.build.js:23779
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:3066
+#: assets/js/image-generator.build.min.js:2
+msgid "Image Exported Successfully"
+msgstr ""
+
+#: assets/js/editor.build.js:13289
+#: assets/js/editor.build.js:23791
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:2494
+#: assets/js/image-generator.build.js:3078
+#: assets/js/image-generator.build.min.js:2
+msgid "Export Image to Media Library"
+msgstr ""
+
+#: assets/js/editor.build.js:13296
+#: assets/js/editor.build.js:23801
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:3088
+#: assets/js/image-generator.build.min.js:2
+msgid "Export"
+msgstr ""
+
+#: assets/js/editor.build.js:13302
+#: assets/js/editor.build.js:20675
+#: assets/js/editor.build.js:20684
+#: assets/js/editor.build.min.js:2
+msgid "Image"
+msgstr ""
+
+#: assets/js/editor.build.js:13353
+#: assets/js/editor.build.min.js:2
+msgid "Metadata"
+msgstr ""
+
+#: assets/js/editor.build.js:13355
+#: assets/js/editor.build.js:14738
+#: assets/js/editor.build.js:14893
+#: assets/js/editor.build.js:18390
+#: assets/js/editor.build.js:23833
+#: assets/js/editor.build.min.js:2
+#: assets/js/free-images.build.js:1169
+#: assets/js/free-images.build.min.js:2
+#: assets/js/image-generator.build.js:3120
+#: assets/js/image-generator.build.min.js:2
+#: assets/js/projects.build.js:3573
+#: assets/js/projects.build.min.js:2
+msgid "Title"
+msgstr ""
+
+#: assets/js/editor.build.js:13359
+#: assets/js/editor.build.js:14742
+#: assets/js/editor.build.js:14897
+#: assets/js/editor.build.js:23837
+#: assets/js/editor.build.min.js:2
+#: assets/js/free-images.build.js:1173
+#: assets/js/free-images.build.min.js:2
+#: assets/js/image-generator.build.js:3124
+#: assets/js/image-generator.build.min.js:2
+msgid "Alternative Text"
+msgstr ""
+
+#: assets/js/editor.build.js:13363
+#: assets/js/editor.build.js:14746
+#: assets/js/editor.build.js:14901
+#: assets/js/editor.build.js:23841
+#: assets/js/editor.build.min.js:2
+#: assets/js/free-images.build.js:1177
+#: assets/js/free-images.build.min.js:2
+#: assets/js/image-generator.build.js:3128
+#: assets/js/image-generator.build.min.js:2
+msgid "Caption"
+msgstr ""
+
+#: assets/js/editor.build.js:13367
+#: assets/js/editor.build.js:14750
+#: assets/js/editor.build.js:14905
+#: assets/js/editor.build.js:18396
+#: assets/js/editor.build.js:23845
+#: assets/js/editor.build.min.js:2
+#: assets/js/free-images.build.js:1181
+#: assets/js/free-images.build.min.js:2
+#: assets/js/image-generator.build.js:3132
+#: assets/js/image-generator.build.min.js:2
+#: assets/js/projects.build.js:3579
+#: assets/js/projects.build.min.js:2
+msgid "Description"
+msgstr ""
+
+#: assets/js/editor.build.js:13519
+#: assets/js/editor.build.min.js:2
+msgid "Font Manager"
+msgstr ""
+
+#: assets/js/editor.build.js:13528
+#: assets/js/editor.build.min.js:2
+msgid "Done"
+msgstr ""
+
+#: assets/js/editor.build.js:13534
+#: assets/js/editor.build.min.js:2
+msgid "Google Fonts"
+msgstr ""
+
+#: assets/js/editor.build.js:13557
+#: assets/js/editor.build.min.js:2
+msgid "Language"
+msgstr ""
+
+#: assets/js/editor.build.js:13568
+#: assets/js/editor.build.min.js:2
+msgid "Variant"
+msgstr ""
+
+#: assets/js/editor.build.js:13581
+#: assets/js/editor.build.min.js:2
+msgid "Custom Fonts"
+msgstr ""
+
+#: assets/js/editor.build.js:13583
+#: assets/js/editor.build.min.js:2
+msgid "Font Family Name"
+msgstr ""
+
+#: assets/js/editor.build.js:13602
+#: assets/js/editor.build.js:13629
+#: assets/js/editor.build.min.js:2
+msgid "Add to List"
+msgstr ""
+
+#: assets/js/editor.build.js:13665
+#: assets/js/editor.build.min.js:2
+msgid "Font List"
+msgstr ""
+
+#: assets/js/editor.build.js:13668
+#: assets/js/editor.build.min.js:2
+msgid "No Fonts Selected"
+msgstr ""
+
+#: assets/js/editor.build.js:13701
+#: assets/js/editor.build.min.js:2
+msgid "Preview Settings"
+msgstr ""
+
+#: assets/js/editor.build.js:13703
+#: assets/js/editor.build.min.js:2
+msgid "Sample Text"
+msgstr ""
+
+#: assets/js/editor.build.js:13708
+#: assets/js/editor.build.js:15987
+#: assets/js/editor.build.js:17447
+#: assets/js/editor.build.min.js:2
+msgid "Font Size"
+msgstr ""
+
+#: assets/js/editor.build.js:13813
+#: assets/js/editor.build.min.js:2
+#: assets/js/free-images.build.js:340
+#: assets/js/free-images.build.min.js:2
+msgid "Pixabay"
+msgstr ""
+
+#: assets/js/editor.build.js:13820
+#: assets/js/editor.build.min.js:2
+#: assets/js/free-images.build.js:351
+#: assets/js/free-images.build.min.js:2
+msgid "Pexels"
+msgstr ""
+
+#: assets/js/editor.build.js:13827
+#: assets/js/editor.build.min.js:2
+#: assets/js/free-images.build.js:362
+#: assets/js/free-images.build.min.js:2
+msgid "Unsplash"
+msgstr ""
+
+#: assets/js/editor.build.js:13849
+#: assets/js/editor.build.min.js:2
+msgid "Import Royalty Free Image"
+msgstr ""
+
+#: assets/js/editor.build.js:13936
+#: assets/js/editor.build.min.js:2
+msgid "Welcome to PixMagix Help Center!"
+msgstr ""
+
+#: assets/js/editor.build.js:13941
+#: assets/js/editor.build.min.js:2
+msgid "We're here to provide you with the assistance you need to create stunning graphics."
+msgstr ""
+
+#: assets/js/editor.build.js:13941
+#: assets/js/editor.build.min.js:2
+msgid "How can we help you?"
+msgstr ""
+
+#: assets/js/editor.build.js:13941
+#: assets/js/editor.build.min.js:2
+msgid "We offer the following resources at your disposal to help you get the most out of PixMagix:"
+msgstr ""
+
+#: assets/js/editor.build.js:13944
+#: assets/js/editor.build.min.js:2
+msgid "Documentation"
+msgstr ""
+
+#: assets/js/editor.build.js:13945
+#: assets/js/editor.build.min.js:2
+msgid "Our documentation provides comprehensive information on how to use PixMagix. It covers topics from the basic functionality to advanced techniques. Click the button to access the documentation."
+msgstr ""
+
+#: assets/js/editor.build.js:13949
+#: assets/js/editor.build.min.js:2
+msgid "See Docs"
+msgstr ""
+
+#: assets/js/editor.build.js:13952
+#: assets/js/editor.build.min.js:2
+msgid "FAQ"
+msgstr ""
+
+#: assets/js/editor.build.js:13953
+#: assets/js/editor.build.min.js:2
+msgid "Find quick answers to common questions about using our plugin. From beginners to experts, our FAQ section is a valuable resource to troubleshoot issues and maximize plugin functionality. Explore the comprehensive list of frequently asked questions for a convenient and time-saving solution."
+msgstr ""
+
+#: assets/js/editor.build.js:13957
+#: assets/js/editor.build.min.js:2
+msgid "Visit FAQ"
+msgstr ""
+
+#: assets/js/editor.build.js:13960
+#: assets/js/editor.build.min.js:2
+msgid "Features"
+msgstr ""
+
+#: assets/js/editor.build.js:13961
+#: assets/js/editor.build.min.js:2
+msgid "See the full range of tools and features available in PixMagix. Browse through the feature list to discover new and exciting ways to create beautiful graphics. Click the button to see the full list."
+msgstr ""
+
+#: assets/js/editor.build.js:13965
+#: assets/js/editor.build.min.js:2
+msgid "Explore Features"
+msgstr ""
+
+#: assets/js/editor.build.js:13968
+#: assets/js/editor.build.min.js:2
+msgid "Blog"
+msgstr ""
+
+#: assets/js/editor.build.js:13969
+#: assets/js/editor.build.min.js:2
+msgid "Stay updated with step-by-step guides, tips, and news in the world of PixMagix on our regularly updated blog. Learn new skills, get inspiration, and stay at the forefront of design trends with our informative and engaging blog posts. Check it out today!"
+msgstr ""
+
+#: assets/js/editor.build.js:13973
+#: assets/js/editor.build.min.js:2
+msgid "Check Blog"
+msgstr ""
+
+#: assets/js/editor.build.js:13976
+#: assets/js/editor.build.min.js:2
+msgid "Contact"
+msgstr ""
+
+#: assets/js/editor.build.js:13977
+#: assets/js/editor.build.min.js:2
+msgid "If you have any queries or issues, don't hesitate to contact our support team. Our team is available to assist you 24/7. Click the button to access the support page."
+msgstr ""
+
+#: assets/js/editor.build.js:13981
+#: assets/js/editor.build.min.js:2
+msgid "Contact us"
+msgstr ""
+
+#: assets/js/editor.build.js:13983
+#: assets/js/editor.build.min.js:2
+msgid "We hope these resources are useful in your creative journey with PixMagix. Happy designing!"
+msgstr ""
+
+#: assets/js/editor.build.js:14086
+#: assets/js/editor.build.min.js:2
+msgid "Generate Image With AI"
+msgstr ""
+
+#: assets/js/editor.build.js:14094
+#: assets/js/editor.build.min.js:2
+msgid "Back to Generator"
+msgstr ""
+
+#: assets/js/editor.build.js:14098
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:2352
+#: assets/js/image-generator.build.min.js:2
+msgid "Archive"
+msgstr ""
+
+#: assets/js/editor.build.js:14101
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:3649
+#: assets/js/image-generator.build.js:3800
+#: assets/js/image-generator.build.min.js:2
+msgid "Generate"
+msgstr ""
+
+#: assets/js/editor.build.js:14215
+#: assets/js/editor.build.min.js:2
+msgid "Import Image From Media Library"
+msgstr ""
+
+#: assets/js/editor.build.js:14329
+#: assets/js/editor.build.js:21822
+#: assets/js/editor.build.min.js:2
+msgid "Keyboard Shortcuts"
+msgstr ""
+
+#: assets/js/editor.build.js:14492
+#: assets/js/editor.build.js:19975
+#: assets/js/editor.build.min.js:2
+msgid "Open Project"
+msgstr ""
+
+#: assets/js/editor.build.js:14518
+#: assets/js/editor.build.js:18402
+#: assets/js/editor.build.min.js:2
+#: assets/js/projects.build.js:2535
+#: assets/js/projects.build.js:3585
+#: assets/js/projects.build.min.js:2
+msgid "Status"
+msgstr ""
+
+#: assets/js/editor.build.js:14521
+#: assets/js/editor.build.min.js:2
+#: assets/js/projects.build.js:2538
+#: assets/js/projects.build.min.js:2
+msgid "All"
+msgstr ""
+
+#: assets/js/editor.build.js:14524
+#: assets/js/editor.build.js:18405
+#: assets/js/editor.build.min.js:2
+#: assets/js/projects.build.js:2541
+#: assets/js/projects.build.js:3587
+#: assets/js/projects.build.min.js:2
+msgid "Publish"
+msgstr ""
+
+#: assets/js/editor.build.js:14527
+#: assets/js/editor.build.js:18408
+#: assets/js/editor.build.min.js:2
+#: assets/js/projects.build.js:2544
+#: assets/js/projects.build.js:3590
+#: assets/js/projects.build.min.js:2
+msgid "Private"
+msgstr ""
+
+#: assets/js/editor.build.js:14587
+#: assets/js/editor.build.min.js:2
+msgid "Preview"
+msgstr ""
+
+#: assets/js/editor.build.js:14697
+#: assets/js/editor.build.min.js:2
+msgid "Media Image Replaced Successfully"
+msgstr ""
+
+#: assets/js/editor.build.js:14724
+#: assets/js/editor.build.min.js:2
+msgid "Replace Media Image"
+msgstr ""
+
+#: assets/js/editor.build.js:14731
+#: assets/js/editor.build.min.js:2
+#: assets/js/elements.build.js:6872
+#: assets/js/elements.build.js:6878
+#: assets/js/elements.build.js:6887
+#: assets/js/elements.build.min.js:2
+msgid "Replace"
+msgstr ""
+
+#: assets/js/editor.build.js:14735
+#: assets/js/editor.build.js:14891
+#: assets/js/editor.build.js:20869
+#: assets/js/editor.build.min.js:2
+msgid "Original"
+msgstr ""
+
+#: assets/js/editor.build.js:14852
+#: assets/js/editor.build.min.js:2
+msgid "The Original Media Image Restored Successfully"
+msgstr ""
+
+#: assets/js/editor.build.js:14886
+#: assets/js/editor.build.min.js:2
+msgid "Restore"
+msgstr ""
+
+#: assets/js/editor.build.js:14890
+#: assets/js/editor.build.min.js:2
+msgid "Edited"
+msgstr ""
+
+#: assets/js/editor.build.js:14979
+#: assets/js/editor.build.js:19978
+#: assets/js/editor.build.min.js:2
+msgid "Save Project as"
+msgstr ""
+
+#: assets/js/editor.build.js:14988
+#: assets/js/editor.build.js:21966
+#: assets/js/editor.build.min.js:2
+msgid "Please create something, before you save!"
+msgstr ""
+
+#: assets/js/editor.build.js:15013
+#: assets/js/editor.build.js:22000
+#: assets/js/editor.build.min.js:2
+#: assets/js/projects.build.js:3524
+#: assets/js/projects.build.min.js:2
+msgid "Project Saved Successfully"
+msgstr ""
+
+#: assets/js/editor.build.js:15019
+#: assets/js/editor.build.min.js:2
+msgid "Save Failed"
+msgstr ""
+
+#: assets/js/editor.build.js:15026
+#: assets/js/editor.build.min.js:2
+#: assets/js/projects.build.js:3399
+#: assets/js/projects.build.min.js:2
+#: assets/js/templates.build.js:482
+#: assets/js/templates.build.min.js:2
+msgid "Project Name"
+msgstr ""
+
+#: assets/js/editor.build.js:15256
+#: assets/js/editor.build.js:16060
+#: assets/js/editor.build.js:16312
+#: assets/js/editor.build.js:16424
+#: assets/js/editor.build.js:16553
+#: assets/js/editor.build.js:20414
+#: assets/js/editor.build.js:20449
+#: assets/js/editor.build.js:20484
+#: assets/js/editor.build.js:20524
+#: assets/js/editor.build.js:20554
+#: assets/js/editor.build.js:20584
+#: assets/js/editor.build.js:20619
+#: assets/js/editor.build.js:20654
+#: assets/js/editor.build.min.js:2
+msgid "Stroke"
+msgstr ""
+
+#: assets/js/editor.build.js:15259
+#: assets/js/editor.build.js:16063
+#: assets/js/editor.build.js:16315
+#: assets/js/editor.build.js:16427
+#: assets/js/editor.build.js:16556
+#: assets/js/editor.build.js:18069
+#: assets/js/editor.build.min.js:2
+msgid "Stroke Width"
+msgstr ""
+
+#: assets/js/editor.build.js:15277
+#: assets/js/editor.build.js:16077
+#: assets/js/editor.build.js:16445
+#: assets/js/editor.build.js:20419
+#: assets/js/editor.build.js:20454
+#: assets/js/editor.build.js:20489
+#: assets/js/editor.build.js:20529
+#: assets/js/editor.build.js:20559
+#: assets/js/editor.build.js:20589
+#: assets/js/editor.build.js:20624
+#: assets/js/editor.build.js:20659
+#: assets/js/editor.build.min.js:2
+msgid "Fill"
+msgstr ""
+
+#: assets/js/editor.build.js:15288
+#: assets/js/editor.build.js:15815
+#: assets/js/editor.build.js:16086
+#: assets/js/editor.build.js:16333
+#: assets/js/editor.build.js:16456
+#: assets/js/editor.build.js:16621
+#: assets/js/editor.build.js:20424
+#: assets/js/editor.build.js:20459
+#: assets/js/editor.build.js:20494
+#: assets/js/editor.build.js:20534
+#: assets/js/editor.build.js:20564
+#: assets/js/editor.build.js:20594
+#: assets/js/editor.build.js:20629
+#: assets/js/editor.build.js:20664
+#: assets/js/editor.build.js:20699
+#: assets/js/editor.build.js:20736
+#: assets/js/editor.build.js:20756
+#: assets/js/editor.build.min.js:2
+msgid "Shadow"
+msgstr ""
+
+#: assets/js/editor.build.js:15298
+#: assets/js/editor.build.js:20361
+#: assets/js/editor.build.min.js:2
+msgid "Add Element"
+msgstr ""
+
+#: assets/js/editor.build.js:15308
+#: assets/js/editor.build.min.js:2
+#: assets/js/elements.build.js:6899
+#: assets/js/elements.build.min.js:2
+msgid "Import"
+msgstr ""
+
+#: assets/js/editor.build.js:15315
+#: assets/js/editor.build.js:15578
+#: assets/js/editor.build.min.js:2
+msgid "Upload From Computer"
+msgstr ""
+
+#: assets/js/editor.build.js:15316
+#: assets/js/editor.build.js:15349
+#: assets/js/editor.build.min.js:2
+msgid "Selected SVG"
+msgstr ""
+
+#: assets/js/editor.build.js:15354
+#: assets/js/editor.build.min.js:2
+msgid "Import SVG as One Layer"
+msgstr ""
+
+#: assets/js/editor.build.js:15358
+#: assets/js/editor.build.min.js:2
+msgid "Resize Canvas to SVG Size"
+msgstr ""
+
+#: assets/js/editor.build.js:15383
+#: assets/js/editor.build.min.js:2
+msgid "SVG Parsing Failed"
+msgstr ""
+
+#: assets/js/editor.build.js:15506
+#: assets/js/editor.build.min.js:2
+msgid "Import From Media"
+msgstr ""
+
+#: assets/js/editor.build.js:15513
+#: assets/js/editor.build.js:15551
+#: assets/js/editor.build.js:15590
+#: assets/js/editor.build.js:15618
+#: assets/js/editor.build.min.js:2
+msgid "Resize Canvas to Image Size"
+msgstr ""
+
+#: assets/js/editor.build.js:15521
+#: assets/js/editor.build.js:15559
+#: assets/js/editor.build.min.js:2
+#: assets/js/free-images.build.js:1164
+#: assets/js/free-images.build.min.js:2
+msgid "Image Size"
+msgstr ""
+
+#: assets/js/editor.build.js:15544
+#: assets/js/editor.build.min.js:2
+msgid "Import Free Image"
+msgstr ""
+
+#: assets/js/editor.build.js:15611
+#: assets/js/editor.build.min.js:2
+msgid "Generate With AI"
+msgstr ""
+
+#: assets/js/editor.build.js:15640
+#: assets/js/editor.build.js:19936
+#: assets/js/editor.build.js:20351
+#: assets/js/editor.build.min.js:2
+msgid "Add Image"
+msgstr ""
+
+#: assets/js/editor.build.js:15728
+#: assets/js/editor.build.js:19945
+#: assets/js/editor.build.js:20366
+#: assets/js/editor.build.min.js:2
+msgid "Add QR Code"
+msgstr ""
+
+#: assets/js/editor.build.js:15730
+#: assets/js/editor.build.js:15944
+#: assets/js/editor.build.js:17934
+#: assets/js/editor.build.min.js:2
+msgid "Write Text Here..."
+msgstr ""
+
+#: assets/js/editor.build.js:15753
+#: assets/js/editor.build.min.js:2
+msgid "Generate QR Code"
+msgstr ""
+
+#: assets/js/editor.build.js:15766
+#: assets/js/editor.build.js:17949
+#: assets/js/editor.build.min.js:2
+msgid "Padding"
+msgstr ""
+
+#: assets/js/editor.build.js:15773
+#: assets/js/editor.build.js:17958
+#: assets/js/editor.build.min.js:2
+msgid "Error Correction Level"
+msgstr ""
+
+#: assets/js/editor.build.js:15793
+#: assets/js/editor.build.js:15798
+#: assets/js/editor.build.js:17880
+#: assets/js/editor.build.js:20726
+#: assets/js/editor.build.js:20847
+#: assets/js/editor.build.js:21088
+#: assets/js/editor.build.js:21279
+#: assets/js/editor.build.js:22749
+#: assets/js/editor.build.js:22834
+#: assets/js/editor.build.js:22906
+#: assets/js/editor.build.min.js:2
+#: assets/js/elements.build.js:6167
+#: assets/js/elements.build.js:8029
+#: assets/js/elements.build.min.js:2
+#: assets/js/free-images.build.js:486
+#: assets/js/free-images.build.js:571
+#: assets/js/free-images.build.js:643
+#: assets/js/free-images.build.min.js:2
+msgid "Color"
+msgstr ""
+
+#: assets/js/editor.build.js:15804
+#: assets/js/editor.build.js:15809
+#: assets/js/editor.build.js:17836
+#: assets/js/editor.build.js:20731
+#: assets/js/editor.build.min.js:2
+#: assets/js/templates.build.js:333
+#: assets/js/templates.build.min.js:2
+msgid "Background"
+msgstr ""
+
+#: assets/js/editor.build.js:15942
+#: assets/js/editor.build.js:15981
+#: assets/js/editor.build.js:19939
+#: assets/js/editor.build.js:20356
+#: assets/js/editor.build.min.js:2
+msgid "Add Text"
+msgstr ""
+
+#: assets/js/editor.build.js:15984
+#: assets/js/editor.build.js:20614
+#: assets/js/editor.build.js:20649
+#: assets/js/editor.build.min.js:2
+msgid "Font"
+msgstr ""
+
+#: assets/js/editor.build.js:15994
+#: assets/js/editor.build.js:17456
+#: assets/js/editor.build.min.js:2
+msgid "Line Height"
+msgstr ""
+
+#: assets/js/editor.build.js:16002
+#: assets/js/editor.build.js:17465
+#: assets/js/editor.build.min.js:2
+msgid "Character Spacing"
+msgstr ""
+
+#: assets/js/editor.build.js:16009
+#: assets/js/editor.build.js:17474
+#: assets/js/editor.build.min.js:2
+msgid "Font Family"
+msgstr ""
+
+#: assets/js/editor.build.js:16013
+#: assets/js/editor.build.js:17486
+#: assets/js/editor.build.min.js:2
+msgid "Text Style"
+msgstr ""
+
+#: assets/js/editor.build.js:16015
+#: assets/js/editor.build.js:17488
+#: assets/js/editor.build.min.js:2
+msgid "Bold"
+msgstr ""
+
+#: assets/js/editor.build.js:16023
+#: assets/js/editor.build.js:17496
+#: assets/js/editor.build.min.js:2
+msgid "Italic"
+msgstr ""
+
+#: assets/js/editor.build.js:16031
+#: assets/js/editor.build.js:17504
+#: assets/js/editor.build.min.js:2
+msgid "Underline"
+msgstr ""
+
+#: assets/js/editor.build.js:16037
+#: assets/js/editor.build.js:17512
+#: assets/js/editor.build.min.js:2
+msgid "Text Align"
+msgstr ""
+
+#: assets/js/editor.build.js:16039
+#: assets/js/editor.build.js:17514
+#: assets/js/editor.build.min.js:2
+msgid "Left"
+msgstr ""
+
+#: assets/js/editor.build.js:16043
+#: assets/js/editor.build.js:17518
+#: assets/js/editor.build.min.js:2
+msgid "Center"
+msgstr ""
+
+#: assets/js/editor.build.js:16047
+#: assets/js/editor.build.js:17522
+#: assets/js/editor.build.min.js:2
+msgid "Right"
+msgstr ""
+
+#: assets/js/editor.build.js:16051
+#: assets/js/editor.build.js:17526
+#: assets/js/editor.build.min.js:2
+msgid "Justify"
+msgstr ""
+
+#: assets/js/editor.build.js:16168
+#: assets/js/editor.build.js:19957
+#: assets/js/editor.build.js:20386
+#: assets/js/editor.build.min.js:2
+msgid "Crop Canvas"
+msgstr ""
+
+#: assets/js/editor.build.js:16170
+#: assets/js/editor.build.min.js:2
+msgid "Aspect Ratio"
+msgstr ""
+
+#: assets/js/editor.build.js:16177
+#: assets/js/editor.build.min.js:2
+#: assets/js/elements.build.js:6807
+#: assets/js/elements.build.min.js:2
+msgid "Scale"
+msgstr ""
+
+#: assets/js/editor.build.js:16197
+#: assets/js/editor.build.min.js:2
+msgid "Pan X"
+msgstr ""
+
+#: assets/js/editor.build.js:16204
+#: assets/js/editor.build.min.js:2
+msgid "Pan Y"
+msgstr ""
+
+#: assets/js/editor.build.js:16222
+#: assets/js/editor.build.min.js:2
+msgid "Crop"
+msgstr ""
+
+#: assets/js/editor.build.js:16280
+#: assets/js/editor.build.js:19954
+#: assets/js/editor.build.js:20381
+#: assets/js/editor.build.min.js:2
+msgid "Draw Path"
+msgstr ""
+
+#: assets/js/editor.build.js:16282
+#: assets/js/editor.build.min.js:2
+msgid "Path Type"
+msgstr ""
+
+#: assets/js/editor.build.js:16285
+#: assets/js/editor.build.min.js:2
+msgid "Cubic Bezier"
+msgstr ""
+
+#: assets/js/editor.build.js:16288
+#: assets/js/editor.build.min.js:2
+msgid "Quadratic Bezier"
+msgstr ""
+
+#: assets/js/editor.build.js:16291
+#: assets/js/editor.build.js:20545
+#: assets/js/editor.build.min.js:2
+msgid "Polyline"
+msgstr ""
+
+#: assets/js/editor.build.js:16294
+#: assets/js/editor.build.js:20575
+#: assets/js/editor.build.min.js:2
+msgid "Polygon"
+msgstr ""
+
+#: assets/js/editor.build.js:16309
+#: assets/js/editor.build.js:16421
+#: assets/js/editor.build.js:16550
+#: assets/js/editor.build.min.js:2
+msgid "Stop Drawing"
+msgstr ""
+
+#: assets/js/editor.build.js:16309
+#: assets/js/editor.build.js:16421
+#: assets/js/editor.build.js:16550
+#: assets/js/editor.build.min.js:2
+msgid "Start Drawing"
+msgstr ""
+
+#: assets/js/editor.build.js:16401
+#: assets/js/editor.build.min.js:2
+msgid "Select Shape"
+msgstr ""
+
+#: assets/js/editor.build.js:16527
+#: assets/js/editor.build.js:20376
+#: assets/js/editor.build.min.js:2
+msgid "Free Hand Draw"
+msgstr ""
+
+#: assets/js/editor.build.js:16529
+#: assets/js/editor.build.min.js:2
+msgid "Pencil Type"
+msgstr ""
+
+#: assets/js/editor.build.js:16531
+#: assets/js/editor.build.min.js:2
+msgid "Pencil"
+msgstr ""
+
+#: assets/js/editor.build.js:16534
+#: assets/js/editor.build.js:20435
+#: assets/js/editor.build.js:22036
+#: assets/js/editor.build.min.js:2
+msgid "Circle"
+msgstr ""
+
+#: assets/js/editor.build.js:16537
+#: assets/js/editor.build.min.js:2
+msgid "Spray"
+msgstr ""
+
+#: assets/js/editor.build.js:16751
+#: assets/js/editor.build.min.js:2
+#: assets/js/projects.build.js:2331
+#: assets/js/projects.build.min.js:2
+msgid "Enter a Category Name"
+msgstr ""
+
+#: assets/js/editor.build.js:16771
+#: assets/js/editor.build.min.js:2
+#: assets/js/projects.build.js:2351
+#: assets/js/projects.build.min.js:2
+msgid "Category Created Successfully"
+msgstr ""
+
+#: assets/js/editor.build.js:16779
+#: assets/js/editor.build.min.js:2
+#: assets/js/projects.build.js:2359
+#: assets/js/projects.build.min.js:2
+msgid "New Category Name"
+msgstr ""
+
+#: assets/js/editor.build.js:16786
+#: assets/js/editor.build.min.js:2
+#: assets/js/projects.build.js:2366
+#: assets/js/projects.build.min.js:2
+msgid "Create"
+msgstr ""
+
+#: assets/js/editor.build.js:16791
+#: assets/js/editor.build.min.js:2
+#: assets/js/projects.build.js:2371
+#: assets/js/projects.build.min.js:2
+msgid "Cancel"
+msgstr ""
+
+#: assets/js/editor.build.js:16810
+#: assets/js/editor.build.min.js:2
+#: assets/js/projects.build.js:2388
+#: assets/js/projects.build.min.js:2
+msgid "Manage Categories"
+msgstr ""
+
+#: assets/js/editor.build.js:16926
+#: assets/js/editor.build.min.js:2
+msgid "Select Layer"
+msgstr ""
+
+#: assets/js/editor.build.js:16948
+#: assets/js/editor.build.min.js:2
+msgid "Layer Name..."
+msgstr ""
+
+#: assets/js/editor.build.js:17076
+#: assets/js/editor.build.js:17084
+#: assets/js/editor.build.min.js:2
+msgid "Remove Background"
+msgstr ""
+
+#: assets/js/editor.build.js:17087
+#: assets/js/editor.build.js:17099
+#: assets/js/editor.build.min.js:2
+msgid "Replace Background"
+msgstr ""
+
+#: assets/js/editor.build.js:17102
+#: assets/js/editor.build.js:17110
+#: assets/js/editor.build.min.js:2
+msgid "Remove Text"
+msgstr ""
+
+#: assets/js/editor.build.js:17113
+#: assets/js/editor.build.js:17140
+#: assets/js/editor.build.min.js:2
+msgid "Cleanup"
+msgstr ""
+
+#: assets/js/editor.build.js:17115
+#: assets/js/editor.build.js:21037
+#: assets/js/editor.build.js:21243
+#: assets/js/editor.build.min.js:2
+msgid "Mode"
+msgstr ""
+
+#: assets/js/editor.build.js:17117
+#: assets/js/editor.build.min.js:2
+msgid "Fast"
+msgstr ""
+
+#: assets/js/editor.build.js:17124
+#: assets/js/editor.build.js:17149
+#: assets/js/editor.build.min.js:2
+msgid "Mask"
+msgstr ""
+
+#: assets/js/editor.build.js:17130
+#: assets/js/editor.build.js:17155
+#: assets/js/editor.build.min.js:2
+msgid "Draw a Mask!"
+msgstr ""
+
+#: assets/js/editor.build.js:17143
+#: assets/js/editor.build.min.js:2
+msgid "Text Inpainting"
+msgstr ""
+
+#: assets/js/editor.build.js:17165
+#: assets/js/editor.build.min.js:2
+msgid "Inpaint"
+msgstr ""
+
+#: assets/js/editor.build.js:17219
+#: assets/js/editor.build.min.js:2
+msgid "Opacity"
+msgstr ""
+
+#: assets/js/editor.build.js:17228
+#: assets/js/editor.build.min.js:2
+msgid "Blending Mode"
+msgstr ""
+
+#: assets/js/editor.build.js:17284
+#: assets/js/editor.build.min.js:2
+msgid "Radius"
+msgstr ""
+
+#: assets/js/editor.build.js:17329
+#: assets/js/editor.build.min.js:2
+msgid "Corner Radius"
+msgstr ""
+
+#: assets/js/editor.build.js:17377
+#: assets/js/editor.build.min.js:2
+msgid "Fill Style"
+msgstr ""
+
+#: assets/js/editor.build.js:17379
+#: assets/js/editor.build.min.js:2
+msgid "Fill Gradient"
+msgstr ""
+
+#: assets/js/editor.build.js:17441
+#: assets/js/editor.build.js:17933
+#: assets/js/editor.build.js:19356
+#: assets/js/editor.build.js:20605
+#: assets/js/editor.build.js:20640
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:3336
+#: assets/js/image-generator.build.js:3394
+#: assets/js/image-generator.build.min.js:2
+msgid "Text"
+msgstr ""
+
+#: assets/js/editor.build.js:17593
+#: assets/js/editor.build.min.js:2
+msgid "Add Filters"
+msgstr ""
+
+#: assets/js/editor.build.js:17628
+#: assets/js/editor.build.js:20689
+#: assets/js/editor.build.min.js:2
+msgid "Filters"
+msgstr ""
+
+#: assets/js/editor.build.js:17763
+#: assets/js/editor.build.min.js:2
+msgid "Clip Path"
+msgstr ""
+
+#: assets/js/editor.build.js:18084
+#: assets/js/editor.build.min.js:2
+msgid "Stroke Dash Array"
+msgstr ""
+
+#: assets/js/editor.build.js:18090
+#: assets/js/editor.build.min.js:2
+msgid "Stroke Dash Offset"
+msgstr ""
+
+#: assets/js/editor.build.js:18158
+#: assets/js/editor.build.min.js:2
+msgid "Translate X"
+msgstr ""
+
+#: assets/js/editor.build.js:18165
+#: assets/js/editor.build.min.js:2
+msgid "Translate Y"
+msgstr ""
+
+#: assets/js/editor.build.js:18172
+#: assets/js/editor.build.min.js:2
+msgid "Scale X"
+msgstr ""
+
+#: assets/js/editor.build.js:18180
+#: assets/js/editor.build.min.js:2
+msgid "Scale Y"
+msgstr ""
+
+#: assets/js/editor.build.js:18188
+#: assets/js/editor.build.min.js:2
+msgid "Skew X"
+msgstr ""
+
+#: assets/js/editor.build.js:18195
+#: assets/js/editor.build.min.js:2
+msgid "Skew Y"
+msgstr ""
+
+#: assets/js/editor.build.js:18202
+#: assets/js/editor.build.min.js:2
+msgid "Angle"
+msgstr ""
+
+#: assets/js/editor.build.js:18336
+#: assets/js/editor.build.min.js:2
+msgid "Canvas Settings"
+msgstr ""
+
+#: assets/js/editor.build.js:18359
+#: assets/js/editor.build.min.js:2
+msgid "Canvas Background"
+msgstr ""
+
+#: assets/js/editor.build.js:18363
+#: assets/js/editor.build.min.js:2
+msgid "Background Style"
+msgstr ""
+
+#: assets/js/editor.build.js:18364
+#: assets/js/editor.build.min.js:2
+msgid "Background Color"
+msgstr ""
+
+#: assets/js/editor.build.js:18365
+#: assets/js/editor.build.min.js:2
+msgid "Background Gradient"
+msgstr ""
+
+#: assets/js/editor.build.js:18375
+#: assets/js/editor.build.min.js:2
+msgid "Layers"
+msgstr ""
+
+#: assets/js/editor.build.js:18387
+#: assets/js/editor.build.min.js:2
+msgid "Project Metadata"
+msgstr ""
+
+#: assets/js/editor.build.js:18755
+#: assets/js/editor.build.min.js:2
+msgid "Additional Fonts"
+msgstr ""
+
+#: assets/js/editor.build.js:19916
+#: assets/js/editor.build.min.js:2
+msgid "Globals"
+msgstr ""
+
+#: assets/js/editor.build.js:19920
+#: assets/js/editor.build.min.js:2
+msgid "Open New Project"
+msgstr ""
+
+#: assets/js/editor.build.js:19923
+#: assets/js/editor.build.min.js:2
+msgid "Save Project"
+msgstr ""
+
+#: assets/js/editor.build.js:19932
+#: assets/js/editor.build.min.js:2
+msgid "Toolbar"
+msgstr ""
+
+#: assets/js/editor.build.js:19942
+#: assets/js/editor.build.min.js:2
+msgid "Add Icon"
+msgstr ""
+
+#: assets/js/editor.build.js:19948
+#: assets/js/editor.build.js:20371
+#: assets/js/editor.build.min.js:2
+msgid "Draw Shape"
+msgstr ""
+
+#: assets/js/editor.build.js:19951
+#: assets/js/editor.build.min.js:2
+msgid "Free-Hand Draw"
+msgstr ""
+
+#: assets/js/editor.build.js:19960
+#: assets/js/editor.build.min.js:2
+msgid "Ruler Menu"
+msgstr ""
+
+#: assets/js/editor.build.js:19963
+#: assets/js/editor.build.min.js:2
+msgid "Toggle Rulers"
+msgstr ""
+
+#: assets/js/editor.build.js:19966
+#: assets/js/editor.build.min.js:2
+msgid "Toggle Cursors"
+msgstr ""
+
+#: assets/js/editor.build.js:19969
+#: assets/js/editor.build.js:21904
+#: assets/js/editor.build.min.js:2
+msgid "Clear Guides"
+msgstr ""
+
+#: assets/js/editor.build.js:19972
+#: assets/js/editor.build.min.js:2
+msgid "Options Menu"
+msgstr ""
+
+#: assets/js/editor.build.js:19981
+#: assets/js/editor.build.min.js:2
+msgid "Export Image to Media"
+msgstr ""
+
+#: assets/js/editor.build.js:19984
+#: assets/js/editor.build.js:21794
+#: assets/js/editor.build.min.js:2
+msgid "Download as Image"
+msgstr ""
+
+#: assets/js/editor.build.js:19987
+#: assets/js/editor.build.js:21803
+#: assets/js/editor.build.min.js:2
+msgid "Download as SVG"
+msgstr ""
+
+#: assets/js/editor.build.js:19990
+#: assets/js/editor.build.min.js:2
+msgid "Toggle Fullscreen Mode"
+msgstr ""
+
+#: assets/js/editor.build.js:19993
+#: assets/js/editor.build.min.js:2
+msgid "Open This Modal"
+msgstr ""
+
+#: assets/js/editor.build.js:19996
+#: assets/js/editor.build.min.js:2
+msgid "Open Help Modal"
+msgstr ""
+
+#: assets/js/editor.build.js:19999
+#: assets/js/editor.build.min.js:2
+msgid "Layer Actions"
+msgstr ""
+
+#: assets/js/editor.build.js:20002
+#: assets/js/editor.build.min.js:2
+msgid "Move Layer up in Stack"
+msgstr ""
+
+#: assets/js/editor.build.js:20005
+#: assets/js/editor.build.min.js:2
+msgid "Move Layer Down in Stack"
+msgstr ""
+
+#: assets/js/editor.build.js:20008
+#: assets/js/editor.build.min.js:2
+msgid "Lock/Unlock Layer"
+msgstr ""
+
+#: assets/js/editor.build.js:20011
+#: assets/js/editor.build.min.js:2
+msgid "Toggle Layer is Visible"
+msgstr ""
+
+#: assets/js/editor.build.js:20014
+#: assets/js/editor.build.min.js:2
+msgid "Duplicate Layer"
+msgstr ""
+
+#: assets/js/editor.build.js:20017
+#: assets/js/editor.build.min.js:2
+msgid "Group/Ungroup Layers"
+msgstr ""
+
+#: assets/js/editor.build.js:20020
+#: assets/js/editor.build.js:20214
+#: assets/js/editor.build.min.js:2
+msgid "Remove Layer"
+msgid_plural "Remove Layers"
+msgstr[0] ""
+msgstr[1] ""
+
+#: assets/js/editor.build.js:20023
+#: assets/js/editor.build.min.js:2
+msgid "Selection"
+msgstr ""
+
+#: assets/js/editor.build.js:20026
+#: assets/js/editor.build.min.js:2
+msgid "Multiselection"
+msgstr ""
+
+#: assets/js/editor.build.js:20029
+#: assets/js/editor.build.min.js:2
+msgid "Clear Selection"
+msgstr ""
+
+#: assets/js/editor.build.js:20032
+#: assets/js/editor.build.min.js:2
+msgid "Drawing"
+msgstr ""
+
+#: assets/js/editor.build.js:20035
+#: assets/js/editor.build.min.js:2
+msgid "Start/Stop Drawing"
+msgstr ""
+
+#: assets/js/editor.build.js:20038
+#: assets/js/editor.build.min.js:2
+msgid "Draw a Straight Line (Only When Using Pencil Brush)"
+msgstr ""
+
+#: assets/js/editor.build.js:20041
+#: assets/js/editor.build.min.js:2
+msgid "Kepp Aspect Ratio While Drawing Shape"
+msgstr ""
+
+#: assets/js/editor.build.js:20096
+#: assets/js/editor.build.min.js:2
+msgid "Move Layer up"
+msgstr ""
+
+#: assets/js/editor.build.js:20112
+#: assets/js/editor.build.min.js:2
+msgid "Move Layer Down"
+msgstr ""
+
+#: assets/js/editor.build.js:20128
+#: assets/js/editor.build.min.js:2
+msgid "Unlock Layer"
+msgid_plural "Unlock Layers"
+msgstr[0] ""
+msgstr[1] ""
+
+#: assets/js/editor.build.js:20128
+#: assets/js/editor.build.min.js:2
+msgid "Lock Layer"
+msgid_plural "Lock Layers"
+msgstr[0] ""
+msgstr[1] ""
+
+#: assets/js/editor.build.js:20143
+#: assets/js/editor.build.min.js:2
+msgid "Set Layer to Hidden"
+msgid_plural "Set Layers to Hidden"
+msgstr[0] ""
+msgstr[1] ""
+
+#: assets/js/editor.build.js:20143
+#: assets/js/editor.build.min.js:2
+msgid "Set Layer to Visible"
+msgid_plural "Set Layers to Visible"
+msgstr[0] ""
+msgstr[1] ""
+
+#: assets/js/editor.build.js:20158
+#: assets/js/editor.build.min.js:2
+msgid "Dubplicate Layer"
+msgid_plural "Dubplicate Layers"
+msgstr[0] ""
+msgstr[1] ""
+
+#: assets/js/editor.build.js:20173
+#: assets/js/editor.build.min.js:2
+msgid "Ungroup Layers"
+msgstr ""
+
+#: assets/js/editor.build.js:20173
+#: assets/js/editor.build.min.js:2
+msgid "Group Layers"
+msgstr ""
+
+#: assets/js/editor.build.js:20400
+#: assets/js/editor.build.min.js:2
+msgid "Rectangle"
+msgstr ""
+
+#: assets/js/editor.build.js:20404
+#: assets/js/editor.build.js:20439
+#: assets/js/editor.build.js:20474
+#: assets/js/editor.build.js:20509
+#: assets/js/editor.build.js:20519
+#: assets/js/editor.build.js:20549
+#: assets/js/editor.build.js:20579
+#: assets/js/editor.build.js:20609
+#: assets/js/editor.build.js:20644
+#: assets/js/editor.build.js:20679
+#: assets/js/editor.build.js:20716
+#: assets/js/editor.build.js:20751
+#: assets/js/editor.build.min.js:2
+msgid "Transform"
+msgstr ""
+
+#: assets/js/editor.build.js:20409
+#: assets/js/editor.build.js:20444
+#: assets/js/editor.build.js:20479
+#: assets/js/editor.build.min.js:2
+msgid "Dimensions"
+msgstr ""
+
+#: assets/js/editor.build.js:20429
+#: assets/js/editor.build.js:20464
+#: assets/js/editor.build.js:20499
+#: assets/js/editor.build.js:20539
+#: assets/js/editor.build.js:20569
+#: assets/js/editor.build.js:20599
+#: assets/js/editor.build.js:20634
+#: assets/js/editor.build.js:20669
+#: assets/js/editor.build.js:20704
+#: assets/js/editor.build.js:20741
+#: assets/js/editor.build.js:20761
+#: assets/js/editor.build.min.js:2
+msgid "Blending"
+msgstr ""
+
+#: assets/js/editor.build.js:20470
+#: assets/js/editor.build.min.js:2
+msgid "Ellipse"
+msgstr ""
+
+#: assets/js/editor.build.js:20505
+#: assets/js/editor.build.min.js:2
+msgid "Line"
+msgstr ""
+
+#: assets/js/editor.build.js:20515
+#: assets/js/editor.build.min.js:2
+msgid "Path"
+msgstr ""
+
+#: assets/js/editor.build.js:20694
+#: assets/js/editor.build.min.js:2
+msgid "AI Tools"
+msgstr ""
+
+#: assets/js/editor.build.js:20712
+#: assets/js/editor.build.min.js:2
+msgid "QR Code"
+msgstr ""
+
+#: assets/js/editor.build.js:20721
+#: assets/js/editor.build.min.js:2
+msgid "QR Code Settings"
+msgstr ""
+
+#: assets/js/editor.build.js:20747
+#: assets/js/editor.build.min.js:2
+msgid "Group"
+msgstr ""
+
+#: assets/js/editor.build.js:20778
+#: assets/js/editor.build.min.js:2
+msgid "Source In"
+msgstr ""
+
+#: assets/js/editor.build.js:20781
+#: assets/js/editor.build.min.js:2
+msgid "Source Out"
+msgstr ""
+
+#: assets/js/editor.build.js:20784
+#: assets/js/editor.build.min.js:2
+msgid "Source Atop"
+msgstr ""
+
+#: assets/js/editor.build.js:20787
+#: assets/js/editor.build.min.js:2
+msgid "Destination Over"
+msgstr ""
+
+#: assets/js/editor.build.js:20790
+#: assets/js/editor.build.min.js:2
+msgid "Destination In"
+msgstr ""
+
+#: assets/js/editor.build.js:20793
+#: assets/js/editor.build.min.js:2
+msgid "Destination Out"
+msgstr ""
+
+#: assets/js/editor.build.js:20796
+#: assets/js/editor.build.min.js:2
+msgid "Destination Atop"
+msgstr ""
+
+#: assets/js/editor.build.js:20799
+#: assets/js/editor.build.min.js:2
+msgid "Lighter"
+msgstr ""
+
+#: assets/js/editor.build.js:20802
+#: assets/js/editor.build.min.js:2
+msgid "Copy"
+msgstr ""
+
+#: assets/js/editor.build.js:20805
+#: assets/js/editor.build.min.js:2
+msgid "XOR"
+msgstr ""
+
+#: assets/js/editor.build.js:20808
+#: assets/js/editor.build.js:21256
+#: assets/js/editor.build.min.js:2
+msgid "Multiply"
+msgstr ""
+
+#: assets/js/editor.build.js:20811
+#: assets/js/editor.build.js:21259
+#: assets/js/editor.build.min.js:2
+msgid "Screen"
+msgstr ""
+
+#: assets/js/editor.build.js:20814
+#: assets/js/editor.build.js:21268
+#: assets/js/editor.build.min.js:2
+msgid "Overlay"
+msgstr ""
+
+#: assets/js/editor.build.js:20817
+#: assets/js/editor.build.js:21265
+#: assets/js/editor.build.min.js:2
+msgid "Darken"
+msgstr ""
+
+#: assets/js/editor.build.js:20820
+#: assets/js/editor.build.js:21262
+#: assets/js/editor.build.min.js:2
+msgid "Lighten"
+msgstr ""
+
+#: assets/js/editor.build.js:20823
+#: assets/js/editor.build.min.js:2
+msgid "Color Dodge"
+msgstr ""
+
+#: assets/js/editor.build.js:20826
+#: assets/js/editor.build.min.js:2
+msgid "Color Burn"
+msgstr ""
+
+#: assets/js/editor.build.js:20829
+#: assets/js/editor.build.min.js:2
+msgid "Hard Light"
+msgstr ""
+
+#: assets/js/editor.build.js:20832
+#: assets/js/editor.build.min.js:2
+msgid "Soft Light"
+msgstr ""
+
+#: assets/js/editor.build.js:20835
+#: assets/js/editor.build.min.js:2
+msgid "Difference"
+msgstr ""
+
+#: assets/js/editor.build.js:20838
+#: assets/js/editor.build.js:21271
+#: assets/js/editor.build.min.js:2
+msgid "Exclusion"
+msgstr ""
+
+#: assets/js/editor.build.js:20841
+#: assets/js/editor.build.min.js:2
+msgid "Hue"
+msgstr ""
+
+#: assets/js/editor.build.js:20844
+#: assets/js/editor.build.js:21154
+#: assets/js/editor.build.js:21158
+#: assets/js/editor.build.min.js:2
+msgid "Saturation"
+msgstr ""
+
+#: assets/js/editor.build.js:20850
+#: assets/js/editor.build.js:21047
+#: assets/js/editor.build.min.js:2
+msgid "Luminosity"
+msgstr ""
+
+#: assets/js/editor.build.js:20875
+#: assets/js/editor.build.min.js:2
+msgid "16:10 - Landscape"
+msgstr ""
+
+#: assets/js/editor.build.js:20878
+#: assets/js/editor.build.min.js:2
+msgid "16:9 - Landscape"
+msgstr ""
+
+#: assets/js/editor.build.js:20881
+#: assets/js/editor.build.min.js:2
+msgid "4:3 - Landscape"
+msgstr ""
+
+#: assets/js/editor.build.js:20884
+#: assets/js/editor.build.min.js:2
+msgid "3:2 - Landscape"
+msgstr ""
+
+#: assets/js/editor.build.js:20887
+#: assets/js/editor.build.min.js:2
+msgid "10:16 - Portrait"
+msgstr ""
+
+#: assets/js/editor.build.js:20890
+#: assets/js/editor.build.min.js:2
+msgid "9:16 - Portrait"
+msgstr ""
+
+#: assets/js/editor.build.js:20893
+#: assets/js/editor.build.min.js:2
+msgid "3:4 - Portrait"
+msgstr ""
+
+#: assets/js/editor.build.js:20896
+#: assets/js/editor.build.min.js:2
+msgid "2:3 - Portrait"
+msgstr ""
+
+#: assets/js/editor.build.js:20908
+#: assets/js/editor.build.min.js:2
+msgid "2 Columns"
+msgstr ""
+
+#: assets/js/editor.build.js:20921
+#: assets/js/editor.build.min.js:2
+msgid "3 Columns"
+msgstr ""
+
+#: assets/js/editor.build.js:20934
+#: assets/js/editor.build.min.js:2
+msgid "4 Columns"
+msgstr ""
+
+#: assets/js/editor.build.js:20947
+#: assets/js/editor.build.min.js:2
+msgid "2 Rows"
+msgstr ""
+
+#: assets/js/editor.build.js:20960
+#: assets/js/editor.build.min.js:2
+msgid "3 Rows"
+msgstr ""
+
+#: assets/js/editor.build.js:20973
+#: assets/js/editor.build.min.js:2
+msgid "4 Rows"
+msgstr ""
+
+#: assets/js/editor.build.js:20986
+#: assets/js/editor.build.min.js:2
+msgid "2x2"
+msgstr ""
+
+#: assets/js/editor.build.js:20999
+#: assets/js/editor.build.min.js:2
+msgid "3x3"
+msgstr ""
+
+#: assets/js/editor.build.js:21012
+#: assets/js/editor.build.min.js:2
+msgid "4x4"
+msgstr ""
+
+#: assets/js/editor.build.js:21033
+#: assets/js/editor.build.min.js:2
+msgid "Grayscale"
+msgstr ""
+
+#: assets/js/editor.build.js:21041
+#: assets/js/editor.build.min.js:2
+msgid "Average"
+msgstr ""
+
+#: assets/js/editor.build.js:21044
+#: assets/js/editor.build.min.js:2
+msgid "Lightness"
+msgstr ""
+
+#: assets/js/editor.build.js:21052
+#: assets/js/editor.build.min.js:2
+msgid "Invert"
+msgstr ""
+
+#: assets/js/editor.build.js:21056
+#: assets/js/editor.build.min.js:2
+msgid "Sepia"
+msgstr ""
+
+#: assets/js/editor.build.js:21060
+#: assets/js/editor.build.min.js:2
+msgid "Black/White"
+msgstr ""
+
+#: assets/js/editor.build.js:21064
+#: assets/js/editor.build.min.js:2
+msgid "Brownie"
+msgstr ""
+
+#: assets/js/editor.build.js:21068
+#: assets/js/editor.build.min.js:2
+msgid "Vintage"
+msgstr ""
+
+#: assets/js/editor.build.js:21072
+#: assets/js/editor.build.min.js:2
+msgid "Kodachrome"
+msgstr ""
+
+#: assets/js/editor.build.js:21076
+#: assets/js/editor.build.min.js:2
+msgid "Technicolor"
+msgstr ""
+
+#: assets/js/editor.build.js:21080
+#: assets/js/editor.build.min.js:2
+msgid "Polaroid"
+msgstr ""
+
+#: assets/js/editor.build.js:21084
+#: assets/js/editor.build.min.js:2
+msgid "Remove Color"
+msgstr ""
+
+#: assets/js/editor.build.js:21094
+#: assets/js/editor.build.min.js:2
+msgid "Distance"
+msgstr ""
+
+#: assets/js/editor.build.js:21102
+#: assets/js/editor.build.js:21106
+#: assets/js/editor.build.min.js:2
+msgid "Brightness"
+msgstr ""
+
+#: assets/js/editor.build.js:21114
+#: assets/js/editor.build.min.js:2
+msgid "Gamma"
+msgstr ""
+
+#: assets/js/editor.build.js:21118
+#: assets/js/editor.build.js:22961
+#: assets/js/editor.build.js:23133
+#: assets/js/editor.build.js:23227
+#: assets/js/editor.build.min.js:2
+#: assets/js/elements.build.js:5818
+#: assets/js/elements.build.min.js:2
+#: assets/js/free-images.build.js:723
+#: assets/js/free-images.build.js:895
+#: assets/js/free-images.build.js:989
+#: assets/js/free-images.build.min.js:2
+msgid "Red"
+msgstr ""
+
+#: assets/js/editor.build.js:21126
+#: assets/js/editor.build.js:22970
+#: assets/js/editor.build.js:23142
+#: assets/js/editor.build.js:23236
+#: assets/js/editor.build.min.js:2
+#: assets/js/elements.build.js:5821
+#: assets/js/elements.build.min.js:2
+#: assets/js/free-images.build.js:732
+#: assets/js/free-images.build.js:904
+#: assets/js/free-images.build.js:998
+#: assets/js/free-images.build.min.js:2
+msgid "Green"
+msgstr ""
+
+#: assets/js/editor.build.js:21134
+#: assets/js/editor.build.js:22976
+#: assets/js/editor.build.js:23148
+#: assets/js/editor.build.min.js:2
+#: assets/js/elements.build.js:5827
+#: assets/js/elements.build.min.js:2
+#: assets/js/free-images.build.js:738
+#: assets/js/free-images.build.js:910
+#: assets/js/free-images.build.min.js:2
+msgid "Blue"
+msgstr ""
+
+#: assets/js/editor.build.js:21142
+#: assets/js/editor.build.js:21146
+#: assets/js/editor.build.min.js:2
+msgid "Contrast"
+msgstr ""
+
+#: assets/js/editor.build.js:21166
+#: assets/js/editor.build.js:21170
+#: assets/js/editor.build.min.js:2
+msgid "Vibrance"
+msgstr ""
+
+#: assets/js/editor.build.js:21178
+#: assets/js/editor.build.min.js:2
+msgid "Hue Rotation"
+msgstr ""
+
+#: assets/js/editor.build.js:21182
+#: assets/js/editor.build.min.js:2
+msgid "Rotation"
+msgstr ""
+
+#: assets/js/editor.build.js:21190
+#: assets/js/editor.build.js:21194
+#: assets/js/editor.build.min.js:2
+msgid "Noise"
+msgstr ""
+
+#: assets/js/editor.build.js:21202
+#: assets/js/editor.build.min.js:2
+msgid "Pixelate"
+msgstr ""
+
+#: assets/js/editor.build.js:21206
+#: assets/js/editor.build.min.js:2
+msgid "Block Size"
+msgstr ""
+
+#: assets/js/editor.build.js:21214
+#: assets/js/editor.build.js:21218
+#: assets/js/editor.build.min.js:2
+#: assets/js/elements.build.js:8016
+#: assets/js/elements.build.min.js:2
+msgid "Blur"
+msgstr ""
+
+#: assets/js/editor.build.js:21226
+#: assets/js/editor.build.min.js:2
+msgid "Sharpen"
+msgstr ""
+
+#: assets/js/editor.build.js:21230
+#: assets/js/editor.build.min.js:2
+msgid "Emboss"
+msgstr ""
+
+#: assets/js/editor.build.js:21234
+#: assets/js/editor.build.min.js:2
+msgid "Opaque"
+msgstr ""
+
+#: assets/js/editor.build.js:21239
+#: assets/js/editor.build.min.js:2
+msgid "Blend Color"
+msgstr ""
+
+#: assets/js/editor.build.js:21247
+#: assets/js/editor.build.min.js:2
+msgid "Add"
+msgstr ""
+
+#: assets/js/editor.build.js:21250
+#: assets/js/editor.build.min.js:2
+msgid "Diff"
+msgstr ""
+
+#: assets/js/editor.build.js:21253
+#: assets/js/editor.build.min.js:2
+msgid "Subtract"
+msgstr ""
+
+#: assets/js/editor.build.js:21274
+#: assets/js/editor.build.min.js:2
+msgid "Tint"
+msgstr ""
+
+#: assets/js/editor.build.js:21285
+#: assets/js/editor.build.min.js:2
+msgid "Alpha"
+msgstr ""
+
+#: assets/js/editor.build.js:21293
+#: assets/js/editor.build.min.js:2
+msgid "Duotone"
+msgstr ""
+
+#: assets/js/editor.build.js:21297
+#: assets/js/editor.build.min.js:2
+msgid "Color Dark"
+msgstr ""
+
+#: assets/js/editor.build.js:21303
+#: assets/js/editor.build.min.js:2
+msgid "Color Light"
+msgstr ""
+
+#: assets/js/editor.build.js:21320
+#: assets/js/editor.build.min.js:2
+msgid "Serif"
+msgstr ""
+
+#: assets/js/editor.build.js:21323
+#: assets/js/editor.build.min.js:2
+msgid "Sans Serif"
+msgstr ""
+
+#: assets/js/editor.build.js:21326
+#: assets/js/editor.build.min.js:2
+msgid "Display"
+msgstr ""
+
+#: assets/js/editor.build.js:21329
+#: assets/js/editor.build.min.js:2
+msgid "Handwriting"
+msgstr ""
+
+#: assets/js/editor.build.js:21332
+#: assets/js/editor.build.min.js:2
+msgid "Monospace"
+msgstr ""
+
+#: assets/js/editor.build.js:21336
+#: assets/js/editor.build.min.js:2
+msgid "All Languages"
+msgstr ""
+
+#: assets/js/editor.build.js:21339
+#: assets/js/editor.build.min.js:2
+msgid "Arabic"
+msgstr ""
+
+#: assets/js/editor.build.js:21342
+#: assets/js/editor.build.min.js:2
+msgid "Bengali"
+msgstr ""
+
+#: assets/js/editor.build.js:21345
+#: assets/js/editor.build.min.js:2
+msgid "Chinese (Hong Kong)"
+msgstr ""
+
+#: assets/js/editor.build.js:21348
+#: assets/js/editor.build.min.js:2
+msgid "Chinese (Simplified)"
+msgstr ""
+
+#: assets/js/editor.build.js:21351
+#: assets/js/editor.build.min.js:2
+msgid "Chinese (Traditional)"
+msgstr ""
+
+#: assets/js/editor.build.js:21354
+#: assets/js/editor.build.min.js:2
+msgid "Cyrillic"
+msgstr ""
+
+#: assets/js/editor.build.js:21357
+#: assets/js/editor.build.min.js:2
+msgid "Cyrillic Extended"
+msgstr ""
+
+#: assets/js/editor.build.js:21360
+#: assets/js/editor.build.min.js:2
+msgid "Devanagari"
+msgstr ""
+
+#: assets/js/editor.build.js:21363
+#: assets/js/editor.build.min.js:2
+msgid "Greek"
+msgstr ""
+
+#: assets/js/editor.build.js:21366
+#: assets/js/editor.build.min.js:2
+msgid "Greek Extended"
+msgstr ""
+
+#: assets/js/editor.build.js:21369
+#: assets/js/editor.build.min.js:2
+msgid "Gujarati"
+msgstr ""
+
+#: assets/js/editor.build.js:21372
+#: assets/js/editor.build.min.js:2
+msgid "Gurmukhi"
+msgstr ""
+
+#: assets/js/editor.build.js:21375
+#: assets/js/editor.build.min.js:2
+msgid "Hebrew"
+msgstr ""
+
+#: assets/js/editor.build.js:21378
+#: assets/js/editor.build.min.js:2
+msgid "Japanese"
+msgstr ""
+
+#: assets/js/editor.build.js:21381
+#: assets/js/editor.build.min.js:2
+msgid "Khmer"
+msgstr ""
+
+#: assets/js/editor.build.js:21384
+#: assets/js/editor.build.min.js:2
+msgid "Korean"
+msgstr ""
+
+#: assets/js/editor.build.js:21387
+#: assets/js/editor.build.min.js:2
+msgid "Latin"
+msgstr ""
+
+#: assets/js/editor.build.js:21390
+#: assets/js/editor.build.min.js:2
+msgid "Latin Extended"
+msgstr ""
+
+#: assets/js/editor.build.js:21393
+#: assets/js/editor.build.min.js:2
+msgid "Malayalam"
+msgstr ""
+
+#: assets/js/editor.build.js:21396
+#: assets/js/editor.build.min.js:2
+msgid "Myanmar"
+msgstr ""
+
+#: assets/js/editor.build.js:21399
+#: assets/js/editor.build.min.js:2
+msgid "Oriya"
+msgstr ""
+
+#: assets/js/editor.build.js:21402
+#: assets/js/editor.build.min.js:2
+msgid "Sinhala"
+msgstr ""
+
+#: assets/js/editor.build.js:21405
+#: assets/js/editor.build.min.js:2
+msgid "Tamil"
+msgstr ""
+
+#: assets/js/editor.build.js:21408
+#: assets/js/editor.build.min.js:2
+msgid "Telugu"
+msgstr ""
+
+#: assets/js/editor.build.js:21411
+#: assets/js/editor.build.min.js:2
+msgid "Thai"
+msgstr ""
+
+#: assets/js/editor.build.js:21414
+#: assets/js/editor.build.min.js:2
+msgid "Tibetian"
+msgstr ""
+
+#: assets/js/editor.build.js:21417
+#: assets/js/editor.build.min.js:2
+msgid "Vietnamese"
+msgstr ""
+
+#: assets/js/editor.build.js:21421
+#: assets/js/editor.build.min.js:2
+msgid "All Variants"
+msgstr ""
+
+#: assets/js/editor.build.js:21424
+#: assets/js/editor.build.min.js:2
+msgid "Thin 100"
+msgstr ""
+
+#: assets/js/editor.build.js:21427
+#: assets/js/editor.build.min.js:2
+msgid "Thin 100 Italic"
+msgstr ""
+
+#: assets/js/editor.build.js:21430
+#: assets/js/editor.build.min.js:2
+msgid "Light 300"
+msgstr ""
+
+#: assets/js/editor.build.js:21433
+#: assets/js/editor.build.min.js:2
+msgid "Light 300 Italic"
+msgstr ""
+
+#: assets/js/editor.build.js:21436
+#: assets/js/editor.build.min.js:2
+msgid "Regular 400"
+msgstr ""
+
+#: assets/js/editor.build.js:21439
+#: assets/js/editor.build.min.js:2
+msgid "Regular 400 Italic"
+msgstr ""
+
+#: assets/js/editor.build.js:21442
+#: assets/js/editor.build.min.js:2
+msgid "Medium 500"
+msgstr ""
+
+#: assets/js/editor.build.js:21445
+#: assets/js/editor.build.min.js:2
+msgid "Medium 500 Italic"
+msgstr ""
+
+#: assets/js/editor.build.js:21448
+#: assets/js/editor.build.min.js:2
+msgid "Bold 700"
+msgstr ""
+
+#: assets/js/editor.build.js:21451
+#: assets/js/editor.build.min.js:2
+msgid "Bold 700 Italic"
+msgstr ""
+
+#: assets/js/editor.build.js:21454
+#: assets/js/editor.build.min.js:2
+msgid "Black 900"
+msgstr ""
+
+#: assets/js/editor.build.js:21457
+#: assets/js/editor.build.min.js:2
+msgid "Black 900 Italic"
+msgstr ""
+
+#: assets/js/editor.build.js:21473
+#: assets/js/editor.build.min.js:2
+msgid "Arrow"
+msgstr ""
+
+#: assets/js/editor.build.js:21476
+#: assets/js/editor.build.min.js:2
+msgid "Abstract"
+msgstr ""
+
+#: assets/js/editor.build.js:21479
+#: assets/js/editor.build.min.js:2
+msgid "Geometric"
+msgstr ""
+
+#: assets/js/editor.build.js:21482
+#: assets/js/editor.build.min.js:2
+msgid "Speech Bubble"
+msgstr ""
+
+#: assets/js/editor.build.js:21485
+#: assets/js/editor.build.js:22095
+#: assets/js/editor.build.min.js:2
+msgid "Star"
+msgstr ""
+
+#: assets/js/editor.build.js:21488
+#: assets/js/editor.build.min.js:2
+msgid "Ink Brush Stroke"
+msgstr ""
+
+#: assets/js/editor.build.js:21491
+#: assets/js/editor.build.min.js:2
+msgid "Explosion"
+msgstr ""
+
+#: assets/js/editor.build.js:21494
+#: assets/js/editor.build.min.js:2
+msgid "Badge"
+msgstr ""
+
+#: assets/js/editor.build.js:21497
+#: assets/js/editor.build.min.js:2
+msgid "Ribbon"
+msgstr ""
+
+#: assets/js/editor.build.js:21500
+#: assets/js/editor.build.js:23086
+#: assets/js/editor.build.min.js:2
+#: assets/js/free-images.build.js:848
+#: assets/js/free-images.build.min.js:2
+msgid "People"
+msgstr ""
+
+#: assets/js/editor.build.js:21503
+#: assets/js/editor.build.min.js:2
+msgid "Avatar"
+msgstr ""
+
+#: assets/js/editor.build.js:21506
+#: assets/js/editor.build.min.js:2
+msgid "Animal"
+msgstr ""
+
+#: assets/js/editor.build.js:21509
+#: assets/js/editor.build.min.js:2
+msgid "Tree"
+msgstr ""
+
+#: assets/js/editor.build.js:21512
+#: assets/js/editor.build.js:22110
+#: assets/js/editor.build.min.js:2
+msgid "Flower"
+msgstr ""
+
+#: assets/js/editor.build.js:21515
+#: assets/js/editor.build.min.js:2
+msgid "Leaf"
+msgstr ""
+
+#: assets/js/editor.build.js:21552
+#: assets/js/editor.build.min.js:2
+msgid "Thumbnail"
+msgstr ""
+
+#: assets/js/editor.build.js:21553
+#: assets/js/editor.build.min.js:2
+msgid "Medium"
+msgstr ""
+
+#: assets/js/editor.build.js:21554
+#: assets/js/editor.build.min.js:2
+msgid "Medium Large"
+msgstr ""
+
+#: assets/js/editor.build.js:21555
+#: assets/js/editor.build.min.js:2
+msgid "Full"
+msgstr ""
+
+#: assets/js/editor.build.js:21748
+#: assets/js/editor.build.min.js:2
+msgid "Open"
+msgstr ""
+
+#: assets/js/editor.build.js:21754
+#: assets/js/editor.build.min.js:2
+msgid "Save as"
+msgstr ""
+
+#: assets/js/editor.build.js:21765
+#: assets/js/editor.build.min.js:2
+msgid "Export to Media"
+msgstr ""
+
+#: assets/js/editor.build.js:21774
+#: assets/js/editor.build.min.js:2
+msgid "Replace Media"
+msgstr ""
+
+#: assets/js/editor.build.js:21783
+#: assets/js/editor.build.min.js:2
+msgid "Restore Media"
+msgstr ""
+
+#: assets/js/editor.build.js:21814
+#: assets/js/editor.build.min.js:2
+msgid "Fullscreen Mode"
+msgstr ""
+
+#: assets/js/editor.build.js:21828
+#: assets/js/editor.build.min.js:2
+msgid "Help"
+msgstr ""
+
+#: assets/js/editor.build.js:21867
+#: assets/js/editor.build.min.js:2
+msgid "Hide Rulers"
+msgstr ""
+
+#: assets/js/editor.build.js:21867
+#: assets/js/editor.build.min.js:2
+msgid "Show Rulers"
+msgstr ""
+
+#: assets/js/editor.build.js:21873
+#: assets/js/editor.build.min.js:2
+msgid "Hide Cursors"
+msgstr ""
+
+#: assets/js/editor.build.js:21873
+#: assets/js/editor.build.min.js:2
+msgid "Show Cursors"
+msgstr ""
+
+#: assets/js/editor.build.js:21895
+#: assets/js/editor.build.min.js:2
+msgid "Unlock Guides"
+msgstr ""
+
+#: assets/js/editor.build.js:22040
+#: assets/js/editor.build.min.js:2
+msgid "Triangle"
+msgstr ""
+
+#: assets/js/editor.build.js:22045
+#: assets/js/editor.build.min.js:2
+msgid "Diamond"
+msgstr ""
+
+#: assets/js/editor.build.js:22050
+#: assets/js/editor.build.min.js:2
+msgid "Pentagon"
+msgstr ""
+
+#: assets/js/editor.build.js:22055
+#: assets/js/editor.build.min.js:2
+msgid "Hexagon"
+msgstr ""
+
+#: assets/js/editor.build.js:22060
+#: assets/js/editor.build.min.js:2
+msgid "Left Point"
+msgstr ""
+
+#: assets/js/editor.build.js:22065
+#: assets/js/editor.build.min.js:2
+msgid "Right Point"
+msgstr ""
+
+#: assets/js/editor.build.js:22070
+#: assets/js/editor.build.min.js:2
+msgid "Left Chevron"
+msgstr ""
+
+#: assets/js/editor.build.js:22075
+#: assets/js/editor.build.min.js:2
+msgid "Right Chevron"
+msgstr ""
+
+#: assets/js/editor.build.js:22080
+#: assets/js/editor.build.min.js:2
+msgid "Trapezoid"
+msgstr ""
+
+#: assets/js/editor.build.js:22085
+#: assets/js/editor.build.min.js:2
+msgid "Parallelogram"
+msgstr ""
+
+#: assets/js/editor.build.js:22090
+#: assets/js/editor.build.min.js:2
+msgid "Rabbet"
+msgstr ""
+
+#: assets/js/editor.build.js:22100
+#: assets/js/editor.build.min.js:2
+msgid "Heart"
+msgstr ""
+
+#: assets/js/editor.build.js:22105
+#: assets/js/editor.build.min.js:2
+msgid "Blob"
+msgstr ""
+
+#: assets/js/editor.build.js:22115
+#: assets/js/editor.build.min.js:2
+msgid "Sketch"
+msgstr ""
+
+#: assets/js/editor.build.js:22731
+#: assets/js/editor.build.min.js:2
+#: assets/js/free-images.build.js:468
+#: assets/js/free-images.build.min.js:2
+msgid "Powered by Pexels"
+msgstr ""
+
+#: assets/js/editor.build.js:22802
+#: assets/js/editor.build.min.js:2
+#: assets/js/free-images.build.js:539
+#: assets/js/free-images.build.min.js:2
+msgid "Powered by Pixabay"
+msgstr ""
+
+#: assets/js/editor.build.js:22813
+#: assets/js/editor.build.min.js:2
+#: assets/js/free-images.build.js:550
+#: assets/js/free-images.build.min.js:2
+msgid "Type"
+msgstr ""
+
+#: assets/js/editor.build.js:22888
+#: assets/js/editor.build.min.js:2
+#: assets/js/free-images.build.js:625
+#: assets/js/free-images.build.min.js:2
+msgid "Powered by Unsplash"
+msgstr ""
+
+#: assets/js/editor.build.js:22964
+#: assets/js/editor.build.js:23136
+#: assets/js/editor.build.js:23224
+#: assets/js/editor.build.min.js:2
+#: assets/js/elements.build.js:5833
 #: assets/js/elements.build.min.js:2
 #: assets/js/free-images.build.js:726
 #: assets/js/free-images.build.js:898
@@ -2993,11 +3145,11 @@ msgstr ""
 msgid "Orange"
 msgstr ""
 
-#: assets/js/editor.build.js:18052
-#: assets/js/editor.build.js:18224
-#: assets/js/editor.build.js:18306
+#: assets/js/editor.build.js:22967
+#: assets/js/editor.build.js:23139
+#: assets/js/editor.build.js:23221
 #: assets/js/editor.build.min.js:2
-#: assets/js/elements.build.js:5720
+#: assets/js/elements.build.js:5824
 #: assets/js/elements.build.min.js:2
 #: assets/js/free-images.build.js:729
 #: assets/js/free-images.build.js:901
@@ -3006,10 +3158,10 @@ msgstr ""
 msgid "Yellow"
 msgstr ""
 
-#: assets/js/editor.build.js:18058
-#: assets/js/editor.build.js:18230
+#: assets/js/editor.build.js:22973
+#: assets/js/editor.build.js:23145
 #: assets/js/editor.build.min.js:2
-#: assets/js/elements.build.js:5747
+#: assets/js/elements.build.js:5851
 #: assets/js/elements.build.min.js:2
 #: assets/js/free-images.build.js:735
 #: assets/js/free-images.build.js:907
@@ -3017,17 +3169,17 @@ msgstr ""
 msgid "Turquoise"
 msgstr ""
 
-#: assets/js/editor.build.js:18064
+#: assets/js/editor.build.js:22979
 #: assets/js/editor.build.min.js:2
 #: assets/js/free-images.build.js:741
 #: assets/js/free-images.build.min.js:2
 msgid "Violet"
 msgstr ""
 
-#: assets/js/editor.build.js:18067
-#: assets/js/editor.build.js:18239
+#: assets/js/editor.build.js:22982
+#: assets/js/editor.build.js:23154
 #: assets/js/editor.build.min.js:2
-#: assets/js/elements.build.js:5732
+#: assets/js/elements.build.js:5836
 #: assets/js/elements.build.min.js:2
 #: assets/js/free-images.build.js:744
 #: assets/js/free-images.build.js:916
@@ -3035,10 +3187,10 @@ msgstr ""
 msgid "Pink"
 msgstr ""
 
-#: assets/js/editor.build.js:18070
-#: assets/js/editor.build.js:18251
+#: assets/js/editor.build.js:22985
+#: assets/js/editor.build.js:23166
 #: assets/js/editor.build.min.js:2
-#: assets/js/elements.build.js:5726
+#: assets/js/elements.build.js:5830
 #: assets/js/elements.build.min.js:2
 #: assets/js/free-images.build.js:747
 #: assets/js/free-images.build.js:928
@@ -3046,11 +3198,11 @@ msgstr ""
 msgid "Brown"
 msgstr ""
 
-#: assets/js/editor.build.js:18073
-#: assets/js/editor.build.js:18248
-#: assets/js/editor.build.js:18300
+#: assets/js/editor.build.js:22988
+#: assets/js/editor.build.js:23163
+#: assets/js/editor.build.js:23215
 #: assets/js/editor.build.min.js:2
-#: assets/js/elements.build.js:5708
+#: assets/js/elements.build.js:5812
 #: assets/js/elements.build.min.js:2
 #: assets/js/free-images.build.js:750
 #: assets/js/free-images.build.js:925
@@ -3059,8 +3211,8 @@ msgstr ""
 msgid "Black"
 msgstr ""
 
-#: assets/js/editor.build.js:18076
-#: assets/js/editor.build.js:18245
+#: assets/js/editor.build.js:22991
+#: assets/js/editor.build.js:23160
 #: assets/js/editor.build.min.js:2
 #: assets/js/free-images.build.js:753
 #: assets/js/free-images.build.js:922
@@ -3068,11 +3220,11 @@ msgstr ""
 msgid "Gray"
 msgstr ""
 
-#: assets/js/editor.build.js:18079
-#: assets/js/editor.build.js:18242
-#: assets/js/editor.build.js:18303
+#: assets/js/editor.build.js:22994
+#: assets/js/editor.build.js:23157
+#: assets/js/editor.build.js:23218
 #: assets/js/editor.build.min.js:2
-#: assets/js/elements.build.js:5711
+#: assets/js/elements.build.js:5815
 #: assets/js/elements.build.min.js:2
 #: assets/js/free-images.build.js:756
 #: assets/js/free-images.build.js:919
@@ -3081,465 +3233,636 @@ msgstr ""
 msgid "White"
 msgstr ""
 
-#: assets/js/editor.build.js:18110
+#: assets/js/editor.build.js:23025
 #: assets/js/editor.build.min.js:2
 #: assets/js/free-images.build.js:787
 #: assets/js/free-images.build.min.js:2
 msgid "Any Type"
 msgstr ""
 
-#: assets/js/editor.build.js:18113
+#: assets/js/editor.build.js:23028
 #: assets/js/editor.build.min.js:2
 #: assets/js/free-images.build.js:790
 #: assets/js/free-images.build.min.js:2
 msgid "Photo"
 msgstr ""
 
-#: assets/js/editor.build.js:18116
+#: assets/js/editor.build.js:23031
 #: assets/js/editor.build.min.js:2
 #: assets/js/free-images.build.js:793
 #: assets/js/free-images.build.min.js:2
 msgid "Illustration"
 msgstr ""
 
-#: assets/js/editor.build.js:18119
+#: assets/js/editor.build.js:23034
 #: assets/js/editor.build.min.js:2
 #: assets/js/free-images.build.js:796
 #: assets/js/free-images.build.min.js:2
 msgid "Vector"
 msgstr ""
 
-#: assets/js/editor.build.js:18133
+#: assets/js/editor.build.js:23048
 #: assets/js/editor.build.min.js:2
 #: assets/js/free-images.build.js:810
 #: assets/js/free-images.build.min.js:2
 msgid "Horizontal"
 msgstr ""
 
-#: assets/js/editor.build.js:18136
+#: assets/js/editor.build.js:23051
 #: assets/js/editor.build.min.js:2
 #: assets/js/free-images.build.js:813
 #: assets/js/free-images.build.min.js:2
 msgid "Vertical"
 msgstr ""
 
-#: assets/js/editor.build.js:18150
+#: assets/js/editor.build.js:23065
 #: assets/js/editor.build.min.js:2
 #: assets/js/free-images.build.js:827
 #: assets/js/free-images.build.min.js:2
 msgid "Backgrounds"
 msgstr ""
 
-#: assets/js/editor.build.js:18153
+#: assets/js/editor.build.js:23068
 #: assets/js/editor.build.min.js:2
 #: assets/js/free-images.build.js:830
 #: assets/js/free-images.build.min.js:2
 msgid "Fashion"
 msgstr ""
 
-#: assets/js/editor.build.js:18156
+#: assets/js/editor.build.js:23071
 #: assets/js/editor.build.min.js:2
 #: assets/js/free-images.build.js:833
 #: assets/js/free-images.build.min.js:2
 msgid "Nature"
 msgstr ""
 
-#: assets/js/editor.build.js:18159
+#: assets/js/editor.build.js:23074
 #: assets/js/editor.build.min.js:2
 #: assets/js/free-images.build.js:836
 #: assets/js/free-images.build.min.js:2
 msgid "Science"
 msgstr ""
 
-#: assets/js/editor.build.js:18162
+#: assets/js/editor.build.js:23077
 #: assets/js/editor.build.min.js:2
 #: assets/js/free-images.build.js:839
 #: assets/js/free-images.build.min.js:2
 msgid "Education"
 msgstr ""
 
-#: assets/js/editor.build.js:18165
+#: assets/js/editor.build.js:23080
 #: assets/js/editor.build.min.js:2
 #: assets/js/free-images.build.js:842
 #: assets/js/free-images.build.min.js:2
 msgid "Feelings"
 msgstr ""
 
-#: assets/js/editor.build.js:18168
+#: assets/js/editor.build.js:23083
 #: assets/js/editor.build.min.js:2
 #: assets/js/free-images.build.js:845
 #: assets/js/free-images.build.min.js:2
 msgid "Health"
 msgstr ""
 
-#: assets/js/editor.build.js:18171
-#: assets/js/editor.build.min.js:2
-#: assets/js/free-images.build.js:848
-#: assets/js/free-images.build.min.js:2
-msgid "People"
-msgstr ""
-
-#: assets/js/editor.build.js:18174
+#: assets/js/editor.build.js:23089
 #: assets/js/editor.build.min.js:2
 #: assets/js/free-images.build.js:851
 #: assets/js/free-images.build.min.js:2
 msgid "Religion"
 msgstr ""
 
-#: assets/js/editor.build.js:18177
+#: assets/js/editor.build.js:23092
 #: assets/js/editor.build.min.js:2
 #: assets/js/free-images.build.js:854
 #: assets/js/free-images.build.min.js:2
 msgid "Places"
 msgstr ""
 
-#: assets/js/editor.build.js:18180
+#: assets/js/editor.build.js:23095
 #: assets/js/editor.build.min.js:2
 #: assets/js/free-images.build.js:857
 #: assets/js/free-images.build.min.js:2
 msgid "Animals"
 msgstr ""
 
-#: assets/js/editor.build.js:18183
+#: assets/js/editor.build.js:23098
 #: assets/js/editor.build.min.js:2
 #: assets/js/free-images.build.js:860
 #: assets/js/free-images.build.min.js:2
 msgid "Industry"
 msgstr ""
 
-#: assets/js/editor.build.js:18186
+#: assets/js/editor.build.js:23101
 #: assets/js/editor.build.min.js:2
 #: assets/js/free-images.build.js:863
 #: assets/js/free-images.build.min.js:2
 msgid "Computer"
 msgstr ""
 
-#: assets/js/editor.build.js:18189
+#: assets/js/editor.build.js:23104
 #: assets/js/editor.build.min.js:2
 #: assets/js/free-images.build.js:866
 #: assets/js/free-images.build.min.js:2
 msgid "Food"
 msgstr ""
 
-#: assets/js/editor.build.js:18192
+#: assets/js/editor.build.js:23107
 #: assets/js/editor.build.min.js:2
 #: assets/js/free-images.build.js:869
 #: assets/js/free-images.build.min.js:2
 msgid "Sports"
 msgstr ""
 
-#: assets/js/editor.build.js:18195
+#: assets/js/editor.build.js:23110
 #: assets/js/editor.build.min.js:2
 #: assets/js/free-images.build.js:872
 #: assets/js/free-images.build.min.js:2
 msgid "Transportation"
 msgstr ""
 
-#: assets/js/editor.build.js:18198
+#: assets/js/editor.build.js:23113
 #: assets/js/editor.build.min.js:2
 #: assets/js/free-images.build.js:875
 #: assets/js/free-images.build.min.js:2
 msgid "Travel"
 msgstr ""
 
-#: assets/js/editor.build.js:18201
+#: assets/js/editor.build.js:23116
 #: assets/js/editor.build.min.js:2
 #: assets/js/free-images.build.js:878
 #: assets/js/free-images.build.min.js:2
 msgid "Buildings"
 msgstr ""
 
-#: assets/js/editor.build.js:18204
+#: assets/js/editor.build.js:23119
 #: assets/js/editor.build.min.js:2
 #: assets/js/free-images.build.js:881
 #: assets/js/free-images.build.min.js:2
 msgid "Business"
 msgstr ""
 
-#: assets/js/editor.build.js:18207
+#: assets/js/editor.build.js:23122
 #: assets/js/editor.build.min.js:2
 #: assets/js/free-images.build.js:884
 #: assets/js/free-images.build.min.js:2
 msgid "Music"
 msgstr ""
 
-#: assets/js/editor.build.js:18236
+#: assets/js/editor.build.js:23151
 #: assets/js/editor.build.min.js:2
 #: assets/js/free-images.build.js:913
 #: assets/js/free-images.build.min.js:2
 msgid "Lilac"
 msgstr ""
 
-#: assets/js/editor.build.js:18289
+#: assets/js/editor.build.js:23204
 #: assets/js/editor.build.min.js:2
 #: assets/js/free-images.build.js:966
 #: assets/js/free-images.build.min.js:2
 msgid "Squarish"
 msgstr ""
 
-#: assets/js/editor.build.js:18315
+#: assets/js/editor.build.js:23230
 #: assets/js/editor.build.min.js:2
-#: assets/js/elements.build.js:5735
+#: assets/js/elements.build.js:5839
 #: assets/js/elements.build.min.js:2
 #: assets/js/free-images.build.js:992
 #: assets/js/free-images.build.min.js:2
 msgid "Purple"
 msgstr ""
 
-#: assets/js/editor.build.js:18318
+#: assets/js/editor.build.js:23233
 #: assets/js/editor.build.min.js:2
-#: assets/js/elements.build.js:5753
+#: assets/js/elements.build.js:5857
 #: assets/js/elements.build.min.js:2
 #: assets/js/free-images.build.js:995
 #: assets/js/free-images.build.min.js:2
 msgid "Magenta"
 msgstr ""
 
-#: assets/js/editor.build.js:18324
+#: assets/js/editor.build.js:23239
 #: assets/js/editor.build.min.js:2
-#: assets/js/elements.build.js:5768
+#: assets/js/elements.build.js:5872
 #: assets/js/elements.build.min.js:2
 #: assets/js/free-images.build.js:1001
 #: assets/js/free-images.build.min.js:2
 msgid "Teal"
 msgstr ""
 
-#: assets/js/editor.build.js:18327
+#: assets/js/editor.build.js:23242
 #: assets/js/editor.build.min.js:2
 #: assets/js/free-images.build.js:1004
 #: assets/js/free-images.build.min.js:2
 msgid "And blue"
 msgstr ""
 
-#: assets/js/editor.build.js:18391
+#: assets/js/editor.build.js:23306
 #: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:329
-#: assets/js/fonts.build.js:331
-#: assets/js/fonts.build.min.js:2
 #: assets/js/free-images.build.js:1250
 #: assets/js/free-images.build.min.js:2
-#: assets/pro/js/image-generator.build.js:3265
-#: assets/pro/js/image-generator.build.js:3267
-#: assets/pro/js/image-generator.build.min.js:2
+#: assets/js/image-generator.build.js:3498
+#: assets/js/image-generator.build.js:3500
+#: assets/js/image-generator.build.min.js:2
 msgid "API Key"
 msgstr ""
 
-#: assets/js/editor.build.js:18400
+#: assets/js/editor.build.js:23315
 #: assets/js/editor.build.min.js:2
-#: assets/js/fonts.build.js:339
-#: assets/js/fonts.build.min.js:2
 #: assets/js/free-images.build.js:1259
 #: assets/js/free-images.build.min.js:2
-#: assets/pro/js/image-generator.build.js:3274
-#: assets/pro/js/image-generator.build.min.js:2
+#: assets/js/image-generator.build.js:3507
+#: assets/js/image-generator.build.min.js:2
 msgid "Continue"
 msgstr ""
 
-#: assets/js/elements.build.js:5738
+#: assets/js/editor.build.js:23486
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:2773
+#: assets/js/image-generator.build.min.js:2
+msgid "Archives"
+msgstr ""
+
+#: assets/js/editor.build.js:23892
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:3298
+#: assets/js/image-generator.build.min.js:2
+msgid "Images are being created. This may take a while. Please be patient."
+msgstr ""
+
+#: assets/js/editor.build.js:24065
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:4167
+#: assets/js/image-generator.build.min.js:2
+msgid "Stable Diffusion XL 1.0"
+msgstr ""
+
+#: assets/js/editor.build.js:24068
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:4170
+#: assets/js/image-generator.build.min.js:2
+msgid "Stable Diffusion XL 0.9"
+msgstr ""
+
+#: assets/js/editor.build.js:24071
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:4173
+#: assets/js/image-generator.build.min.js:2
+msgid "Stable Diffusion XL 0.8"
+msgstr ""
+
+#: assets/js/editor.build.js:24074
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:4176
+#: assets/js/image-generator.build.min.js:2
+msgid "Stable Diffusion 2.1"
+msgstr ""
+
+#: assets/js/editor.build.js:24085
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:4187
+#: assets/js/image-generator.build.min.js:2
+msgid "DALL-E 2"
+msgstr ""
+
+#: assets/js/editor.build.js:24088
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:4190
+#: assets/js/image-generator.build.min.js:2
+msgid "DALL-E 3"
+msgstr ""
+
+#: assets/js/editor.build.js:24099
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:4201
+#: assets/js/image-generator.build.min.js:2
+msgid "3D Model"
+msgstr ""
+
+#: assets/js/editor.build.js:24102
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:4204
+#: assets/js/image-generator.build.min.js:2
+msgid "Analog Film"
+msgstr ""
+
+#: assets/js/editor.build.js:24105
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:4207
+#: assets/js/image-generator.build.min.js:2
+msgid "Anime"
+msgstr ""
+
+#: assets/js/editor.build.js:24108
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:4210
+#: assets/js/image-generator.build.min.js:2
+msgid "Cinematic"
+msgstr ""
+
+#: assets/js/editor.build.js:24111
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:4213
+#: assets/js/image-generator.build.min.js:2
+msgid "Comic Book"
+msgstr ""
+
+#: assets/js/editor.build.js:24114
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:4216
+#: assets/js/image-generator.build.min.js:2
+msgid "Digital Art"
+msgstr ""
+
+#: assets/js/editor.build.js:24117
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:4219
+#: assets/js/image-generator.build.min.js:2
+msgid "Enhance"
+msgstr ""
+
+#: assets/js/editor.build.js:24120
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:4222
+#: assets/js/image-generator.build.min.js:2
+msgid "Fantasy Art"
+msgstr ""
+
+#: assets/js/editor.build.js:24123
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:4225
+#: assets/js/image-generator.build.min.js:2
+msgid "Isometric"
+msgstr ""
+
+#: assets/js/editor.build.js:24126
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:4228
+#: assets/js/image-generator.build.min.js:2
+msgid "Line Art"
+msgstr ""
+
+#: assets/js/editor.build.js:24129
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:4231
+#: assets/js/image-generator.build.min.js:2
+msgid "Low Poly"
+msgstr ""
+
+#: assets/js/editor.build.js:24132
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:4234
+#: assets/js/image-generator.build.min.js:2
+msgid "Modeling Compound"
+msgstr ""
+
+#: assets/js/editor.build.js:24135
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:4237
+#: assets/js/image-generator.build.min.js:2
+msgid "Neon Punk"
+msgstr ""
+
+#: assets/js/editor.build.js:24138
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:4240
+#: assets/js/image-generator.build.min.js:2
+msgid "Origami"
+msgstr ""
+
+#: assets/js/editor.build.js:24141
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:4243
+#: assets/js/image-generator.build.min.js:2
+msgid "Photographic"
+msgstr ""
+
+#: assets/js/editor.build.js:24144
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:4246
+#: assets/js/image-generator.build.min.js:2
+msgid "Pixel Art"
+msgstr ""
+
+#: assets/js/editor.build.js:24147
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:4249
+#: assets/js/image-generator.build.min.js:2
+msgid "Tile Texture"
+msgstr ""
+
+#: assets/js/editor.build.js:24158
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:4260
+#: assets/js/image-generator.build.min.js:2
+msgid "Vivid"
+msgstr ""
+
+#: assets/js/editor.build.js:24161
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:4263
+#: assets/js/image-generator.build.min.js:2
+msgid "Natural"
+msgstr ""
+
+#: assets/js/editor.build.js:24322
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:4424
+#: assets/js/image-generator.build.min.js:2
+msgid "Standard"
+msgstr ""
+
+#: assets/js/editor.build.js:24325
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:4427
+#: assets/js/image-generator.build.min.js:2
+msgid "HD"
+msgstr ""
+
+#: assets/js/editor.build.js:24337
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:4439
+#: assets/js/image-generator.build.min.js:2
+msgid "OpenAI"
+msgstr ""
+
+#: assets/js/editor.build.js:24340
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:4442
+#: assets/js/image-generator.build.min.js:2
+msgid "Stability AI"
+msgstr ""
+
+#: assets/js/editor.build.js:24432
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:4534
+#: assets/js/image-generator.build.min.js:2
+msgid "%s - Square (%s)"
+msgstr ""
+
+#: assets/js/editor.build.js:24433
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:4535
+#: assets/js/image-generator.build.min.js:2
+msgid "%s - Landscape (%s)"
+msgstr ""
+
+#: assets/js/editor.build.js:24434
+#: assets/js/editor.build.min.js:2
+#: assets/js/image-generator.build.js:4536
+#: assets/js/image-generator.build.min.js:2
+msgid "%s - Portrait (%s)"
+msgstr ""
+
+#: assets/js/elements.build.js:5842
 #: assets/js/elements.build.min.js:2
 msgid "Grey"
 msgstr ""
 
-#: assets/js/elements.build.js:5741
+#: assets/js/elements.build.js:5845
 #: assets/js/elements.build.min.js:2
 msgid "Silver"
 msgstr ""
 
-#: assets/js/elements.build.js:5744
+#: assets/js/elements.build.js:5848
 #: assets/js/elements.build.min.js:2
 msgid "Gold"
 msgstr ""
 
-#: assets/js/elements.build.js:5750
+#: assets/js/elements.build.js:5854
 #: assets/js/elements.build.min.js:2
 msgid "Cyan"
 msgstr ""
 
-#: assets/js/elements.build.js:5756
+#: assets/js/elements.build.js:5860
 #: assets/js/elements.build.min.js:2
 msgid "Indigo"
 msgstr ""
 
-#: assets/js/elements.build.js:5759
+#: assets/js/elements.build.js:5863
 #: assets/js/elements.build.min.js:2
 msgid "Lavender"
 msgstr ""
 
-#: assets/js/elements.build.js:5762
+#: assets/js/elements.build.js:5866
 #: assets/js/elements.build.min.js:2
 msgid "Beige"
 msgstr ""
 
-#: assets/js/elements.build.js:5765
+#: assets/js/elements.build.js:5869
 #: assets/js/elements.build.min.js:2
 msgid "Maroon"
 msgstr ""
 
-#: assets/js/elements.build.js:5771
+#: assets/js/elements.build.js:5875
 #: assets/js/elements.build.min.js:2
 msgid "Navy"
 msgstr ""
 
-#: assets/js/elements.build.js:5774
+#: assets/js/elements.build.js:5878
 #: assets/js/elements.build.min.js:2
 msgid "Olive"
 msgstr ""
 
-#: assets/js/elements.build.js:5777
+#: assets/js/elements.build.js:5881
 #: assets/js/elements.build.min.js:2
 msgid "Coral"
 msgstr ""
 
-#: assets/js/elements.build.js:5935
+#: assets/js/elements.build.js:6065
 #: assets/js/elements.build.min.js:2
-msgid "Color Picker"
+msgid "Pick Color From Canvas"
 msgstr ""
 
-#: assets/js/elements.build.js:5939
-#: assets/js/elements.build.min.js:2
-msgid "Color Palette"
-msgstr ""
-
-#: assets/js/elements.build.js:6046
+#: assets/js/elements.build.js:6162
 #: assets/js/elements.build.min.js:2
 msgid "None"
 msgstr ""
 
-#: assets/js/elements.build.js:6054
+#: assets/js/elements.build.js:6170
 #: assets/js/elements.build.min.js:2
 msgid "Linear Gradient"
 msgstr ""
 
-#: assets/js/elements.build.js:6057
+#: assets/js/elements.build.js:6173
 #: assets/js/elements.build.min.js:2
 msgid "Radial Gradient"
 msgstr ""
 
-#: assets/js/elements.build.js:6320
-#: assets/js/elements.build.min.js:2
-msgid "Open Font Manager"
-msgstr ""
-
-#: assets/js/elements.build.js:6564
+#: assets/js/elements.build.js:6575
 #: assets/js/elements.build.min.js:2
 msgid "Info"
 msgstr ""
 
-#: assets/js/elements.build.js:6580
+#: assets/js/elements.build.js:6591
 #: assets/js/elements.build.min.js:2
 msgid "Read More"
 msgstr ""
 
-#: assets/js/elements.build.js:7154
+#: assets/js/elements.build.js:7177
 #: assets/js/elements.build.min.js:2
 msgid "Search..."
 msgstr ""
 
-#: assets/js/elements.build.js:7345
+#: assets/js/elements.build.js:7368
 #: assets/js/elements.build.min.js:2
 msgid "Previous"
 msgstr ""
 
-#: assets/js/elements.build.js:7351
+#: assets/js/elements.build.js:7374
 #: assets/js/elements.build.min.js:2
 msgid "Next"
 msgstr ""
 
-#: assets/js/elements.build.js:7357
-#: assets/js/elements.build.js:7362
+#: assets/js/elements.build.js:7380
+#: assets/js/elements.build.js:7385
 #: assets/js/elements.build.min.js:2
 msgid "Close Modal"
 msgstr ""
 
-#: assets/js/elements.build.js:7676
+#: assets/js/elements.build.js:7699
 #: assets/js/elements.build.min.js:2
 msgid "Move up"
 msgstr ""
 
-#: assets/js/elements.build.js:7683
+#: assets/js/elements.build.js:7706
 #: assets/js/elements.build.min.js:2
 msgid "Move Down"
 msgstr ""
 
-#: assets/js/elements.build.js:7690
-#: assets/js/elements.build.js:8088
+#: assets/js/elements.build.js:7713
+#: assets/js/elements.build.js:8114
 #: assets/js/elements.build.min.js:2
-#: assets/pro/js/gutenberg.build.js:738
-#: assets/pro/js/gutenberg.build.min.js:2
 msgid "Remove"
 msgstr ""
 
-#: assets/js/elements.build.js:7899
+#: assets/js/elements.build.js:7925
 #: assets/js/elements.build.min.js:2
 msgid "Offset"
 msgstr ""
 
-#: assets/js/elements.build.js:7900
+#: assets/js/elements.build.js:7926
 #: assets/js/elements.build.min.js:2
 msgid "X"
 msgstr ""
 
-#: assets/js/elements.build.js:7914
+#: assets/js/elements.build.js:7940
 #: assets/js/elements.build.min.js:2
 msgid "Y"
 msgstr ""
 
-#: assets/js/elements.build.js:8059
+#: assets/js/elements.build.js:8085
 #: assets/js/elements.build.min.js:2
 msgid "Dashes"
 msgstr ""
 
-#: assets/js/elements.build.js:8061
+#: assets/js/elements.build.js:8087
 #: assets/js/elements.build.min.js:2
 msgid "Gaps"
 msgstr ""
 
-#: assets/js/elements.build.js:8099
+#: assets/js/elements.build.js:8125
 #: assets/js/elements.build.min.js:2
 msgid "Add Value"
-msgstr ""
-
-#: assets/js/fonts.build.js:258
-#: assets/js/fonts.build.js:437
-#: assets/js/fonts.build.min.js:2
-#: assets/js/settings.build.js:573
-#: assets/js/settings.build.min.js:2
-msgid "Settings Saved Successfully"
-msgstr ""
-
-#: assets/js/fonts.build.js:263
-#: assets/js/fonts.build.js:442
-#: assets/js/fonts.build.min.js:2
-#: assets/js/settings.build.js:578
-#: assets/js/settings.build.min.js:2
-msgid "No Changes Detected"
-msgstr ""
-
-#: assets/js/fonts.build.js:354
-#: assets/js/fonts.build.js:454
-#: assets/js/fonts.build.min.js:2
-msgid "Selected Fonts"
-msgstr ""
-
-#: assets/js/fonts.build.js:384
-#: assets/js/fonts.build.js:484
-#: assets/js/fonts.build.min.js:2
-msgid "Save Fonts"
-msgstr ""
-
-#: assets/js/fonts.build.js:635
-#: assets/js/fonts.build.min.js:2
-msgid "Web Safe Fonts"
-msgstr ""
-
-#: assets/js/fonts.build.js:820
-#: assets/js/fonts.build.min.js:2
-msgid "Add Font Family"
-msgstr ""
-
-#: assets/js/fonts.build.js:845
-#: assets/js/fonts.build.min.js:2
-msgid "PixMagix - Fonts"
 msgstr ""
 
 #: assets/js/free-images.build.js:385
@@ -3569,6 +3892,41 @@ msgstr ""
 #: assets/js/templates.build.js:463
 #: assets/js/templates.build.min.js:2
 msgid "Just Save"
+msgstr ""
+
+#: assets/js/image-generator.build.js:2345
+#: assets/js/image-generator.build.min.js:2
+msgid "PixMagix - Image Generator - (%s)"
+msgstr ""
+
+#: assets/js/image-generator.build.js:2361
+#: assets/js/image-generator.build.min.js:2
+msgid "Generator"
+msgstr ""
+
+#: assets/js/image-generator.build.js:2487
+#: assets/js/image-generator.build.min.js:2
+msgid "Open Image in Editor"
+msgstr ""
+
+#: assets/js/image-generator.build.js:3387
+#: assets/js/image-generator.build.min.js:2
+msgid "Prompt %s"
+msgstr ""
+
+#: assets/js/image-generator.build.js:3402
+#: assets/js/image-generator.build.min.js:2
+msgid "Weight"
+msgstr ""
+
+#: assets/js/image-generator.build.js:3414
+#: assets/js/image-generator.build.min.js:2
+msgid "Prompts"
+msgstr ""
+
+#: assets/js/image-generator.build.js:3422
+#: assets/js/image-generator.build.min.js:2
+msgid "Add Prompt"
 msgstr ""
 
 #: assets/js/media-list-table.js:21
@@ -3615,102 +3973,112 @@ msgstr ""
 msgid "Open in Editor"
 msgstr ""
 
-#: assets/js/settings.build.js:218
+#: assets/js/settings.build.js:219
 #: assets/js/settings.build.min.js:2
 msgid "Pixabay API Key"
 msgstr ""
 
-#: assets/js/settings.build.js:225
+#: assets/js/settings.build.js:226
 #: assets/js/settings.build.min.js:2
 msgid "Pexels API Key"
 msgstr ""
 
-#: assets/js/settings.build.js:232
+#: assets/js/settings.build.js:233
 #: assets/js/settings.build.min.js:2
 msgid "Unsplash API Key"
 msgstr ""
 
-#: assets/js/settings.build.js:239
+#: assets/js/settings.build.js:240
 #: assets/js/settings.build.min.js:2
 msgid "Google Fonts API Key"
 msgstr ""
 
-#: assets/js/settings.build.js:295
+#: assets/js/settings.build.js:247
 #: assets/js/settings.build.min.js:2
-msgid "Default Free Image Source"
+msgid "OpenAI API Key"
 msgstr ""
 
-#: assets/js/settings.build.js:303
+#: assets/js/settings.build.js:253
 #: assets/js/settings.build.min.js:2
-msgid "You set default free image source to %s, but do not set API key. Please go to API Keys tab, and provide a valid %s API key."
+msgid "Stability AI API Key"
 msgstr ""
 
-#: assets/js/settings.build.js:337
+#: assets/js/settings.build.js:259
+#: assets/js/settings.build.min.js:2
+msgid "Clipdrop API Key"
+msgstr ""
+
+#: assets/js/settings.build.js:296
 #: assets/js/settings.build.min.js:2
 msgid "Thumbnails Width"
 msgstr ""
 
-#: assets/js/settings.build.js:347
+#: assets/js/settings.build.js:306
 #: assets/js/settings.build.min.js:2
 msgid "Previews Width"
 msgstr ""
 
-#: assets/js/settings.build.js:391
+#: assets/js/settings.build.js:350
 #: assets/js/settings.build.min.js:2
 msgid "Manage User Capabilities"
 msgstr ""
 
-#: assets/js/settings.build.js:407
+#: assets/js/settings.build.js:366
 #: assets/js/settings.build.min.js:2
 msgid "Enable Users to Access Editor, And Create Projects."
 msgstr ""
 
-#: assets/js/settings.build.js:419
+#: assets/js/settings.build.js:378
 #: assets/js/settings.build.min.js:2
 msgid "Show All Users' Projects to These Users."
 msgstr ""
 
-#: assets/js/settings.build.js:432
+#: assets/js/settings.build.js:391
 #: assets/js/settings.build.min.js:2
 msgid "Enable Users to Edit Others' Projects."
 msgstr ""
 
-#: assets/js/settings.build.js:445
+#: assets/js/settings.build.js:404
 #: assets/js/settings.build.min.js:2
 msgid "Enable Users to Upload Files."
 msgstr ""
 
-#: assets/js/settings.build.js:458
+#: assets/js/settings.build.js:417
 #: assets/js/settings.build.min.js:2
 msgid "Heads up: In case you choose to deactivate file uploading for these users, it will affect the accessibility of some features and users won't be able to save their projects. Enable file upload or disable project creation for users."
 msgstr ""
 
-#: assets/js/settings.build.js:504
+#: assets/js/settings.build.js:459
 #: assets/js/settings.build.min.js:2
 msgid "General Settings"
 msgstr ""
 
-#: assets/js/settings.build.js:508
+#: assets/js/settings.build.js:463
 #: assets/js/settings.build.min.js:2
 msgid "API Keys"
 msgstr ""
 
-#: assets/js/settings.build.js:512
+#: assets/js/settings.build.js:467
 #: assets/js/settings.build.min.js:2
 msgid "Users"
 msgstr ""
 
-#: assets/js/settings.build.js:516
+#: assets/js/settings.build.js:523
 #: assets/js/settings.build.min.js:2
-msgid "Performance"
+msgid "Settings Saved Successfully"
 msgstr ""
 
-#: assets/js/settings.build.js:593
+#: assets/js/settings.build.js:528
+#: assets/js/settings.build.min.js:2
+msgid "No Changes Detected"
+msgstr ""
+
+#: assets/js/settings.build.js:543
 #: assets/js/settings.build.min.js:2
 msgid "PixMagix - Settings"
 msgstr ""
 
-#: assets/js/settings.build.js:596
+#: assets/js/settings.build.js:546
 #: assets/js/settings.build.min.js:2
 msgid "Save Settings"
 msgstr ""
@@ -3741,492 +4109,11 @@ msgid "Quote"
 msgstr ""
 
 #: assets/js/templates.build.js:330
+#: assets/js/templates.build.min.js:2
 msgid "Infographic"
 msgstr ""
 
 #: assets/js/templates.build.js:439
 #: assets/js/templates.build.min.js:2
 msgid "Template Saved Successfully"
-msgstr ""
-
-#: assets/pro/js/editor.build.js:10132
-#: assets/pro/js/editor.build.min.js:1
-msgid "Download PSD"
-msgstr ""
-
-#: assets/pro/js/editor.build.js:10260
-#: assets/pro/js/editor.build.min.js:1
-msgid "Import Layers"
-msgstr ""
-
-#: assets/pro/js/editor.build.js:10321
-#: assets/pro/js/editor.build.min.js:1
-msgid "Upload PSD File"
-msgstr ""
-
-#: assets/pro/js/editor.build.js:10377
-#: assets/pro/js/editor.build.min.js:1
-msgid "Import PSD File"
-msgstr ""
-
-#: assets/pro/js/editor.build.js:10460
-#: assets/pro/js/editor.build.min.js:1
-msgid "Download as PSD"
-msgstr ""
-
-#: assets/pro/js/frontend-editor.build.js:149
-#: assets/pro/js/frontend-editor.build.min.js:1
-msgid "Upload Image"
-msgstr ""
-
-#: assets/pro/js/gutenberg.build.js:264
-#: assets/pro/js/gutenberg.build.min.js:2
-#: assets/pro/js/image-generator.build.js:3390
-#: assets/pro/js/image-generator.build.js:3553
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Samples"
-msgstr ""
-
-#: assets/pro/js/gutenberg.build.js:370
-#: assets/pro/js/gutenberg.build.js:719
-#: assets/pro/js/gutenberg.build.min.js:2
-#: assets/pro/js/image-generator.build.js:3101
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Prompt"
-msgstr ""
-
-#: assets/pro/js/gutenberg.build.js:371
-#: assets/pro/js/gutenberg.build.js:720
-#: assets/pro/js/gutenberg.build.min.js:2
-msgid "Write image prompt here..."
-msgstr ""
-
-#: assets/pro/js/gutenberg.build.js:385
-#: assets/pro/js/gutenberg.build.min.js:2
-msgid "Number of Samples to Generate"
-msgstr ""
-
-#: assets/pro/js/gutenberg.build.js:397
-#: assets/pro/js/gutenberg.build.min.js:2
-msgid "Generate Samples"
-msgstr ""
-
-#: assets/pro/js/gutenberg.build.js:490
-#: assets/pro/js/gutenberg.build.min.js:2
-msgid "Featured image saved successfully. Do not forget to click \"Update\" button to save changes!"
-msgstr ""
-
-#: assets/pro/js/gutenberg.build.js:514
-#: assets/pro/js/gutenberg.build.min.js:2
-msgid "Back"
-msgstr ""
-
-#: assets/pro/js/gutenberg.build.js:515
-#: assets/pro/js/gutenberg.build.min.js:2
-msgid "Filename"
-msgstr ""
-
-#: assets/pro/js/gutenberg.build.js:523
-#: assets/pro/js/gutenberg.build.min.js:2
-msgid "Save And Set as Featured Image"
-msgstr ""
-
-#: assets/pro/js/gutenberg.build.js:552
-#: assets/pro/js/gutenberg.build.js:878
-#: assets/pro/js/gutenberg.build.min.js:2
-msgid "Featured Image Generator"
-msgstr ""
-
-#: assets/pro/js/gutenberg.build.js:636
-#: assets/pro/js/gutenberg.build.min.js:2
-msgid "Number of Prompts to Create"
-msgstr ""
-
-#: assets/pro/js/gutenberg.build.js:648
-#: assets/pro/js/gutenberg.build.min.js:2
-#: assets/pro/js/image-generator.build.js:3416
-#: assets/pro/js/image-generator.build.js:3565
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Generate"
-msgstr ""
-
-#: assets/pro/js/gutenberg.build.js:732
-#: assets/pro/js/gutenberg.build.min.js:2
-msgid "Select"
-msgstr ""
-
-#: assets/pro/js/gutenberg.build.js:800
-#: assets/pro/js/gutenberg.build.min.js:2
-#: assets/pro/js/image-generator.build.js:2255
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "No Image"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:2116
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "PixMagix - Image Generator - (%s)"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:2123
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Archive"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:2132
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Generator"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:2258
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Open Image in Editor"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:2461
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Do you really want to permanently delete this archive with its all ai generated images?"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:2544
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Archives"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:2599
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Delete Archive"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:3065
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Images are being created. This may take a while. Please be patient."
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:3154
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Prompt %s"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:3169
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Weight"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:3181
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Prompts"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:3189
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Add Prompt"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:3369
-#: assets/pro/js/image-generator.build.js:3521
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Model"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:3399
-#: assets/pro/js/image-generator.build.js:3514
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Style"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:3535
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "CFG Scale"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:3544
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Steps"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:3932
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Stable Diffusion XL 1.0"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:3935
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Stable Diffusion XL 0.9"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:3938
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Stable Diffusion XL 0.8"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:3941
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Stable Diffusion 2.1"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:3952
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "DALL-E 2"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:3955
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "DALL-E 3"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:3966
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "3D Model"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:3969
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Analog Film"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:3972
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Anime"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:3975
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Cinematic"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:3978
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Comic Book"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:3981
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Digital Art"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:3984
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Enhance"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:3987
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Fantasy Art"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:3990
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Isometric"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:3993
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Line Art"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:3996
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Low Poly"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:3999
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Modeling Compound"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:4002
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Neon Punk"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:4005
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Origami"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:4008
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Photographic"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:4011
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Pixel Art"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:4014
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Tile Texture"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:4025
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Vivid"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:4028
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Natural"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:4189
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "Standard"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:4192
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "HD"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:4204
-#: assets/pro/js/image-generator.build.min.js:2
-#: assets/pro/js/settings.build.js:251
-#: assets/pro/js/settings.build.min.js:1
-msgid "DALL-E"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:4299
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "%s - Square (%s)"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:4300
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "%s - Landscape (%s)"
-msgstr ""
-
-#: assets/pro/js/image-generator.build.js:4301
-#: assets/pro/js/image-generator.build.min.js:2
-msgid "%s - Portrait (%s)"
-msgstr ""
-
-#: assets/pro/js/settings.build.js:29
-#: assets/pro/js/settings.build.min.js:1
-msgid "OpenAI API Key"
-msgstr ""
-
-#: assets/pro/js/settings.build.js:35
-#: assets/pro/js/settings.build.min.js:1
-msgid "Stability AI API Key"
-msgstr ""
-
-#: assets/pro/js/settings.build.js:114
-#: assets/pro/js/settings.build.min.js:1
-msgid "Page Created Successfully"
-msgstr ""
-
-#: assets/pro/js/settings.build.js:124
-#: assets/pro/js/settings.build.min.js:1
-msgid "Set Editor Page"
-msgstr ""
-
-#: assets/pro/js/settings.build.js:125
-#: assets/pro/js/settings.build.min.js:1
-msgid "Select Page"
-msgstr ""
-
-#: assets/pro/js/settings.build.js:132
-#: assets/pro/js/settings.build.min.js:1
-msgid "Or Create New Page"
-msgstr ""
-
-#: assets/pro/js/settings.build.js:132
-#: assets/pro/js/settings.build.min.js:1
-msgid "Create Page"
-msgstr ""
-
-#: assets/pro/js/settings.build.js:133
-#: assets/pro/js/settings.build.min.js:1
-msgid "Enter a title for the page..."
-msgstr ""
-
-#: assets/pro/js/settings.build.js:140
-#: assets/pro/js/settings.build.min.js:1
-msgid "Customize Editor"
-msgstr ""
-
-#: assets/pro/js/settings.build.js:141
-#: assets/pro/js/settings.build.min.js:1
-msgid "Back Button Label"
-msgstr ""
-
-#: assets/pro/js/settings.build.js:147
-#: assets/pro/js/settings.build.min.js:1
-msgid "Back Button URL"
-msgstr ""
-
-#: assets/pro/js/settings.build.js:153
-#: assets/pro/js/settings.build.min.js:1
-msgid "Editor Title"
-msgstr ""
-
-#: assets/pro/js/settings.build.js:158
-#: assets/pro/js/settings.build.min.js:1
-msgid "Custom Help"
-msgstr ""
-
-#: assets/pro/js/settings.build.js:159
-#: assets/pro/js/settings.build.min.js:1
-msgid "Enable Help"
-msgstr ""
-
-#: assets/pro/js/settings.build.js:165
-#: assets/pro/js/settings.build.min.js:1
-msgid "Custom Help Title"
-msgstr ""
-
-#: assets/pro/js/settings.build.js:171
-#: assets/pro/js/settings.build.min.js:1
-msgid "Custom Help Content"
-msgstr ""
-
-#: assets/pro/js/settings.build.js:205
-#: assets/pro/js/settings.build.min.js:1
-msgid "Responsive Breakpoints"
-msgstr ""
-
-#: assets/pro/js/settings.build.js:207
-#: assets/pro/js/settings.build.min.js:1
-msgid "Tablet Breakpoint"
-msgstr ""
-
-#: assets/pro/js/settings.build.js:214
-#: assets/pro/js/settings.build.min.js:1
-msgid "Mobile Breakpoint"
-msgstr ""
-
-#: assets/pro/js/settings.build.js:268
-#: assets/pro/js/settings.build.min.js:1
-msgid "Default AI Generator"
-msgstr ""
-
-#: assets/pro/js/settings.build.js:276
-#: assets/pro/js/settings.build.min.js:1
-msgid "You set default AI generator to %s, but do not set API key. Please go to API Keys tab, and provide a valid %s API key."
-msgstr ""
-
-#: assets/pro/js/settings.build.js:304
-#: assets/pro/js/settings.build.min.js:1
-msgid "Frontend Editor"
-msgstr ""
-
-#: assets/pro/js/settings.build.js:308
-#: assets/pro/js/settings.build.min.js:1
-msgid "Gallery"
-msgstr ""
-
-#: includes/pro/gutenberg/editor/block.json
-msgctxt "block title"
-msgid "PixMagix Editor"
-msgstr ""
-
-#: includes/pro/gutenberg/editor/block.json
-msgctxt "block description"
-msgid "Embed PixMagix editor."
-msgstr ""
-
-#: includes/pro/gutenberg/gallery/block.json
-msgctxt "block title"
-msgid "PixMagix Gallery"
 msgstr ""

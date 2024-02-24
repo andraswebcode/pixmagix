@@ -270,7 +270,7 @@ class Post_Controller extends \WP_REST_Posts_Controller {
 			$data,
 			array(
 				'caption' => esc_html($caption),
-				'description' => esc_html($description)
+				'description' => wp_strip_all_tags($description)
 			)
 		);
 
