@@ -16,6 +16,7 @@ module.exports = env => {
 			'projects':'./src/projects.js',
 			'templates':'./src/templates.js',
 			'free-images':'./src/free-images.js',
+			'image-generator':'./src/image-generator.js',
 			'settings':'./src/settings.js'
 		},
 		output:{
@@ -85,6 +86,7 @@ module.exports = env => {
 			'projects':'./src/projects.scss',
 			'templates':'./src/templates.scss',
 			'free-images':'./src/free-images.scss',
+			'image-generator':'./src/image-generator.scss',
 			'settings':'./src/settings.scss'
 		},
 		output:{
