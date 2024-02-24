@@ -1,0 +1,16 @@
+.pixmagix-imagelist {
+	flex: 1;
+	overflow: hidden auto;
+	&:not(.pixmagix-column) {
+		padding: 0 $padding;
+	}
+	.pixmagix-grid {
+		margin-top: -$padding;
+		&__item-inner {
+			cursor: default;
+		}
+		.pixmagix-loader {
+			background-color: transparent;
+		}
+	}
+}

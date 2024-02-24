@@ -1,0 +1,36 @@
+body {
+	background-color: $editor-bg;
+	#wpfooter {
+		color: $editor-color;
+	}
+}
+
+.pixmagix-fullscreen {
+	margin-top: -32px;
+	overflow: hidden;
+	#adminmenumain,
+	#wpadminbar {
+		display: none;
+	}
+	#wpcontent {
+		margin: 0;
+		padding: 0;
+	}
+	#wpbody-content {
+		padding: 0;
+	}
+	#wpfooter {
+		display: none;
+	}
+	#pixmagix {
+		display:flex;
+		flex-direction: column;
+		flex-flow: column;
+		height: 100vh;
+		.pixmagix-content {
+			height: auto;
+			min-height: 1px;
+			flex-grow: 1;
+		}
+	}
+}

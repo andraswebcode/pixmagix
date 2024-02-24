@@ -1,0 +1,368 @@
+.pixmagix-canvas {
+	position: relative;
+	flex-grow: 1;
+	background-color: $editor-bg-light;
+	overflow: hidden;
+	&__ruler {
+		position: absolute;
+		overflow: hidden;
+		background: $editor-bg-dark;
+		z-index: 12;
+		&-horizontal {
+			top: 0;
+			left: $ruler-size;
+			right: 0;
+			height: $ruler-size;
+			.pixmagix-canvas__ruler-inner {
+				height: 100%;
+			}
+			.pixmagix-canvas__ruler-cursor {
+				height: 100%;
+				border-left: solid 1px $editor-color;
+			}
+			.pixmagix-canvas__ruler-notch {
+				border-left: solid 1px $editor-color;
+				span {
+					display: inline-block;
+					height: 40%;
+					border-right: solid 1px $editor-color;
+					&:nth-child(6) {
+						height: 75%;
+					}
+				}
+			}
+			.pixmagix-canvas__ruler-number {
+				top: 0;
+				left: 0;
+			}
+			.pixmagix-canvas__ruler-subnotch {
+				&-10 {
+					width: 10%;
+				}
+				&-50 {
+					width: 50%;
+				}
+			}
+		}
+		&-vertical {
+			top: $ruler-size;
+			left: 0;
+			bottom: 0;
+			width: $ruler-size;
+			.pixmagix-canvas__ruler-inner {
+				flex-flow: column;
+				flex-direction: column;
+				width: 100%;
+			}
+			.pixmagix-canvas__ruler-cursor {
+				width: 100%;
+				border-top: solid 1px $editor-color;
+			}
+			.pixmagix-canvas__ruler-notch {
+				flex-flow: column;
+				flex-direction: column;
+				border-top: solid 1px $editor-color;
+				span {
+					display: inline-block;
+					width: 40%;
+					border-bottom: solid 1px $editor-color;
+					&:nth-child(6) {
+						width: 75%;
+					}
+				}
+			}
+			.pixmagix-canvas__ruler-number {
+				top: 0;
+				left: 2px;
+				transform: rotate(90deg);
+			}
+			.pixmagix-canvas__ruler-subnotch {
+				&-10 {
+					height: 10%;
+				}
+				&-50 {
+					height: 50%;
+				}
+			}
+		}
+		&-inner {
+			display: flex;
+			flex-flow: row;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			justify-content: flex-start;
+			align-items: stretch;
+			position: absolute;
+			pointer-events: none;
+		}
+		&-cursor {
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 0;
+			height: 0;
+		}
+		&-notch {
+			display: flex;
+			flex-flow: row;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			justify-content: flex-start;
+			align-items: flex-end;
+			position: relative;
+		}
+		&-number {
+			position: absolute;
+			font-size: $font-size-sm;
+			line-height: 1.2;
+			border: none !important;
+		}
+	}
+	&__guide {
+		position: absolute;
+		top: 0;
+		left: 0;
+		background: $guide-color;
+		z-index: 15;
+		&-lock {
+			pointer-events: none;
+		}
+		&-vertical {
+			width: $guide-width;
+			height: 9999px;
+			cursor: col-resize;
+			&:after {
+				width: 10px;
+				height: 100%;
+				top: 0;
+				left: -4px;
+			}
+			.pixmagix-canvas__guide-label {
+				top: $ruler-size + $padding-sm;
+				left: $padding-sm;
+			}
+		}
+		&-horizontal {
+			width: 9999px;
+			height: $guide-width;
+			cursor: row-resize;
+			&:after {
+				width: 100%;
+				height: 20px;
+				top: -6px;
+				left: 0;
+			}
+			.pixmagix-canvas__guide-label {
+				left: $ruler-size + $padding-sm;
+				top: $padding-sm;
+			}
+		}
+		&-label {
+			display: none;
+			position: absolute;
+			font-size: $font-size-sm;
+			line-height: 1.2;
+			padding: $button-padding-sm;
+			background: $editor-bg-light;
+			box-shadow: $shadow;
+			pointer-events: none;
+			cursor: default;
+		}
+		&:hover &-label {
+			display: block;
+		}
+	}
+	&__rulermenu {
+		position: absolute;
+		top: $ruler-size / 2;
+		left: $ruler-size / 2;
+		transform: translate(-50%, -50%);
+		z-index: 12;
+	}
+	&__wrapper {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+	&__background {
+		position: absolute;
+		background-image: $alpha-bg;
+	}
+	&__container {
+		width: 100%;
+		height: 100%;
+	}
+	&__colorpicker {
+		position: absolute;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		z-index: 9;
+		cursor: crosshair;
+		overflow: hidden;
+		&-indicator {
+			position: absolute;
+			display: inline-block;
+			left: -999px;
+			top: -999px;
+			width: $color-picker-indicator-size;
+			height: $color-picker-indicator-size;
+			border: solid 1px #ffffff;
+			border-radius: 100%;
+			transform: translate(-50%, -50%);
+		}
+	}
+	&__pan {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		z-index: 9;
+		cursor: grab;
+	}
+	&__crop {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		z-index: 8;
+		&-background {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background-color: $overlay-bg;
+		}
+		&-rect {
+			position: absolute;
+			border: $selection-border;
+			transform: translate(-50%, -50%);
+			cursor: grab;
+		}
+		&-guide {
+			position: absolute;
+			width: 0;
+			height: 0;
+			&-0 {
+				width: 100%;
+				border-top: $selection-border;
+				top: 33.33%;
+				left: 0;
+				right: 0;
+			}
+			&-1 {
+				width: 100%;
+				border-top: $selection-border;
+				top: 66.66%;
+				left: 0;
+				right: 0;
+			}
+			&-2 {
+				height: 100%;
+				border-right: $selection-border;
+				top: 0;
+				bottom: 0;
+				left: 33.33%;
+			}
+			&-3 {
+				height: 100%;
+				border-right: $selection-border;
+				top: 0;
+				bottom: 0;
+				left: 66.66%;
+			}
+		}
+		&-control {
+			position: absolute;
+			&-ml,
+			&-mr {
+				width: $selection-corner-weight;
+				height: $selection-corner-length;
+				cursor: ew-resize;
+			}
+			&-tm,
+			&-bm {
+				width: $selection-corner-length;
+				height: $selection-corner-weight;
+				cursor: ns-resize;
+			}
+			&-tl,
+			&-tr,
+			&-bl,
+			&-br {
+				width: $selection-corner-length;
+				height: $selection-corner-length;
+			}
+			&-tl,
+			&-br {
+				cursor: nwse-resize;
+			}
+			&-tr,
+			&-bl {
+				cursor: nesw-resize;
+			}
+			&-tl {
+				left: 0;
+				top: 0;
+				border-top: $selection-corner-border;
+				border-left: $selection-corner-border;
+			}
+			&-tm {
+				left: 50%;
+				top: 0;
+				transform: translate(-50%, 0);
+				border-top: $selection-corner-border;
+			}
+			&-tr {
+				right: 0;
+				top: 0;
+				border-top: $selection-corner-border;
+				border-right: $selection-corner-border;
+			}
+			&-ml {
+				left: 0;
+				top: 50%;
+				transform: translate(0, -50%);
+				border-left: $selection-corner-border;
+			}
+			&-mr {
+				right: 0;
+				top: 50%;
+				transform: translate(0, -50%);
+				border-right: $selection-corner-border;
+			}
+			&-bl {
+				left: 0;
+				bottom: 0;
+				border-bottom: $selection-corner-border;
+				border-left: $selection-corner-border;
+			}
+			&-bm {
+				left: 50%;
+				bottom: 0;
+				transform: translate(-50%, 0);
+				border-bottom: $selection-corner-border;
+			}
+			&-br {
+				right: 0;
+				bottom: 0;
+				border-bottom: $selection-corner-border;
+				border-right: $selection-corner-border;
+			}
+		}
+	}
+}
