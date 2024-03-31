@@ -5,7 +5,7 @@ Advanced image editor plugin for media images. Add filters, adjust brightness an
 
 If you've ever struggled with creating and editing images for your WordPress site, PixMagix can make your work significantly easier. Offering a wide range of editing tools right in your dashboard, PixMagix transforms the way you create, providing an easy, more efficient way to get your visuals ready for your website.
 
-[Features](https://pixmagixplugin.com/features/) | [Templates](https://pixmagixplugin.com/templates/) | [Documentation](https://docs.pixmagixplugin.com/) | [Contact](https://pixmagixplugin.com/support/contact/) | [Pro](https://pixmagixplugin.com/pricing/)
+[Download plugin from WordPress.org]([https://pixmagixplugin.com/features/](https://wordpress.org/plugins/pixmagix/))
 
 ![the editor interface](https://pixmagixplugin.com/wp-content/uploads/2023/11/image-editor-1024x584.jpg)
 
