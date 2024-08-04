@@ -11,8 +11,6 @@
  * Author URI: https://andrasweb.com/
  * License: GPLv2
  * Text Domain: pixmagix
- * 
- * @fs_premium_only /assets/pro/
  */
 
 namespace AndrasWeb\PixMagix;

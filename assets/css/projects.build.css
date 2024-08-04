@@ -1,10 +1,10 @@
 /*!************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/projects.scss ***!
   \************************************************************************************************************/
-.pixmagix-body {
+body {
   background-color: #1F262A;
 }
-.pixmagix-body #wpfooter {
+body #wpfooter {
   color: #ffffff;
 }
 
@@ -292,21 +292,39 @@
 }
 .pixmagix-color-picker-wrapper .pixmagix-color-palette {
   margin-top: 8px;
+  margin-bottom: 8px;
 }
 .pixmagix-color-picker {
   position: relative;
+  width: 200px;
   height: 120px;
-  margin-top: 8px;
+  margin: 8px;
+}
+.pixmagix-color-picker__editable-input {
+  display: flex !important;
+  flex-flow: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  cursor: default;
 }
 .pixmagix-color-picker__editable-input > div {
   flex: 1;
 }
-.pixmagix-color-picker__editable-input .pixmagix-radio-buttons-wrapper {
-  flex: 0;
-  margin: 0;
+.pixmagix-color-picker__editable-input > div > input {
+  line-height: 0;
+  height: 15px;
 }
-.pixmagix-color-picker__editable-input .pixmagix-radio-buttons-wrapper .pixmagix-button {
-  padding: 2px 6px;
+.pixmagix-color-picker__custom-color {
+  align-items: stretch;
+}
+.pixmagix-color-picker__indicator {
+  display: block;
+  width: 15px;
+  height: 15px;
+  margin: 1px 4px 0 0;
+  border: solid 1px #ffffff;
+  border-radius: 100%;
+  cursor: pointer;
 }
 .pixmagix-color-picker__saturation, .pixmagix-color-picker__hue, .pixmagix-color-picker__alpha {
   position: absolute;
@@ -830,16 +848,17 @@
   background-color: #2a3339;
   overflow: hidden;
 }
-.pixmagix-grid__item-figure img {
+.pixmagix-grid__item-figure > img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
-.pixmagix-grid__item-figure svg {
+.pixmagix-grid__item-figure > svg {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  padding: 18px;
 }
 .pixmagix-grid__item-caption {
   position: absolute;
@@ -849,6 +868,12 @@
   padding: 5px 12px;
   color: #ffffff;
   background: #1F262A;
+  opacity: 0;
+  transition: 0.4s;
+}
+.pixmagix-grid__item:hover .pixmagix-grid__item-caption {
+  opacity: 1;
+  transition: 0.2s;
 }
 .pixmagix-grid__item-empty .pixmagix-grid__item-figure {
   display: flex;
@@ -868,6 +893,12 @@
   top: 26px;
   right: 26px;
   z-index: 2;
+  opacity: 0;
+  transition: 0.4s;
+}
+.pixmagix-grid__item:hover .pixmagix-grid__actions {
+  opacity: 1;
+  transition: 0.2s;
 }
 .pixmagix-image-select {
   margin-bottom: 8px;
@@ -911,6 +942,22 @@
   text-wrap: nowrap;
 }
 .pixmagix-repeater__content {
+  padding: 8px;
+  border: solid 1px #1b2124;
+  background-color: #2a3339;
+}
+.pixmagix-accordion:not(:last-child) {
+  margin-bottom: 8px;
+}
+.pixmagix-accordion__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pixmagix-accordion__label {
+  text-wrap: nowrap;
+}
+.pixmagix-accordion__content {
   padding: 8px;
   border: solid 1px #1b2124;
   background-color: #2a3339;
@@ -963,7 +1010,7 @@
   justify-content: flex-start;
   align-items: center;
 }
-.pixmagix-inline-controls__container > .pixmagix-button {
+.pixmagix-inline-controls__container > .pixmagix-button, .pixmagix-inline-controls__container > .pixmagix-button-group {
   align-self: flex-end;
   margin: 8px;
 }
@@ -1029,6 +1076,7 @@
 }
 .pixmagix-inlinenotice {
   padding: 8px;
+  margin-bottom: 8px;
 }
 .pixmagix-inlinenotice__success {
   background: #228B22;
@@ -1055,6 +1103,16 @@
 .pixmagix-fonts__list .pixmagix-repeater__content p {
   margin: 0;
   font-size: 1.5em;
+}
+.pixmagix-sketch-canvas__wrapper {
+  margin-bottom: 8px;
+}
+.pixmagix-sketch-canvas__wrapper .canvas-container {
+  margin: auto;
+  margin-bottom: 4px;
+}
+.pixmagix-sketch-canvas__wrapper .pixmagix-button-group {
+  justify-content: center;
 }
 
 .pixmagix {

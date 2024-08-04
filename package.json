@@ -5,9 +5,7 @@
   "main": "./src/index.js",
   "scripts": {
     "start": "webpack --config webpack.config.js",
-    "build": "webpack --env production --config webpack.config.js",
-    "start-pro": "webpack --config webpack.config.pro.js",
-    "build-pro": "webpack --env production --config webpack.config.pro.js"
+    "build": "webpack --env production --config webpack.config.js"
   },
   "author": "Andras Tovishati",
   "license": "GPLv2",
