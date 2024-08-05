@@ -28,6 +28,7 @@ import {
 } from 'editor-globals';
 
 import {
+	sendNotice,
 	setEditor
 } from './../../redux/actions-editor.js';
 import {
@@ -43,7 +44,8 @@ import FiltersUnsplash from './../../../free-images/filters-unsplash.jsx';
 const FreeImages = ({
 	selectedMedia,
 	freeImageFilters = {},
-	setEditor
+	setEditor,
+	sendNotice
 }) => {
 
 	const [items, setItems] = useState([]);
@@ -93,11 +95,16 @@ const FreeImages = ({
 
 		apiFetch({
 			path:addQueryArgs(freeImageFilters, REST_PATH + 'free_images/')
-		}).then(response => {console.log(response)
+		}).then(response => {
 			batch(() => {
 				setItems(response.items);
 				setMaxPages(response.maxPages);
 				setLoading(false);
+			});
+		}).catch(error => {
+			batch(() => {
+				setLoading(false);
+				sendNotice(error.message, 'error');
 			});
 		});
 
@@ -153,5 +160,6 @@ export default connect(state => ({
 	freeImageFilters:state.editor.freeImageFilters,
 	selectedMedia:state.editor.selectedMedia
 }),{
-	setEditor
+	setEditor,
+	sendNotice
 })(FreeImages);

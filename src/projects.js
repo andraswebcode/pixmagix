@@ -5,11 +5,14 @@ import {
 	createStore
 } from 'redux';
 import {
-	Provider
+	Provider,
+	connect,
+	batch
 } from 'react-redux';
 import apiFetch from 'wp-api-fetch';
 
 import Wrapper from './projects/components/wrapper.jsx';
+import * as actions from './projects/redux/actions.js';
 import * as hooks from './utils/hooks.js';
 import getReducer from './projects/redux/reducer.js';
 import {
@@ -52,8 +55,15 @@ const initialize = params => {
 	);
 };
 
+const data = {
+	batch,
+	connect,
+	...actions
+};
+
 export {
 	ProjectsList,
 	initialize,
-	hooks
+	hooks,
+	data
 };

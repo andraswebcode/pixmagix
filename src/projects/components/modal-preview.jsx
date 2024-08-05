@@ -39,6 +39,9 @@ import {
 import {
 	PROJECTS_REST_PATH
 } from './../../utils/constants.js';
+import {
+	doComponents
+} from './../../utils/hooks.js';
 import CategoryManager from './category-manager.jsx';
 
 const Preview = ({
@@ -155,6 +158,7 @@ const Preview = ({
 							label={__('Description', 'pixmagix')}
 							value={description}
 							onChange={value => setItemMeta(id, 'description', value)} />
+						{doComponents('projects.modalPreview.underDescription')}
 						<RadioButtons
 							label={__('Status', 'pixmagix')}
 							options={[{
@@ -166,6 +170,7 @@ const Preview = ({
 							}]}
 							value={status}
 							onChange={value => setItemMeta(id, 'status', value)} />
+						{doComponents('projects.modalPreview.underStatus')}
 						<CategoryManager />
 					</Widget>
 				</Column>

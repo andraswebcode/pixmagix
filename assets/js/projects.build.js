@@ -3490,7 +3490,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _redux_actions_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../redux/actions.js */ "./src/projects/redux/actions.js");
 /* harmony import */ var _utils_utils_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./../../utils/utils.js */ "./src/utils/utils.js");
 /* harmony import */ var _utils_constants_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./../../utils/constants.js */ "./src/utils/constants.js");
-/* harmony import */ var _category_manager_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./category-manager.jsx */ "./src/projects/components/category-manager.jsx");
+/* harmony import */ var _utils_hooks_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./../../utils/hooks.js */ "./src/utils/hooks.js");
+/* harmony import */ var _category_manager_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./category-manager.jsx */ "./src/projects/components/category-manager.jsx");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
@@ -3503,6 +3504,7 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+
 
 
 
@@ -3617,7 +3619,7 @@ var Preview = function Preview(_ref) {
     onChange: function onChange(value) {
       return setItemMeta(id, 'description', value);
     }
-  }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.RadioButtons, {
+  }), (0,_utils_hooks_js__WEBPACK_IMPORTED_MODULE_10__.doComponents)('projects.modalPreview.underDescription'), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.RadioButtons, {
     label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Status', 'pixmagix'),
     options: [{
       label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Publish', 'pixmagix'),
@@ -3630,7 +3632,7 @@ var Preview = function Preview(_ref) {
     onChange: function onChange(value) {
       return setItemMeta(id, 'status', value);
     }
-  }), /*#__PURE__*/React.createElement(_category_manager_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], null)))), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Loader, {
+  }), (0,_utils_hooks_js__WEBPACK_IMPORTED_MODULE_10__.doComponents)('projects.modalPreview.underStatus'), /*#__PURE__*/React.createElement(_category_manager_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], null)))), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Loader, {
     show: loading
   }));
 };
@@ -8866,18 +8868,26 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   ProjectsList: () => (/* binding */ ProjectsList),
-/* harmony export */   hooks: () => (/* reexport module object */ _utils_hooks_js__WEBPACK_IMPORTED_MODULE_4__),
+/* harmony export */   data: () => (/* binding */ data),
+/* harmony export */   hooks: () => (/* reexport module object */ _utils_hooks_js__WEBPACK_IMPORTED_MODULE_5__),
 /* harmony export */   initialize: () => (/* binding */ initialize)
 /* harmony export */ });
 /* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var wp_api_fetch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! wp-api-fetch */ "wp-api-fetch");
 /* harmony import */ var wp_api_fetch__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(wp_api_fetch__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _projects_components_wrapper_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./projects/components/wrapper.jsx */ "./src/projects/components/wrapper.jsx");
-/* harmony import */ var _utils_hooks_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utils/hooks.js */ "./src/utils/hooks.js");
-/* harmony import */ var _projects_redux_reducer_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./projects/redux/reducer.js */ "./src/projects/redux/reducer.js");
-/* harmony import */ var _editor_utils_middlewares_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./editor/utils/middlewares.js */ "./src/editor/utils/middlewares.js");
+/* harmony import */ var _projects_redux_actions_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./projects/redux/actions.js */ "./src/projects/redux/actions.js");
+/* harmony import */ var _utils_hooks_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./utils/hooks.js */ "./src/utils/hooks.js");
+/* harmony import */ var _projects_redux_reducer_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./projects/redux/reducer.js */ "./src/projects/redux/reducer.js");
+/* harmony import */ var _editor_utils_middlewares_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./editor/utils/middlewares.js */ "./src/editor/utils/middlewares.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 
 
 
@@ -8886,8 +8896,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-wp_api_fetch__WEBPACK_IMPORTED_MODULE_2___default().use(_editor_utils_middlewares_js__WEBPACK_IMPORTED_MODULE_6__.createPaginatingMiddleware);
-wp_api_fetch__WEBPACK_IMPORTED_MODULE_2___default().use(_editor_utils_middlewares_js__WEBPACK_IMPORTED_MODULE_6__.createArrangedMiddleware);
+
+wp_api_fetch__WEBPACK_IMPORTED_MODULE_2___default().use(_editor_utils_middlewares_js__WEBPACK_IMPORTED_MODULE_7__.createPaginatingMiddleware);
+wp_api_fetch__WEBPACK_IMPORTED_MODULE_2___default().use(_editor_utils_middlewares_js__WEBPACK_IMPORTED_MODULE_7__.createArrangedMiddleware);
 
 /**
  *
@@ -8896,7 +8907,7 @@ wp_api_fetch__WEBPACK_IMPORTED_MODULE_2___default().use(_editor_utils_middleware
  */
 
 var ProjectsList = function ProjectsList(params) {
-  var store = (0,redux__WEBPACK_IMPORTED_MODULE_7__.createStore)((0,_projects_redux_reducer_js__WEBPACK_IMPORTED_MODULE_5__["default"])(params));
+  var store = (0,redux__WEBPACK_IMPORTED_MODULE_8__.createStore)((0,_projects_redux_reducer_js__WEBPACK_IMPORTED_MODULE_6__["default"])(params));
   return /*#__PURE__*/React.createElement(react_redux__WEBPACK_IMPORTED_MODULE_1__.Provider, {
     store: store
   }, /*#__PURE__*/React.createElement(_projects_components_wrapper_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null));
@@ -8913,6 +8924,10 @@ var initialize = function initialize(params) {
   var root = (0,react_dom_client__WEBPACK_IMPORTED_MODULE_0__.createRoot)(container);
   root.render( /*#__PURE__*/React.createElement(ProjectsList, params));
 };
+var data = _objectSpread({
+  batch: react_redux__WEBPACK_IMPORTED_MODULE_1__.batch,
+  connect: react_redux__WEBPACK_IMPORTED_MODULE_1__.connect
+}, _projects_redux_actions_js__WEBPACK_IMPORTED_MODULE_4__);
 
 })();
 

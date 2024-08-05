@@ -128,6 +128,7 @@ const SettingsProject = ({
 						value:'private'
 					}]}
 					onChange={value => setEditor('projectStatus', value)} />
+				{doComponents('editor.settingsProject.underStatus')}
 				<CategoryManager />
 			</Fragment>
 		)

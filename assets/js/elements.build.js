@@ -7326,6 +7326,7 @@ var Input = function Input(_ref) {
     value = _ref.value,
     _onChange = _ref.onChange,
     placeholder = _ref.placeholder,
+    readonly = _ref.readonly,
     _ref$min = _ref.min,
     min = _ref$min === void 0 ? 0 : _ref$min,
     _ref$max = _ref.max,
@@ -7353,6 +7354,7 @@ var Input = function Input(_ref) {
     },
     debounceTimeout: debounce,
     placeholder: placeholder,
+    readOnly: readonly,
     min: min,
     max: max,
     step: step

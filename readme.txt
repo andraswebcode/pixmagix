@@ -3,13 +3,13 @@ Contributors: andrasweb
 Donate link: https://pixmagixplugin.com/
 Tags: image editor, photo editor, ai image generator, media editor, edit featured image
 Requires at least: 6.0.0
-Tested up to: 6.4.3
+Tested up to: 6.6.1
 Stable tag: 1.7.0
 Requires PHP: 7.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Advanced image editor plugin for WordPress media images. Add filters, adjust brightness and contrast, crop and resize images, add text, and much more. Overall, PixMagix is a powerful tool for anyone looking to take their website's visual content to the next level.
+Advanced image editor plugin for WordPress media images. Add filters, adjust brightness and contrast, crop and resize images, add text, and much more.
 
 == Description ==
 

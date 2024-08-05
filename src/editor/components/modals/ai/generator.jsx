@@ -5,8 +5,7 @@ import {
 	Row,
 	Column,
 	Grid,
-	Widget,
-	Input
+	Widget
 } from 'elements';
 import {
 	ai_platforms
@@ -21,14 +20,9 @@ import {
 
 import SettingsDalle from './settings-dalle.jsx';
 import SettingsSD from './settings-sd.jsx';
+import SettingsSTI from './settings-sti.jsx';
 import ImageItem from './image-item.jsx';
 import Generating from './../../../../image-generator/components/sidebar/generating.jsx';
-import {
-	createPrompt
-} from './../../../../image-generator/utils/utils.js';
-import {
-	GENERATE_REST_PATH
-} from './../../../../image-generator/utils/constants.js';
 import {
 	setEditor
 } from './../../../redux/actions-editor.js';
@@ -52,6 +46,10 @@ const Generator = ({
 		name:'stabilityai',
 		label:__('Stable Diffusion', 'pixmagix'),
 		content:<SettingsSD />
+	},{
+		name:'clipdrop',
+		label:__('Sketch to Image', 'pixmagix'),
+		content:<SettingsSTI />
 	}].filter(({name}) => includes(ai_platforms, name));
 
 	return (

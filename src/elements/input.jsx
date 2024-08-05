@@ -18,6 +18,7 @@ const Input = ({
 	value,
 	onChange,
 	placeholder,
+	readonly,
 	min = 0,
 	max = 10000,
 	step = 1,
@@ -50,6 +51,7 @@ const Input = ({
 					)}
 					debounceTimeout={debounce}
 					placeholder={placeholder}
+					readOnly={readonly}
 					min={min}
 					max={max}
 					step={step} />
