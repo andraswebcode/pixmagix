@@ -77,6 +77,16 @@ Rest assured, PixMagix is updated on a regular basis to deliver a smooth user ex
 
 == Changelog ==
 
+= 1.7.2 =
+
+* PixMagix api endpoint has changed
+* Tested with WordPress version 6.7.1
+
+= 1.7.1 =
+
+* Fixed some bugs.
+* Tested with WordPress version 6.6.1
+
 = 1.7.0 =
 
 * Improved color picker in the editor.
