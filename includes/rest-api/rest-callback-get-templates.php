@@ -23,7 +23,7 @@ function get_templates($request){
 	$page = $request->get_param('page');
 	$page = !empty($page) ? absint($page) : 1;
 	$args = compact('search', 'orientation', 'category', 'page');
-	$api_url = 'https://api.pixmagix.net/templates/';
+	$api_url = 'https://api.pixmagixplugin.com/templates/';
 	$api_url = add_query_arg($args, $api_url);
 	$remote_response = wp_remote_get($api_url);
 

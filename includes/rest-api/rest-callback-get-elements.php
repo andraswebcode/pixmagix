@@ -35,7 +35,7 @@ function get_elements($request){
     $page = $request->get_param('page');
     $page = !empty($page) ? absint($page) : 1;
     $args = compact('search', 'orientation', 'category', 'page');
-    $api_url = 'https://api.pixmagix.net/' . $collection . '/';
+    $api_url = 'https://api.pixmagixplugin.com/' . $collection . '/';
     $api_url = add_query_arg($args, $api_url);
     $remote_response = wp_remote_get($api_url);
 
