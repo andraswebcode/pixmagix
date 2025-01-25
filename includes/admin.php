@@ -79,14 +79,6 @@ final class Admin {
 		);
 		add_submenu_page(
 			'pixmagix',
-			esc_html__('Templates - PixMagix', 'pixmagix'),
-			esc_html__('Templates', 'pixmagix'),
-			'edit_pixmagix',
-			'pixmagix_tmpls',
-			__NAMESPACE__ . '\\Editor\render'
-		);
-		add_submenu_page(
-			'pixmagix',
 			esc_html__('Free Images - PixMagix', 'pixmagix'),
 			esc_html__('Free Images', 'pixmagix'),
 			'upload_files',
@@ -233,44 +225,6 @@ final class Admin {
 					$project,
 					array(
 						'media' => $media
-					)
-				)
-			);
-		} elseif ($hook_suffix === 'pixmagix_page_pixmagix_tmpls'){
-			$filters = array('search', 'category', 'orientation');
-			$params = array(
-				'page' => isset($_GET['p']) ? absint($_GET['p']) : 1
-			);
-			foreach ($filters as $key){
-				$params[$key] = isset($_GET[$key]) ? sanitize_text_field($_GET[$key]) : '';
-			}
-			$items_request = new \WP_Rest_Request('GET', '/pixmagix/v1/templates');
-			$items_request->set_query_params($params);
-			$items_response = rest_get_server()->dispatch($items_request);
-			$data = $items_response->get_data();
-			enqueue_styles(
-				array(
-					'handle' => 'pixmagix-tmpls',
-					'src' => get_asset_url('css', 'templates.build', 'css')
-				)
-			);
-			enqueue_scripts(
-				array(
-					'handle' => 'pixmagix-tmpls',
-					'src' => get_asset_url('js', 'templates.build', 'js'),
-					'l10n' => array(
-						'new_url' => esc_url(admin_editor_url()),
-						'self_url' => esc_url(admin_page_url('tmpls'))
-					)
-				)
-			);
-			initialize(
-				'pixmagix-tmpls',
-				array_merge(
-					$params,
-					array(
-						'items' => isset($data['items']) ? $data['items'] : array(),
-						'maxPages' => isset($data['maxPages']) ? absint($data['maxPages']) : 1
 					)
 				)
 			);

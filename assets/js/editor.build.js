@@ -14487,28 +14487,28 @@ var FreeImages = function FreeImages(_ref) {
   var onFiltersChange = function onFiltersChange(key, value) {
     setLoading(true);
     var newFilters = value ? _objectSpread(_objectSpread({}, freeImageFilters), {}, _defineProperty({}, key, value)) : (0,lodash__WEBPACK_IMPORTED_MODULE_5__.omit)(freeImageFilters, key);
-    if (key !== 'page') {
+    if (key !== "page") {
       newFilters.page = 1;
     }
-    setEditor('freeImageFilters', newFilters);
+    setEditor("freeImageFilters", newFilters);
   };
   var filterTabs = [{
-    name: 'pixabay',
-    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Pixabay', 'pixmagix'),
+    name: "pixabay",
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Pixabay", "pixmagix"),
     content: /*#__PURE__*/React.createElement(_free_images_filters_pixabay_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], _extends({}, freeImageFilters, {
       hasKey: true,
       onChange: onFiltersChange
     }))
   }, {
-    name: 'pexels',
-    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Pexels', 'pixmagix'),
+    name: "pexels",
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Pexels", "pixmagix"),
     content: /*#__PURE__*/React.createElement(_free_images_filters_pexels_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], _extends({}, freeImageFilters, {
       hasKey: true,
       onChange: onFiltersChange
     }))
   }, {
-    name: 'unsplash',
-    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Unsplash', 'pixmagix'),
+    name: "unsplash",
+    label: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Unsplash", "pixmagix"),
     content: /*#__PURE__*/React.createElement(_free_images_filters_unsplash_jsx__WEBPACK_IMPORTED_MODULE_12__["default"], _extends({}, freeImageFilters, {
       hasKey: true,
       onChange: onFiltersChange
@@ -14519,7 +14519,7 @@ var FreeImages = function FreeImages(_ref) {
   });
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     wp_api_fetch__WEBPACK_IMPORTED_MODULE_4___default()({
-      path: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_8__.addQueryArgs)(freeImageFilters, _utils_constants_js__WEBPACK_IMPORTED_MODULE_9__.REST_PATH + 'free_images/')
+      path: (0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_8__.addQueryArgs)(freeImageFilters, _utils_constants_js__WEBPACK_IMPORTED_MODULE_9__.REST_PATH + "free_images/")
     }).then(function (response) {
       (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.batch)(function () {
         setItems(response.items);
@@ -14529,44 +14529,44 @@ var FreeImages = function FreeImages(_ref) {
     })["catch"](function (error) {
       (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.batch)(function () {
         setLoading(false);
-        sendNotice(error.message, 'error');
+        sendNotice(error.message, "error");
       });
     });
   }, [freeImageFilters]);
   return /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Modal, {
-    title: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Import Royalty Free Image', 'pixmagix'),
+    title: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Import Royalty Free Image", "pixmagix"),
     onClose: function onClose() {
-      return setEditor('activeModal', '');
+      return setEditor("activeModal", "");
     }
   }, /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Widget, {
     tabs: filterTabs,
     initShow: freeImageFilters.platform,
     onChange: function onChange(_ref3) {
       var name = _ref3.name;
-      return onFiltersChange('platform', name);
+      return onFiltersChange("platform", name);
     }
   }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Pagination, {
     page: freeImageFilters.page,
     maxPages: maxPages,
     onChange: function onChange(page) {
-      return onFiltersChange('page', page);
+      return onFiltersChange("page", page);
     }
   }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Grid, null, items.length === 0 ? /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.GridItem, {
     isEmpty: true,
-    caption: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('No Items Found', 'pixmagix')
+    caption: (0,wp_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("No Items Found", "pixmagix")
   }) : items.map(function (item) {
     var _item$thumbnail;
     return /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.GridItem, {
       key: item.id,
       caption: item.title,
-      src: (_item$thumbnail = item.thumbnail) === null || _item$thumbnail === void 0 ? void 0 : _item$thumbnail.replace(/&#038;/g, '&'),
+      src: (_item$thumbnail = item.thumbnail) === null || _item$thumbnail === void 0 ? void 0 : _item$thumbnail.replace(/&#038;/g, "&"),
       selected: (selectedMedia === null || selectedMedia === void 0 ? void 0 : selectedMedia.id) === item.id,
       onClick: function onClick(e) {
         e.preventDefault();
         setEditor({
-          activeModal: '',
+          activeModal: "",
           selectedMedia: _objectSpread(_objectSpread(_objectSpread({}, selectedMedia), item), {}, {
-            activeActionName: 'free-images'
+            activeActionName: "free-images"
           })
         });
       }
@@ -14575,7 +14575,7 @@ var FreeImages = function FreeImages(_ref) {
     page: freeImageFilters.page,
     maxPages: maxPages,
     onChange: function onChange(page) {
-      return onFiltersChange('page', page);
+      return onFiltersChange("page", page);
     }
   }), /*#__PURE__*/React.createElement(elements__WEBPACK_IMPORTED_MODULE_2__.Loader, {
     show: loading
@@ -39239,7 +39239,7 @@ function combine (array, callback) {
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+// This entry needs to be wrapped in an IIFE because it needs to be in strict mode.
 (() => {
 "use strict";
 /*!**********************!*\

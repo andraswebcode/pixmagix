@@ -65,26 +65,6 @@ final class Rest_Api {
 
 		register_rest_route(
 			$this->namespace,
-			'templates',
-			array(
-				'methods' => \WP_REST_Server::READABLE,
-				'callback' => __NAMESPACE__ . '\\Rest\Callbacks\get_templates',
-				'permission_callback' => __NAMESPACE__ . '\\Rest\Permissions\access_list'
-			)
-		);
-
-		register_rest_route(
-			$this->namespace,
-			'templates',
-			array(
-				'methods' => \WP_REST_Server::CREATABLE,
-				'callback' => __NAMESPACE__ . '\\Rest\Callbacks\save_template',
-				'permission_callback' => __NAMESPACE__ . '\\Rest\Permissions\create_projects'
-			)
-		);
-
-		register_rest_route(
-			$this->namespace,
 			'free_images',
 			array(
 				'methods' => \WP_REST_Server::READABLE,

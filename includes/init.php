@@ -66,11 +66,9 @@ final class Plugin {
 		require_once PIXMAGIX_DIR . 'includes/rest-api/rest-callback-modify-image.php';
 		require_once PIXMAGIX_DIR . 'includes/rest-api/rest-callback-get-fonts.php';
 		require_once PIXMAGIX_DIR . 'includes/rest-api/rest-callback-get-free-images.php';
-		require_once PIXMAGIX_DIR . 'includes/rest-api/rest-callback-get-templates.php';
 		require_once PIXMAGIX_DIR . 'includes/rest-api/rest-callback-get-elements.php';
 		require_once PIXMAGIX_DIR . 'includes/rest-api/rest-callback-save-free-image.php';
 		require_once PIXMAGIX_DIR . 'includes/rest-api/rest-callback-save-settings.php';
-		require_once PIXMAGIX_DIR . 'includes/rest-api/rest-callback-save-template.php';
 		require_once PIXMAGIX_DIR . 'includes/rest-api/utils.php';
 		require_once PIXMAGIX_DIR . 'includes/rest-api/permissions.php';
 		require_once PIXMAGIX_DIR . 'includes/utils.php';
