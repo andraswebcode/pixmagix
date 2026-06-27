@@ -4,7 +4,7 @@
  * Plugin Name: PixMagix
  * Plugin URI: https://pixmagixplugin.com/
  * Description: Advanced image editor plugin for media images. Add filters, adjust brightness and contrast, crop and resize images, add text, and much more. Overall, PixMagix is a powerful tool for anyone looking to take their website's visual content to the next level.
- * Version: 1.7.2
+ * Version: 1.7.3
  * Requires at least: 6.0.0
  * Requires PHP: 7.0.0
  * Author: Andras Tovishati
