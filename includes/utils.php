@@ -407,6 +407,10 @@ function get_categories_dropdown_items($args = array()){
 
 function create_image_from_base64($base64 = '', $folder_name = '', $file_name = ''){
 
+	if (!is_base64($base64)){
+		return '';
+	}
+
 	$data = explode(',', $base64);
 	$src = get_upload_url($folder_name, $file_name);
 
