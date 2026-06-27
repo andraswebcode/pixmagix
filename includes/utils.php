@@ -171,7 +171,9 @@ function get_filesystem(){
 function get_upload_dir($folder_name = '', $file_name = ''){
 
 	$wp_upload_dir = wp_upload_dir();
-	$basedir = $wp_upload_dir['basedir'];
+	$basedir = wp_normalize_path($wp_upload_dir['basedir']);
+	$folder_name = sanitize_key($folder_name);
+	$file_name = sanitize_file_name($file_name);
 
 	/**
 	 * 
@@ -200,6 +202,8 @@ function get_upload_url($folder_name = '', $file_name = ''){
 
 	$wp_upload_dir = wp_upload_dir();
 	$baseurl = $wp_upload_dir['baseurl'];
+	$folder_name = sanitize_key($folder_name);
+	$file_name = sanitize_file_name($file_name);
 
 	/**
 	 * 
