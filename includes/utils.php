@@ -476,9 +476,10 @@ function is_base64($src = ''){
 
 /**
  * Copies an image, and upload it to a new destination folder on the same server.
+ * @since 1.2.0 
+ * We do not use it anywhere.
  * @since 1.7.3
  * @deprecated
- * @since 1.2.0
  * @param string $from
  * @param string $to_folder
  * @param string $to_filename
