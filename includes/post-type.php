@@ -201,7 +201,7 @@ final class Post_Type {
 			foreach ($layers as $layer){
 				if ($layer['type'] === 'image' && isset($layer['src']) && is_base64($layer['src'])){
 					$layer_id = sanitize_key($layer['id']);
-					$filename = 'layer-' . $id . '-' . $layer_id . '.png';
+					$filename = wp_basename('layer-' . $id . '-' . $layer_id . '.png');
 					$layer['src'] = esc_url_raw(create_image_from_base64($layer['src'], 'layers', $filename));
 				}
 				$new_layers[] = $layer;
