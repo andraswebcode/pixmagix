@@ -3,9 +3,9 @@ Contributors: andrasweb
 Donate link: https://pixmagixplugin.com/
 Tags: image editor, photo editor, ai image generator, media editor, edit featured image
 Requires at least: 6.0.0
-Tested up to: 6.7.1
-Stable tag: 1.7.2
-Requires PHP: 7.0.0
+Tested up to: 7.0.0
+Stable tag: 1.7.3
+Requires PHP: 8.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -76,6 +76,11 @@ PixMagix offers support primarily through the WordPress.org plugin page's suppor
 Rest assured, PixMagix is updated on a regular basis to deliver a smooth user experience, ensure optimal performance, and keep up with the latest web standards and technological advancements.
 
 == Changelog ==
+
+= 1.7.3 =
+
+* We removed the Templates feature because we shut down the public API it relied on.
+* We have fixed reported security vulnerabilities.
 
 = 1.7.2 =
 
