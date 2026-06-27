@@ -29,6 +29,14 @@ function export_ai_image($request){
 	}
 
 	$src = esc_url_raw($request['src'] ?? '');
+
+	if (empty($src) || !wp_http_validate_url($src)){
+		return new \WP_Error(
+			'invalid_url',
+			esc_html__('Invalid image URL.', 'pixmagix')
+		);
+	}
+
 	$extension = get_file_extension($src, 'png');
 	$filename = $request['filename'] ?? '';
 	$filename = !empty($filename) ? sanitize_file_name($filename . '.' . $extension) : 'pixmagix.png';
@@ -40,6 +48,17 @@ function export_ai_image($request){
 
 	if (is_wp_error($tmp_name)){
 		return $tmp_name;
+	}
+
+	$type = wp_check_filetype_and_ext($tmp_name, $filename);
+
+	if (empty($type['type']) || strpos($type['type'], 'image/') !== 0){
+		@unlink($tmp_name);
+
+		return new \WP_Error(
+			'invalid_image',
+			esc_html__('Invalid image file.', 'pixmagix')
+		);
 	}
 
 	$file_array = array(
