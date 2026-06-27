@@ -439,11 +439,24 @@ function create_image_from_base64($base64 = '', $folder_name = '', $file_name = 
 
 function is_base64($src = ''){
 
-	if (empty($src)){
+	if (!is_string($src) || empty($src)){
 		return false;
 	}
 
-	return (strpos($src, ';base64,') !== false);
+	if (!preg_match(
+		'#^data:image/[a-z0-9.+-]+;base64,#i',
+		$src
+	)){
+		return false;
+	}
+
+	$data = explode(',', $src, 2);
+
+	if (count($data) !== 2){
+		return false;
+	}
+
+	return (base64_decode($data[1], true) !== false);
 
 }
 
