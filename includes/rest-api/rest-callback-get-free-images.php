@@ -20,7 +20,7 @@ if (!defined('ABSPATH')){
 
 function get_free_images($request){
 
-	$platform = $request->get_param('platform');
+	$platform = $request->get_param('platform') ?: 'pixabay';
 
 	if (empty($platform)){
 		return new \WP_Error(

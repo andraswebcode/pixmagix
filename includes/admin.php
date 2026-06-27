@@ -232,7 +232,9 @@ final class Admin {
 			$filters = array('search', 'type', 'orientation', 'category', 'color');
 			$params = array(
 				// Page is not in the foreach loop, because it has a different default value.
-				'page' => isset($_GET['p']) ? absint($_GET['p']) : 1
+				'page' => isset($_GET['p']) ? absint($_GET['p']) : 1,
+				// Platform too.
+				'platform' => isset($_GET['platform']) ? absint($_GET['platform']) : 'pixabay',
 			);
 			foreach ($filters as $key){
 				$params[$key] = isset($_GET[$key]) ? sanitize_text_field($_GET[$key]) : '';
