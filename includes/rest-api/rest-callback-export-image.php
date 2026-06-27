@@ -6,6 +6,7 @@ use function AndrasWeb\PixMagix\Utils\get_filesystem;
 use function AndrasWeb\PixMagix\Utils\get_upload_dir;
 use function AndrasWeb\PixMagix\Utils\get_upload_url;
 use function AndrasWeb\PixMagix\Utils\delete_attachment_subsizes;
+use function AndrasWeb\PixMagix\Utils\is_base64;
 
 // Exit, if accessed directly.
 
@@ -36,7 +37,7 @@ function export_image($request){
 	$filesystem = get_filesystem();
 	$json = $request->get_json_params();
 	$attachment_id = isset($json['mediaId']) ? intval($json['mediaId']) : 0;
-	$image_data_url = isset($json['imageDataURL']) ? $json['imageDataURL'] : '';
+	$image_data_url = isset($json['imageDataURL']) && is_base64($json['imageDataURL']) ? $json['imageDataURL'] : '';
 	$image_data = $filesystem->get_contents('data://' . $image_data_url);
 	$response = array(
 		'success' => true
