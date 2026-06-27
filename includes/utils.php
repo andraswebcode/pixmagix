@@ -443,20 +443,30 @@ function is_base64($src = ''){
 		return false;
 	}
 
-	if (!preg_match(
-		'#^data:image/[a-z0-9.+-]+;base64,#i',
-		$src
-	)){
+	if (str_starts_with($src, 'data:')){
+		if (!preg_match(
+			'#^data:image/[a-z0-9.+-]+;base64,#i',
+			$src
+		)){
+			return false;
+		}
+
+		$data = explode(',', $src, 2);
+
+		if (count($data) !== 2){
+			return false;
+		}
+
+		$src = $data[1];
+	}
+
+	$image = base64_decode($src, true);
+
+	if ($image === false){
 		return false;
 	}
 
-	$data = explode(',', $src, 2);
-
-	if (count($data) !== 2){
-		return false;
-	}
-
-	return (base64_decode($data[1], true) !== false);
+	return (getimagesizefromstring($image) !== false);
 
 }
 
