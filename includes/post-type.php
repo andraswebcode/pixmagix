@@ -166,7 +166,7 @@ final class Post_Type {
 			return;
 		}
 
-		$id = $post->ID;
+		$id = intval($post->ID);
 		$meta = $request->get_param('meta');
 		$project = isset($meta['pixmagix_project']) ? $meta['pixmagix_project'] : array();
 
@@ -200,7 +200,7 @@ final class Post_Type {
 		if (!empty($layers)){
 			foreach ($layers as $layer){
 				if ($layer['type'] === 'image' && isset($layer['src']) && is_base64($layer['src'])){
-					$layer_id = $layer['id'];
+					$layer_id = sanitize_key($layer['id']);
 					$filename = 'layer-' . $id . '-' . $layer_id . '.png';
 					$layer['src'] = esc_url_raw(create_image_from_base64($layer['src'], 'layers', $filename));
 				}
@@ -250,7 +250,7 @@ final class Post_Type {
 
 		if (!empty($layers)){
 			foreach ($layers as $layer){
-				$layer_id = $layer['id'];
+				$layer_id = sanitize_key($layer['id']);
 				if ($layer['type'] === 'image'){
 					$extension = get_file_extension($layer['src'] ?? '', 'png');
 					$file = get_upload_dir('layers', 'layer-' . $id . '-' . $layer_id . '.' . $extension);
@@ -280,19 +280,21 @@ final class Post_Type {
 		$dir = get_upload_dir('layers');
 		$files = @scandir($dir);
 		$layer_ids = array_map(function($layer){
-			return $layer['id'] ?? '';
+			return sanitize_key($layer['id'] ?? '');
 		}, $layers);
 
 		if (!empty($files)){
 			foreach ($files as $filename){
-				$layer_id = str_replace(
-					array(
-						'layer-' . $id . '-',
-						'.png',
-						'.jpg'
-					),
-					'',
-					$filename
+				$layer_id = sanitize_key(
+					str_replace(
+						array(
+							'layer-' . $id . '-',
+							'.png',
+							'.jpg'
+						),
+						'',
+						$filename
+					)
 				);
 				// The filenames of layers are 'layer-{$post_id}-${$layer_id}.png'.
 				// The $layer_id starts with 'pixmagix-'.

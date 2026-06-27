@@ -212,7 +212,7 @@ function get_upload_url($folder_name = '', $file_name = ''){
 	$baseurl = apply_filters('pixmagix_upload_url', $baseurl . '/pixmagix/', $folder_name, $file_name);
 	$folder_name = !empty($folder_name) ? '' . $folder_name . '/' : '';
 
-	return $baseurl . $folder_name . $file_name;
+	return $baseurl . $folder_name . sanitize_file_name($file_name);
 
 }
 
@@ -412,7 +412,7 @@ function create_image_from_base64($base64 = '', $folder_name = '', $file_name = 
 
 	$filesystem = get_filesystem();
 	$dir = get_upload_dir($folder_name);
-	$file = $dir . $file_name;
+	$file = $dir . sanitize_file_name($file_name);
 
 	if (wp_mkdir_p($dir) === false){
 		return '';
@@ -445,6 +445,8 @@ function is_base64($src = ''){
 
 /**
  * Copies an image, and upload it to a new destination folder on the same server.
+ * @since 1.7.3
+ * @deprecated
  * @since 1.2.0
  * @param string $from
  * @param string $to_folder
@@ -454,26 +456,7 @@ function is_base64($src = ''){
  */
 
 function move_image_on_server($from, $to_folder, $to_filename, $unlink = true){
-
-	$dir = get_upload_dir($to_folder);
-
-	if (wp_mkdir_p($dir) === false){
-		return '';
-	}
-
-	$to = $dir . $to_filename;
-	$copied = copy($from, $to);
-
-	if ($unlink){
-		unlink($from);
-	}
-
-	if ($copied){
-		return get_upload_url($to_folder, $to_filename);
-	}
-
 	return '';
-
 }
 
 /**
