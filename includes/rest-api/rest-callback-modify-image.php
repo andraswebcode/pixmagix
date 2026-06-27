@@ -21,7 +21,10 @@ function modify_image($request){
 	$modifier = sanitize_text_field($json['modifier'] ?? '');
 
 	if (empty($modifier)){
-		return new WP_Error();
+		return new WP_Error(
+			'invalid_modifier',
+			esc_html__('Invalid Modifier', 'pixmagix'),
+		);
 	}
 
 	$api_key = sanitize_text_field(get_setting('clipdrop_api_key'));
@@ -36,8 +39,8 @@ function modify_image($request){
 		);
 	}
 
-	$src = sanitize_text_field($json['src'] ?? '');
-	$mask = sanitize_text_field($json['mask'] ?? '');
+	$src = esc_url_raw($json['src'] ?? '');
+	$mask = sanitize_text_field(isset($json['mask']) && is_base64($json['mask']) ? $json['mask'] : '');
 	$prompt = sanitize_text_field($json['prompt'] ?? '');
 	$mode = sanitize_text_field($json['mode'] ?? 'fast');
 	$api_url = 'https://clipdrop-api.co/' . $modifier . '/v1';
