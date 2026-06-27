@@ -8,6 +8,12 @@ use function AndrasWeb\PixMagix\Settings\get_setting;
 use WP_Error;
 use WP_REST_Response;
 
+// Exit, if accessed directly.
+
+if (!defined('ABSPATH')){
+	exit;
+}
+
 /**
  *
  * @since 1.7.0

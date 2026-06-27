@@ -3,7 +3,7 @@ Contributors: andrasweb
 Donate link: https://pixmagixplugin.com/
 Tags: image editor, photo editor, ai image generator, media editor, edit featured image
 Requires at least: 6.0.0
-Tested up to: 7.0.0
+Tested up to: 7.0
 Stable tag: 1.7.3
 Requires PHP: 8.0.0
 License: GPLv2 or later

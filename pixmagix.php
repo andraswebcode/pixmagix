@@ -6,7 +6,7 @@
  * Description: Advanced image editor plugin for media images. Add filters, adjust brightness and contrast, crop and resize images, add text, and much more. Overall, PixMagix is a powerful tool for anyone looking to take their website's visual content to the next level.
  * Version: 1.7.3
  * Requires at least: 6.0.0
- * Requires PHP: 7.0.0
+ * Requires PHP: 8.0.0
  * Author: Andras Tovishati
  * Author URI: https://andrasweb.com/
  * License: GPLv2
@@ -60,6 +60,7 @@ if (!version_compare(PHP_VERSION, PIXMAGIX_REQUIRED_PHP_VERSION, '>=')){
 if (!function_exists(__NAMESPACE__ . '\\fail_php_version')){
 	function fail_php_version(){
 		$message = sprintf(
+			/* translators: %s: minimum required PHP version */
 			esc_html__(
 				'PixMagix requires PHP version %s+, plugin is currently NOT RUNNING.',
 				'pixmagix'
@@ -82,6 +83,7 @@ if (!function_exists(__NAMESPACE__ . '\\fail_php_version')){
 if (!function_exists(__NAMESPACE__ . '\\fail_wp_version')){
 	function fail_wp_version(){
 		$message = sprintf(
+			/* translators: 1: minimum required WordPress version */
 			esc_html__(
 				'PixMagix requires WordPress version %s+, plugin is currently NOT RUNNING.',
 				'pixmagix'

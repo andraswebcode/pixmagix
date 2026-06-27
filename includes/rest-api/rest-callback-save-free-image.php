@@ -55,7 +55,7 @@ function save_free_image($request){
 	$type = wp_check_filetype_and_ext($tmp_name, $filename);
 
 	if (empty($type['type']) || strpos($type['type'], 'image/') !== 0){
-		@unlink($tmp_name);
+		wp_delete_file($tmp_name);
 
 		return new \WP_Error(
 			'invalid_image',
@@ -70,7 +70,7 @@ function save_free_image($request){
 	$id = media_handle_sideload($file_array, 0);
 
 	if (is_wp_error($id)){
-		@unlink($tmp_name);
+		wp_delete_file($tmp_name);
 		return $id;
 	}
 

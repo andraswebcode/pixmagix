@@ -335,6 +335,7 @@ function get_months_dropdown_items($post_type = 'pixmagix'){
 		",
 		$post_type
 	);
+	// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 	$months = $wpdb->get_results($query);
 
 	// This filter is documented in wp-admin/includes/class-wp-list-table on line: 721.
@@ -680,7 +681,7 @@ function create_unique_id($prefix = 'pixmagix'){
 	$id = '';
 
 	for ($i = 0; $i < 20; $i++){
-		$id .= $characters[rand(0, 19)];
+		$id .= $characters[wp_rand(0, 19)];
 	}
 
 	return $prefix . '-' . $id;

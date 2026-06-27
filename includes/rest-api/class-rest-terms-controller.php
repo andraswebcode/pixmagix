@@ -43,7 +43,8 @@ class Terms_Controller extends \WP_REST_Terms_Controller {
 		$response = parent::prepare_item_for_response($item, $request);
 		$data = $response->get_data();
 		$caption = sprintf(
-			__('%s - Count: %d - ID: #%d', 'pixmagix'),
+			/* translators: 1: category name, 2: item count, 3: term ID */
+			__('%1$s - Count: %2$d - ID: #%3$d', 'pixmagix'),
 			$item->name,
 			$item->count,
 			$item->term_id

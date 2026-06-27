@@ -80,11 +80,17 @@ class AI_Arch_Controller extends Post_Controller {
 		$data = $response->get_data();
 		$project = $data['meta']['pixmagix_ai_arch_project'] ?? array();
 		$samples_count = $project['samplesCount'] ?? 0;
-		$generator = ($project['generator'] === 'openai') ? esc_html__('DALL-E') : esc_html__('Stable Diffusion', 'pixmagix');
+		$generator = ($project['generator'] === 'openai') ? esc_html__('DALL-E', 'pixmagix') : esc_html__('Stable Diffusion', 'pixmagix');
 		$prompt = $project['prompts'][0]['text'] ?? '';
 		$trim_prompt = wp_trim_words($prompt, 5, '...');
 		$caption = sprintf(
-			_n('%s - %d Sample - Created With %s', '%s - %d Samples - Created With %s', $samples_count, 'pixmagix'),
+			/* translators: 1: prompt, 2: number of samples, 3: AI generator name */
+			_n(
+				'%1$s - %2$d Sample - Created With %3$s',
+				'%1$s - %2$d Samples - Created With %3$s',
+				$samples_count,
+				'pixmagix'
+			),
 			$trim_prompt,
 			$samples_count,
 			$generator

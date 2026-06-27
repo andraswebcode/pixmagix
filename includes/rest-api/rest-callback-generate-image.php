@@ -7,6 +7,12 @@ use function AndrasWeb\PixMagix\Utils\get_file_extension;
 use function AndrasWeb\PixMagix\Utils\create_unique_id;
 use function AndrasWeb\PixMagix\Settings\get_setting;
 
+// Exit, if accessed directly.
+
+if (!defined('ABSPATH')){
+	exit;
+}
+
 /**
  *
  * @since 1.2.0

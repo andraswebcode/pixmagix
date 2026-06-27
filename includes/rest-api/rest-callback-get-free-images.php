@@ -141,7 +141,8 @@ function get_free_images($request){
 				'sizes' => array(
 					array(
 						'label' => sprintf(
-							esc_html__('Large - %dx%d', 'pixmagix'),
+							/* translators: 1: image width in pixels, 2: image height in pixels */
+							esc_html__('Large - %1$dx%2$d', 'pixmagix'),
 							$size_lg['width'],
 							$size_lg['height']
 						),
@@ -149,7 +150,8 @@ function get_free_images($request){
 					),
 					array(
 						'label' => sprintf(
-							esc_html__('Medium - %dx%d', 'pixmagix'),
+							/* translators: 1: image width in pixels, 2: image height in pixels */
+							esc_html__('Medium - %1$dx%2$d', 'pixmagix'),
 							$size_md['width'],
 							$size_md['height']
 						),
@@ -157,7 +159,8 @@ function get_free_images($request){
 					),
 					array(
 						'label' => sprintf(
-							esc_html__('Thumbnail - %dx%d', 'pixmagix'),
+							/* translators: 1: image width in pixels, 2: image height in pixels */
+							esc_html__('Thumbnail - %1$dx%2$d', 'pixmagix'),
 							$size_tm['width'],
 							$size_tm['height']
 						),
@@ -193,7 +196,8 @@ function get_free_images($request){
 				'sizes' => array(
 					array(
 						'label' => sprintf(
-							esc_html__('Large - %dx%d', 'pixmagix'),
+							/* translators: 1: image width in pixels, 2: image height in pixels */
+							esc_html__('Large - %1$dx%2$d', 'pixmagix'),
 							$size_lg['width'],
 							$size_lg['height']
 						),
@@ -211,7 +215,8 @@ function get_free_images($request){
 					),
 					array(
 						'label' => sprintf(
-							esc_html__('Medium - %dx%d', 'pixmagix'),
+							/* translators: 1: image width in pixels, 2: image height in pixels */
+							esc_html__('Medium - %1$dx%2$d', 'pixmagix'),
 							$size_md['width'],
 							$size_md['height']
 						),
@@ -229,7 +234,8 @@ function get_free_images($request){
 					),
 					array(
 						'label' => sprintf(
-							esc_html__('Thumbnail - %dx%d', 'pixmagix'),
+							/* translators: 1: image width in pixels, 2: image height in pixels */
+							esc_html__('Thumbnail - %1$dx%2$d', 'pixmagix'),
 							$size_tm['width'],
 							$size_tm['height']
 						),
@@ -276,7 +282,8 @@ function get_free_images($request){
 				'sizes' => array(
 					array(
 						'label' => sprintf(
-							esc_html__('Large - %dx%d', 'pixmagix'),
+							/* translators: 1: image width in pixels, 2: image height in pixels */
+							esc_html__('Large - %1$dx%2$d', 'pixmagix'),
 							$size_lg['width'],
 							$size_lg['height']
 						),
@@ -295,7 +302,8 @@ function get_free_images($request){
 					),
 					array(
 						'label' => sprintf(
-							esc_html__('Medium - %dx%d', 'pixmagix'),
+							/* translators: 1: image width in pixels, 2: image height in pixels */
+							esc_html__('Medium - %1$dx%2$d', 'pixmagix'),
 							$size_md['width'],
 							$size_md['height']
 						),
@@ -314,7 +322,8 @@ function get_free_images($request){
 					),
 					array(
 						'label' => sprintf(
-							esc_html__('Thumbnail - %dx%d', 'pixmagix'),
+							/* translators: 1: image width in pixels, 2: image height in pixels */
+							esc_html__('Thumbnail - %1$dx%2$d', 'pixmagix'),
 							$size_tm['width'],
 							$size_tm['height']
 						),

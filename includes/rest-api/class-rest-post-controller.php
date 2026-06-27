@@ -247,12 +247,14 @@ class Post_Controller extends \WP_REST_Posts_Controller {
 		if ($author !== $current_user){
 			if (!empty($caption)){
 				$caption = sprintf(
-					__('%s by %s', 'pixmagix'),
+					/* translators: 1: item title, 2: author name */
+					__('%1$s by %2$s', 'pixmagix'),
 					$caption,
 					$author_name
 				);
 			} else {
 				$caption = sprintf(
+					/* translators: 1: author name */
 					__('Created by %s', 'pixmagix'),
 					$author_name
 				);
@@ -260,6 +262,7 @@ class Post_Controller extends \WP_REST_Posts_Controller {
 		} else {
 			if (empty($caption)){
 				$caption = sprintf(
+					/* translators: 1: project ID */
 					__('Project #%d', 'pixmagix'),
 					absint($item->ID)
 				);
