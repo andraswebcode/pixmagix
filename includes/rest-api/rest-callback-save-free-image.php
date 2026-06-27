@@ -36,17 +36,31 @@ function save_free_image($request){
 
 	$src = esc_url_raw($request->get_param('src'));
 
-	if (!is_string($src) || empty($src)){
-		return new \WP_Error();
+	if (!is_string($src) || empty($src) || !wp_http_validate_url($src)){
+		return new \WP_Error(
+			'invalid_url',
+			esc_html__('Invalid image URL.', 'pixmagix')
+		);
 	}
 
 	$extension = get_file_extension($src, 'jpg');
 	$filename = $request->get_param('filename');
-	$filename = !empty($filename) ? sanitize_text_field($filename . '.' . $extension) : 'pixmagix.jpg';
+	$filename = !empty($filename) ? sanitize_file_name($filename . '.' . $extension) : 'pixmagix.jpg';
 	$tmp_name = download_url($src);
 
 	if (is_wp_error($tmp_name)){
 		return $tmp_name;
+	}
+
+	$type = wp_check_filetype_and_ext($tmp_name, $filename);
+
+	if (empty($type['type']) || strpos($type['type'], 'image/') !== 0){
+		@unlink($tmp_name);
+
+		return new \WP_Error(
+			'invalid_image',
+			esc_html__('Invalid image file.', 'pixmagix')
+		);
 	}
 
 	$file_array = array(
